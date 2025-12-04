@@ -18,7 +18,7 @@ export default defineConfig({
       tsconfigPath: fileURLToPath(
         new URL('tsconfig.lib.json', import.meta.url),
       ),
-      exclude: '**/*.stories.ts',
+      exclude: ['**/*.stories.ts', '__tests__/*.ts'],
     }),
     preserveDirectives(),
   ],
@@ -51,6 +51,7 @@ export default defineConfig({
             'src/**/*types*.ts',
             'src/**/*stories*.ts',
             'src/**/*test.{ts,tsx}',
+            '__tests__/*.{ts,tsx}',
           ],
         }).map((file) => [
           relative('src', file.slice(0, file.length - extname(file).length)),

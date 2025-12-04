@@ -33,6 +33,7 @@ export default defineConfig([
     },
     rules: {
       '@stylistic/jsx-quotes': ["error", "prefer-double"],
+      '@eslint-react/no-forward-ref': 'error',
       'arrow-body-style': 'error',
       eqeqeq: 'error',
       'no-console': 'error',
