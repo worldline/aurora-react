@@ -26,6 +26,9 @@ export default defineConfig({
     devSourcemap: true,
     modules: {
       generateScopedName: (className, filename) => {
+        if (className === 'dark') {
+          return className
+        }
         const hash = createHash('sha256')
           .update(filename)
           .update(className)

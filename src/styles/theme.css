@@ -1,0 +1,13 @@
+@import "./variables.css";
+
+:root {
+    --color-text-base: var(--color-text-base-light);
+    --color-text-active: var(--color-text-active-light);
+    --color-surface-base: var(--color-surface-base-light);
+}
+
+.dark {
+    --color-text-base: var(--color-text-base-dark);
+    --color-text-active: var(--color-text-active-dark);
+    --color-surface-base: var(--color-surface-base-dark);
+}

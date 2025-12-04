@@ -1,0 +1,5 @@
+@import "../../styles/theme.css";
+
+.text {
+    color: var(--color-text-base);
+}
