@@ -1,5 +1,4 @@
-import preview from '../../../.storybook/preview'
-import { Text } from '../Text'
+import preview from '@/storybook/preview'
 
 import { Typography } from '.'
 

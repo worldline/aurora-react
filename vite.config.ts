@@ -18,7 +18,13 @@ export default defineConfig({
       tsconfigPath: fileURLToPath(
         new URL('tsconfig.lib.json', import.meta.url),
       ),
-      exclude: ['**/*.stories.ts', '__tests__/*.ts'],
+      exclude: [
+        '**/*.stories.ts',
+        '**/*.stories.tsx',
+        '__tests__/*.ts',
+        '__tests__/*.tsx',
+        '.storybook/*.ts',
+      ],
     }),
     preserveDirectives(),
   ],
@@ -47,12 +53,12 @@ export default defineConfig({
       formats: ['es'],
     },
     rolldownOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'classnames'],
       input: Object.fromEntries(
         globSync('src/**/*.{ts,tsx}', {
           ignore: [
             'src/**/*types*.ts',
-            'src/**/*stories*.ts',
+            'src/**/*stories*.{ts,tsx}',
             'src/**/*test.{ts,tsx}',
             '__tests__/*.{ts,tsx}',
           ],

@@ -1,5 +1,3 @@
-@import "../../styles/theme.css";
-
 .card {
     color: var(--color-text-base);
     background-color: var(--color-surface-base);

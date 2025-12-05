@@ -47,7 +47,7 @@ const Typography = ({
   ref,
   element: Type,
   textStyle,
-  textColor,
+  textColor = 'base',
   className,
   children,
   ...props
@@ -58,7 +58,7 @@ const Typography = ({
     ref={ref}
     className={cn([
       `typography-${textStyle}`,
-      textColor && `text-color-${textColor}`,
+      `text-color-${textColor}`,
       className,
     ])}
     {...props}
