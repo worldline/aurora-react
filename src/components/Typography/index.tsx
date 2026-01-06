@@ -27,7 +27,7 @@ type Element = HeadingElement | TextElement | ContainerElement
 
 type TextColor = 'base' | 'active' // import from DS
 
-type TextStyle = 'header-1' | 'header-2' | 'label-1' | 'label-2'
+type TextStyle2 = 'Heading2Xxl' | 'Heading2Subheading'
 
 type HtmlTypographyElement = HTMLHeadingElement | HTMLParagraphElement
 
@@ -36,13 +36,14 @@ interface TypographyProps
   /* Html element which will be rendered */
   element: Element
   /* Text style from the Design System */
-  textStyle: TextStyle
+  textStyle: TextStyle2
   /* Text color from the Design System */
   textColor?: TextColor
   /* Content of the typography */
   children: ReactNode
 }
 
+// <Typography color="neutral-100" textStyle="heading-xxl" element="h1" />
 const Typography = ({
   ref,
   element: Type,
@@ -56,6 +57,7 @@ const Typography = ({
 }) => (
   <Type
     ref={ref}
+    style={{ color: 'var(--content-base)' }}
     className={cn([
       `typography-${textStyle}`,
       `text-color-${textColor}`,

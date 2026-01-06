@@ -5,7 +5,7 @@ import { Button } from '.'
 
 describe('Button Component', () => {
   test('should display Button', () => {
-    render(<Button label="My Button" />)
+    render(<Button>My Button</Button>)
 
     const btn = screen.getByRole('button', { name: 'My Button' })
 
@@ -14,7 +14,7 @@ describe('Button Component', () => {
 
   test('should handle click', () => {
     const handleClick = vi.fn()
-    render(<Button label="My Button" onClick={handleClick} />)
+    render(<Button onClick={handleClick}>My Button</Button>)
 
     const btn = screen.getByRole('button')
     fireEvent.click(btn)

@@ -33,7 +33,7 @@ export const Dark = meta.story({
 export const DarkWithTextContent = meta.story({
   args: {
     children: (
-      <Typography element="p" textStyle="label-2" textColor="active">
+      <Typography element="p" textStyle="Heading2Subheading" textColor="active">
         Hello world !
       </Typography>
     ),

@@ -19,3 +19,7 @@
 .text-color-active {
     color: var(--color-text-active);
 }
+
+.neutral-100 {
+    color: var(--content-neutral-100)
+}

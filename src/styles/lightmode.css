@@ -1,0 +1,29 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --au-color: #ffffff;
+  --au-border-default-primary: var(--au-neutral-100);
+  --au-border-subtile-primary: var(--au-neutral-200);
+  --au-border-strong-primary: var(--au-neutral-300);
+  --au-border-interactive-primary: var(--au-brand-primary);
+  --au-border-transparant-primary: var(--au-neutral-transparant);
+  --au-content-neutral-base: var(--au-neutral-900);
+  --au-content-neutral-secondary: var(--au-neutral-700);
+  --au-content-neutral-tertiary: var(--au-neutral-600);
+  --au-content-neutral-invert: var(--au-neutral-white);
+  --au-content-neutral-white: var(--au-neutral-white);
+  --au-content-neutral-black: var(--au-neutral-black);
+  --au-background-base-default: var(--au-neutral-white);
+  --au-background-base-hover: var(--au-neutral-white);
+  --au-background-soft-default: var(--au-neutral-100);
+  --au-background-elevated-default: var(--au-neutral-200);
+  --au-background-transparant-default: var(--au-neutral-transparant);
+  --au-background-interactive-primary: var(--au-brand-primary);
+  --au-feedback-error-primary: var(--au-red-500);
+  --au-feedback-error-secondary: var(--au-red-300);
+  --au-feedback-error-tertiary: var(--au-red-100);
+  --au-border-feedback-error: var(--au-feedback-error-primary);
+  --au-background-feedback-error: var(--au-feedback-error-primary);
+}

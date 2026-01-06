@@ -14,8 +14,8 @@ const meta = preview.meta({
 export const Light = meta.story({
   args: {
     element: 'p',
-    textStyle: 'label-1',
-    textColor: 'base',
+    textStyle: 'Heading2Subheading',
+    textColor: 'active',
     children: 'Hello world !',
   },
 })
@@ -23,8 +23,8 @@ export const Light = meta.story({
 export const Dark = meta.story({
   args: {
     element: 'p',
-    textStyle: 'label-1',
-    textColor: 'base',
+    textStyle: 'Heading2Subheading',
+    textColor: 'active',
     children: 'Hello world !',
   },
   render: (args) => (
@@ -36,8 +36,8 @@ export const Dark = meta.story({
 
 export const DarkWithTextActive = meta.story({
   args: {
-    element: 'h1',
-    textStyle: 'header-1',
+    element: 'p',
+    textStyle: 'Heading2Subheading',
     textColor: 'active',
     children: 'Hello world !',
   },

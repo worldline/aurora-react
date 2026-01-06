@@ -1,0 +1,130 @@
+.button {
+  font-family: var(--au-fonts-primary);
+  font-weight: var(--au-fontweight-normal);
+  border-radius: var(--au-border-radius-large);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--au-dimensions-8);
+  transition: all 0.15s ease;
+  outline: none;
+  text-decoration: none;
+}
+
+.sm {
+  padding: var(--au-dimensions-4) var(--au-dimensions-8);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.md {
+  padding: var(--au-dimensions-8) var(--au-dimensions-16);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.lg {
+  padding: var(--au-dimensions-10) var(--au-dimensions-24);
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.primary {
+  background: var(--au-background-interactive-primary);
+  color: var(--au-content-neutral-white);
+  border: var(--au-border-width-default) solid var(--au-background-interactive-primary);
+}
+
+.primary[data-hovered] {
+  background: var(--au-background-interactive-primary-hover);
+  border-color: var(--au-background-interactive-primary-hover);
+}
+
+.primary[data-pressed] {
+  background: var(--au-background-interactive-primary-pressed);
+  border-color: var(--au-background-interactive-primary-pressed);
+}
+
+/* Variants - Secondary */
+.secondary {
+  background: var(--au-background-base-default);
+  color: var(--au-content-neutral-base);
+  border: var(--au-border-width-default) solid var(--au-border-strong-primary);
+}
+
+.secondary[data-hovered] {
+  background: var(--au-background-soft-default);
+  border-color: var(--au-border-strong-primary);
+}
+
+.secondary[data-pressed] {
+  background: var(--au-background-elevated-default);
+  border-color: var(--au-border-strong-primary);
+}
+
+.danger {
+  background: var(--au-background-feedback-error);
+  color: var(--au-content-neutral-white);
+  border: var(--au-border-width-default) solid var(--au-border-feedback-error);
+}
+
+.danger[data-hovered] {
+  opacity: 0.9;
+}
+
+.danger[data-pressed] {
+  opacity: 0.8;
+}
+
+.button[data-pressed] {
+  transform: scale(0.98);
+}
+
+.button[data-focus-visible] {
+  outline: 2px solid var(--au-brand-primary);
+  outline-offset: 2px;
+}
+
+.button[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* ==========================================================================
+   Responsive Styles - Mobile First
+   ========================================================================== */
+
+/* Mobile (≤640px) - Smaller buttons optimized for touch */
+@media (width <= 640px) {
+  .button {
+    width: auto;
+    min-width: fit-content;
+    gap: var(--au-dimensions-4);
+    border-radius: var(--au-border-radius-medium);
+  }
+
+  /* Smaller, more compact buttons on mobile */
+  .sm {
+    padding: var(--au-dimensions-4) var(--au-dimensions-10);
+    font-size: 12px;
+    line-height: var(--au-dimensions-16);
+    min-height: var(--au-dimensions-32);
+  }
+
+  .md {
+    padding: var(--au-padding-small) var(--au-dimensions-16);
+    font-size: 14px;
+    line-height: var(--au-dimensions-20);
+    min-height: var(--au-dimensions-32);
+  }
+
+  .lg {
+    padding: var(--au-padding-small) var(--au-dimensions-20);
+    font-size: 16px;
+    line-height: var(--au-dimensions-24);
+    min-height: 40px;
+  }
+
+}
