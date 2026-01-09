@@ -17,14 +17,17 @@
   },
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run icons:generate",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "slint": "npx stylelint \"**/*.scss\"",
     "ncui": "npx npm-check-updates -i",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "icons:generate": "npx @svgr/cli  --config-file svgr.config.js -- src/assets/icons/svg"
   },
   "dependencies": {
     "react": "19.2.3",
@@ -41,6 +44,7 @@
     "@storybook/addon-docs": "10.1.11",
     "@storybook/react-vite": "10.1.11",
     "@stylistic/eslint-plugin": "5.6.1",
+    "@svgr/cli": "8.1.0",
     "@testing-library/react": "16.3.1",
     "@types/node": "25.0.3",
     "@types/react": "19.2.7",
