@@ -7,8 +7,8 @@ import { MINIMAL_VIEWPORTS } from 'storybook/viewport'
 import '../src/styles/variables.css'
 import '../src/styles/style.css'
 import '../src/styles/darkmode.css'
-import '../src/styles/large.css'
-import '../src/styles/small.css'
+import '../src/styles/viewport-1.css'
+import '../src/styles/viewport-2.css'
 
 type Theme = 'light' | 'dark'
 

@@ -1,0 +1,277 @@
+:root {
+    text-transform: none;
+    text-decoration: none;
+}
+
+.content-primary {
+  color: var(--au-content-primary);
+}
+
+.content-secondary {
+  color: var(--au-content-secondary);
+}
+
+.content-tertiary {
+  color: var(--au-content-tertiary);
+}
+
+.content-placeholder {
+  color: var(--au-content-placeholder);
+}
+
+.content-invert {
+  color: var(--au-content-invert);
+}
+
+.content-disabled {
+  color: var(--au-content-disabled);
+}
+
+.content-brand {
+  color: var(--au-content-brand);
+}
+
+.content-on-brand {
+  color: var(--au-content-on-brand);
+}
+
+.content-on-brand-hover {
+  color: var(--au-content-on-brand-hover);
+}
+
+.content-error {
+  color: var(--au-content-error);
+}
+
+.content-warning {
+  color: var(--au-content-warning);
+}
+
+.content-success {
+  color: var(--au-content-success);
+}
+
+.metrics-lg-regular {
+  font: var(--au-metrics-lg-regular);
+}
+
+.metrics-lg-medium {
+  font: var(--au-metrics-lg-medium);
+}
+
+.metrics-lg-semibold {
+  font: var(--au-metrics-lg-semibold);
+}
+
+.metrics-lg-bold {
+  font: var(--au-metrics-lg-bold);
+}
+
+.metrics-md-regular {
+  font: var(--au-metrics-md-regular);
+}
+
+.metrics-md-medium {
+  font: var(--au-metrics-md-medium);
+}
+
+.metrics-md-semibold {
+  font: var(--au-metrics-md-semibold);
+}
+
+.metrics-md-bold {
+  font: var(--au-metrics-md-bold);
+}
+
+.metrics-sm-regular {
+  font: var(--au-metrics-sm-regular);
+}
+
+.metrics-sm-medium {
+  font: var(--au-metrics-sm-medium);
+}
+
+.metrics-sm-semibold {
+  font: var(--au-metrics-sm-semibold);
+}
+
+.metrics-sm-bold {
+  font: var(--au-metrics-sm-bold);
+}
+
+.display-2xl-regular {
+  font: var(--au-display-2xl-regular);
+}
+
+.display-2xl-medium {
+  font: var(--au-display-2xl-medium);
+}
+
+.display-2xl-semibold {
+  font: var(--au-display-2xl-semibold);
+}
+
+.display-2xl-bold {
+  font: var(--au-display-2xl-bold);
+}
+
+.display-xl-regular {
+  font: var(--au-display-xl-regular);
+}
+
+.display-xl-medium {
+  font: var(--au-display-xl-medium);
+}
+
+.display-xl-semibold {
+  font: var(--au-display-xl-semibold);
+}
+
+.display-xl-bold {
+  font: var(--au-display-xl-bold);
+}
+
+.display-lg-regular {
+  font: var(--au-display-lg-regular);
+}
+
+.display-lg-medium {
+  font: var(--au-display-lg-medium);
+}
+
+.display-lg-semibold {
+  font: var(--au-display-lg-semibold);
+}
+
+.display-lg-bold {
+  font: var(--au-display-lg-bold);
+}
+
+.display-md-regular {
+  font: var(--au-display-md-regular);
+}
+
+.display-md-medium {
+  font: var(--au-display-md-medium);
+}
+
+.display-md-semibold {
+  font: var(--au-display-md-semibold);
+}
+
+.display-md-bold {
+  font: var(--au-display-md-bold);
+}
+
+.display-sm-regular {
+  font: var(--au-display-sm-regular);
+}
+
+.display-sm-medium {
+  font: var(--au-display-sm-medium);
+}
+
+.display-sm-semibold {
+  font: var(--au-display-sm-semibold);
+}
+
+.display-sm-bold {
+  font: var(--au-display-sm-bold);
+}
+
+.display-xs-regular {
+  font: var(--au-display-xs-regular);
+}
+
+.display-xs-medium {
+  font: var(--au-display-xs-medium);
+}
+
+.display-xs-semibold {
+  font: var(--au-display-xs-semibold);
+}
+
+.display-xs-bold {
+  font: var(--au-display-xs-bold);
+}
+
+.text-xl-regular {
+  font: var(--au-text-xl-regular);
+}
+
+.text-xl-medium {
+  font: var(--au-text-xl-medium);
+}
+
+.text-xl-semibold {
+  font: var(--au-text-xl-semibold);
+}
+
+.text-xl-bold {
+  font: var(--au-text-xl-bold);
+}
+
+.text-lg-regular {
+  font: var(--au-text-lg-regular);
+}
+
+.text-lg-medium {
+  font: var(--au-text-lg-medium);
+}
+
+.text-lg-semibold {
+  font: var(--au-text-lg-semibold);
+}
+
+.text-lg-bold {
+  font: var(--au-text-lg-bold);
+}
+
+.text-md-regular {
+  font: var(--au-text-md-regular);
+}
+
+.text-md-semibold {
+  font: var(--au-text-md-semibold);
+}
+
+.text-md-medium {
+  font: var(--au-text-md-medium);
+}
+
+.text-md-bold {
+  font: var(--au-text-md-bold);
+}
+
+.text-sm-regular {
+  font: var(--au-text-sm-regular);
+}
+
+.text-sm-medium {
+  font: var(--au-text-sm-medium);
+}
+
+.text-sm-semibold {
+  font: var(--au-text-sm-semibold);
+}
+
+.text-sm-bold {
+  font: var(--au-text-sm-bold);
+}
+
+.text-xs-regular {
+  font: var(--au-text-xs-regular);
+}
+
+.text-xs-medium {
+  font: var(--au-text-xs-medium);
+}
+
+.text-xs-semibold {
+  font: var(--au-text-xs-semibold);
+}
+
+.text-xs-bold {
+  font: var(--au-text-xs-bold);
+  text-decoration: var(--au-text-xs-decoration);
+}

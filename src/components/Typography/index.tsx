@@ -1,11 +1,22 @@
 import cn from 'classnames'
-import { type HtmlHTMLAttributes, type ReactNode } from 'react'
+import {
+  type HTMLElementType,
+  type HtmlHTMLAttributes,
+  type ReactNode,
+} from 'react'
 
-import './style.css'
+import type { AuColor } from '../../styles/colors'
+import type { AuTypography } from '../../styles/typographies'
 
-type HeadingElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+import styles from './Typography.module.css'
 
-type TextElement =
+type HeadingElement = Extract<
+  HTMLElementType,
+  'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+>
+
+type TextElement = Extract<
+  HTMLElementType,
   | 'p'
   | 'b'
   | 'i'
@@ -20,23 +31,37 @@ type TextElement =
   | 'samp'
   | 'sub'
   | 'sup'
+>
 
-type ContainerElement = 'div' | 'span'
+type ContainerElement = Extract<HTMLElementType, 'div' | 'span'>
 
 type Element = HeadingElement | TextElement | ContainerElement
 
-type TextColor = 'base' | 'active' // import from DS
-
-type TextStyle2 = 'Heading2Xxl' | 'Heading2Subheading'
+type TextColor = Extract<
+  AuColor,
+  | 'contentPrimary'
+  | 'contentSecondary'
+  | 'contentTertirary'
+  | 'contentPlaceholder'
+  | 'contentInvert'
+  | 'contentDisabled'
+  | 'contentBrand'
+  | 'contentOnBrand'
+  | 'contentOnBrandHover'
+  | 'contentError'
+  | 'contentWarning'
+  | 'contentSuccess'
+>
 
 type HtmlTypographyElement = HTMLHeadingElement | HTMLParagraphElement
 
-interface TypographyProps
-  extends HtmlHTMLAttributes<HTMLHeadingElement & HTMLParagraphElement> {
+interface TypographyProps extends HtmlHTMLAttributes<
+  HTMLHeadingElement & HTMLParagraphElement
+> {
   /* Html element which will be rendered */
   element: Element
   /* Text style from the Design System */
-  textStyle: TextStyle2
+  textStyle: AuTypography
   /* Text color from the Design System */
   textColor?: TextColor
   /* Content of the typography */
@@ -48,7 +73,7 @@ const Typography = ({
   ref,
   element: Type,
   textStyle,
-  textColor = 'base',
+  textColor = 'contentPrimary',
   className,
   children,
   ...props
@@ -57,10 +82,9 @@ const Typography = ({
 }) => (
   <Type
     ref={ref}
-    style={{ color: 'var(--content-base)' }}
     className={cn([
-      `typography-${textStyle}`,
-      `text-color-${textColor}`,
+      styles[toKebabCase(textStyle as string)],
+      styles[toKebabCase(textColor as string)],
       className,
     ])}
     {...props}
@@ -70,3 +94,6 @@ const Typography = ({
 )
 
 export { Typography }
+
+const toKebabCase = (s: string) =>
+  s.replace(/([a-z])([0-9A-Z])/g, '$1-$2').toLowerCase()
