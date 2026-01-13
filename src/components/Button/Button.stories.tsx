@@ -11,11 +11,11 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'danger'],
+      options: ['primary', 'secondary', 'link'],
       description: 'Visual style variant of the button',
       table: {
         defaultValue: { summary: 'primary' },
-        type: { summary: "'primary' | 'secondary' | 'danger'" },
+        type: { summary: "'primary' | 'secondary' | 'link'" },
       },
     },
     size: {
@@ -105,10 +105,10 @@ export const Secondary: Story = {
   },
 }
 
-export const Danger: Story = {
+export const Link: Story = {
   args: {
-    variant: 'danger',
-    children: 'Delete',
+    variant: 'link',
+    children: 'Home',
   },
 }
 
@@ -145,7 +145,7 @@ export const AllVariants: Story = {
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
-      <Button variant="danger">Danger</Button>
+      <Button variant="link">Link</Button>
     </div>
   ),
 }

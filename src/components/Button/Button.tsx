@@ -17,10 +17,10 @@ export interface ButtonProps extends AriaButtonProps {
    * Visual style variant of the button
    * - `primary`: Main call-to-action with brand color
    * - `secondary`: Subtle style for secondary actions
-   * - `danger`: Red style for destructive actions
+   * - `link`: Button as a link
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary' | 'danger'
+  variant?: 'primary' | 'secondary' | 'link'
 
   /**
    * Size of the button
