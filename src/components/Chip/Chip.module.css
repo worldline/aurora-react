@@ -1,0 +1,51 @@
+.chip {
+  display: inline-flex;
+  width: fit-content;
+  padding: var(--au-spacing-3xs) var(--au-spacing-sm);
+  border-radius: var(--au-radius-md);
+  gap: var(--au-spacing-2xs);
+  align-items: center;
+}
+
+.neutral {
+  color: var(--au-surface-neutral-high);
+  background-color: var(--au-content-secondary);
+}
+
+.brand {
+  color: var(--au-surface-brand-subtile);
+  background-color: var(--au-content-brand);
+}
+
+.success {
+  color: var(--au-surface-success-subtile);
+  background-color: var(--au-content-success);
+}
+
+.warning {
+  color: var(--au-surface-warning-subtile);
+  background-color: var(--au-content-warning);
+}
+
+.error {
+  color: var(--au-surface-error-subtile);
+  background-color: var(--au-content-error);
+}
+
+.small {
+  font: var(--au-text-xs-medium);
+}
+
+.large {
+  font: var(--au-text-sm-medium);
+}
+
+.icon-small {
+  width: calc(1em + 4px);
+  height: calc(1em + 4px);
+}
+
+.icon-large {
+  width: calc(1em + 8px);
+  height: calc(1em + 8px);
+}

@@ -38,7 +38,8 @@ export default defineConfig([
       eqeqeq: 'error',
       'no-console': 'error',
       'no-duplicate-imports': 'error',
-      'no-unused-vars': 'error',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error'],
       'prefer-const': 'error',
       'prefer-template': 'error',
       "prettier/prettier": [
