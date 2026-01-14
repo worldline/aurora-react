@@ -23,6 +23,7 @@
     "lint:fix": "eslint . --fix",
     "slint": "npx stylelint \"**/*.scss\"",
     "ncui": "npx npm-check-updates -i",
+    "prestorybook": "npm run icons:generate",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",

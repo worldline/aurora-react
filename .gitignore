@@ -25,7 +25,9 @@ dist-ssr
 *.sw?
 
 # Icons svgr
-src/components/icons/
+!src/components/icons/Icons.stories.tsx
+src/components/icons
+
 
 *storybook.log
 storybook-static

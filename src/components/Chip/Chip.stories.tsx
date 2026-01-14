@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Settings, UserProfile } from '../Icons'
+import { SettingsIcon, UserProfileIcon } from '../icons'
 
 import { Chip } from './index'
 
@@ -78,10 +78,10 @@ export const LeadingAndTrailingIcons: Story = {
     type: 'success',
     label: 'Leading & Trailing Icons',
     renderLeadingIcon: (color: string, className: string) => (
-      <UserProfile fill={color} className={className} />
+      <UserProfileIcon fill={color} className={className} />
     ),
     renderTrailingIcon: (color: string, className: string) => (
-      <Settings fill={color} className={className} />
+      <SettingsIcon fill={color} className={className} />
     ),
   },
 }
@@ -92,7 +92,7 @@ export const LeadingIcon: Story = {
     type: 'warning',
     label: 'Leading Icon',
     renderLeadingIcon: (color: string, className: string) => (
-      <UserProfile fill={color} className={className} />
+      <UserProfileIcon fill={color} className={className} />
     ),
   },
 }
@@ -103,7 +103,7 @@ export const TrailingIcon: Story = {
     type: 'brand',
     label: 'Trailing Icon',
     renderTrailingIcon: (color: string, className: string) => (
-      <Settings fill={color} className={className} />
+      <SettingsIcon fill={color} className={className} />
     ),
   },
 }
