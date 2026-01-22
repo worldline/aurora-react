@@ -7,14 +7,14 @@
 .icons-search {
   width: 100%;
   padding: var(--au-dimensions-12) var(--au-dimensions-16);
-  border: 1px solid #ccc;
+  border: 1px solid var(--au-surface-neutral-high);
   border-radius: 8px;
   outline: none;
   transition: border-color 0.2s;
 }
 
 .icons-search:focus {
-  border-color: #666;
+  border-color: var(--au-surface-brand-solid);
 }
 
 .icons-search::placeholder {
@@ -39,7 +39,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--au-dimensions-10);
-  border: 1px solid #444;
+  border: 1px solid var(--au-surface-neutral-high);
   border-radius: 8px;
   flex-shrink: 0;
   background-color: #fff;
@@ -60,23 +60,4 @@
 
 .icons-usage-title {
   margin: 0 0 var(--au-dimensions-16);
-}
-
-.icons-usage-text {
-  margin: 0 0 var(--au-dimensions-16);
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-}
-
-.icons-usage-code {
-  background: var(--au-surface-page);
-  color: var(--au-content-primary);
-  padding: var(--au-dimensions-16);
-  border-radius: 8px;
-  font-family: 'Fira Code', 'Consolas', monospace;
-  font-size: 13px;
-  overflow-x: auto;
-  line-height: 1.6;
-  margin: 0;
 }
