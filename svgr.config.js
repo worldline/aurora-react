@@ -21,13 +21,16 @@ type Props = SVGProps<SVGSVGElement> & { size?: number | string }
 const ${componentName} = ({ size = 24, ...props }: Props) => ${jsx}
 export default ${componentName}
 `,
-  svgoConfig: {
-    plugins: [
-      { name: 'removeDimensions', active: true }
-    ]
+ svgoConfig: {
+ plugins: [ 
+      { name: 'removeViewBox', active: false }, 
+      { name: 'removeDimensions', active: true }, 
+      { name: 'removeAttrs', params: { attrs: '(fill|stroke)' } },
+    ], 
   },
   svgProps: {
     width: '{size}',
-    height: '{size}'
+    height: '{size}',
+    fill: 'currentColor',
   }
 }
