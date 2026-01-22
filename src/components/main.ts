@@ -1,5 +1,4 @@
-export { Text } from './Text/index.tsx'
 export { Button } from './Button'
-export { Typography } from './Typography/index.tsx'
-export { Card } from './Card/index.tsx'
-export * from './Icons'
+export { Typography } from './Typography'
+export { Card } from './Card'
+export * from './icons'

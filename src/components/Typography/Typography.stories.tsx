@@ -25,6 +25,15 @@ export const Typographies = meta.story({
         <Typography
           element="p"
           textColor="contentPrimary"
+          textStyle="metricsLgRegular"
+        >
+          metricsLgRegular / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography
+          element="p"
+          textColor="contentPrimary"
           textStyle="metricsLgMedium"
         >
           metricsLgMedium / Lorem ipsum dolor sit amet

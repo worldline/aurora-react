@@ -1,5 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+import storybook from 'eslint-plugin-storybook'
 
 import js from '@eslint/js'
 import globals from 'globals'
@@ -8,31 +8,36 @@ import reactDom from 'eslint-plugin-react-dom'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
-import importPlugin from 'eslint-plugin-import';
+import importPlugin from 'eslint-plugin-import'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import stylistic from '@stylistic/eslint-plugin'
-import eslintReact from "@eslint-react/eslint-plugin";
+import eslintReact from '@eslint-react/eslint-plugin'
 
 export default defineConfig([
-  globalIgnores(['dist', '*.config.*js']),
+  globalIgnores([
+    'dist',
+    '*.config.*js',
+    'src/components/icons/*',
+    '!src/components/icons/*stories*',
+  ]),
   {
     extends: [
       js.configs.recommended,
       eslintPluginPrettierRecommended,
-      eslintReact.configs["recommended-typescript"],
+      eslintReact.configs['recommended-typescript'],
       reactDom.configs.recommended,
       reactHooks.configs.flat.recommended,
       tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
       reactRefresh.configs.vite,
-      importPlugin.flatConfigs.recommended, 
+      importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
     ],
     plugins: {
-      '@stylistic': stylistic
+      '@stylistic': stylistic,
     },
     rules: {
-      '@stylistic/jsx-quotes': ["error", "prefer-double"],
+      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@eslint-react/no-forward-ref': 'error',
       'arrow-body-style': 'error',
       eqeqeq: 'error',
@@ -42,13 +47,13 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': ['error'],
       'prefer-const': 'error',
       'prefer-template': 'error',
-      "prettier/prettier": [
-        "error",
+      'prettier/prettier': [
+        'error',
         {
-          "endOfLine": "auto"
-        }
+          endOfLine: 'auto',
+        },
       ],
-      quotes: ["error", "single", { "avoidEscape": true }],
+      quotes: ['error', 'single', { avoidEscape: true }],
       'react-hooks/exhaustive-deps': 'error',
       'react-hooks/unsupported-syntax': 'error',
       'react-hooks/incompatible-library': 'error',
@@ -59,7 +64,14 @@ export default defineConfig([
             order: 'asc',
             caseInsensitive: true,
           },
-          groups: ['builtin', "external", "internal", 'parent', 'sibling', 'index'],
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+          ],
           'newlines-between': 'always',
           pathGroups: [
             {
@@ -69,7 +81,7 @@ export default defineConfig([
             },
           ],
         },
-      ]
+      ],
     },
     languageOptions: {
       ecmaVersion: 'latest',
@@ -89,7 +101,7 @@ export default defineConfig([
   {
     linterOptions: {
       reportUnusedInlineConfigs: 'error',
-			reportUnusedDisableDirectives: "error",
+      reportUnusedDisableDirectives: 'error',
     },
-  }
+  },
 ])

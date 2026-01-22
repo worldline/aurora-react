@@ -8,7 +8,7 @@ export default defineMain({
     './Welcome.stories.tsx',
     {
       directory: '../src/components',
-      files: '**/*.stories.*',
+      files: '**/*.stories.tsx',
     },
   ],
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
