@@ -24,6 +24,7 @@ export default defineConfig({
         '__tests__/*.ts',
         '__tests__/*.tsx',
         '.storybook/*.ts',
+        '.storybook/*.tsx',
       ],
     }),
     preserveDirectives(),
@@ -53,7 +54,13 @@ export default defineConfig({
       formats: ['es'],
     },
     rolldownOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'classnames'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'classnames',
+        'react-aria-components',
+      ],
       input: Object.fromEntries(
         globSync('src/**/*.{ts,tsx}', {
           ignore: [

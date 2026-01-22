@@ -1,5 +1,5 @@
 {
-  "name": "new-ui-components-lib",
+  "name": "@worldline/aurora-react",
   "private": false,
   "version": "0.0.2",
   "type": "module",
