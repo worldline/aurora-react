@@ -1,6 +1,5 @@
 import preview from '@/storybook/preview'
 
-import { Card } from '../src/components/Card'
 import { Code } from '../src/components/storybook/Code'
 import { Typography } from '../src/components/Typography'
 
