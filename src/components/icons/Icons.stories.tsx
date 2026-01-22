@@ -2,6 +2,10 @@ import { useState, type ComponentType, type SVGProps } from 'react'
 
 import preview from '@/storybook/preview'
 
+import { Card } from '../Card'
+import { Code } from '../storybook/Code'
+import { Typography } from '../Typography'
+
 import styles from './Icons.stories.module.css'
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number | string }
@@ -26,11 +30,21 @@ const IconsGallery = () => {
   return (
     <>
       <div className={styles.icons}>
-        <h1 className={styles['icons-title']}>Icons</h1>
-        <p className={styles['icons-description']}>
+        <Typography
+          element="h1"
+          textStyle="displayLgSemibold"
+          textColor="contentPrimary"
+        >
+          Icons
+        </Typography>
+        <Typography
+          element="p"
+          textStyle="textMdRegular"
+          textColor="contentPrimary"
+        >
           These are the icons being used in our design system. They are
           available as React components.
-        </p>
+        </Typography>
         <input
           type="text"
           className={styles['icons-search']}
@@ -47,34 +61,53 @@ const IconsGallery = () => {
                 <div className={styles['icons-item-wrapper']}>
                   <Icon size={48} />
                 </div>
-                <span className={styles['icons-name']}>{name}</span>
+                <Typography
+                  element="span"
+                  textStyle="textMdRegular"
+                  textColor="contentPrimary"
+                >
+                  {name}
+                </Typography>
               </div>
             ))
           ) : (
-            <div className={styles['icons-empty']}>
+            <Typography
+              element="p"
+              textStyle="textMdRegular"
+              textColor="contentSecondary"
+              className={styles['icons-empty']}
+            >
               No icons found for "{search}"
-            </div>
+            </Typography>
           )}
         </div>
-        <div className={styles['icons-usage']}>
-          <h2 className={styles['icons-usage-title']}>Usage</h2>
-          <p className={styles['icons-usage-text']}>
+        <Card className={styles['icons-usage']}>
+          <Typography
+            element="h2"
+            textStyle="displayMdSemibold"
+            textColor="contentPrimary"
+            className={styles['icons-usage-title']}
+          >
+            Usage
+          </Typography>
+          <Typography
+            element="p"
+            textStyle="textMdRegular"
+            textColor="contentPrimary"
+          >
             Import the icon component and use it in your React components.
-          </p>
-          <pre className={styles['icons-usage-code']}>
-            <code>{`
-import { XxxxxIcon } from from '@.........'
-<XxxxxIcon size={24} /> 
-            `}</code>
-          </pre>
-        </div>
+          </Typography>
+          <Code>
+            {"import { XxxxxIcon } from '@.........'\n<XxxxxIcon size={24} />"}
+          </Code>
+        </Card>
       </div>
     </>
   )
 }
 
 const meta = preview.meta({
-  title: 'Icons',
+  title: 'components/Icons',
   component: IconsGallery,
   parameters: {
     layout: 'fullscreen',

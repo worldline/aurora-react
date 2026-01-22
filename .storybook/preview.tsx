@@ -9,6 +9,7 @@ import '../src/styles/style.css'
 import '../src/styles/darkmode.css'
 import '../src/styles/viewport-1.css'
 import '../src/styles/viewport-2.css'
+import { themes } from 'storybook/theming'
 
 type Theme = 'light' | 'dark'
 
@@ -74,11 +75,9 @@ const ThemeWrapper = ({
     // Also add to body in case components check parent
     body.classList.remove('light', 'dark')
     body.classList.add(theme)
-
-    // Apply theme colors using CSS variables
-    body.style.backgroundColor = 'var(--au-background-base-default)'
-    body.style.color = 'var(--au-content-neutral-base)'
   }, [theme])
 
-  return children
+  return (
+    <div style={{ backgroundColor: 'var(--au-surface-page)' }}>{children}</div>
+  )
 }

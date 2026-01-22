@@ -5,7 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineMain({
   framework: '@storybook/react-vite',
   stories: [
-    './Welcome.stories.tsx',
+    './Introduction.stories.tsx',
     {
       directory: '../src/components',
       files: '**/*.stories.tsx',

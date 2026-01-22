@@ -1,0 +1,30 @@
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.code-example-title {
+  margin-top: 0;
+  margin-bottom: var(--au-dimensions-16);
+}
+
+.section {
+  margin-bottom: var(--au-dimensions-32);
+}
+
+.section-title {
+  margin-bottom: var(--au-dimensions-16);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-dimensions-12);
+  color: var(--au-content-brand);
+}

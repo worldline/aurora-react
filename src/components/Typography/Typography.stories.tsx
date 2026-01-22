@@ -558,31 +558,43 @@ export const Colors = meta.story({
         </Typography>
       </li>
 
-      <li style={{ backgroundColor: 'black' }}>
+      <li
+        style={{
+          backgroundColor: 'var(--au-surface-brand-solid)',
+        }}
+      >
         <Typography
           element="p"
           textStyle="displayMdRegular"
           textColor="contentInvert"
         >
-          This is contentInvert (with black background)
+          This is contentInvert (with brand background)
         </Typography>
       </li>
-      <li style={{ backgroundColor: 'black' }}>
+      <li
+        style={{
+          backgroundColor: 'var(--au-surface-brand-solid)',
+        }}
+      >
         <Typography
           element="p"
           textStyle="displayMdRegular"
           textColor="contentOnBrand"
         >
-          This is contentOnBrand (with black background)
+          This is contentOnBrand (with brand background)
         </Typography>
       </li>
-      <li style={{ backgroundColor: 'black' }}>
+      <li
+        style={{
+          backgroundColor: 'var(--au-surface-brand-solid)',
+        }}
+      >
         <Typography
           element="p"
           textStyle="displayMdRegular"
           textColor="contentOnBrandHover"
         >
-          This is contentOnBrandHover (with black background)
+          This is contentOnBrandHover (with brand background)
         </Typography>
       </li>
       <li>

@@ -1,21 +1,12 @@
 .icons {
-  font-family: var(--au-font-family-body);
-  max-width: 1000px;
   margin: 0 auto;
   padding: var(--au-dimensions-48);
-}
-
-.icons-title {
-  margin: 0 0 var(--au-dimensions-32);
-  font-size: 32px;
-  font-weight: 600;
-  color: #333;
+  background-color: var(--au-surface-page);
 }
 
 .icons-search {
   width: 100%;
   padding: var(--au-dimensions-12) var(--au-dimensions-16);
-  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
   outline: none;
@@ -51,32 +42,24 @@
   border: 1px solid #444;
   border-radius: 8px;
   flex-shrink: 0;
-}
-
-.icons-name {
-  font-size: 14px;
-  color: #444;
+  background-color: #fff;
 }
 
 .icons-empty {
   grid-column: 1 / -1;
   text-align: center;
   padding: var(--au-dimensions-40);
-  color: #666;
 }
 
 .icons-usage {
   margin-top: var(--au-dimensions-48);
   padding: var(--au-dimensions-24);
-  background: #f5f5f5;
+  background: var(--au-surface-neutral-low);
   border-radius: 12px;
 }
 
 .icons-usage-title {
   margin: 0 0 var(--au-dimensions-16);
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
 }
 
 .icons-usage-text {
@@ -87,8 +70,8 @@
 }
 
 .icons-usage-code {
-  background: #1e1e1e;
-  color: #d4d4d4;
+  background: var(--au-surface-page);
+  color: var(--au-content-primary);
   padding: var(--au-dimensions-16);
   border-radius: 8px;
   font-family: 'Fira Code', 'Consolas', monospace;
