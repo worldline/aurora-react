@@ -4,7 +4,7 @@ import { create } from 'storybook/theming/create'
 const theme = create({
   base: 'dark',
   brandTitle: 'Aurora Design System',
-  brandUrl: '/',
+  brandImage: '../src/assets/storybook/logo.svg',
   brandTarget: '_self',
 })
 
