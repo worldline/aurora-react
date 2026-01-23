@@ -9,7 +9,6 @@ import '../src/styles/style.css'
 import '../src/styles/darkmode.css'
 import '../src/styles/viewport-1.css'
 import '../src/styles/viewport-2.css'
-import { themes } from 'storybook/theming'
 
 type Theme = 'light' | 'dark'
 
