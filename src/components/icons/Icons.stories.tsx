@@ -98,7 +98,9 @@ const IconsGallery = () => {
             Import the icon component and use it in your React components.
           </Typography>
           <Code>
-            {"import { XxxxxIcon } from '@.........'\n<XxxxxIcon size={24} />"}
+            {
+              "import { XxxxxIcon } from '@worldline/aurora-react/components'\n<XxxxxIcon size={24} />"
+            }
           </Code>
         </Card>
       </div>

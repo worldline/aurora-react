@@ -24,11 +24,18 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    
+
     /* alias */
     "paths": {
-      "@/storybook/*": ["./.storybook/*"]
+      "@/storybook/*": ["./.storybook/*"],
+      "@/components/*": ["./src/components/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", ".storybook/**.ts", ".storybook/**.tsx", "__tests__/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".storybook/**.ts",
+    ".storybook/**.tsx",
+    "__tests__/*.ts"
+  ]
 }

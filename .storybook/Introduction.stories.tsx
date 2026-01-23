@@ -1,7 +1,6 @@
+import { Code } from '@/components/storybook/Code'
+import { Typography } from '@/components/Typography'
 import preview from '@/storybook/preview'
-
-import { Code } from '../src/components/storybook/Code'
-import { Typography } from '../src/components/Typography'
 
 import styles from './Introduction.stories.module.css'
 
@@ -51,7 +50,9 @@ const IntroductionPage = () => (
         , every component follows WAI-ARIA best practices and provides excellent
         keyboard navigation and screen reader support.
       </Typography>
-      <Code>{"import { Button } from '@.........'"}</Code>
+      <Code>
+        {"import { Button } from '@worldline/aurora-react/components'"}
+      </Code>
     </section>
 
     <section className={styles.section}>
