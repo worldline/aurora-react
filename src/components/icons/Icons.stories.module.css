@@ -7,8 +7,8 @@
 .icons-search {
   width: 100%;
   padding: var(--au-dimensions-12) var(--au-dimensions-16);
-  border: 1px solid var(--au-surface-neutral-high);
-  border-radius: 8px;
+  border: var(--au-border-width-thin) solid var(--au-surface-neutral-high);
+  border-radius: var(--au-radius-lg);
   outline: none;
   transition: border-color 0.2s;
 }
@@ -39,8 +39,8 @@
   align-items: center;
   justify-content: center;
   padding: var(--au-dimensions-10);
-  border: 1px solid var(--au-surface-neutral-high);
-  border-radius: 8px;
+  border: var(--au-border-width-thin) solid var(--au-surface-neutral-high);
+  border-radius: var(--au-radius-lg);
   flex-shrink: 0;
   background-color: #fff;
 }
@@ -55,7 +55,7 @@
   margin-top: var(--au-dimensions-48);
   padding: var(--au-dimensions-24);
   background: var(--au-surface-neutral-low);
-  border-radius: 12px;
+  border-radius: var(--au-radius-xl);
 }
 
 .icons-usage-title {
