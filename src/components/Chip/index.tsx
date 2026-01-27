@@ -1,45 +1,101 @@
+/* eslint-disable @eslint-react/no-clone-element */
 import cn from 'classnames'
-import type { HTMLAttributes, ReactElement } from 'react'
+import { cloneElement, type HTMLAttributes, type ReactElement } from 'react'
+
+import { Typography } from '../Typography'
 
 import styles from './Chip.module.css'
 
-type ChipType = 'neutral' | 'brand' | 'success' | 'warning' | 'error'
+type Type = 'neutral' | 'brand' | 'success' | 'warning' | 'error'
+type Size = 'small' | 'large'
 
-interface ChipProps extends HTMLAttributes<HTMLDivElement> {
-  type: ChipType
-  size: 'small' | 'large'
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  type: Type
+  size: Size
   label: string
-  renderLeadingIcon?: (color: string, className: string) => ReactElement
-  renderTrailingIcon?: (color: string, className: string) => ReactElement
+  leadingIcon?: ReactElement<{
+    className?: string
+  }>
+  trailingIcon?: ReactElement<{
+    className?: string
+  }>
 }
 
 const Chip = ({
   type,
   size,
   label,
-  renderLeadingIcon,
-  renderTrailingIcon,
+  leadingIcon,
+  trailingIcon,
   className,
   ...props
-}: ChipProps): ReactElement => {
-  const iconStyle = {
-    small: styles['icon-small'],
-    large: styles['icon-large'],
-  }
+}: Props): ReactElement => {
+  const leadingIconElement = leadingIcon
+    ? cloneElement(leadingIcon, {
+        className: cn(
+          styles[`icon-${size}`],
+          styles[`icon-${type}`],
+          leadingIcon.props.className,
+        ),
+      })
+    : null
 
-  const leadingIcon = renderLeadingIcon?.('currentColor', iconStyle[size])
-  const trailingIcon = renderTrailingIcon?.('currentColor', iconStyle[size])
+  const trailingIconElement = trailingIcon
+    ? cloneElement(trailingIcon, {
+        className: cn(
+          styles[`icon-${size}`],
+          styles[`icon-${type}`],
+          trailingIcon.props.className,
+        ),
+      })
+    : null
 
   return (
     <div
-      className={cn(styles.chip, styles[type], styles[size], className)}
+      className={cn(
+        styles.chip,
+        styles[type],
+        styles[size],
+        {
+          [styles['vpadding-icon']]:
+            !!leadingIconElement || trailingIconElement,
+          [styles['hpadding-left-icon']]: !!leadingIconElement,
+          [styles['hpadding-right-icon']]: !!trailingIconElement,
+        },
+        className,
+      )}
       {...props}
     >
-      {leadingIcon}
-      <span>{label}</span>
-      {trailingIcon}
+      {leadingIconElement}
+      <Typography
+        element="span"
+        textStyle={sizesToTextStyle[size]}
+        textColor={typesToTextColor[type]}
+      >
+        {label}
+      </Typography>
+      {trailingIconElement}
     </div>
   )
 }
 
-export { Chip, type ChipType }
+export { Chip }
+
+const typesToTextColor: Record<
+  Type,
+  React.ComponentProps<typeof Typography>['textColor']
+> = {
+  brand: 'contentBrand',
+  error: 'contentError',
+  neutral: 'contentSecondary',
+  success: 'contentSuccess',
+  warning: 'contentWarning',
+}
+
+const sizesToTextStyle: Record<
+  Size,
+  React.ComponentProps<typeof Typography>['textStyle']
+> = {
+  small: 'textXsMedium',
+  large: 'textSmMedium',
+}
