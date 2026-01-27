@@ -44,7 +44,11 @@ export default defineConfig([
       'no-console': 'error',
       'no-duplicate-imports': 'error',
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': ['error'],
+      '@typescript-eslint/array-type': ['error', { default: 'generic' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
       'prefer-const': 'error',
       'prefer-template': 'error',
       'prettier/prettier': [

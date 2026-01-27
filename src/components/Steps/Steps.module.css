@@ -1,0 +1,12 @@
+.steps {
+  display: grid;
+  grid-template-columns:
+    max-content
+    minmax(var(--au-spacing-none), 1fr)
+    max-content;
+  gap: var(--au-spacing-none) var(--au-spacing-sm);
+}
+
+.step {
+  display: contents;
+}

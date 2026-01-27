@@ -9,11 +9,13 @@ import preserveDirectives from 'rollup-preserve-directives'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
     react(),
     libInjectCss(),
+    tsconfigPaths(),
     dts({
       tsconfigPath: fileURLToPath(
         new URL('tsconfig.lib.json', import.meta.url),

@@ -28,7 +28,8 @@
     /* alias */
     "paths": {
       "@/storybook/*": ["./.storybook/*"],
-      "@/components/*": ["./src/components/*"]
+      "@/components/*": ["./src/components/*"],
+      "@/utils/*": ["./src/utils/*"]
     }
   },
   "include": [

@@ -1,0 +1,51 @@
+.step {
+  display: flex;
+  gap: var(--au-spacing-none) var(--au-spacing-sm);
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--au-spacing-none) var(--au-spacing-sm);
+}
+
+.connector {
+  flex: 1;
+  margin: var(--au-spacing-2xs) var(--au-spacing-none);
+  border: var(--au-border-width-thin) solid var(--au-surface-brand-solid);
+  border-radius: var(--au-radius-rounded);
+}
+
+.connector.dashed {
+  border: var(--au-border-width-thin) dashed var(--au-content-tertiary);
+}
+
+.middle-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-3xs);
+  padding-top: var(--au-spacing-3xs);
+  padding-bottom: var(--au-spacing-3xl);
+}
+
+.middle-column p {
+  margin: var(--au-spacing-none);
+}
+
+.title {
+  margin: var(--au-spacing-none);
+  white-space: pre-wrap;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-2xs);
+  white-space: pre-wrap;
+}
+
+.right-column {
+  justify-self: end;
+  align-self: start;
+}

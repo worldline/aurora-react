@@ -27,6 +27,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
+    "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage",
     "icons:generate": "npx @svgr/cli  --config-file svgr.config.js -- src/assets/icons/svg"
   },

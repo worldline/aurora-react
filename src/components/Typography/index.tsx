@@ -92,7 +92,7 @@ const Typography = ({
   </Type>
 )
 
-export { Typography }
+export { Typography, type TextColor, type HeadingElement }
 
 const toKebabCase = (s: string) =>
   s.replace(/([a-z])([0-9A-Z])/g, '$1-$2').toLowerCase()

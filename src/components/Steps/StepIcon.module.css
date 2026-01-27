@@ -1,0 +1,75 @@
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--au-radius-rounded);
+}
+
+.complete {
+  /* TODO: get variables from UX team */
+  height: 24px;
+  width: 24px;
+  border-radius: var(--au-radius-rounded);
+  color: var(--au-content-on-brand);
+}
+
+.complete.icon-type {
+  background-color: var(--au-surface-brand-solid);
+}
+
+.in-progress.icon-type,
+.not-started.icon-type {
+  height: 22px;
+  width: 22px;
+  background: var(--au-surface-neutral-low);
+  border-width: var(--au-border-width-thin);
+  border-style: solid;
+}
+
+.in-progress.icon-type {
+  /* TODO: get variables from UX team */
+  border-color: #53bda4;
+}
+
+.in-progress.icon-type > * {
+  height: 6px;
+  width: 6px;
+  background-color: var(--au-content-on-brand);
+  /* TODO: get variables from UX team */
+  border: 5px solid var(--au-surface-brand-solid-hover);
+  border-radius: var(--au-radius-rounded);
+}
+
+.not-started.icon-type {
+  border-color: var(--au-content-disabled);
+}
+
+.not-started.icon-type > * {
+  /* TODO: get variables from UX team */
+  height: 10px;
+  width: 10px;
+  background-color: var(--au-content-disabled);
+  border-radius: var(--au-radius-rounded);
+}
+
+.complete.number-type {
+  background-color: var(--au-surface-success-solid);
+}
+
+.in-progress.number-type,
+.not-started.number-type {
+  /* TODO: get variables from UX team */
+  height: 22px;
+  width: 22px;
+  background-color: var(--au-surface-page);
+  border-width: var(--au-border-width-thin);
+  border-style: solid;
+}
+
+.in-progress.number-type {
+  border-color: var(--au-border-neutral-low);
+}
+
+.not-started.number-type {
+  border-color: var(--au-border-neutral-medium);
+}

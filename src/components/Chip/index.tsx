@@ -3,8 +3,10 @@ import type { HTMLAttributes, ReactElement } from 'react'
 
 import styles from './Chip.module.css'
 
+type ChipType = 'neutral' | 'brand' | 'success' | 'warning' | 'error'
+
 interface ChipProps extends HTMLAttributes<HTMLDivElement> {
-  type: 'neutral' | 'brand' | 'success' | 'warning' | 'error'
+  type: ChipType
   size: 'small' | 'large'
   label: string
   renderLeadingIcon?: (color: string, className: string) => ReactElement
@@ -17,6 +19,7 @@ const Chip = ({
   label,
   renderLeadingIcon,
   renderTrailingIcon,
+  className,
   ...props
 }: ChipProps): ReactElement => {
   const iconStyle = {
@@ -28,7 +31,10 @@ const Chip = ({
   const trailingIcon = renderTrailingIcon?.('currentColor', iconStyle[size])
 
   return (
-    <div className={cn(styles.chip, styles[type], styles[size])} {...props}>
+    <div
+      className={cn(styles.chip, styles[type], styles[size], className)}
+      {...props}
+    >
       {leadingIcon}
       <span>{label}</span>
       {trailingIcon}
@@ -36,4 +42,4 @@ const Chip = ({
   )
 }
 
-export { Chip }
+export { Chip, type ChipType }
