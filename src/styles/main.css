@@ -1,13 +1,3 @@
 @import './style.css';
-
-/* Visually hides the element, but keeps it accessible */
-.visually-hidden {
-  border: 0;
-  clip-path: inset(50%);
-  height: 1px;
-  margin: 0;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
+@import './fonts.css';
+@import './utilities.css';
