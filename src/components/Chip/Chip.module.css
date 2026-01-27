@@ -1,51 +1,95 @@
 .chip {
   display: inline-flex;
   width: fit-content;
-  padding: var(--au-spacing-3xs) var(--au-spacing-sm);
-  border-radius: var(--au-radius-md);
-  gap: var(--au-spacing-2xs);
   align-items: center;
 }
 
-.neutral {
-  color: var(--au-surface-neutral-high);
-  background-color: var(--au-content-secondary);
+.vpadding-icon.small {
+  padding-top: var(--au-chip-sm-padding-vertical-icon);
+  padding-bottom: var(--au-chip-sm-padding-vertical-icon);
 }
 
+.vpadding-icon.large {
+  padding-top: var(--au-chip-lg-padding-vertical-icon);
+  padding-bottom: var(--au-chip-lg-padding-vertical-icon);
+}
+
+.hpadding-left-icon.small {
+  padding-left: var(--au-chip-sm-padding-horizontal-icon);
+}
+
+.hpadding-left-icon.large {
+  padding-left: var(--au-chip-lg-padding-horizontal-icon);
+}
+
+.hpadding-right-icon.small {
+  padding-right: var(--au-chip-sm-padding-horizontal-icon);
+}
+
+.hpadding-right-icon.large {
+  padding-right: var(--au-chip-lg-padding-horizontal-icon);
+}
+
+.neutral {
+  background-color: var(--au-chip-neutral-background);
+ }
+
 .brand {
-  color: var(--au-surface-brand-subtile);
-  background-color: var(--au-content-brand);
+  background-color: var(--au-chip-brand-background);
 }
 
 .success {
-  color: var(--au-surface-success-subtile);
-  background-color: var(--au-content-success);
+  background-color: var(--au-chip-success-background);
 }
 
 .warning {
-  color: var(--au-surface-warning-subtile);
-  background-color: var(--au-content-warning);
+  background-color: var(--au-chip-warning-background);
 }
 
 .error {
-  color: var(--au-surface-error-subtile);
-  background-color: var(--au-content-error);
+  background-color: var(--au-chip-error-background);
 }
 
 .small {
-  font: var(--au-text-xs-medium);
+  border-radius: var(--au-chip-sm-radius);
+  gap: var(--au-chip-sm-gap);
+  padding: var(--au-chip-sm-padding-vertical-label)
+    var(--au-chip-sm-padding-horizontal-label);
 }
 
 .large {
-  font: var(--au-text-sm-medium);
+  border-radius: var(--au-chip-lg-radius);
+  gap: var(--au-chip-lg-gap);
+  padding: var(--au-chip-lg-padding-vertical-label)
+    var(--au-chip-lg-padding-horizontal-label);
 }
 
 .icon-small {
-  width: calc(1em + 4px);
-  height: calc(1em + 4px);
+  width: var(--au-dimensions-14);
+  height: var(--au-dimensions-14);
 }
 
 .icon-large {
-  width: calc(1em + 8px);
-  height: calc(1em + 8px);
+  width: var(--au-dimensions-20);
+  height: var(--au-dimensions-20);
+}
+
+.icon-neutral {
+  fill: var(--au-chip-neutral-content);
+}
+
+.icon-brand {
+  fill: var(--au-chip-brand-content);
+}
+
+.icon-success {
+  fill: var(--au-chip-success-content);
+}
+
+.icon-warning {
+  fill: var(--au-chip-warning-content);
+}
+
+.icon-error {
+  fill: var(--au-chip-error-content);
 }
