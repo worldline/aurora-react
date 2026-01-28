@@ -23,6 +23,8 @@ export default defineConfig({
       exclude: [
         '**/*.stories.ts',
         '**/*.stories.tsx',
+        '**/*.test.ts',
+        '**/*.test.tsx',
         '__tests__/*.ts',
         '__tests__/*.tsx',
         '.storybook/*.ts',
@@ -88,7 +90,6 @@ export default defineConfig({
     setupFiles: './__tests__/setupVitest.ts',
     coverage: {
       provider: 'v8',
-      //include: ['src/**/*.{ts,tsx}'],
       exclude: [
         '*.scss',
         'src/components/main.ts',
