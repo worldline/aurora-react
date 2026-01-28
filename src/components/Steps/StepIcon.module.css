@@ -35,6 +35,7 @@
   height: 6px;
   width: 6px;
   background-color: var(--au-content-on-brand);
+
   /* TODO: get variables from UX team */
   border: 5px solid var(--au-surface-brand-solid-hover);
   border-radius: var(--au-radius-rounded);
