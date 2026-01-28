@@ -9,3 +9,8 @@
   line-height: 1.6;
   margin: 0;
 }
+
+.inline {
+  padding: var(--au-dimensions-4);
+  vertical-align: baseline;
+}
