@@ -77,12 +77,8 @@ export const LeadingAndTrailingIcons: Story = {
     size: 'large',
     type: 'success',
     label: 'Leading & Trailing Icons',
-    renderLeadingIcon: (color: string, className: string) => (
-      <UserProfileIcon fill={color} className={className} />
-    ),
-    renderTrailingIcon: (color: string, className: string) => (
-      <SettingsIcon fill={color} className={className} />
-    ),
+    leadingIcon: <UserProfileIcon />,
+    trailingIcon: <SettingsIcon />,
   },
 }
 
@@ -91,9 +87,7 @@ export const LeadingIcon: Story = {
     size: 'large',
     type: 'warning',
     label: 'Leading Icon',
-    renderLeadingIcon: (color: string, className: string) => (
-      <UserProfileIcon fill={color} className={className} />
-    ),
+    leadingIcon: <UserProfileIcon />,
   },
 }
 
@@ -102,8 +96,6 @@ export const TrailingIcon: Story = {
     size: 'small',
     type: 'brand',
     label: 'Trailing Icon',
-    renderTrailingIcon: (color: string, className: string) => (
-      <SettingsIcon fill={color} className={className} />
-    ),
+    trailingIcon: <SettingsIcon />,
   },
 }
