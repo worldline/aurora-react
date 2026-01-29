@@ -30,7 +30,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage",
-    "icons:generate": "npx @svgr/cli  --config-file svgr.config.js -- src/assets/icons/svg"
+    "icons:generate": "npx @svgr/cli  --config-file svgr.config.js -- src/assets/icons/svg",
+    "import-icon": "npx tsx import-icon.ts"
   },
   "dependencies": {
     "react": "19.2.4",
