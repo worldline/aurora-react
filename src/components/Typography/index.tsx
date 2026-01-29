@@ -55,8 +55,9 @@ type TextColor = Extract<
 
 type HtmlTypographyElement = HTMLHeadingElement | HTMLParagraphElement
 
-interface TypographyProps
-  extends HtmlHTMLAttributes<HTMLHeadingElement & HTMLParagraphElement> {
+interface TypographyProps extends HtmlHTMLAttributes<
+  HTMLHeadingElement & HTMLParagraphElement
+> {
   /* Html element which will be rendered */
   element: Element
   /* Text style from the Design System */

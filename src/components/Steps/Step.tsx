@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { useId, type ReactElement } from 'react'
 
-import { Chip, type ChipType } from '../Chip'
+import { Chip } from '../Chip'
 import { Typography, type TextColor, type HeadingElement } from '../Typography'
 
 import styles from './Step.module.css'
@@ -107,6 +107,8 @@ const Step = ({
     </li>
   )
 }
+
+type ChipType = React.ComponentProps<typeof Chip>['type']
 
 const chipTypeByStatusType: Readonly<Record<StatusType, ChipType>> = {
   complete: 'success',
