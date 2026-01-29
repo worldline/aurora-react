@@ -1,4 +1,3 @@
-import { execSync } from 'child_process'
 import { writeFileSync, mkdirSync } from 'fs'
 import { join } from 'path'
 
@@ -47,8 +46,3 @@ writeFileSync(svgPath, rawSvg)
 
 console.log(`SVG saved: ${svgPath}`)
 
-try {
-  execSync(`npm run icons:generate -- "${svgPath}"`, { stdio: 'inherit' })
-} catch {
-  console.log('Skipped: "npm run icons:generate" (script not found)')
-}
