@@ -83,9 +83,23 @@
     "vite-plugin-lib-inject-css": "2.2.2",
     "vite-tsconfig-paths": "6.0.5",
     "vitest": "4.0.18",
-    "husky": "9.1.7"
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7"
   },
   "overrides": {
     "vite": "npm:rolldown-vite@7.3.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
