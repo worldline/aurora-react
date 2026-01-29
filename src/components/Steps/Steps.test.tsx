@@ -41,7 +41,7 @@ describe('Steps Component', () => {
     expect(items).toHaveLength(4)
   })
 
-  test('should display correct content for each step', () => {
+  test('should display a heading for each step', () => {
     render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
@@ -51,14 +51,47 @@ describe('Steps Component', () => {
       expect(
         itemScope.getByRole('heading', { name: step.title, level: 2 }),
       ).toBeInTheDocument()
-      expect(itemScope.getAllByRole('paragraph')).toHaveLength(2)
-      const description = itemScope.getAllByRole('paragraph')[0]
-      expect(description).toHaveTextContent(step.description)
-      if (step.date) {
-        const date = itemScope.getAllByRole('paragraph')[1]
-        expect(date).toHaveTextContent(step.date)
-      }
+    })
+  })
+
+  test('should display a description for each step', () => {
+    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+
+    const items = screen.getAllByRole('listitem')
+    items.forEach((item, index) => {
+      const step = steps[index]
+      const itemScope = within(item)
+      const description = itemScope.getByText(step.description)
+      expect(description).toBeInTheDocument()
+    })
+  })
+
+  test('should display a status label for each step', () => {
+    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+
+    const items = screen.getAllByRole('listitem')
+    items.forEach((item, index) => {
+      const step = steps[index]
+      const itemScope = within(item)
       expect(itemScope.getByText(step.status.label)).toBeInTheDocument()
+    })
+  })
+
+  test('should display a date for each step that has one', () => {
+    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+
+    const items = screen.getAllByRole('listitem')
+    items.forEach((item, index) => {
+      const step = steps[index]
+      const itemScope = within(item)
+      const paragraphs = itemScope.getAllByRole('paragraph')
+      if (step.date) {
+        const date = itemScope.getByText(step.date)
+        expect(date).toBeInTheDocument()
+        expect(paragraphs).toHaveLength(2)
+      } else {
+        expect(paragraphs).toHaveLength(1)
+      }
     })
   })
 
@@ -72,12 +105,14 @@ describe('Steps Component', () => {
     render(
       <Steps aria-labelledby="labelledby" steps={steps} titleElement="h2" />,
     )
+
     const list = screen.getByRole('list')
     expect(list).toHaveAttribute('aria-labelledby', 'labelledby')
   })
 
   test('should set aria-labelledby to title and status for each step', () => {
     render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
       const step = steps[index]

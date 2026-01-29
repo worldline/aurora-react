@@ -45,18 +45,22 @@ const Steps = ({
   ...props
 }: Props): ReactElement => (
   <ol className={cn(styles.steps, className)} {...props}>
-    {steps.map((step, index) => (
-      <Step
-        key={step.id}
-        className={styles.step}
-        gridRow={index * 2 + 1}
-        step={step}
-        index={index}
-        connector={connector && index < steps.length - 1}
-        titleElement={titleElement}
-        type={type}
-      />
-    ))}
+    {steps.map((step, index) => {
+      const isLast = index === steps.length - 1
+      return (
+        <Step
+          key={step.id}
+          className={styles.step}
+          gridRow={index * 2 + 1}
+          step={step}
+          index={index}
+          isLast={isLast}
+          connector={connector && !isLast}
+          titleElement={titleElement}
+          type={type}
+        />
+      )
+    })}
   </ol>
 )
 

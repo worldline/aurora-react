@@ -141,7 +141,7 @@ export const AllStepsCompleted: Story = {
     steps: [
       {
         id: 'step-1',
-        title: 'Step 1',
+        title: 'Multiline Step 1\nMultiline Step 1',
         description: 'Description for step 1',
         date: '8 January 2025',
         status: { label: 'Status 1', type: 'complete' },

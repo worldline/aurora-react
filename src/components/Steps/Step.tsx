@@ -31,15 +31,17 @@ interface Props extends React.HTMLAttributes<HTMLLIElement> {
   titleElement: HeadingElement
   type: Type
   index: number
+  isLast: boolean
   gridRow?: number
 }
 
 const Step = ({
   step,
-  index,
   connector,
   titleElement,
   type,
+  index,
+  isLast,
   gridRow,
   className,
   ...props
@@ -51,7 +53,9 @@ const Step = ({
   return (
     <li
       key={step.id}
-      className={cn(styles.step, step.status.type, className)}
+      className={cn(styles.step, step.status.type, className, {
+        [styles['last-step']]: isLast,
+      })}
       aria-labelledby={`${titleId} ${statusId}`}
       aria-current={step.status.type === 'in-progress' ? 'step' : undefined}
       {...props}
@@ -71,7 +75,7 @@ const Step = ({
           id={titleId}
           element={titleElement}
           textStyle="textMdMedium"
-          textColor={titleColorByStatusType[step.status.type]}
+          textColor="contentPrimary"
           className={styles.title}
         >
           {step.title}
@@ -84,13 +88,15 @@ const Step = ({
           >
             {step.description}
           </Typography>
-          <Typography
-            element="p"
-            textStyle="textSmRegular"
-            textColor={bodyTextColor}
-          >
-            {step.date}
-          </Typography>
+          {step.date ? (
+            <Typography
+              element="p"
+              textStyle="textSmRegular"
+              textColor={bodyTextColor}
+            >
+              {step.date}
+            </Typography>
+          ) : null}
         </div>
       </div>
       <Chip
@@ -114,12 +120,6 @@ const chipTypeByStatusType: Readonly<Record<StatusType, ChipType>> = {
   complete: 'success',
   'in-progress': 'neutral',
   'not-started': 'neutral',
-}
-
-const titleColorByStatusType: Readonly<Record<StatusType, TextColor>> = {
-  complete: 'contentPrimary',
-  'in-progress': 'contentPrimary',
-  'not-started': 'contentSecondary',
 }
 
 const bodyTextColorByStatusType: Readonly<Record<StatusType, TextColor>> = {

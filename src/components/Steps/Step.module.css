@@ -29,6 +29,10 @@
   padding-bottom: var(--au-spacing-3xl);
 }
 
+.last-step .middle-column {
+  padding-bottom: var(--au-spacing-none);
+}
+
 .middle-column p {
   margin: var(--au-spacing-none);
 }
