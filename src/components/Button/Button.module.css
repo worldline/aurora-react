@@ -47,7 +47,6 @@
   border-width: var(--au-button-primary-sm-border-width);
 }
 
-
 .primary.md {
   border-radius: var(--au-button-primary-md-radius);
   border-width: var(--au-button-primary-md-border-width);
@@ -58,7 +57,8 @@
   border-width: var(--au-button-primary-lg-border-width);
 }
 
-.primary[data-hovered], .primary[data-pressed] {
+.primary[data-hovered],
+.primary[data-pressed] {
   background: var(--au-button-primary-hover-background);
   color: var(--au-button-primary-hover-content);
   border-color: var(--au-button-primary-hover-border);
@@ -91,7 +91,8 @@
   border-width: var(--au-button-secondary-lg-border-width);
 }
 
-.secondary[data-hovered], .primary[data-pressed] {
+.secondary[data-hovered],
+.primary[data-pressed] {
   background: var(--au-button-secondary-hover-background);
   color: var(--au-button-secondary-hover-content);
   border-color: var(--au-button-secondary-hover-border);
@@ -106,21 +107,23 @@
 .link {
   background: none;
   color: var(--au-button-link-default-content);
-  border-width: 0;
+  border-width: var(--au-dimensions-0);
+  padding: var(--au-dimensions-0);
 }
 
-.link[data-hovered], .primary[data-pressed] {
+.link[data-hovered],
+.primary[data-pressed] {
   color: var(--au-button-link-hover-content);
 }
 
 .link.sm {
   border-radius: var(--au-button-link-sm-radius);
-  border-width: 0;
+  border-width: var(--au-dimensions-0);
 }
 
 .link.md {
   border-radius: var(--au-button-link-sm-radius);
-  border-width: 0;
+  border-width: var(--au-dimensions-0);
 }
 
 .link[data-disabled] {
