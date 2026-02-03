@@ -66,14 +66,21 @@ export default defineConfig({
         'react-aria-components',
       ],
       input: Object.fromEntries(
-        globSync(['src/styles/styles.css', 'src/**/*.{ts,tsx}'], {
-          ignore: [
-            'src/**/*types*.ts',
-            'src/**/*stories*.{ts,tsx}',
-            'src/**/*test.{ts,tsx}',
-            '__tests__/*.{ts,tsx}',
+        globSync(
+          [
+            'src/styles/styles.css',
+            'src/assets/fonts/fonts.css',
+            'src/**/*.{ts,tsx}',
           ],
-        }).map((file) => [
+          {
+            ignore: [
+              'src/**/*types*.ts',
+              'src/**/*stories*.{ts,tsx}',
+              'src/**/*test.{ts,tsx}',
+              '__tests__/*.{ts,tsx}',
+            ],
+          },
+        ).map((file) => [
           relative('src', file.slice(0, file.length - extname(file).length)),
           fileURLToPath(new URL(file, import.meta.url)),
         ]),
