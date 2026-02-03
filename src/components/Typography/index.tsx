@@ -1,12 +1,11 @@
+import type { AuColor } from '@worldline/aurora-design-tokens/colors'
+import type { AuTypography } from '@worldline/aurora-design-tokens/typographies'
 import cn from 'classnames'
 import {
   type HTMLElementType,
   type HtmlHTMLAttributes,
   type ReactNode,
 } from 'react'
-
-import type { AuColor } from '../../styles/colors'
-import type { AuTypography } from '../../styles/typographies'
 
 import styles from './Typography.module.css'
 

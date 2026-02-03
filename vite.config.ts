@@ -66,7 +66,7 @@ export default defineConfig({
         'react-aria-components',
       ],
       input: Object.fromEntries(
-        globSync('src/**/*.{ts,tsx}', {
+        globSync(['src/styles/styles.css', 'src/**/*.{ts,tsx}'], {
           ignore: [
             'src/**/*types*.ts',
             'src/**/*stories*.{ts,tsx}',

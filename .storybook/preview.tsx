@@ -4,7 +4,7 @@ import { definePreview, type Decorator } from '@storybook/react-vite'
 import { useEffect } from 'react'
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport'
 
-import '../src/styles/main.css'
+import '../src/styles/styles.css'
 
 type Theme = 'light' | 'dark'
 
