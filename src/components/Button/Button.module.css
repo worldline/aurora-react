@@ -123,7 +123,7 @@
 
 .link.md {
   border-radius: var(--au-button-link-sm-radius);
-  border-width: var(--au-spacing-none);
+  border-width: var(--au-dimensions-0);
 }
 
 .link[data-disabled] {
