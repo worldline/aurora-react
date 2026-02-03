@@ -108,8 +108,7 @@
   background: none;
   color: var(--au-button-link-default-content);
   border-width: var(--au-dimensions-0);
-  font-weight: var(--au-typography-font-weight-medium);
-  padding: var(--au-spacing-none);
+  padding: var(--au-dimensions-0);
 }
 
 .link[data-hovered],
@@ -119,7 +118,7 @@
 
 .link.sm {
   border-radius: var(--au-button-link-sm-radius);
-  border-width: var(--au-spacing-none);
+  border-width: var(--au-dimensions-0);
 }
 
 .link.md {
