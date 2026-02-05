@@ -1,9 +1,7 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from 'eslint-plugin-storybook'
-
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
+import eslintReact from '@eslint-react/eslint-plugin'
 import reactDom from 'eslint-plugin-react-dom'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
@@ -11,7 +9,6 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 import importPlugin from 'eslint-plugin-import'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import stylistic from '@stylistic/eslint-plugin'
-import eslintReact from '@eslint-react/eslint-plugin'
 
 export default defineConfig([
   globalIgnores([
@@ -24,9 +21,9 @@ export default defineConfig([
     extends: [
       js.configs.recommended,
       eslintPluginPrettierRecommended,
+      reactHooks.configs.flat.recommended,
       eslintReact.configs['recommended-typescript'],
       reactDom.configs.recommended,
-      reactHooks.configs.flat.recommended,
       tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
       reactRefresh.configs.vite,
@@ -40,16 +37,12 @@ export default defineConfig([
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@eslint-react/no-forward-ref': 'error',
       '@eslint-react/no-leaked-conditional-rendering': 'error',
-      'arrow-body-style': 'error',
+      'arrow-body-style': ['error', 'as-needed'],
       eqeqeq: 'error',
       'no-console': 'error',
       'no-duplicate-imports': 'error',
-      'no-unused-vars': 'off',
-      '@typescript-eslint/array-type': ['error', { default: 'generic' }],
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        { argsIgnorePattern: '^_' },
-      ],
+      'no-restricted-syntax': ['error', 'FunctionDeclaration'],
+      'no-unused-vars': 'error',
       'prefer-const': 'error',
       'prefer-template': 'error',
       'prettier/prettier': [
@@ -62,6 +55,7 @@ export default defineConfig([
       'react-hooks/exhaustive-deps': 'error',
       'react-hooks/unsupported-syntax': 'error',
       'react-hooks/incompatible-library': 'error',
+      'react-refresh/only-export-components': 'off',
       'import/order': [
         'error',
         {
