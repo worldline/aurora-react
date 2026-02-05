@@ -1,10 +1,10 @@
 .button {
-  cursor: pointer;
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  outline: none;
+  align-items: center;
   text-decoration: none;
+  cursor: pointer;
+  outline: none;
   border-style: solid;
 }
 
@@ -37,8 +37,8 @@
 }
 
 .primary {
-  background: var(--au-button-primary-default-background);
   color: var(--au-button-primary-default-content);
+  background: var(--au-button-primary-default-background);
   border-color: var(--au-button-primary-default-border);
 }
 
@@ -59,20 +59,20 @@
 
 .primary[data-hovered],
 .primary[data-pressed] {
-  background: var(--au-button-primary-hover-background);
   color: var(--au-button-primary-hover-content);
+  background: var(--au-button-primary-hover-background);
   border-color: var(--au-button-primary-hover-border);
 }
 
 .primary[data-disabled] {
-  background: var(--au-button-primary-disabled-background);
   color: var(--au-button-primary-disabled-content);
+  background: var(--au-button-primary-disabled-background);
   border-color: var(--au-button-primary-disabled-border);
 }
 
 .secondary {
-  background: var(--au-button-secondary-default-background);
   color: var(--au-button-secondary-default-content);
+  background: var(--au-button-secondary-default-background);
   border-color: var(--au-button-secondary-default-border);
 }
 
@@ -93,22 +93,22 @@
 
 .secondary[data-hovered],
 .primary[data-pressed] {
-  background: var(--au-button-secondary-hover-background);
   color: var(--au-button-secondary-hover-content);
+  background: var(--au-button-secondary-hover-background);
   border-color: var(--au-button-secondary-hover-border);
 }
 
 .secondary[data-disabled] {
-  background: var(--au-button-secondary-disabled-background);
   color: var(--au-button-secondary-disabled-content);
+  background: var(--au-button-secondary-disabled-background);
   border-color: var(--au-button-secondary-disabled-border);
 }
 
 .link {
-  background: none;
-  color: var(--au-button-link-default-content);
-  border-width: var(--au-dimensions-0);
   padding: var(--au-dimensions-0);
+  color: var(--au-button-link-default-content);
+  background: none;
+  border-width: var(--au-dimensions-0);
 }
 
 .link[data-hovered],

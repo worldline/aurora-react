@@ -1,6 +1,6 @@
 .card {
   padding: var(--au-spacing-xl);
-  border-radius: var(--au-radius-md);
-  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
   background-color: var(--au-surface-neutral-medium);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  border-radius: var(--au-radius-md);
 }
