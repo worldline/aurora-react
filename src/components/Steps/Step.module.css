@@ -11,10 +11,10 @@
 }
 
 .connector {
-  flex: 1;
   margin: var(--au-spacing-2xs) var(--au-spacing-none);
   border: var(--au-border-width-thin) solid var(--au-surface-brand-solid);
   border-radius: var(--au-radius-rounded);
+  flex: 1;
 }
 
 .connector.dashed {

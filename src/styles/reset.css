@@ -1,9 +1,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -20,8 +20,8 @@ html {
 body {
   min-width: 320px;
   line-height: 1.5;
-  background-color: var(--au-surface-page);
   color: var(--au-content-primary);
+  background-color: var(--au-surface-page);
 }
 
 img,

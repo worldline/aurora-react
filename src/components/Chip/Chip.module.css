@@ -1,7 +1,7 @@
 .chip {
   display: inline-flex;
-  width: fit-content;
   align-items: center;
+  width: fit-content;
 }
 
 .vpadding-icon.small {
@@ -32,7 +32,7 @@
 
 .neutral {
   background-color: var(--au-chip-neutral-background);
- }
+}
 
 .brand {
   background-color: var(--au-chip-brand-background);
@@ -51,17 +51,17 @@
 }
 
 .small {
-  border-radius: var(--au-chip-sm-radius);
-  gap: var(--au-chip-sm-gap);
   padding: var(--au-chip-sm-padding-vertical-label)
     var(--au-chip-sm-padding-horizontal-label);
+  gap: var(--au-chip-sm-gap);
+  border-radius: var(--au-chip-sm-radius);
 }
 
 .large {
-  border-radius: var(--au-chip-lg-radius);
-  gap: var(--au-chip-lg-gap);
   padding: var(--au-chip-lg-padding-vertical-label)
     var(--au-chip-lg-padding-horizontal-label);
+  gap: var(--au-chip-lg-gap);
+  border-radius: var(--au-chip-lg-radius);
 }
 
 .icon-small {

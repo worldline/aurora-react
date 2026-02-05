@@ -23,9 +23,9 @@
 
 .icons-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--au-dimensions-20) var(--au-dimensions-16);
   margin: var(--au-dimensions-32) 0;
+  gap: var(--au-dimensions-20) var(--au-dimensions-16);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .icons-item {
@@ -36,26 +36,26 @@
 
 .icons-item-wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: var(--au-dimensions-10);
+  background-color: #fff;
   border: var(--au-border-width-thin) solid var(--au-surface-neutral-high);
   border-radius: var(--au-radius-lg);
   flex-shrink: 0;
-  background-color: #fff;
 }
 
 .icons-empty {
-  grid-column: 1 / -1;
-  text-align: center;
   padding: var(--au-dimensions-40);
+  text-align: center;
+  grid-column: 1 / -1;
 }
 
 .icons-usage {
-  margin-top: var(--au-dimensions-48);
   padding: var(--au-dimensions-24);
   background: var(--au-surface-neutral-low);
   border-radius: var(--au-radius-xl);
+  margin-top: var(--au-dimensions-48);
 }
 
 .icons-usage-title {
