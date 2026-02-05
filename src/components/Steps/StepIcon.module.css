@@ -1,16 +1,17 @@
 .icon {
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: var(--au-radius-rounded);
+  align-items: center;
+  width: 24px;
+
   /* TODO: get variables from UX team */
   height: 24px;
-  width: 24px;
+  border-radius: var(--au-radius-rounded);
 }
 
 .complete {
-  border-radius: var(--au-radius-rounded);
   color: var(--au-content-on-brand);
+  border-radius: var(--au-radius-rounded);
 }
 
 .complete.icon-type {
@@ -30,8 +31,8 @@
 }
 
 .in-progress.icon-type > * {
-  height: 16px;
   width: 16px;
+  height: 16px;
   background-color: var(--au-content-on-brand);
 
   /* TODO: get variables from UX team */
@@ -44,9 +45,10 @@
 }
 
 .not-started.icon-type > * {
+  width: 10px;
+
   /* TODO: get variables from UX team */
   height: 10px;
-  width: 10px;
   background-color: var(--au-content-disabled);
   border-radius: var(--au-radius-rounded);
 }
