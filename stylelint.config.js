@@ -57,9 +57,10 @@ export default {
         'box-shadow',
         'opacity',
         'cursor',
+        'vertical-align',
       ],
       {
-        unspecified: 'bottom',
+        unspecified: 'ignore',
       },
     ],
     'selector-max-id': 0,
