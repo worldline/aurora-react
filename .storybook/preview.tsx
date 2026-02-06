@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport'
 
 import '../src/styles/styles.css'
+import '../src/assets/fonts/fonts.css'
 
 type Theme = 'light' | 'dark'
 
