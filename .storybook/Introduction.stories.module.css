@@ -1,25 +1,32 @@
 .page {
   max-width: 800px;
   margin: 0 auto;
-  padding: var(--au-dimensions-32);
+  padding: var(--au-spacing-6xl);
 }
 
 .header {
   text-align: center;
-  margin-bottom: var(--au-dimensions-48);
+  margin-bottom: var(--au-spacing-8xl);
 }
 
 .section {
-  margin-bottom: var(--au-dimensions-32);
+  margin-bottom: var(--au-spacing-4xl);
 }
 
 .section-title {
-  margin-bottom: var(--au-dimensions-16);
+  margin-bottom: var(--au-spacing-sm);
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--au-dimensions-12);
+  gap: var(--au-spacing-xl);
   color: var(--au-content-brand);
+  list-style-type: disc;
+  margin-top: var(--au-spacing-xl);
+  margin-left: var(--au-spacing-6xl);
+}
+
+.import-component {
+  margin-top: var(--au-spacing-4xl);
 }
