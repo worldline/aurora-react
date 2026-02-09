@@ -1,4 +1,4 @@
-const assertUnreachable = (_value: never): never => {
+const assertUnreachable = (): never => {
   throw new Error('Statement should be unreachable')
 }
 
