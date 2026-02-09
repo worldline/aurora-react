@@ -44,7 +44,7 @@
     "precommit:tasks": "lint-staged"
   },
   "dependencies": {
-    "@worldline/aurora-design-tokens": "1.2.0",
+    "@worldline/aurora-design-tokens": "1.3.0",
     "react": "19.2.4",
     "react-aria-components": "1.14.0",
     "react-dom": "19.2.4"
