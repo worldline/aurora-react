@@ -37,7 +37,6 @@
     "src/**/*.tsx",
     ".storybook/**.ts",
     ".storybook/**.tsx",
-    "__tests__/*.ts",
-    "import-icon.ts"
+    "__tests__/*.ts"
   ]
 }
