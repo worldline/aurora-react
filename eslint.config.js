@@ -82,6 +82,13 @@ export default defineConfig([
           ],
         },
       ],
+      '@typescript-eslint/array-type': [
+        'error',
+        {
+          default: 'generic',
+          readonly: 'generic',
+        },
+      ],
     },
     languageOptions: {
       ecmaVersion: 'latest',

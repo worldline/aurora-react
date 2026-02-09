@@ -12,7 +12,7 @@ interface BaseProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * The list of steps to display
    */
-  steps: readonly StepItem[]
+  steps: ReadonlyArray<StepItem>
   /**
    * The HTML element used for the step titles
    */
