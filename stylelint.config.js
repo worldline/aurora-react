@@ -4,7 +4,12 @@ export default {
 
   plugins: ['stylelint-order'],
 
-  ignoreFiles: ['**/node_modules/**', '**/dist/**', '**/build/**'],
+  ignoreFiles: [
+    '**/node_modules/**',
+    '**/dist/**',
+    '**/build/**',
+    '**/storybook-static/**',
+  ],
 
   rules: {
     'order/properties-order': [
