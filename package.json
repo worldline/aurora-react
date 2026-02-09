@@ -40,7 +40,8 @@
     "coverage": "vitest run --coverage",
     "icons:generate": "npx @svgr/cli  --config-file svgr.config.js -- src/assets/icons/svg",
     "import-icon": "npx tsx import-icon.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "precommit:tasks": "lint-staged"
   },
   "dependencies": {
     "@worldline/aurora-design-tokens": "1.3.0",
@@ -100,7 +101,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint",
+      "eslint --fix",
       "prettier --write"
     ],
     "*.css": [
