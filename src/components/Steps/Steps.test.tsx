@@ -4,7 +4,7 @@ import { describe, expect, test } from 'vitest'
 import { Steps } from '.'
 import type { StepItem } from './index'
 
-const steps: ReadonlyArray<StepItem> = [
+const steps: readonly StepItem[] = [
   {
     id: 'step-1',
     title: 'Step 1',
