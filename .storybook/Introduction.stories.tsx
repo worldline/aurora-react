@@ -50,7 +50,7 @@ const IntroductionPage = () => (
         , every component follows WAI-ARIA best practices and provides excellent
         keyboard navigation and screen reader support.
       </Typography>
-      <Code>
+      <Code className={styles['import-component']}>
         {"import { Button } from '@worldline/aurora-react/components'"}
       </Code>
     </section>

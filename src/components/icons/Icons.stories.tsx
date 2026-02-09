@@ -38,6 +38,7 @@ const IconsGallery = () => {
           Icons
         </Typography>
         <Typography
+          className={styles.paragraph}
           element="p"
           textStyle="textMdRegular"
           textColor="contentPrimary"
@@ -91,6 +92,7 @@ const IconsGallery = () => {
             Usage
           </Typography>
           <Typography
+            className={styles.paragraph}
             element="p"
             textStyle="textMdRegular"
             textColor="contentPrimary"
@@ -103,6 +105,7 @@ const IconsGallery = () => {
             }
           </Code>
           <Typography
+            className={styles.paragraph}
             element="p"
             textStyle="textMdRegular"
             textColor="contentPrimary"
