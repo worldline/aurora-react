@@ -16,7 +16,6 @@ export default defineConfig([
     '*.config.*js',
     'src/components/icons/*',
     '!src/components/icons/*stories*',
-    'import-icon.ts',
   ]),
   {
     extends: [

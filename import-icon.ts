@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { writeFileSync, mkdirSync } from 'fs'
 import { join } from 'path'
 
@@ -8,7 +9,7 @@ const toSnakeForUrl = (str: string) =>
     .replace(/([a-z])([A-Z])/g, '$1_$2')
     .replace(/[\s-]+/g, '_')
     .toLowerCase()
-    
+
 const toKebabForFile = (str: string) =>
   str
     .replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -32,7 +33,7 @@ const url = `https://fonts.gstatic.com/s/i/short-term/release/${family}/${glyphS
 
 const res = await fetch(url)
 if (!res.ok) {
-  console.error(`Failed to fetch: ${url} (HTTP ${res.status})`)
+  console.error(`Failed to fetch: ${url}`)
   process.exit(1)
 }
 
@@ -45,4 +46,3 @@ const svgPath = join(SVG_DIR, fileName)
 writeFileSync(svgPath, rawSvg)
 
 console.log(`SVG saved: ${svgPath}`)
-
