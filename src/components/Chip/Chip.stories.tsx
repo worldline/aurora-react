@@ -77,8 +77,8 @@ export const LeadingAndTrailingIcons: Story = {
     size: 'large',
     type: 'success',
     label: 'Leading & Trailing Icons',
-    leadingIcon: <UserProfileIcon />,
-    trailingIcon: <SettingsIcon />,
+    leadingIcon: <UserProfileIcon aria-hidden />,
+    trailingIcon: <SettingsIcon aria-hidden />,
   },
 }
 
@@ -87,7 +87,7 @@ export const LeadingIcon: Story = {
     size: 'large',
     type: 'warning',
     label: 'Leading Icon',
-    leadingIcon: <UserProfileIcon />,
+    leadingIcon: <UserProfileIcon aria-hidden />,
   },
 }
 
@@ -96,6 +96,6 @@ export const TrailingIcon: Story = {
     size: 'small',
     type: 'brand',
     label: 'Trailing Icon',
-    trailingIcon: <SettingsIcon />,
+    trailingIcon: <SettingsIcon aria-hidden />,
   },
 }

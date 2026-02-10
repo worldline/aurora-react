@@ -8,7 +8,10 @@ import { Typography } from '../Typography'
 
 import styles from './Icons.stories.module.css'
 
-type IconProps = SVGProps<SVGSVGElement> & { size?: number | string }
+type IconProps = SVGProps<SVGSVGElement> & {
+  size?: number | string
+  title: string
+}
 
 const iconModules = import.meta.glob<{ default: ComponentType<IconProps> }>(
   ['./*.tsx', '!./Icons.stories.tsx'],
@@ -60,7 +63,7 @@ const IconsGallery = () => {
             filteredIcons.map(({ name, Icon }) => (
               <div key={name} className={styles['icons-item']}>
                 <div className={styles['icons-item-wrapper']}>
-                  <Icon size={48} />
+                  <Icon size={48} title="alt text" />
                 </div>
                 <Typography
                   element="span"

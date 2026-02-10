@@ -26,6 +26,7 @@ const SbPreview = definePreview({
   globalTypes: {
     theme: {
       description: 'Theme',
+      defaultValue: 'dark',
       toolbar: {
         title: 'Theme',
         items: [
@@ -39,6 +40,7 @@ const SbPreview = definePreview({
   parameters: {
     a11y: {
       options: { xpath: true },
+      test: 'error',
     },
     backgrounds: { disable: true },
     viewport: {
@@ -48,10 +50,10 @@ const SbPreview = definePreview({
     initialGlobals: {
       // FIXME: initialGlobals setting does not work :/
       viewport: 'Small mobile',
-      theme: 'dark',
     },
   },
 })
+export type { Theme }
 export default SbPreview
 
 const ThemeWrapper = ({
