@@ -23,5 +23,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["vite.config.ts", "__tests__/*.ts", "import-icon.ts"]
+  "include": [
+    "vite.config.ts",
+    "vitest.shims.d.ts",
+    "__tests__/*.ts",
+    "import-icon.ts"
+  ]
 }

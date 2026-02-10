@@ -203,7 +203,7 @@ const meta = preview.meta({
       showPanel: false,
     },
   },
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'notest'],
 })
 
 export const Introduction = meta.story()
