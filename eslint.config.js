@@ -14,6 +14,7 @@ export default defineConfig([
   globalIgnores([
     'dist',
     '*.config.*js',
+    '.releaserc.cjs',
     'src/components/icons/*',
     '!src/components/icons/*stories*',
     'storybook-static',
