@@ -7,12 +7,9 @@ import {
   type ButtonProps as AriaButtonProps,
 } from 'react-aria-components'
 
-import styles from './Button.module.css'
+import { buttonClassName } from './buttonStyles'
 
-/**
- * Button component props extending React Aria ButtonProps for full accessibility support
- */
-export interface ButtonProps extends AriaButtonProps {
+interface AuroraButtonProps {
   /**
    * Visual style variant of the button
    * - `primary`: Main call-to-action with brand color
@@ -32,6 +29,8 @@ export interface ButtonProps extends AriaButtonProps {
   size?: 'small' | 'medium' | 'large'
 }
 
+type Props = AuroraButtonProps & AriaButtonProps
+
 /**
  * Accessible button component built with React Aria
  *
@@ -42,27 +41,14 @@ export interface ButtonProps extends AriaButtonProps {
  * </Button>
  * ```
  */
-const Button = ({
-  variant = 'primary',
-  size = 'medium',
-  children,
-  className,
-  ...props
-}: ButtonProps): ReactElement => {
-  const sizeClass = {
-    small: styles.sm,
-    medium: styles.md,
-    large: styles.lg,
-  }[size]
+const Button = ({ variant, size, children, ...props }: Props): ReactElement => {
+  const className = cn(buttonClassName({ variant, size }), props.className)
 
   return (
-    <AriaButton
-      className={cn(styles.button, styles[variant], sizeClass, className)}
-      {...props}
-    >
+    <AriaButton {...props} className={className}>
       {children}
     </AriaButton>
   )
 }
 
-export { Button }
+export { Button, type AuroraButtonProps }
