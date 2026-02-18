@@ -106,6 +106,11 @@ export default defineConfig({
       ],
       clean: true,
     },
+    css: {
+      modules: {
+        classNameStrategy: 'non-scoped',
+      },
+    },
     projects: [
       {
         extends: true,

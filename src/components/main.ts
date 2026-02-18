@@ -1,3 +1,4 @@
+export { Link } from './Link'
 export { Button } from './Button'
 export { Typography, type TextColor, type HeadingElement } from './Typography'
 export { Card } from './Card'
