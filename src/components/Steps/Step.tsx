@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { useId, type ReactElement } from 'react'
+import { type ReactElement } from 'react'
 
 import { Chip } from '../Chip'
 import { Typography, type TextColor, type HeadingElement } from '../Typography'
@@ -46,8 +46,6 @@ const Step = ({
   className,
   ...props
 }: Props): ReactElement => {
-  const titleId = useId()
-  const statusId = useId()
   const bodyTextColor = bodyTextColorByStatusType[step.status.type]
 
   return (
@@ -56,7 +54,7 @@ const Step = ({
       className={cn(styles.step, step.status.type, className, {
         [styles['last-step']]: isLast,
       })}
-      aria-labelledby={`${titleId} ${statusId}`}
+      aria-label={`${step.title}. ${step.status.label}`}
       aria-current={step.status.type === 'in-progress' ? 'step' : undefined}
       {...props}
     >
@@ -72,7 +70,6 @@ const Step = ({
       </div>
       <div className={styles['middle-column']} style={{ gridRow }}>
         <Typography
-          id={titleId}
           element={titleElement}
           textStyle="textMdMedium"
           textColor="contentPrimary"
@@ -100,7 +97,6 @@ const Step = ({
         </div>
       </div>
       <Chip
-        id={statusId}
         style={{ gridRow }}
         className={cn(styles['right-column'], {
           'visually-hidden': step.status.type === 'not-started',

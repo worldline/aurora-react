@@ -110,21 +110,14 @@ describe('Steps Component', () => {
     expect(list).toHaveAttribute('aria-labelledby', 'labelledby')
   })
 
-  test('should set aria-labelledby to title and status for each step', () => {
+  test('should set aria-label to title and status for each step', () => {
     render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
       const step = steps[index]
-      const ariaLabelledBy = item.getAttribute('aria-labelledby')
-      expect(ariaLabelledBy).toBeTruthy()
-      if (ariaLabelledBy) {
-        const ids = ariaLabelledBy.split(' ')
-        const titleElement = document.getElementById(ids[0])
-        const statusElement = document.getElementById(ids[1])
-        expect(titleElement).toHaveTextContent(step.title)
-        expect(statusElement).toHaveTextContent(step.status.label)
-      }
+      const ariaLabel = item.getAttribute('aria-label')
+      expect(ariaLabel).toEqual(`${step.title}. ${step.status.label}`)
     })
   })
 
