@@ -2,10 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 24px;
-
-  /* TODO: get variables from UX team */
-  height: 24px;
+  width: var(--au-sizes-icon-md);
+  height: var(--au-sizes-icon-md);
   border-radius: var(--au-radius-rounded);
 }
 
@@ -26,13 +24,12 @@
 }
 
 .in-progress.icon-type {
-  /* TODO: get variables from UX team */
-  border-color: #53bda4;
+  border-color: var(--au-surface-brand-solid);
 }
 
 .in-progress.icon-type > * {
-  width: 16px;
-  height: 16px;
+  width: var(--au-sizes-icon-sm);
+  height: var(--au-sizes-icon-sm);
   background-color: var(--au-content-on-brand);
 
   /* TODO: get variables from UX team */
@@ -45,10 +42,8 @@
 }
 
 .not-started.icon-type > * {
-  width: 10px;
-
-  /* TODO: get variables from UX team */
-  height: 10px;
+  width: var(--au-sizes-icon-xs);
+  height: var(--au-sizes-icon-xs);
   background-color: var(--au-content-disabled);
   border-radius: var(--au-radius-rounded);
 }

@@ -273,5 +273,4 @@
 
 .text-xs-bold {
   font: var(--au-text-xs-bold);
-  text-decoration: var(--au-text-xs-decoration);
 }

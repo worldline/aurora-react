@@ -5,7 +5,7 @@
   line-height: 1.6;
   color: var(--au-content-primary);
   background: var(--au-surface-neutral-high);
-  border-radius: 8px;
+  border-radius: var(--au-radius-sm);
   font-family: 'Fira Code', Consolas, monospace;
   overflow-x: auto;
 }
