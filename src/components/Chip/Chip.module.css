@@ -65,13 +65,13 @@
 }
 
 .icon-small {
-  width: var(--au-dimensions-14);
-  height: var(--au-dimensions-14);
+  width: var(--au-sizes-icon-sm);
+  height: var(--au-sizes-icon-sm);
 }
 
 .icon-large {
-  width: var(--au-dimensions-20);
-  height: var(--au-dimensions-20);
+  width: var(--au-sizes-icon-md);
+  height: var(--au-sizes-icon-md);
 }
 
 .icon-neutral {

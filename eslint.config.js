@@ -1,19 +1,18 @@
 import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
 import eslintReact from '@eslint-react/eslint-plugin'
-import reactDom from 'eslint-plugin-react-dom'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
+import stylistic from '@stylistic/eslint-plugin'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import importPlugin from 'eslint-plugin-import'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
-import stylistic from '@stylistic/eslint-plugin'
+import reactDom from 'eslint-plugin-react-dom'
+import reactHooks from 'eslint-plugin-react-hooks'
+import { reactRefresh } from 'eslint-plugin-react-refresh'
+import globals from 'globals'
+import { configs as tseslint } from 'typescript-eslint'
 
 export default defineConfig([
   globalIgnores([
     'dist',
-    '*.config.*js',
     '.releaserc.cjs',
     'src/components/icons/*',
     '!src/components/icons/*stories*',
@@ -26,8 +25,8 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       eslintReact.configs['recommended-typescript'],
       reactDom.configs.recommended,
-      tseslint.configs.strictTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
+      tseslint.strictTypeChecked,
+      tseslint.stylisticTypeChecked,
       reactRefresh.configs.vite,
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,

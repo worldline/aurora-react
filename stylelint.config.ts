@@ -2,7 +2,7 @@
 export default {
   extends: ['stylelint-config-standard', 'stylelint-prettier/recommended'],
 
-  plugins: ['stylelint-order'],
+  plugins: ['stylelint-order', 'stylelint-value-no-unknown-custom-properties'],
 
   ignoreFiles: [
     '**/node_modules/**',
@@ -12,6 +12,10 @@ export default {
   ],
 
   rules: {
+    'declaration-block-no-redundant-longhand-properties': [
+      true,
+      { ignoreShorthands: ['place-self', 'place-content', 'place-items'] },
+    ],
     'order/properties-order': [
       [
         'position',
@@ -75,6 +79,14 @@ export default {
       {
         message:
           'Class names must use kebab-case and cannot start with a digit. Example: "privacy-policy-v2".',
+      },
+    ],
+    'csstools/value-no-unknown-custom-properties': [
+      true,
+      {
+        importFrom: [
+          'node_modules/@worldline/aurora-design-tokens/build/css/style.css',
+        ],
       },
     ],
   },

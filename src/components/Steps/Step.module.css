@@ -50,5 +50,6 @@
 }
 
 .right-column {
-  place-self: start end;
+  align-self: start;
+  justify-self: end;
 }

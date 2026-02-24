@@ -1,5 +1,5 @@
 .page {
-  max-width: 800px;
+  max-width: var(--au-screen-content-max-width-lg);
   margin: 0 auto;
   padding: var(--au-spacing-6xl);
 }

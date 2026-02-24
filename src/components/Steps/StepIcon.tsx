@@ -19,7 +19,7 @@ const StepIcon = ({ type, status, number }: Props): ReactElement => {
   const renderIcon = () => {
     switch (status) {
       case 'complete':
-        return <CheckIcon size={14} fill="currentColor" />
+        return <CheckIcon fill="currentColor" />
       case 'in-progress':
         return type === 'icon' ? (
           <div />
