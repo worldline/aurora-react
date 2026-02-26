@@ -51,226 +51,78 @@
   color: var(--au-content-success);
 }
 
-.metrics-lg-regular {
-  font: var(--au-metrics-lg-regular);
+.hero {
+  font: var(--au-hero);
 }
 
-.metrics-lg-medium {
-  font: var(--au-metrics-lg-medium);
+.metric-lg {
+  font: var(--au-metric-lg);
 }
 
-.metrics-lg-semibold {
-  font: var(--au-metrics-lg-semibold);
+.metric-md {
+  font: var(--au-metric-md);
 }
 
-.metrics-lg-bold {
-  font: var(--au-metrics-lg-bold);
+.metric-sm {
+  font: var(--au-metric-sm);
 }
 
-.metrics-md-regular {
-  font: var(--au-metrics-md-regular);
+.display-lg {
+  font: var(--au-display-lg);
 }
 
-.metrics-md-medium {
-  font: var(--au-metrics-md-medium);
+.display-md {
+  font: var(--au-display-md);
 }
 
-.metrics-md-semibold {
-  font: var(--au-metrics-md-semibold);
+.display-sm {
+  font: var(--au-display-sm);
 }
 
-.metrics-md-bold {
-  font: var(--au-metrics-md-bold);
+.title-lg {
+  font: var(--au-title-lg);
 }
 
-.metrics-sm-regular {
-  font: var(--au-metrics-sm-regular);
+.title-md {
+  font: var(--au-title-md);
 }
 
-.metrics-sm-medium {
-  font: var(--au-metrics-sm-medium);
+.title-sm {
+  font: var(--au-title-sm);
 }
 
-.metrics-sm-semibold {
-  font: var(--au-metrics-sm-semibold);
+.body-lg {
+  font: var(--au-body-lg);
 }
 
-.metrics-sm-bold {
-  font: var(--au-metrics-sm-bold);
+.body-md {
+  font: var(--au-body-md);
 }
 
-.display-2xl-regular {
-  font: var(--au-display-2xl-regular);
+.body-sm {
+  font: var(--au-body-sm);
 }
 
-.display-2xl-medium {
-  font: var(--au-display-2xl-medium);
+.label-lg {
+  font: var(--au-label-lg);
 }
 
-.display-2xl-semibold {
-  font: var(--au-display-2xl-semibold);
+.label-md {
+  font: var(--au-label-md);
 }
 
-.display-2xl-bold {
-  font: var(--au-display-2xl-bold);
+.label-sm {
+  font: var(--au-label-sm);
 }
 
-.display-xl-regular {
-  font: var(--au-display-xl-regular);
+.caption-lg {
+  font: var(--au-caption-lg);
 }
 
-.display-xl-medium {
-  font: var(--au-display-xl-medium);
+.caption-md {
+  font: var(--au-caption-md);
 }
 
-.display-xl-semibold {
-  font: var(--au-display-xl-semibold);
-}
-
-.display-xl-bold {
-  font: var(--au-display-xl-bold);
-}
-
-.display-lg-regular {
-  font: var(--au-display-lg-regular);
-}
-
-.display-lg-medium {
-  font: var(--au-display-lg-medium);
-}
-
-.display-lg-semibold {
-  font: var(--au-display-lg-semibold);
-}
-
-.display-lg-bold {
-  font: var(--au-display-lg-bold);
-}
-
-.display-md-regular {
-  font: var(--au-display-md-regular);
-}
-
-.display-md-medium {
-  font: var(--au-display-md-medium);
-}
-
-.display-md-semibold {
-  font: var(--au-display-md-semibold);
-}
-
-.display-md-bold {
-  font: var(--au-display-md-bold);
-}
-
-.display-sm-regular {
-  font: var(--au-display-sm-regular);
-}
-
-.display-sm-medium {
-  font: var(--au-display-sm-medium);
-}
-
-.display-sm-semibold {
-  font: var(--au-display-sm-semibold);
-}
-
-.display-sm-bold {
-  font: var(--au-display-sm-bold);
-}
-
-.display-xs-regular {
-  font: var(--au-display-xs-regular);
-}
-
-.display-xs-medium {
-  font: var(--au-display-xs-medium);
-}
-
-.display-xs-semibold {
-  font: var(--au-display-xs-semibold);
-}
-
-.display-xs-bold {
-  font: var(--au-display-xs-bold);
-}
-
-.text-xl-regular {
-  font: var(--au-text-xl-regular);
-}
-
-.text-xl-medium {
-  font: var(--au-text-xl-medium);
-}
-
-.text-xl-semibold {
-  font: var(--au-text-xl-semibold);
-}
-
-.text-xl-bold {
-  font: var(--au-text-xl-bold);
-}
-
-.text-lg-regular {
-  font: var(--au-text-lg-regular);
-}
-
-.text-lg-medium {
-  font: var(--au-text-lg-medium);
-}
-
-.text-lg-semibold {
-  font: var(--au-text-lg-semibold);
-}
-
-.text-lg-bold {
-  font: var(--au-text-lg-bold);
-}
-
-.text-md-regular {
-  font: var(--au-text-md-regular);
-}
-
-.text-md-semibold {
-  font: var(--au-text-md-semibold);
-}
-
-.text-md-medium {
-  font: var(--au-text-md-medium);
-}
-
-.text-md-bold {
-  font: var(--au-text-md-bold);
-}
-
-.text-sm-regular {
-  font: var(--au-text-sm-regular);
-}
-
-.text-sm-medium {
-  font: var(--au-text-sm-medium);
-}
-
-.text-sm-semibold {
-  font: var(--au-text-sm-semibold);
-}
-
-.text-sm-bold {
-  font: var(--au-text-sm-bold);
-}
-
-.text-xs-regular {
-  font: var(--au-text-xs-regular);
-}
-
-.text-xs-medium {
-  font: var(--au-text-xs-medium);
-}
-
-.text-xs-semibold {
-  font: var(--au-text-xs-semibold);
-}
-
-.text-xs-bold {
-  font: var(--au-text-xs-bold);
+.caption-sm {
+  font: var(--au-caption-sm);
 }

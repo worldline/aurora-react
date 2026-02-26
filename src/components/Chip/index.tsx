@@ -96,6 +96,6 @@ const sizesToTextStyle: Record<
   Size,
   React.ComponentProps<typeof Typography>['textStyle']
 > = {
-  small: 'textXsMedium',
-  large: 'textSmMedium',
+  small: 'labelSm',
+  large: 'labelMd',
 }

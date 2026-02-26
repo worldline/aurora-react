@@ -71,24 +71,20 @@ const Step = ({
       <div className={styles['middle-column']} style={{ gridRow }}>
         <Typography
           element={titleElement}
-          textStyle="textMdMedium"
+          textStyle="labelMd"
           textColor="contentPrimary"
           className={styles.title}
         >
           {step.title}
         </Typography>
         <div className={styles.body}>
-          <Typography
-            element="p"
-            textStyle="textMdRegular"
-            textColor={bodyTextColor}
-          >
+          <Typography element="p" textStyle="bodyMd" textColor={bodyTextColor}>
             {step.description}
           </Typography>
           {step.date ? (
             <Typography
               element="p"
-              textStyle="textSmRegular"
+              textStyle="captionMd"
               textColor={bodyTextColor}
             >
               {step.date}

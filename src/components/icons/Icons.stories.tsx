@@ -33,17 +33,13 @@ const IconsGallery = () => {
   return (
     <>
       <div className={styles.icons}>
-        <Typography
-          element="h1"
-          textStyle="displayLgSemibold"
-          textColor="contentPrimary"
-        >
+        <Typography element="h1" textStyle="titleLg" textColor="contentPrimary">
           Icons
         </Typography>
         <Typography
           className={styles.paragraph}
           element="p"
-          textStyle="textMdRegular"
+          textStyle="bodyMd"
           textColor="contentPrimary"
         >
           These are the icons being used in our design system. They are
@@ -67,7 +63,7 @@ const IconsGallery = () => {
                 </div>
                 <Typography
                   element="span"
-                  textStyle="textMdRegular"
+                  textStyle="labelSm"
                   textColor="contentPrimary"
                 >
                   {name}
@@ -77,7 +73,7 @@ const IconsGallery = () => {
           ) : (
             <Typography
               element="p"
-              textStyle="textMdRegular"
+              textStyle="labelMd"
               textColor="contentSecondary"
               className={styles['icons-empty']}
             >
@@ -88,7 +84,7 @@ const IconsGallery = () => {
         <Card className={styles['icons-usage']}>
           <Typography
             element="h2"
-            textStyle="displayMdSemibold"
+            textStyle="titleMd"
             textColor="contentPrimary"
             className={styles['icons-usage-title']}
           >
@@ -97,7 +93,7 @@ const IconsGallery = () => {
           <Typography
             className={styles.paragraph}
             element="p"
-            textStyle="textMdRegular"
+            textStyle="bodyMd"
             textColor="contentPrimary"
           >
             Import the icon component and use it in your React components.
@@ -110,7 +106,7 @@ const IconsGallery = () => {
           <Typography
             className={styles.paragraph}
             element="p"
-            textStyle="textMdRegular"
+            textStyle="bodyMd"
             textColor="contentPrimary"
           >
             For decorative icons you should set the{' '}

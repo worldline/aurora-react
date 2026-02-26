@@ -22,7 +22,7 @@ export const CardWithContent: Story = {
       <div>
         <Typography
           element="h1"
-          textStyle="textLgMedium"
+          textStyle="titleMd"
           textColor="contentPrimary"
           style={{ marginTop: 0 }}
         >
@@ -30,7 +30,7 @@ export const CardWithContent: Story = {
         </Typography>
         <Typography
           element="p"
-          textStyle="textMdRegular"
+          textStyle="bodyMd"
           textColor="contentSecondary"
           style={{ marginBottom: 0 }}
         >

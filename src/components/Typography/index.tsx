@@ -67,7 +67,6 @@ interface TypographyProps extends HtmlHTMLAttributes<
   children: ReactNode
 }
 
-// <Typography color="neutral-100" textStyle="heading-xxl" element="h1" />
 const Typography = ({
   ref,
   element: Type,

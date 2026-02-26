@@ -22,11 +22,7 @@ export const DefaultVariant: Story = {
     href: 'https://worldline.com',
     variant: 'default',
     children: (
-      <Typography
-        element="span"
-        textStyle="textSmRegular"
-        textColor="contentPrimary"
-      >
+      <Typography element="span" textStyle="labelMd" textColor="contentPrimary">
         Visit Worldline
       </Typography>
     ),
