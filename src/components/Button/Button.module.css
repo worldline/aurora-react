@@ -16,7 +16,7 @@
   padding: var(--au-button-primary-sm-padding-vertical)
     var(--au-button-primary-sm-padding-horizontal);
   gap: var(--au-button-primary-sm-gap);
-  font: var(--au-text-sm-semibold);
+  font: var(--au-label-md);
   border-radius: var(--au-button-primary-sm-radius);
   border-width: var(--au-button-primary-sm-border-width);
 }
@@ -25,7 +25,7 @@
   padding: var(--au-button-primary-md-padding-vertical)
     var(--au-button-primary-md-padding-horizontal);
   gap: var(--au-button-primary-md-gap);
-  font: var(--au-text-md-semibold);
+  font: var(--au-label-md);
   border-radius: var(--au-button-primary-md-radius);
   border-width: var(--au-button-primary-md-border-width);
 }
@@ -34,7 +34,7 @@
   padding: var(--au-button-primary-lg-padding-vertical)
     var(--au-button-primary-lg-padding-horizontal);
   gap: var(--au-button-primary-lg-gap);
-  font: var(--au-text-lg-semibold);
+  font: var(--au-label-lg);
   border-radius: var(--au-button-primary-lg-radius);
   border-width: var(--au-button-primary-lg-border-width);
 }

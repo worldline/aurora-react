@@ -26,7 +26,7 @@ const StepIcon = ({ type, status, number }: Props): ReactElement => {
         ) : (
           <Typography
             element="span"
-            textStyle="textXsSemibold"
+            textStyle="labelSm"
             textColor="contentSecondary"
           >
             {number}
@@ -38,7 +38,7 @@ const StepIcon = ({ type, status, number }: Props): ReactElement => {
         ) : (
           <Typography
             element="span"
-            textStyle="textXsSemibold"
+            textStyle="labelSm"
             textColor="contentTertiary"
           >
             {number}

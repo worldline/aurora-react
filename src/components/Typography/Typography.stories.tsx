@@ -22,507 +22,123 @@ export const Typographies = meta.story({
       }}
     >
       <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="metricsLgRegular"
-        >
-          metricsLgRegular / Lorem ipsum dolor sit amet
+        <Typography element="p" textColor="contentPrimary" textStyle="hero">
+          hero / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="metricLg">
+          metricLg / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="metricMd">
+          metricMd / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="metricSm">
+          metricSm / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
         <Typography
           element="p"
           textColor="contentPrimary"
-          textStyle="metricsLgMedium"
+          textStyle="displayLg"
         >
-          metricsLgMedium / Lorem ipsum dolor sit amet
+          displayLg / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
         <Typography
           element="p"
           textColor="contentPrimary"
-          textStyle="metricsLgSemibold"
+          textStyle="displayMd"
         >
-          metricsLgSemibold / Lorem ipsum dolor sit amet
+          displayMd / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
         <Typography
           element="p"
           textColor="contentPrimary"
-          textStyle="metricsLgBold"
+          textStyle="displaySm"
         >
-          metricsLgBold / Lorem ipsum dolor sit amet
+          displaySm / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="titleLg">
+          titleLg / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="titleMd">
+          titleMd / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="titleSm">
+          titleSm / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="bodyLg">
+          bodyLg / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="bodyMd">
+          bodyMd / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="bodySm">
+          bodySm / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
         <Typography
           element="p"
           textColor="contentPrimary"
-          textStyle="metricsMdRegular"
+          textStyle="captionLg"
         >
-          metricsMdRegular / Lorem ipsum dolor sit amet
+          captionLg / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
         <Typography
           element="p"
           textColor="contentPrimary"
-          textStyle="metricsMdMedium"
+          textStyle="captionMd"
         >
-          metricsMdMedium / Lorem ipsum dolor sit amet
+          captionMd / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
         <Typography
           element="p"
           textColor="contentPrimary"
-          textStyle="metricsMdSemibold"
+          textStyle="captionSm"
         >
-          metricsMdSemibold / Lorem ipsum dolor sit amet
+          captionSm / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="labelLg">
+          labelLg / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="metricsMdBold"
-        >
-          metricsMdBold / Lorem ipsum dolor sit amet
+        <Typography element="p" textColor="contentPrimary" textStyle="labelMd">
+          labelMd / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="metricsSmRegular"
-        >
-          metricsSmRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="metricsSmMedium"
-        >
-          metricsSmMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="metricsSmSemibold"
-        >
-          metricsSmSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="metricsSmBold"
-        >
-          metricsSmBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="display2xlRegular"
-        >
-          display2xlRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="display2xlMedium"
-        >
-          display2xlMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="display2xlSemibold"
-        >
-          display2xlSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="display2xlBold"
-        >
-          display2xlBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXlRegular"
-        >
-          displayXlRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXlMedium"
-        >
-          displayXlMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXlSemibold"
-        >
-          displayXlSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXlBold"
-        >
-          displayXlBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayLgRegular"
-        >
-          displayLgRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayLgMedium"
-        >
-          displayLgMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayLgSemibold"
-        >
-          displayLgSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayLgBold"
-        >
-          displayLgBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayMdRegular"
-        >
-          displayMdRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayMdMedium"
-        >
-          displayMdMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayMdSemibold"
-        >
-          displayMdSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayMdBold"
-        >
-          displayMdBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displaySmRegular"
-        >
-          displaySmRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displaySmMedium"
-        >
-          displaySmMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displaySmSemibold"
-        >
-          displaySmSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displaySmBold"
-        >
-          displaySmBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXsRegular"
-        >
-          displayXsRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXsMedium"
-        >
-          displayXsMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXsSemibold"
-        >
-          displayXsSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="displayXsBold"
-        >
-          displayXsBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXlRegular"
-        >
-          textXlRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXlMedium"
-        >
-          textXlMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXlSemibold"
-        >
-          textXlSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXlBold"
-        >
-          textXlBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textLgRegular"
-        >
-          textLgRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textLgMedium"
-        >
-          textLgMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textLgSemibold"
-        >
-          textLgSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textLgBold"
-        >
-          textLgBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textMdRegular"
-        >
-          textMdRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textMdSemibold"
-        >
-          textMdSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textMdMedium"
-        >
-          textMdMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textMdBold"
-        >
-          textMdBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textSmRegular"
-        >
-          textSmRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textSmMedium"
-        >
-          textSmMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textSmSemibold"
-        >
-          textSmSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textSmBold"
-        >
-          textSmBold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXsRegular"
-        >
-          textXsRegular / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXsMedium"
-        >
-          textXsMedium / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXsSemibold"
-        >
-          textXsSemibold / Lorem ipsum dolor sit amet
-        </Typography>
-      </li>
-      <li>
-        <Typography
-          element="p"
-          textColor="contentPrimary"
-          textStyle="textXsBold"
-        >
-          textXsBold / Lorem ipsum dolor sit amet
+        <Typography element="p" textColor="contentPrimary" textStyle="labelSm">
+          labelSm / Lorem ipsum dolor sit amet
         </Typography>
       </li>
     </ul>
@@ -540,18 +156,14 @@ export const Colors = meta.story({
       }}
     >
       <li>
-        <Typography
-          element="p"
-          textStyle="displayMdRegular"
-          textColor="contentBrand"
-        >
+        <Typography element="p" textStyle="displayMd" textColor="contentBrand">
           This is contentBrand
         </Typography>
       </li>
       <li>
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentDisabled"
         >
           This is contentDisabled
@@ -563,11 +175,7 @@ export const Colors = meta.story({
           backgroundColor: 'var(--au-surface-brand-solid)',
         }}
       >
-        <Typography
-          element="p"
-          textStyle="displayMdRegular"
-          textColor="contentInvert"
-        >
+        <Typography element="p" textStyle="displayMd" textColor="contentInvert">
           This is contentInvert (with brand background)
         </Typography>
       </li>
@@ -578,7 +186,7 @@ export const Colors = meta.story({
       >
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentOnBrand"
         >
           This is contentOnBrand (with brand background)
@@ -591,7 +199,7 @@ export const Colors = meta.story({
       >
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentOnBrandHover"
         >
           This is contentOnBrandHover (with brand background)
@@ -600,7 +208,7 @@ export const Colors = meta.story({
       <li>
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentPlaceholder"
         >
           This is contentPlaceholder
@@ -609,7 +217,7 @@ export const Colors = meta.story({
       <li>
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentPrimary"
         >
           This is contentPrimary
@@ -618,7 +226,7 @@ export const Colors = meta.story({
       <li>
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentSecondary"
         >
           This is contentSecondary
@@ -627,7 +235,7 @@ export const Colors = meta.story({
       <li>
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentSuccess"
         >
           This is contentSuccess
@@ -636,18 +244,14 @@ export const Colors = meta.story({
       <li>
         <Typography
           element="p"
-          textStyle="displayMdRegular"
+          textStyle="displayMd"
           textColor="contentWarning"
         >
           This is contentWarning
         </Typography>
       </li>
       <li>
-        <Typography
-          element="p"
-          textStyle="displayMdRegular"
-          textColor="contentError"
-        >
+        <Typography element="p" textStyle="displayMd" textColor="contentError">
           This is contentError
         </Typography>
       </li>
