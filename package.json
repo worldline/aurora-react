@@ -44,7 +44,6 @@
     "test:storybook": "vitest run --project=storybook --watch",
     "coverage": "vitest run --coverage",
     "typecheck": "tsc -b",
-    "typecheck:ci": "tsc -b",
     "icons:generate": "npx @svgr/cli  --config-file svgr.config.js -- src/assets/icons/svg",
     "import-icon": "npx tsx import-icon.ts"
   },
