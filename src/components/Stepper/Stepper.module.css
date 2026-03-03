@@ -1,6 +1,6 @@
-.steps {
+.stepper {
   display: grid;
-  gap: var(--au-spacing-none) var(--au-spacing-sm);
+  gap: var(--au-spacing-none) var(--au-spacing-xs);
   grid-template-columns:
     max-content
     minmax(var(--au-spacing-none), 1fr)

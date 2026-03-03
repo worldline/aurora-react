@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
-import { Steps } from '.'
+import { Stepper } from '.'
 import type { StepItem } from './index'
 
 const steps: ReadonlyArray<StepItem> = [
@@ -33,16 +33,16 @@ const steps: ReadonlyArray<StepItem> = [
   },
 ]
 
-describe('Steps Component', () => {
+describe('Stepper Component', () => {
   test('should display the correct number of steps', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     expect(items).toHaveLength(4)
   })
 
   test('should display a heading for each step', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -55,7 +55,7 @@ describe('Steps Component', () => {
   })
 
   test('should display a description for each step', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -67,7 +67,7 @@ describe('Steps Component', () => {
   })
 
   test('should display a status label for each step', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -78,7 +78,7 @@ describe('Steps Component', () => {
   })
 
   test('should display a date for each step that has one', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -96,14 +96,14 @@ describe('Steps Component', () => {
   })
 
   test('should set aria-label on the list if provided', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
     const list = screen.getByRole('list')
     expect(list).toHaveAttribute('aria-label', 'label')
   })
 
   test('should set aria-labelledby on the list if provided', () => {
     render(
-      <Steps aria-labelledby="labelledby" steps={steps} titleElement="h2" />,
+      <Stepper aria-labelledby="labelledby" steps={steps} titleElement="h2" />,
     )
 
     const list = screen.getByRole('list')
@@ -111,7 +111,7 @@ describe('Steps Component', () => {
   })
 
   test('should set aria-label to title and status for each step', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -122,7 +122,7 @@ describe('Steps Component', () => {
   })
 
   test('should set aria-current="step" only on the in-progress step', () => {
-    render(<Steps aria-label="label" steps={steps} titleElement="h2" />)
+    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {

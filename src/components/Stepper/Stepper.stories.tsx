@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Steps } from './index'
+import { Stepper } from './index'
 
 const meta = {
-  title: 'components/Steps',
-  component: Steps,
+  title: 'components/Stepper',
+  component: Stepper,
   parameters: {
     layout: 'centered',
   },
   render: (args) => (
-    <Steps
+    <Stepper
       {...args}
       style={{
         maxWidth: '300px',
@@ -17,17 +17,17 @@ const meta = {
       }}
     />
   ),
-} satisfies Meta<typeof Steps>
+} satisfies Meta<typeof Stepper>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const IconType: Story = {
+export const CheckType: Story = {
   args: {
     'aria-label': 'Steps label',
     titleElement: 'h2',
-    type: 'icon',
+    type: 'check',
     connector: true,
     steps: [
       {
@@ -101,7 +101,7 @@ export const AllStepsNotStarted: Story = {
   args: {
     'aria-label': 'Steps label',
     titleElement: 'h2',
-    type: 'icon',
+    type: 'check',
     connector: true,
     steps: [
       {
@@ -136,7 +136,7 @@ export const AllStepsCompleted: Story = {
   args: {
     'aria-label': 'Steps label',
     titleElement: 'h2',
-    type: 'icon',
+    type: 'check',
     connector: true,
     steps: [
       {
