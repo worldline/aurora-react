@@ -6,7 +6,7 @@ import type { WithAriaLabelRequirement } from '@/utils/accessibility'
 import { type HeadingElement } from '../Typography'
 
 import { Step, type StepItem, type Type } from './Step'
-import styles from './Steps.module.css'
+import styles from './Stepper.module.css'
 
 interface BaseProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -19,7 +19,7 @@ interface BaseProps extends React.HTMLAttributes<HTMLElement> {
   titleElement: HeadingElement
   /**
    * The visual type of the steps
-   * @default 'icon'
+   * @default 'check'
    */
   type?: Type
   /**
@@ -36,15 +36,15 @@ type Props = WithAriaLabelRequirement<BaseProps>
  *
  * You must provide an `aria-label` or `aria-labelledby` to the component for accessibility.
  */
-const Steps = ({
+const Stepper = ({
   steps,
   titleElement,
-  type = 'icon',
+  type = 'check',
   connector = true,
   className,
   ...props
 }: Props): ReactElement => (
-  <ol className={cn(styles.steps, className)} {...props}>
+  <ol className={cn(styles.stepper, className)} {...props}>
     {steps.map((step, index) => {
       const isLast = index === steps.length - 1
       return (
@@ -64,4 +64,4 @@ const Steps = ({
   </ol>
 )
 
-export { Steps, type StepItem }
+export { Stepper, type StepItem }

@@ -7,7 +7,7 @@ import { Typography, type TextColor, type HeadingElement } from '../Typography'
 import styles from './Step.module.css'
 import { StepIcon } from './StepIcon'
 
-type Type = 'icon' | 'number'
+type Type = 'check' | 'number'
 
 type StatusType = 'complete' | 'in-progress' | 'not-started'
 
@@ -51,22 +51,22 @@ const Step = ({
   return (
     <li
       key={step.id}
-      className={cn(styles.step, step.status.type, className, {
-        [styles['last-step']]: isLast,
-      })}
+      className={cn(
+        styles.step,
+        styles[step.status.type],
+        styles[type],
+        className,
+        {
+          [styles['last-step']]: isLast,
+        },
+      )}
       aria-label={`${step.title}. ${step.status.label}`}
       aria-current={step.status.type === 'in-progress' ? 'step' : undefined}
       {...props}
     >
       <div className={styles['left-column']} style={{ gridRow }} aria-hidden>
         <StepIcon status={step.status.type} type={type} number={index + 1} />
-        {connector ? (
-          <div
-            className={cn(styles.connector, {
-              [styles.dashed]: type === 'number',
-            })}
-          />
-        ) : null}
+        {connector ? <div className={cn(styles.connector)} /> : null}
       </div>
       <div className={styles['middle-column']} style={{ gridRow }}>
         <Typography

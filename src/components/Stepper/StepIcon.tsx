@@ -21,7 +21,7 @@ const StepIcon = ({ type, status, number }: Props): ReactElement => {
       case 'complete':
         return <CheckIcon fill="currentColor" />
       case 'in-progress':
-        return type === 'icon' ? (
+        return type === 'check' ? (
           <div />
         ) : (
           <Typography
@@ -33,7 +33,7 @@ const StepIcon = ({ type, status, number }: Props): ReactElement => {
           </Typography>
         )
       case 'not-started':
-        return type === 'icon' ? (
+        return type === 'check' ? (
           <div />
         ) : (
           <Typography
@@ -57,7 +57,7 @@ const StepIcon = ({ type, status, number }: Props): ReactElement => {
 }
 
 const typeStyle: Readonly<Record<Type, string>> = {
-  icon: styles['icon-type'],
+  check: styles['check-type'],
   number: styles['number-type'],
 }
 
