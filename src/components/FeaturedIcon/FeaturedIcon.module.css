@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--au-surface-page);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+}
+
+.small {
+  padding: var(--au-spacing-xs);
+  border-radius: var(--au-radius-xs);
+}
+
+.medium {
+  padding: var(--au-spacing-xs);
+  border-radius: var(--au-radius-sm);
+}
+
+.large {
+  padding: var(--au-spacing-xs);
+  border-radius: var(--au-radius-sm);
+}
+
+.xlarge {
+  padding: var(--au-spacing-sm);
+  border-radius: var(--au-radius-md);
+}
+
+.icon {
+  fill: var(--au-content-primary);
+}
+
+.small .icon {
+  width: var(--au-sizes-icon-sm);
+  height: var(--au-sizes-icon-sm);
+}
+
+.medium .icon {
+  width: var(--au-sizes-icon-md);
+  height: var(--au-sizes-icon-md);
+}
+
+.large .icon,
+.xlarge .icon {
+  width: var(--au-sizes-icon-lg);
+  height: var(--au-sizes-icon-lg);
+}
