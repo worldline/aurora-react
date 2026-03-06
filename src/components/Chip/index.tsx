@@ -6,7 +6,7 @@ import { Typography } from '../Typography'
 
 import styles from './Chip.module.css'
 
-type Type = 'neutral' | 'brand' | 'success' | 'warning' | 'error'
+type Type = 'neutral' | 'brand' | 'info' | 'success' | 'warning' | 'error'
 type Size = 'small' | 'large'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -87,6 +87,7 @@ const typesToTextColor: Record<
 > = {
   brand: 'contentBrand',
   error: 'contentError',
+  info: 'contentInfo',
   neutral: 'contentSecondary',
   success: 'contentSuccess',
   warning: 'contentWarning',

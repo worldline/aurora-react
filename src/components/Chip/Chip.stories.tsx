@@ -32,6 +32,14 @@ export const Brand: Story = {
   },
 }
 
+export const Info: Story = {
+  args: {
+    size: 'large',
+    type: 'info',
+    label: 'Info',
+  },
+}
+
 export const Success: Story = {
   args: {
     size: 'large',

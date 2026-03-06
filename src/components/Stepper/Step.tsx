@@ -110,7 +110,7 @@ type ChipType = React.ComponentProps<typeof Chip>['type']
 
 const chipTypeByStatusType: Readonly<Record<StatusType, ChipType>> = {
   complete: 'success',
-  'in-progress': 'neutral',
+  'in-progress': 'info',
   'not-started': 'neutral',
 }
 
