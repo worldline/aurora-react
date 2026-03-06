@@ -38,6 +38,10 @@
   background-color: var(--au-chip-brand-background);
 }
 
+.info {
+  background-color: var(--au-chip-info-background);
+}
+
 .success {
   background-color: var(--au-chip-success-background);
 }
@@ -80,6 +84,10 @@
 
 .icon-brand {
   fill: var(--au-chip-brand-content);
+}
+
+.icon-info {
+  fill: var(--au-chip-info-content);
 }
 
 .icon-success {

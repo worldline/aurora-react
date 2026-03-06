@@ -47,9 +47,10 @@
 }
 
 .not-started.check-type > * {
-  width: var(--au-sizes-icon-xs);
-  height: var(--au-sizes-icon-xs);
-  background-color: var(--au-content-disabled);
+  /* TODO: get variables from UX team */
+  width: 10px;
+  height: 10px;
+  background-color: var(--au-content-tertiary);
   border-radius: var(--au-radius-rounded);
 }
 

@@ -51,6 +51,10 @@
   color: var(--au-content-success);
 }
 
+.content-info {
+  color: var(--au-content-info);
+}
+
 .hero {
   font: var(--au-hero);
 }

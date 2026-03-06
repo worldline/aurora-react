@@ -50,6 +50,7 @@ type TextColor = Extract<
   | 'contentError'
   | 'contentWarning'
   | 'contentSuccess'
+  | 'contentInfo'
 >
 
 type HtmlTypographyElement = HTMLHeadingElement | HTMLParagraphElement
