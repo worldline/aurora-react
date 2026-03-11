@@ -29,8 +29,16 @@
   padding-bottom: var(--au-spacing-xl);
 }
 
+.no-body .middle-column {
+  padding-top: 0;
+  padding-bottom: var(--au-spacing-none);
+  justify-content: center;
+  min-height: var(--au-sizes-icon-xl);
+}
+
 .last-step .middle-column {
   padding-bottom: var(--au-spacing-none);
+  margin-bottom: var(--au-spacing-none);
 }
 
 .middle-column p {

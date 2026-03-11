@@ -1,5 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { BlockIcon } from '@/components/icons'
+
+import {
+  allCompletedSteps,
+  allCompletedStepsMultiline,
+  allIconSteps,
+  allIconStepsTitleOnly,
+  allNotStartedSteps,
+  steps,
+} from './Stepper.fixtures'
+
 import { Stepper } from './index'
 
 const meta = {
@@ -8,13 +19,35 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    type: {
+      control: 'select',
+      options: ['check', 'number', 'icon'],
+      table: {
+        type: { summary: "'check' | 'number' | 'icon'" },
+        defaultValue: { summary: 'check' },
+      },
+    },
+    connector: {
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+  },
+  args: {
+    'aria-label': 'Steps label',
+    titleElement: 'h2',
+  },
   render: (args) => (
     <Stepper
-      {...args}
       style={{
         maxWidth: '300px',
         width: '100%',
+        ...args.style,
       }}
+      {...args}
     />
   ),
 } satisfies Meta<typeof Stepper>
@@ -25,146 +58,69 @@ type Story = StoryObj<typeof meta>
 
 export const CheckType: Story = {
   args: {
-    'aria-label': 'Steps label',
-    titleElement: 'h2',
     type: 'check',
     connector: true,
-    steps: [
-      {
-        id: 'step-1',
-        title: 'Step 1',
-        description: 'Description for step 1',
-        date: '8 January 2025',
-        status: { label: 'Status 1', type: 'complete' },
-      },
-      {
-        id: 'step-2',
-        title: 'Step 2',
-        description: 'Description for step 2',
-        date: '9 January 2025',
-        status: { label: 'Status 2', type: 'complete' },
-      },
-      {
-        id: 'step-3',
-        title: 'Step 3',
-        description: 'Description for step 3',
-        status: { label: 'Status 3', type: 'in-progress' },
-      },
-      {
-        id: 'step-4',
-        title: 'Step 4',
-        description: 'Description for step 4',
-        status: { label: 'Not started', type: 'not-started' },
-      },
-    ],
+    steps,
   },
 }
 
 export const NumberType: Story = {
   args: {
-    'aria-label': 'Steps label',
-    titleElement: 'h2',
     type: 'number',
     connector: true,
-    steps: [
-      {
-        id: 'step-1',
-        title: 'Step 1',
-        description: 'Description for step 1',
-        date: '8 January 2025',
-        status: { label: 'Status 1', type: 'complete' },
-      },
-      {
-        id: 'step-2',
-        title: 'Step 2',
-        description: 'Description for step 2',
-        date: '9 January 2025',
-        status: { label: 'Status 2', type: 'complete' },
-      },
-      {
-        id: 'step-3',
-        title: 'Step 3',
-        description: 'Description for step 3',
-        status: { label: 'Status 3', type: 'in-progress' },
-      },
-      {
-        id: 'step-4',
-        title: 'Step 4',
-        description: 'Description for step 4',
-        status: { label: 'Not started', type: 'not-started' },
-      },
-    ],
+    steps,
+  },
+}
+
+export const IconType: Story = {
+  args: {
+    type: 'icon',
+    connector: true,
+    steps: allIconSteps.map((step) => ({
+      ...step,
+      type: 'icon',
+      icon: <BlockIcon />,
+    })),
+  },
+}
+
+export const IconTypeTitleOnly: Story = {
+  name: 'Icon Type - Only title',
+  args: {
+    type: 'icon',
+    connector: false,
+    chip: false,
+    style: {
+      rowGap: 'var(--au-spacing-xl)',
+    },
+    steps: allIconStepsTitleOnly.map((step) => ({
+      ...step,
+      type: 'icon',
+      icon: <BlockIcon />,
+    })),
   },
 }
 
 export const AllStepsNotStarted: Story = {
   args: {
-    'aria-label': 'Steps label',
-    titleElement: 'h2',
     type: 'check',
     connector: true,
-    steps: [
-      {
-        id: 'step-1',
-        title: 'Step 1',
-        description: 'Description for step 1',
-        status: { label: 'Not Started', type: 'not-started' },
-      },
-      {
-        id: 'step-2',
-        title: 'Step 2',
-        description: 'Description for step 2',
-        status: { label: 'Not Started', type: 'not-started' },
-      },
-      {
-        id: 'step-3',
-        title: 'Step 3',
-        description: 'Description for step 3',
-        status: { label: 'Not Started', type: 'not-started' },
-      },
-      {
-        id: 'step-4',
-        title: 'Step 4',
-        description: 'Description for step 4',
-        status: { label: 'Not started', type: 'not-started' },
-      },
-    ],
+    steps: allNotStartedSteps,
   },
 }
 
 export const AllStepsCompleted: Story = {
   args: {
-    'aria-label': 'Steps label',
-    titleElement: 'h2',
     type: 'check',
     connector: true,
-    steps: [
-      {
-        id: 'step-1',
-        title: 'Multiline Step 1\nMultiline Step 1',
-        description: 'Description for step 1',
-        date: '8 January 2025',
-        status: { label: 'Status 1', type: 'complete' },
-      },
-      {
-        id: 'step-2',
-        title: 'Step 2',
-        description: 'Description for step 2',
-        date: '9 January 2025',
-        status: { label: 'Status 2', type: 'complete' },
-      },
-      {
-        id: 'step-3',
-        title: 'Step 3',
-        description: 'Description for step 3',
-        status: { label: 'Status 3', type: 'complete' },
-      },
-      {
-        id: 'step-4',
-        title: 'Step 4',
-        description: 'Description for step 4',
-        status: { label: 'Status 4', type: 'complete' },
-      },
-    ],
+    steps: allCompletedSteps,
+  },
+}
+
+export const AllStepsCompletedMultiline: Story = {
+  args: {
+    type: 'check',
+    connector: true,
+    steps: allCompletedStepsMultiline,
   },
 }
