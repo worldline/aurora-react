@@ -7,6 +7,12 @@
     max-content;
 }
 
+.stepper.no-chip {
+  grid-template-columns:
+    max-content
+    minmax(var(--au-spacing-none), 1fr);
+}
+
 .step {
   display: contents;
 }

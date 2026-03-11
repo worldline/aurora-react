@@ -1,13 +1,18 @@
 import cn from 'classnames'
-import { type ReactElement } from 'react'
+import {
+  type ComponentProps,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from 'react'
 
 import { Chip } from '../Chip'
-import { Typography, type TextColor, type HeadingElement } from '../Typography'
+import { Typography, type HeadingElement, type TextColor } from '../Typography'
 
 import styles from './Step.module.css'
 import { StepIcon } from './StepIcon'
 
-type Type = 'check' | 'number'
+type Type = 'check' | 'number' | 'icon'
 
 type StatusType = 'complete' | 'in-progress' | 'not-started'
 
@@ -17,21 +22,25 @@ interface StepStatus {
   type: StatusType
 }
 
-interface StepItem {
+type StepItem = {
   id: string
   title: string
-  description: string
+  description?: string
   date?: string
   status: StepStatus
-}
+} & (
+  | { type?: 'check' | 'number'; icon?: never }
+  | { type: 'icon'; icon: ReactNode }
+)
 
-interface Props extends React.HTMLAttributes<HTMLLIElement> {
+interface Props extends HTMLAttributes<HTMLLIElement> {
   step: StepItem
   connector: boolean
   titleElement: HeadingElement
   type: Type
   index: number
   isLast: boolean
+  chip: boolean
   gridRow?: number
 }
 
@@ -42,11 +51,30 @@ const Step = ({
   type,
   index,
   isLast,
+  chip,
   gridRow,
   className,
   ...props
 }: Props): ReactElement => {
   const bodyTextColor = bodyTextColorByStatusType[step.status.type]
+  const hasBody = Boolean(step.description ?? step.date)
+
+  const renderStepIcon = () => {
+    const number = index + 1
+
+    if (type === 'icon') {
+      return (
+        <StepIcon
+          status={step.status.type}
+          type={type}
+          number={number}
+          icon={step.icon}
+        />
+      )
+    }
+
+    return <StepIcon status={step.status.type} type={type} number={number} />
+  }
 
   return (
     <li
@@ -55,6 +83,7 @@ const Step = ({
         styles.step,
         styles[step.status.type],
         styles[type],
+        { [styles['no-body']]: !hasBody },
         className,
         {
           [styles['last-step']]: isLast,
@@ -65,7 +94,7 @@ const Step = ({
       {...props}
     >
       <div className={styles['left-column']} style={{ gridRow }} aria-hidden>
-        <StepIcon status={step.status.type} type={type} number={index + 1} />
+        {renderStepIcon()}
         {connector ? <div className={cn(styles.connector)} /> : null}
       </div>
       <div className={styles['middle-column']} style={{ gridRow }}>
@@ -77,36 +106,46 @@ const Step = ({
         >
           {step.title}
         </Typography>
-        <div className={styles.body}>
-          <Typography element="p" textStyle="bodyMd" textColor={bodyTextColor}>
-            {step.description}
-          </Typography>
-          {step.date ? (
-            <Typography
-              element="p"
-              textStyle="captionMd"
-              textColor={bodyTextColor}
-            >
-              {step.date}
-            </Typography>
-          ) : null}
-        </div>
+        {hasBody ? (
+          <div className={styles.body}>
+            {step.description && (
+              <Typography
+                element="p"
+                textStyle="bodyMd"
+                textColor={bodyTextColor}
+              >
+                {step.description}
+              </Typography>
+            )}
+            {step.date && (
+              <Typography
+                element="p"
+                textStyle="captionMd"
+                textColor={bodyTextColor}
+              >
+                {step.date}
+              </Typography>
+            )}
+          </div>
+        ) : null}
       </div>
-      <Chip
-        style={{ gridRow }}
-        className={cn(styles['right-column'], {
-          'visually-hidden': step.status.type === 'not-started',
-        })}
-        label={step.status.label}
-        aria-label={step.status.ariaLabel}
-        type={chipTypeByStatusType[step.status.type]}
-        size="small"
-      />
+      {chip ? (
+        <Chip
+          style={{ gridRow }}
+          className={cn(styles['right-column'], {
+            'visually-hidden': step.status.type === 'not-started',
+          })}
+          label={step.status.label}
+          aria-label={step.status.ariaLabel}
+          type={chipTypeByStatusType[step.status.type]}
+          size="small"
+        />
+      ) : null}
     </li>
   )
 }
 
-type ChipType = React.ComponentProps<typeof Chip>['type']
+type ChipType = ComponentProps<typeof Chip>['type']
 
 const chipTypeByStatusType: Readonly<Record<StatusType, ChipType>> = {
   complete: 'success',
@@ -120,4 +159,4 @@ const bodyTextColorByStatusType: Readonly<Record<StatusType, TextColor>> = {
   'not-started': 'contentSecondary',
 }
 
-export { Step, type StepItem, type StepStatus, type Type, type StatusType }
+export { Step, type StatusType, type StepItem, type StepStatus, type Type }

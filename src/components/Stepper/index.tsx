@@ -27,6 +27,11 @@ interface BaseProps extends React.HTMLAttributes<HTMLElement> {
    * @default true
    */
   connector?: boolean
+  /**
+   * Whether to display the status chip on each step
+   * @default true
+   */
+  chip?: boolean
 }
 
 type Props = WithAriaLabelRequirement<BaseProps>
@@ -41,23 +46,30 @@ const Stepper = ({
   titleElement,
   type = 'check',
   connector = true,
+  chip = true,
   className,
   ...props
 }: Props): ReactElement => (
-  <ol className={cn(styles.stepper, className)} {...props}>
+  <ol
+    className={cn(styles.stepper, className, {
+      [styles['no-chip']]: !chip,
+    })}
+    {...props}
+  >
     {steps.map((step, index) => {
       const isLast = index === steps.length - 1
       return (
         <Step
           key={step.id}
           className={styles.step}
-          gridRow={index * 2 + 1}
+          gridRow={index + 1}
           step={step}
           index={index}
           isLast={isLast}
           connector={connector && !isLast}
           titleElement={titleElement}
           type={type}
+          chip={chip}
         />
       )
     })}

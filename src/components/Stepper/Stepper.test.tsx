@@ -1,48 +1,45 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
+import { allIconSteps, steps } from './Stepper.fixtures'
+
 import { Stepper } from '.'
 import type { StepItem } from './index'
 
-const steps: ReadonlyArray<StepItem> = [
-  {
-    id: 'step-1',
-    title: 'Step 1',
-    description: 'Description for step 1',
-    date: '8 January 2025',
-    status: { label: 'Status 1', type: 'complete' },
-  },
-  {
-    id: 'step-2',
-    title: 'Step 2',
-    description: 'Description for step 2',
-    date: '9 January 2025',
-    status: { label: 'Status 2', type: 'complete' },
-  },
-  {
-    id: 'step-3',
-    title: 'Step 3',
-    description: 'Description for step 3',
-    status: { label: 'Status 3', type: 'in-progress' },
-  },
-  {
-    id: 'step-4',
-    title: 'Step 4',
-    description: 'Description for step 4',
-    status: { label: 'Status 4', type: 'not-started' },
-  },
+interface TestCase {
+  label: string
+  steps: ReadonlyArray<StepItem>
+  type?: 'check' | 'number' | 'icon'
+}
+
+const testCases: ReadonlyArray<TestCase> = [
+  { label: 'check (default)', steps },
+  { label: 'icon', steps: allIconSteps, type: 'icon' },
 ]
 
-describe('Stepper Component', () => {
+describe.each(testCases)('Stepper Component ($label)', ({ steps, type }) => {
   test('should display the correct number of steps', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type={type}
+      />,
+    )
 
-    const items = screen.getAllByRole('listitem')
-    expect(items).toHaveLength(4)
+    expect(screen.getAllByRole('listitem')).toHaveLength(steps.length)
   })
 
   test('should display a heading for each step', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type={type}
+      />,
+    )
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -55,19 +52,34 @@ describe('Stepper Component', () => {
   })
 
   test('should display a description for each step', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type={type}
+      />,
+    )
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
       const step = steps[index]
       const itemScope = within(item)
-      const description = itemScope.getByText(step.description)
-      expect(description).toBeInTheDocument()
+      if (step.description) {
+        expect(itemScope.getByText(step.description)).toBeInTheDocument()
+      }
     })
   })
 
   test('should display a status label for each step', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type={type}
+      />,
+    )
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -78,7 +90,14 @@ describe('Stepper Component', () => {
   })
 
   test('should display a date for each step that has one', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type={type}
+      />,
+    )
 
     const items = screen.getAllByRole('listitem')
     items.forEach((item, index) => {
@@ -86,8 +105,7 @@ describe('Stepper Component', () => {
       const itemScope = within(item)
       const paragraphs = itemScope.getAllByRole('paragraph')
       if (step.date) {
-        const date = itemScope.getByText(step.date)
-        expect(date).toBeInTheDocument()
+        expect(itemScope.getByText(step.date)).toBeInTheDocument()
         expect(paragraphs).toHaveLength(2)
       } else {
         expect(paragraphs).toHaveLength(1)
@@ -95,6 +113,48 @@ describe('Stepper Component', () => {
     })
   })
 
+  test('should set aria-label to title and status for each step', () => {
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type={type}
+      />,
+    )
+
+    const items = screen.getAllByRole('listitem')
+    items.forEach((item, index) => {
+      const step = steps[index]
+      expect(item.getAttribute('aria-label')).toEqual(
+        `${step.title}. ${step.status.label}`,
+      )
+    })
+  })
+
+  test('should set aria-current="step" only on the in-progress step', () => {
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type={type}
+      />,
+    )
+
+    const items = screen.getAllByRole('listitem')
+    items.forEach((item, index) => {
+      const step = steps[index]
+      if (step.status.type === 'in-progress') {
+        expect(item).toHaveAttribute('aria-current', 'step')
+      } else {
+        expect(item).not.toHaveAttribute('aria-current')
+      }
+    })
+  })
+})
+
+describe('Stepper Component', () => {
   test('should set aria-label on the list if provided', () => {
     render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
     const list = screen.getByRole('list')
@@ -108,30 +168,5 @@ describe('Stepper Component', () => {
 
     const list = screen.getByRole('list')
     expect(list).toHaveAttribute('aria-labelledby', 'labelledby')
-  })
-
-  test('should set aria-label to title and status for each step', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
-
-    const items = screen.getAllByRole('listitem')
-    items.forEach((item, index) => {
-      const step = steps[index]
-      const ariaLabel = item.getAttribute('aria-label')
-      expect(ariaLabel).toEqual(`${step.title}. ${step.status.label}`)
-    })
-  })
-
-  test('should set aria-current="step" only on the in-progress step', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
-
-    const items = screen.getAllByRole('listitem')
-    items.forEach((item, index) => {
-      const step = steps[index]
-      if (step.status.type === 'in-progress') {
-        expect(item).toHaveAttribute('aria-current', 'step')
-      } else {
-        expect(item).not.toHaveAttribute('aria-current')
-      }
-    })
   })
 })
