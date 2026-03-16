@@ -97,6 +97,9 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './__tests__/setupVitest.ts',
+    outputFile: {
+      html: './.vitest-reports/index.html',
+    },
     coverage: {
       provider: 'v8',
       exclude: [
@@ -117,6 +120,51 @@ export default defineConfig({
         test: {
           name: 'unit',
           include: ['./src/**/*.test.ts', './src/**/*.test.tsx'],
+          exclude: ['./src/**/*.visual.test.tsx'],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'visual',
+          include: ['./src/**/*.visual.test.tsx'],
+          globalSetup: './__tests__/visual/globalSetup.ts',
+          setupFiles: ['./__tests__/visual/setupVitest.ts'],
+          browser: {
+            enabled: true,
+            headless: true,
+            screenshotFailures: false,
+            viewport: {
+              // mobile-xs (smallest breakpoint)
+              width: 360,
+              height: 640,
+            },
+            expect: {
+              toMatchScreenshot: {
+                resolveScreenshotPath: ({
+                  testName,
+                  browserName,
+                  ext,
+                  testFileDirectory,
+                  testFileName,
+                }) =>
+                  `${testFileDirectory}/__screenshots__/${testFileName}/${testName}-${browserName}${ext}`,
+              },
+            },
+            provider: playwright({
+              connectOptions: {
+                wsEndpoint: process.env.CI
+                  ? 'ws://aurora-react-playwright:3000'
+                  : 'ws://0.0.0.0:3100',
+                exposeNetwork: '<loopback>',
+              },
+            }),
+            instances: [
+              {
+                browser: 'chromium',
+              },
+            ],
+          },
         },
       },
       {

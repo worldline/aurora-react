@@ -29,7 +29,13 @@ src/components/icons/*
 !src/components/icons/Icons.stories.tsx
 !src/components/icons/Icons.stories.module.css
 
-
+# Storybook
 *storybook.log
 storybook-static
 coverage/
+
+# Vitest
+.vitest-attachments
+.vitest-reports
+**/__screenshots__/**/*-actual.png
+**/__screenshots__/**/*-diff.png

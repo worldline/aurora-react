@@ -36,6 +36,9 @@ npm run test:setup         # Install Playwright browser dependencies
 npm test                   # Run all tests in watch mode
 npm run test:unit          # Unit/component tests only
 npm run test:storybook     # Storybook interaction tests only
+npm run test:visual        # Visual Regression tests only
+npm run test:visual:report # Visual Regression tests only and open HTML report in Vitest UI
+npm run test:visual:update # Update the Visual Regression tests baseline screenshots
 npm run coverage           # Generate coverage report
 ```
 
