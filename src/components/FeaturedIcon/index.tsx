@@ -9,16 +9,16 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   icon: React.ReactElement<{ className?: string }>
 }
 
-const FeaturedIcon = ({ size, ...props }: Props) => {
-  const icon = React.cloneElement(props.icon, {
-    className: cn(styles.icon, props.icon.props.className),
+const FeaturedIcon = ({ size, icon, ...props }: Props) => {
+  const clonedIcon = React.cloneElement(icon, {
+    className: cn(styles.icon, icon.props.className),
   })
   return (
     <div
       {...props}
       className={cn(styles.container, styles[size], props.className)}
     >
-      {icon}
+      {clonedIcon}
     </div>
   )
 }

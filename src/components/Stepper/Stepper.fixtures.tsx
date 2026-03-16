@@ -1,14 +1,8 @@
+import { BlockIcon } from '../icons'
+
 import type { StepItem } from './index'
 
-type StepOverrides = Partial<
-  Omit<
-    Extract<StepItem, { type?: 'check' | 'number' }>,
-    'status' | 'type' | 'icon'
-  >
->
-type IconStepOverrides = Partial<
-  Omit<Extract<StepItem, { type: 'icon' }>, 'type'>
->
+type StepOverrides = Partial<StepItem>
 
 export const completedStep = (overrides?: StepOverrides): StepItem => ({
   id: 'step-1',
@@ -35,14 +29,13 @@ export const notStartedStep = (overrides?: StepOverrides): StepItem => ({
   ...overrides,
 })
 
-export const iconStep = (overrides?: IconStepOverrides): StepItem => ({
+export const iconStep = (overrides?: StepOverrides): StepItem => ({
   id: 'step-1',
   title: 'Step 1',
   description: '',
   status: { label: 'Complete', type: 'complete' },
-  icon: null,
+  icon: <BlockIcon />,
   ...overrides,
-  type: 'icon',
 })
 
 export const allNotStartedSteps: ReadonlyArray<StepItem> = [
