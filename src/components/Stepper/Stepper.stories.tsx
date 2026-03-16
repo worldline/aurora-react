@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { BlockIcon } from '@/components/icons'
-
 import {
   allCompletedSteps,
   allCompletedStepsMultiline,
@@ -76,11 +74,7 @@ export const IconType: Story = {
   args: {
     type: 'icon',
     connector: true,
-    steps: allIconSteps.map((step) => ({
-      ...step,
-      type: 'icon',
-      icon: <BlockIcon />,
-    })),
+    steps: allIconSteps,
   },
 }
 
@@ -93,11 +87,7 @@ export const IconTypeTitleOnly: Story = {
     style: {
       rowGap: 'var(--au-spacing-xl)',
     },
-    steps: allIconStepsTitleOnly.map((step) => ({
-      ...step,
-      type: 'icon',
-      icon: <BlockIcon />,
-    })),
+    steps: allIconStepsTitleOnly,
   },
 }
 

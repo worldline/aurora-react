@@ -22,16 +22,17 @@ interface StepStatus {
   type: StatusType
 }
 
-type StepItem = {
+interface StepItem {
   id: string
   title: string
   description?: string
   date?: string
   status: StepStatus
-} & (
-  | { type?: 'check' | 'number'; icon?: never }
-  | { type: 'icon'; icon: ReactNode }
-)
+  /**
+   * Only used when `type` is set to `icon`.
+   */
+  icon?: ReactNode
+}
 
 interface Props extends HTMLAttributes<HTMLLIElement> {
   step: StepItem
