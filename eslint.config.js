@@ -17,6 +17,8 @@ export default defineConfig([
     'src/components/icons/*',
     '!src/components/icons/*stories*',
     'storybook-static',
+    '.vitest-attachments',
+    '.vitest-reports',
   ]),
   {
     extends: [

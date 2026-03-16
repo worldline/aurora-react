@@ -59,7 +59,7 @@ export const allIconSteps: ReadonlyArray<StepItem> = [
     description: 'Description for step',
     date: '8 January 2025',
     status: { label: 'Status', type: 'complete' },
-    icon: null,
+    icon: <BlockIcon />,
   }),
   iconStep({
     id: 'step-2',
@@ -67,7 +67,7 @@ export const allIconSteps: ReadonlyArray<StepItem> = [
     description: 'Description for step',
     date: '9 January 2025',
     status: { label: 'Status', type: 'in-progress' },
-    icon: null,
+    icon: <BlockIcon />,
   }),
   iconStep({
     id: 'step-3',
@@ -75,7 +75,7 @@ export const allIconSteps: ReadonlyArray<StepItem> = [
     description: 'Description for step',
     date: '10 January 2025',
     status: { label: 'Status', type: 'not-started' },
-    icon: null,
+    icon: <BlockIcon />,
   }),
 ]
 

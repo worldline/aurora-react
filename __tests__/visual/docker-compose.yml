@@ -1,0 +1,22 @@
+name: aurora-react-visual-tests
+
+services:
+  playwright:
+    container_name: aurora-react-playwright
+    image: mcr.microsoft.com/playwright:v1.58.2-noble
+    user: pwuser
+    working_dir: /home/pwuser
+    init: true
+    tty: true
+    stdin_open: true
+    ports:
+      - '3100:3000'
+    command:
+      ['sh', '-c', 'npx -y playwright run-server --port 3000 --host 0.0.0.0']
+    restart: 'no'
+    healthcheck:
+      test: ['CMD', 'wget', '--spider', '-q', 'http://0.0.0.0:3000']
+      interval: 500ms
+      timeout: 2s
+      retries: 30
+      start_period: 2s

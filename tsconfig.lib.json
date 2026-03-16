@@ -37,6 +37,7 @@
     "src/**/*.tsx",
     ".storybook/**.ts",
     ".storybook/**.tsx",
-    "__tests__/*.ts"
+    "__tests__/**/*.ts",
+    "__tests__/**/*.tsx"
   ]
 }
