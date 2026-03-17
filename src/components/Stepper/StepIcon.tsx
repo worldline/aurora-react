@@ -6,11 +6,11 @@ import { assertUnreachable } from '@/utils/asserts'
 import { CheckIcon } from '../icons'
 import { Typography } from '../Typography'
 
-import type { StatusType, Type } from './Step'
+import type { StepStatusType, StepType } from './Step'
 import styles from './StepIcon.module.css'
 
 type Props = {
-  status: StatusType
+  status: StepStatusType
   number?: number
 } & (
   | { type: 'check' | 'number'; icon?: never }
@@ -74,7 +74,7 @@ const StepIcon = ({ type, status, number, icon }: Props): ReactElement => {
   )
 }
 
-const typeStyle: Readonly<Record<Type, string>> = {
+const typeStyle: Readonly<Record<StepType, string>> = {
   check: styles['check-type'],
   number: styles['number-type'],
   icon: styles['icon-type'],
