@@ -12,40 +12,36 @@ import { Typography, type HeadingElement, type TextColor } from '../Typography'
 import styles from './Step.module.css'
 import { StepIcon } from './StepIcon'
 
-type Type = 'check' | 'number' | 'icon'
+type StepType = 'check' | 'number' | 'icon'
 
-type StatusType = 'complete' | 'in-progress' | 'not-started'
+type StepStatusType = 'complete' | 'in-progress' | 'not-started'
 
 interface StepStatus {
   label: string
   ariaLabel?: string
-  type: StatusType
+  type: StepStatusType
 }
 
-interface StepItem {
+type StepItem<T extends StepType> = {
   id: string
   title: string
   description?: string
   date?: string
   status: StepStatus
-  /**
-   * Only used when `type` is set to `icon`.
-   */
-  icon?: ReactNode
-}
+} & (T extends 'icon' ? { icon: ReactNode } : { icon?: never })
 
-interface Props extends HTMLAttributes<HTMLLIElement> {
-  step: StepItem
+interface Props<T extends StepType> extends HTMLAttributes<HTMLLIElement> {
+  step: StepItem<T>
   connector: boolean
   titleElement: HeadingElement
-  type: Type
+  type: T
   index: number
   isLast: boolean
   chip: boolean
   gridRow?: number
 }
 
-const Step = ({
+const Step = <T extends StepType>({
   step,
   connector,
   titleElement,
@@ -56,7 +52,7 @@ const Step = ({
   gridRow,
   className,
   ...props
-}: Props): ReactElement => {
+}: Props<T>): ReactElement => {
   const bodyTextColor = bodyTextColorByStatusType[step.status.type]
   const hasBody = Boolean(step.description ?? step.date)
 
@@ -148,16 +144,22 @@ const Step = ({
 
 type ChipType = ComponentProps<typeof Chip>['type']
 
-const chipTypeByStatusType: Readonly<Record<StatusType, ChipType>> = {
+const chipTypeByStatusType: Readonly<Record<StepStatusType, ChipType>> = {
   complete: 'success',
   'in-progress': 'info',
   'not-started': 'neutral',
 }
 
-const bodyTextColorByStatusType: Readonly<Record<StatusType, TextColor>> = {
+const bodyTextColorByStatusType: Readonly<Record<StepStatusType, TextColor>> = {
   complete: 'contentSecondary',
   'in-progress': 'contentBrand',
   'not-started': 'contentSecondary',
 }
 
-export { Step, type StatusType, type StepItem, type StepStatus, type Type }
+export {
+  Step,
+  type StepStatusType,
+  type StepItem,
+  type StepStatus,
+  type StepType,
+}

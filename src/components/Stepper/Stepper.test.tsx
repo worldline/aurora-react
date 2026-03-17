@@ -1,19 +1,20 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
+import type { StepType } from './Step'
 import { allIconSteps, steps } from './Stepper.fixtures'
 
 import { Stepper } from '.'
 import type { StepItem } from './index'
 
-interface TestCase {
+interface TestCase<T extends StepType> {
   label: string
-  steps: ReadonlyArray<StepItem>
-  type?: 'check' | 'number' | 'icon'
+  steps: ReadonlyArray<StepItem<T>>
+  type: T
 }
 
-const testCases: ReadonlyArray<TestCase> = [
-  { label: 'check (default)', steps },
+const testCases: ReadonlyArray<TestCase<StepType>> = [
+  { label: 'check (default)', steps, type: 'check' },
   { label: 'icon', steps: allIconSteps, type: 'icon' },
 ]
 
@@ -156,14 +157,26 @@ describe.each(testCases)('Stepper Component ($label)', ({ steps, type }) => {
 
 describe('Stepper Component', () => {
   test('should set aria-label on the list if provided', () => {
-    render(<Stepper aria-label="label" steps={steps} titleElement="h2" />)
+    render(
+      <Stepper
+        aria-label="label"
+        steps={steps}
+        titleElement="h2"
+        type="check"
+      />,
+    )
     const list = screen.getByRole('list')
     expect(list).toHaveAttribute('aria-label', 'label')
   })
 
   test('should set aria-labelledby on the list if provided', () => {
     render(
-      <Stepper aria-labelledby="labelledby" steps={steps} titleElement="h2" />,
+      <Stepper
+        aria-labelledby="labelledby"
+        steps={steps}
+        titleElement="h2"
+        type="check"
+      />,
     )
 
     const list = screen.getByRole('list')

@@ -5,14 +5,16 @@ import type { WithAriaLabelRequirement } from '@/utils/accessibility'
 
 import { type HeadingElement } from '../Typography'
 
-import { Step, type StepItem, type Type } from './Step'
+import { Step, type StepItem, type StepType } from './Step'
 import styles from './Stepper.module.css'
 
-interface BaseProps extends React.HTMLAttributes<HTMLElement> {
+interface BaseProps<
+  T extends StepType,
+> extends React.HTMLAttributes<HTMLElement> {
   /**
    * The list of steps to display
    */
-  steps: ReadonlyArray<StepItem>
+  steps: ReadonlyArray<StepItem<T>>
   /**
    * The HTML element used for the step titles
    */
@@ -21,7 +23,7 @@ interface BaseProps extends React.HTMLAttributes<HTMLElement> {
    * The visual type of the steps
    * @default 'check'
    */
-  type?: Type
+  type: T
   /**
    * Whether to display connector lines between steps
    * @default true
@@ -34,22 +36,22 @@ interface BaseProps extends React.HTMLAttributes<HTMLElement> {
   chip?: boolean
 }
 
-type Props = WithAriaLabelRequirement<BaseProps>
+type Props<T extends StepType> = WithAriaLabelRequirement<BaseProps<T>>
 
 /**
  * A component for displaying a list of steps to be completed.
  *
  * You must provide an `aria-label` or `aria-labelledby` to the component for accessibility.
  */
-const Stepper = ({
+const Stepper = <T extends StepType>({
   steps,
   titleElement,
-  type = 'check',
+  type,
   connector = true,
   chip = true,
   className,
   ...props
-}: Props): ReactElement => (
+}: Props<T>): ReactElement => (
   <ol
     className={cn(styles.stepper, className, {
       [styles['no-chip']]: !chip,
