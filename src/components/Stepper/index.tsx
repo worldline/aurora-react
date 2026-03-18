@@ -29,11 +29,6 @@ interface BaseProps<
    * @default true
    */
   connector?: boolean
-  /**
-   * Whether to display the status chip on each step
-   * @default true
-   */
-  chip?: boolean
 }
 
 type Props<T extends StepType> = WithAriaLabelRequirement<BaseProps<T>>
@@ -48,13 +43,12 @@ const Stepper = <T extends StepType>({
   titleElement,
   type,
   connector = true,
-  chip = true,
   className,
   ...props
 }: Props<T>): ReactElement => (
   <ol
     className={cn(styles.stepper, className, {
-      [styles['no-chip']]: !chip,
+      [styles['no-chip']]: !steps.some((step) => !!step.chip),
     })}
     {...props}
   >
@@ -71,7 +65,6 @@ const Stepper = <T extends StepType>({
           connector={connector && !isLast}
           titleElement={titleElement}
           type={type}
-          chip={chip}
         />
       )
     })}

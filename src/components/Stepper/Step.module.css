@@ -58,6 +58,7 @@
 }
 
 .right-column {
+  display: inline-flex;
   align-self: start;
   justify-self: end;
 }
