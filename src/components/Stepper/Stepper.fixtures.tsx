@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 
+import { Chip } from '../Chip'
 import { BlockIcon } from '../icons'
 
 import type { StepType } from './Step'
@@ -16,7 +17,8 @@ export const completedStep = <T extends StepType>(
   title: 'Step 1',
   description: 'Description for step',
   date: '8 January 2025',
-  status: { label: 'Status', type: 'complete' },
+  status: 'complete',
+  chip: <Chip type="success" label="Status" size="small" />,
   ...overrides,
 })
 
@@ -26,7 +28,8 @@ export const inProgressStep = <T extends StepType>(
   id: 'step-3',
   title: 'Step 3',
   description: 'Description for step',
-  status: { label: 'Status', type: 'in-progress' },
+  status: 'current',
+  chip: <Chip type="info" label="Status" size="small" />,
   ...overrides,
 })
 
@@ -36,7 +39,7 @@ export const notStartedStep = <T extends StepType>(
   id: 'step-4',
   title: 'Step 4',
   description: 'Description for step',
-  status: { label: 'Status', type: 'not-started' },
+  status: 'incomplete',
   ...overrides,
 })
 
@@ -46,7 +49,7 @@ export const iconStep = (
   id: 'step-1',
   title: 'Step 1',
   description: '',
-  status: { label: 'Complete', type: 'complete' },
+  status: 'complete',
   icon: <BlockIcon />,
   ...overrides,
 })
@@ -71,24 +74,27 @@ export const allIconSteps: ReadonlyArray<StepItem<'icon'>> = [
     title: 'Step 1',
     description: 'Description for step',
     date: '8 January 2025',
-    status: { label: 'Status', type: 'complete' },
+    status: 'complete',
     icon: <BlockIcon />,
+    chip: <Chip type="success" label="Status" size="small" />,
   }),
   iconStep({
     id: 'step-2',
     title: 'Step 2',
     description: 'Description for step',
     date: '9 January 2025',
-    status: { label: 'Status', type: 'in-progress' },
+    status: 'current',
     icon: <BlockIcon />,
+    chip: <Chip type="info" label="Status" size="small" />,
   }),
   iconStep({
     id: 'step-3',
     title: 'Step 3',
     description: 'Description for step',
     date: '10 January 2025',
-    status: { label: 'Status', type: 'not-started' },
+    status: 'incomplete',
     icon: <BlockIcon />,
+    chip: <Chip type="neutral" label="Status" size="small" />,
   }),
 ]
 
@@ -96,19 +102,19 @@ export const allIconStepsTitleOnly: ReadonlyArray<StepItem<'icon'>> = [
   iconStep({
     id: 'step-1',
     title: 'Step 1',
-    status: { label: 'Complete', type: 'in-progress' },
+    status: 'current',
     icon: <BlockIcon />,
   }),
   iconStep({
     id: 'step-2',
     title: 'Step 2',
-    status: { label: 'In progress', type: 'in-progress' },
+    status: 'current',
     icon: <BlockIcon />,
   }),
   iconStep({
     id: 'step-3',
     title: 'Step 3',
-    status: { label: 'Not started', type: 'in-progress' },
+    status: 'current',
     icon: <BlockIcon />,
   }),
 ]

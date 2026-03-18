@@ -6,11 +6,11 @@ import { assertUnreachable } from '@/utils/asserts'
 import { CheckIcon } from '../icons'
 import { Typography } from '../Typography'
 
-import type { StepStatusType, StepType } from './Step'
+import type { StepStatus, StepType } from './Step'
 import styles from './StepIcon.module.css'
 
 type Props = {
-  status: StepStatusType
+  status: StepStatus
   number?: number
 } & (
   | { type: 'check' | 'number'; icon?: never }
@@ -22,7 +22,7 @@ const StepIcon = ({ type, status, number, icon }: Props): ReactElement => {
     switch (status) {
       case 'complete':
         return <CheckIcon fill="currentColor" />
-      case 'in-progress':
+      case 'current':
         switch (type) {
           case 'icon':
             return icon
@@ -42,7 +42,7 @@ const StepIcon = ({ type, status, number, icon }: Props): ReactElement => {
             assertUnreachable(type)
         }
         break
-      case 'not-started':
+      case 'incomplete':
         switch (type) {
           case 'icon':
             return icon

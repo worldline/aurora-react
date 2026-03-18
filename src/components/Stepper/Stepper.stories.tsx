@@ -83,7 +83,6 @@ export const IconTypeTitleOnly: Story = {
   args: {
     type: 'icon',
     connector: false,
-    chip: false,
     style: {
       rowGap: 'var(--au-spacing-xl)',
     },

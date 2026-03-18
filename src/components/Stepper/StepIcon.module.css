@@ -22,11 +22,11 @@
   border-radius: var(--au-radius-sm);
 }
 
-.in-progress.icon-type {
+.current.icon-type {
   color: var(--au-content-primary);
 }
 
-.not-started.icon-type {
+.incomplete.icon-type {
   color: var(--au-content-tertiary);
   background: var(--au-surface-neutral-low);
 }
@@ -42,8 +42,8 @@
 }
 
 .complete.icon-type > *,
-.in-progress.icon-type > *,
-.not-started.icon-type > * {
+.current.icon-type > *,
+.incomplete.icon-type > * {
   width: var(--au-sizes-icon-md);
   height: var(--au-sizes-icon-md);
 }
@@ -52,18 +52,18 @@
   background-color: var(--au-surface-brand-solid);
 }
 
-.in-progress.check-type,
-.not-started.check-type {
+.current.check-type,
+.incomplete.check-type {
   background: var(--au-surface-neutral-low);
   border-width: var(--au-border-width-thin);
   border-style: solid;
 }
 
-.in-progress.check-type {
+.current.check-type {
   border-color: var(--au-surface-brand-solid);
 }
 
-.in-progress.check-type > * {
+.current.check-type > * {
   width: var(--au-sizes-icon-sm);
   height: var(--au-sizes-icon-sm);
   background-color: var(--au-content-on-brand);
@@ -73,11 +73,11 @@
   border-radius: var(--au-radius-rounded);
 }
 
-.not-started.check-type {
+.incomplete.check-type {
   border-color: var(--au-content-disabled);
 }
 
-.not-started.check-type > * {
+.incomplete.check-type > * {
   /* TODO: get variables from UX team */
   width: 10px;
   height: 10px;
@@ -93,17 +93,17 @@
   color: var(--au-content-primary-static);
 }
 
-.in-progress.number-type,
-.not-started.number-type {
+.current.number-type,
+.incomplete.number-type {
   background-color: var(--au-surface-page);
   border-width: var(--au-border-width-thin);
   border-style: solid;
 }
 
-.in-progress.number-type {
+.current.number-type {
   border-color: var(--au-border-neutral-low);
 }
 
-.not-started.number-type {
+.incomplete.number-type {
   border-color: var(--au-border-neutral-medium);
 }
