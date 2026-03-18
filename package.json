@@ -54,7 +54,7 @@
     "import-icon": "npx tsx import-icon.ts"
   },
   "dependencies": {
-    "@worldline/aurora-design-tokens": "1.5.1"
+    "@worldline/aurora-design-tokens": "1.6.0"
   },
   "peerDependencies": {
     "classnames": "^2.5.1",
