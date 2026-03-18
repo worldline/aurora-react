@@ -6,12 +6,12 @@ import { Typography } from '../Typography'
 
 import styles from './Chip.module.css'
 
-type Type = 'neutral' | 'brand' | 'info' | 'success' | 'warning' | 'error'
-type Size = 'small' | 'large'
+type ChipType = 'neutral' | 'brand' | 'info' | 'success' | 'warning' | 'error'
+type ChipSize = 'small' | 'large'
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  type: Type
-  size: Size
+  type: ChipType
+  size: ChipSize
   label: string
   leadingIcon?: ReactElement<{
     className?: string
@@ -79,10 +79,10 @@ const Chip = ({
   )
 }
 
-export { Chip }
+export { Chip, type ChipType, type ChipSize }
 
 const typesToTextColor: Record<
-  Type,
+  ChipType,
   React.ComponentProps<typeof Typography>['textColor']
 > = {
   brand: 'contentBrand',
@@ -94,7 +94,7 @@ const typesToTextColor: Record<
 }
 
 const sizesToTextStyle: Record<
-  Size,
+  ChipSize,
   React.ComponentProps<typeof Typography>['textStyle']
 > = {
   small: 'labelSm',
