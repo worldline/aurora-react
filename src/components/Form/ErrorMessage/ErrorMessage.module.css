@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  gap: var(--au-spacing-2xs);
+  color: var(--au-inputfield-error-error-message);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: var(--au-sizes-icon-md);
+  height: var(--au-sizes-icon-md);
+}
+
+.message {
+  padding-block: var(--au-spacing-2xs);
+  color: var(--au-inputfield-error-error-message);
+}

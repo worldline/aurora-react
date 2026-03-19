@@ -5,7 +5,7 @@ import { MINIMAL_VIEWPORTS } from 'storybook/viewport'
 
 import '../src/styles/styles.css'
 import '../src/assets/fonts/fonts.css'
-import { ThemeWrapper, type Theme } from '../__tests__/ThemeWrapper'
+import { ThemeWrapper, type Theme } from '@/__tests__/ThemeWrapper'
 
 const withTheme: Decorator = (Story, context) => {
   const theme = context.globals.theme as Theme

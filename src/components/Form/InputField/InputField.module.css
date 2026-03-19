@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-2xs);
+}
+
+.label {
+  color: var(--au-inputfield-filled-label);
+}
+
+.container[data-readonly] .label {
+  color: var(--au-inputfield-read-only-label);
+}
+
+.container[data-disabled] .label {
+  color: var(--au-inputfield-disabled-label);
+}
+
+.container:has(.input:focus) .label {
+  color: var(--au-inputfield-selected-label);
+}
+
+.container:has(.input:placeholder-shown) .label {
+  color: var(--au-inputfield-placeholder-label);
+}
+
+.input {
+  width: 100%;
+  font: var(--au-body-md);
+  line-height: var(--au-body-md-letter-spacing);
+  border-style: solid;
+  caret-color: var(--au-inputfield-filled-text);
+  color: var(--au-inputfield-filled-text);
+  background-color: var(--au-inputfield-filled-background);
+  border-color: var(--au-inputfield-filled-border);
+}
+
+.input:placeholder-shown {
+  color: var(--au-inputfield-placeholder-text);
+  background-color: var(--au-inputfield-placeholder-background);
+  border-color: var(--au-inputfield-placeholder-border);
+}
+
+.input:focus {
+  color: var(--au-inputfield-selected-text);
+  background-color: var(--au-inputfield-selected-background);
+  border-color: var(--au-inputfield-selected-border);
+}
+
+.small .input {
+  padding: var(--au-inputfield-text-field-sm-padding-vertical)
+    var(--au-inputfield-text-field-sm-padding-horizontal);
+  border-radius: var(--au-inputfield-text-field-sm-radius);
+  border-width: var(--au-inputfield-text-field-sm-border-width);
+}
+
+.medium .input {
+  padding: var(--au-inputfield-text-field-md-padding-vertical)
+    var(--au-inputfield-text-field-md-padding-horizontal);
+  border-radius: var(--au-inputfield-text-field-md-radius);
+  border-width: var(--au-inputfield-text-field-md-border-width);
+}
+
+.container[data-invalid] .input {
+  border-color: var(--au-inputfield-error-border);
+}
+
+.container[data-readonly] .input {
+  color: var(--au-inputfield-read-only-text);
+  background-color: var(--au-inputfield-read-only-background);
+  border-color: var(--au-inputfield-read-only-border);
+  cursor: default;
+}
+
+.container[data-disabled] .input {
+  color: var(--au-inputfield-disabled-text);
+  background-color: var(--au-inputfield-disabled-background);
+  border-color: var(--au-inputfield-disabled-border);
+  cursor: not-allowed;
+}

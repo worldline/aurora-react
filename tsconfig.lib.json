@@ -27,6 +27,7 @@
 
     /* alias */
     "paths": {
+      "@/__tests__/*": ["./__tests__/*"],
       "@/storybook/*": ["./.storybook/*"],
       "@/components/*": ["./src/components/*"],
       "@/utils/*": ["./src/utils/*"]
