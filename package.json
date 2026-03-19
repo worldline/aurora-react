@@ -54,6 +54,7 @@
     "import-icon": "npx tsx import-icon.ts"
   },
   "dependencies": {
+    "@react-aria/live-announcer": "3.4.4",
     "@worldline/aurora-design-tokens": "1.6.0"
   },
   "peerDependencies": {

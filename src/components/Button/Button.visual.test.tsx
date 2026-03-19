@@ -1,8 +1,8 @@
 import { composeStories } from '@storybook/react'
 import { describe, expect, test } from 'vitest'
 
-import { themes } from '../../../__tests__/ThemeWrapper'
-import { getWrapper, render } from '../../../__tests__/visual/testUtils'
+import { themes } from '@/__tests__/ThemeWrapper'
+import { getWrapper, render } from '@/__tests__/visual/testUtils'
 
 import * as stories from './Button.stories'
 

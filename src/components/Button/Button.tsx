@@ -1,5 +1,3 @@
-'use client'
-
 import cn from 'classnames'
 import type { ReactElement } from 'react'
 import {
