@@ -145,7 +145,7 @@
   height: var(--au-sizes-icon-md);
 }
 
-.loading-icon {
+.pending-icon {
   animation: spin 1000ms linear infinite;
 }
 
