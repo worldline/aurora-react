@@ -1,49 +1,83 @@
-import { composeStories } from '@storybook/react'
 import { describe, expect, test } from 'vitest'
+import { page } from 'vitest/browser'
 
 import { themes } from '@/__tests__/ThemeWrapper'
-import { getWrapper, render } from '@/__tests__/visual/testUtils'
+import { render } from '@/__tests__/visual/testUtils'
 
-import * as stories from './Button.stories'
+import { CheckIcon } from '../icons'
 
-const { Primary, Secondary, Link, Small, Medium, Large, Disabled } =
-  composeStories(stories)
+import { Button } from '.'
+
+const testId = 'theme-wrapper'
 
 describe('Button', () => {
   describe.each(themes)('%s mode', (theme) => {
-    test('primary variant', async () => {
-      await render(<Primary />, theme)
-      await expect(getWrapper()).toMatchScreenshot()
+    describe.each(['primary', 'secondary', 'link'] as const)(
+      '%s',
+      (variant) => {
+        describe.each(['small', 'medium', 'large'] as const)('%s', (size) => {
+          test('without icons', async () => {
+            await render(
+              <Button size={size} variant={variant}>
+                {variant} {size} Button
+              </Button>,
+              theme,
+            )
+
+            await expect(page.getByTestId(testId)).toMatchScreenshot()
+          })
+        })
+      },
+    )
+  })
+
+  describe.each(['small', 'medium', 'large'] as const)('%s', (size) => {
+    test('leading icon', async () => {
+      await render(
+        <Button size={size} variant="primary" leadingIcon={<CheckIcon />}>
+          {size} Button
+        </Button>,
+        'dark',
+      )
+      await expect(page.getByTestId(testId)).toMatchScreenshot()
     })
 
-    test('secondary variant', async () => {
-      await render(<Secondary />, theme)
-      await expect(getWrapper()).toMatchScreenshot()
+    test('trailing icon', async () => {
+      await render(
+        <Button size={size} variant="primary" trailingIcon={<CheckIcon />}>
+          {size} Button
+        </Button>,
+        'dark',
+      )
+
+      await expect(page.getByTestId(testId)).toMatchScreenshot()
     })
 
-    test('link variant', async () => {
-      await render(<Link />, theme)
-      await expect(getWrapper()).toMatchScreenshot()
+    test('leading and trailing icon', async () => {
+      await render(
+        <Button
+          size={size}
+          variant="primary"
+          leadingIcon={<CheckIcon />}
+          trailingIcon={<CheckIcon />}
+        >
+          {size} Button
+        </Button>,
+        'dark',
+      )
+
+      await expect(page.getByTestId(testId)).toMatchScreenshot()
     })
 
-    test('small size', async () => {
-      await render(<Small />, theme)
-      await expect(getWrapper()).toMatchScreenshot()
-    })
+    test('pending state', async () => {
+      await render(
+        <Button size={size} variant="primary" isPending>
+          {size} Button
+        </Button>,
+        'dark',
+      )
 
-    test('medium size', async () => {
-      await render(<Medium />, theme)
-      await expect(getWrapper()).toMatchScreenshot()
-    })
-
-    test('large size', async () => {
-      await render(<Large />, theme)
-      await expect(getWrapper()).toMatchScreenshot()
-    })
-
-    test('disabled state', async () => {
-      await render(<Disabled />, theme)
-      await expect(getWrapper()).toMatchScreenshot()
+      await expect(page.getByTestId(testId)).toMatchScreenshot()
     })
   })
 })
