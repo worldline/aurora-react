@@ -101,7 +101,7 @@ export const LeadingIcon: Story = {
 
 export const TrailingIcon: Story = {
   args: {
-    size: 'small',
+    size: 'large',
     type: 'brand',
     label: 'Trailing Icon',
     trailingIcon: <SettingsIcon aria-hidden />,
