@@ -48,8 +48,8 @@ interface AlertClosableProps {
 }
 
 interface AlertNonClosableProps {
-  onClose?: undefined
-  closeLabel?: undefined
+  onClose?: never
+  closeLabel?: never
 }
 
 type AlertProps = AlertBaseProps & (AlertClosableProps | AlertNonClosableProps)
