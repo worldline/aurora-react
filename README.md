@@ -42,6 +42,18 @@ npm run test:visual:update # Update the Visual Regression tests baseline screens
 npm run coverage           # Generate coverage report
 ```
 
+## How do download icons svg files
+
+Icons components are automatically created from svg files. You have to manually download those files from [https://fonts.google.com/icons](https://fonts.google.com/icons).
+
+ - search for the icon name
+ - toggle __fill__ depending of the version of the icon you need
+ - set __weight__ to __300__
+ - set __grade__ to __0__
+ - set __optical size__ to __24px__
+ - set __style__ to __Material Symbols (new)__ and __Rounded__
+ -  
+
 ## 🛠️ Technology Stack
 
 - **Framework**: React 19 + TypeScript

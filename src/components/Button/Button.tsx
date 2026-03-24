@@ -88,7 +88,7 @@ const Button = ({
       <>
         {isPending ? (
           <ProgressActivityIcon
-            className={cn(styles.icon, styles['loading-icon'])}
+            className={cn(styles.icon, styles['pending-icon'])}
             aria-hidden
           />
         ) : null}
