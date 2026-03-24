@@ -14,6 +14,7 @@ const {
   Closable,
   WithoutTitle,
   LongContent,
+  LongTitle,
 } = composeStories(stories)
 
 describe('Alert', () => {
@@ -50,6 +51,11 @@ describe('Alert', () => {
 
     test('long content', async () => {
       await render(<LongContent />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('long title', async () => {
+      await render(<LongTitle />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
   })
