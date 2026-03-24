@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import { Button } from '.'
 
@@ -62,5 +62,15 @@ describe('Button Component', () => {
 
     expect(leadingIcon).not.toBeInTheDocument()
     expect(trailingIcon).not.toBeInTheDocument()
+  })
+
+  test('should render icon-only button with accessible name', () => {
+    render(
+      <Button aria-label="Add">
+        <svg aria-hidden />
+      </Button>,
+    )
+
+    expect(screen.getByRole('button', { name: 'Add' })).toBeInTheDocument()
   })
 })
