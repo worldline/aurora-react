@@ -4,7 +4,7 @@ import { page } from 'vitest/browser'
 import { themes } from '@/__tests__/ThemeWrapper'
 import { render } from '@/__tests__/visual/testUtils'
 
-import { CheckIcon } from '../icons'
+import { AddIcon, CheckIcon } from '../icons'
 
 import { Button } from '.'
 
@@ -80,4 +80,20 @@ describe('Button', () => {
       await expect(page.getByTestId(testId)).toMatchScreenshot()
     })
   })
+
+  describe.each(['primary', 'secondary', 'link'] as const)(
+    'icon only %s',
+    (variant) => {
+      test('renders icon only button', async () => {
+        await render(
+          <Button variant={variant} aria-label="Add">
+            <AddIcon aria-hidden />
+          </Button>,
+          'dark',
+        )
+
+        await expect(page.getByTestId(testId)).toMatchScreenshot()
+      })
+    },
+  )
 })

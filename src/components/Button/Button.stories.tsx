@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { CheckIcon } from '../icons'
+import { AddIcon, CheckIcon } from '../icons'
 
 import { Button } from './Button'
 
@@ -170,12 +170,45 @@ export const PendingButton: Story = {
   },
 }
 
+export const IconOnlyPrimary: Story = {
+  args: {
+    variant: 'primary',
+    'aria-label': 'Add',
+    children: <AddIcon aria-hidden />,
+  },
+}
+
+export const IconOnlySecondary: Story = {
+  args: {
+    variant: 'secondary',
+    'aria-label': 'Add',
+    children: <AddIcon aria-hidden />,
+  },
+}
+
+export const IconOnlyLink: Story = {
+  args: {
+    variant: 'link',
+    'aria-label': 'Add',
+    children: <AddIcon aria-hidden />,
+  },
+}
+
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="link">Link</Button>
+      <Button variant="primary" aria-label="Add">
+        <AddIcon aria-hidden />
+      </Button>
+      <Button variant="secondary" aria-label="Add">
+        <AddIcon aria-hidden />
+      </Button>
+      <Button variant="link" aria-label="Add">
+        <AddIcon aria-hidden />
+      </Button>
     </div>
   ),
 }
