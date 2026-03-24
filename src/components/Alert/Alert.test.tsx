@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from 'vitest'
 
 import { Alert } from '.'
 
-describe('Alert Component', () => {
+describe('Alert', () => {
   test('should render as accessible alert with title and message', () => {
     render(
       <Alert variant="error" title="Error occurred">
@@ -21,7 +21,11 @@ describe('Alert Component', () => {
     const onClose = vi.fn()
     const user = userEvent.setup()
 
-    render(<Alert onClose={onClose}>Message</Alert>)
+    render(
+      <Alert onClose={onClose} closeLabel="Close alert">
+        Message
+      </Alert>,
+    )
 
     await user.click(screen.getByRole('button', { name: 'Close alert' }))
 
@@ -31,8 +35,6 @@ describe('Alert Component', () => {
   test('should not render dismiss button when onClose is not provided', () => {
     render(<Alert>Message</Alert>)
 
-    expect(
-      screen.queryByRole('button', { name: 'Close alert' }),
-    ).not.toBeInTheDocument()
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
   })
 })

@@ -10,7 +10,7 @@ import styles from './Alert.module.css'
 
 type AlertVariant = 'info' | 'success' | 'warning' | 'error'
 
-interface AlertProps {
+interface AlertBaseProps {
   /**
    * Semantic meaning of the alert
    * Maps to visual style and icon
@@ -29,16 +29,31 @@ interface AlertProps {
   children: ReactNode
 
   /**
-   * Enables dismiss functionality
-   * If provided, close button is rendered
-   */
-  onClose?: () => void
-
-  /**
    * Additional CSS class names
    */
   className?: string
 }
+
+interface AlertClosableProps {
+  /**
+   * Enables dismiss functionality
+   * If provided, close button is rendered
+   */
+  onClose: () => void
+
+  /**
+   * Accessible label for the close button
+   * Required when onClose is provided
+   */
+  closeLabel: string
+}
+
+interface AlertNonClosableProps {
+  onClose?: undefined
+  closeLabel?: undefined
+}
+
+type AlertProps = AlertBaseProps & (AlertClosableProps | AlertNonClosableProps)
 
 type IconComponent = typeof CheckCircleIcon
 
@@ -54,6 +69,7 @@ const Alert = ({
   title,
   children,
   onClose,
+  closeLabel,
   className,
 }: AlertProps): ReactElement => {
   const Icon = ALERT_ICON_MAP[variant]
@@ -76,7 +92,7 @@ const Alert = ({
       </div>
 
       {onClose ? (
-        <Button onClick={onClose} aria-label="Close alert">
+        <Button onClick={onClose} aria-label={closeLabel}>
           <CloseIcon aria-hidden />
         </Button>
       ) : null}
@@ -84,4 +100,4 @@ const Alert = ({
   )
 }
 
-export { Alert, type AlertProps }
+export { Alert, type AlertBaseProps as AlertProps }
