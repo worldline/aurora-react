@@ -75,12 +75,20 @@ export const Closable: Story = {
   args: {
     title: 'Need help?',
     onClose: () => ({}),
+    closeLabel: 'Close alert',
   },
 }
 
 export const WithoutTitle: Story = {
   args: {
     title: undefined,
+  },
+}
+
+export const LongTitle: Story = {
+  args: {
+    title:
+      'This is a very long alert title that contains a lot of text and should wrap across multiple lines on smaller screens — testing layout resilience!',
   },
 }
 
@@ -98,5 +106,6 @@ export const Playground: Story = {
     title: 'Need help?',
     children: 'Our support team is available 24/7 to assist you',
     onClose: () => ({}),
+    closeLabel: 'Close alert',
   },
 }

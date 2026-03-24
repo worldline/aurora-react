@@ -73,10 +73,16 @@ Icon-only buttons are supported for all variants. Use an icon as the child and
 provide an `aria-label` for accessibility:
 
 ```tsx
-import AddIcon from '../icons/Add'
-;<Button variant="primary" aria-label="Add">
-  <AddIcon aria-hidden />
-</Button>
+import { AddIcon } from '@worldline/aurora-react/components'
+import { Button } from '@worldline/aurora-react/components'
+
+function Example() {
+  return (
+    <Button variant="primary" aria-label="Add">
+      <AddIcon aria-hidden />
+    </Button>
+  )
+}
 ```
 
 <Canvas of={ButtonStories.IconOnlyPrimary} />

@@ -2,8 +2,7 @@ import cn from 'classnames'
 import type { ReactElement, ReactNode } from 'react'
 import { Button } from 'react-aria-components'
 
-import { CheckCircleIcon, ErrorIcon, WarningIcon } from '../icons'
-import CloseIcon from '../icons/Close'
+import { CheckCircleIcon, CloseIcon, ErrorIcon, WarningIcon } from '../icons'
 import { Typography } from '../main'
 
 import styles from './Alert.module.css'
