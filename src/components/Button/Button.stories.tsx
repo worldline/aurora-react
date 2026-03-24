@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { CheckIcon } from '../icons'
+
 import { Button } from './Button'
 
 const meta: Meta<typeof Button> = {
@@ -137,6 +139,34 @@ export const Disabled: Story = {
   args: {
     isDisabled: true,
     children: 'Disabled Button',
+  },
+}
+
+export const DisabledWithIcons: Story = {
+  args: {
+    isDisabled: true,
+    leadingIcon: <CheckIcon aria-hidden />,
+    trailingIcon: <CheckIcon aria-hidden />,
+    children: 'Disabled Button',
+  },
+}
+
+export const LeadingAndTrailingIcons: Story = {
+  args: {
+    leadingIcon: <CheckIcon aria-hidden />,
+    trailingIcon: <CheckIcon aria-hidden />,
+    variant: 'primary',
+    size: 'medium',
+    children: 'Button',
+  },
+}
+
+export const PendingButton: Story = {
+  args: {
+    isPending: true,
+    variant: 'primary',
+    size: 'medium',
+    children: 'Button',
   },
 }
 
