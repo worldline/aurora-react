@@ -39,3 +39,11 @@ coverage/
 .vitest-reports
 **/__screenshots__/**/*-actual.png
 **/__screenshots__/**/*-diff.png
+
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/*.tfplan
+terraform/.build/
+*.tfstate
+*.tfstate.backup
