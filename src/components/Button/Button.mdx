@@ -31,13 +31,11 @@ Try it out! Modify the props below to see how the button changes.
 ```tsx
 import { Button } from '@worldline/aurora-react/components'
 
-function MyComponent() {
-  return (
-    <Button variant="primary" onPress={() => console.log('Pressed!')}>
-      Click me
-    </Button>
-  )
-}
+const MyComponent = () => (
+  <Button variant="primary" onPress={() => console.log('Pressed!')}>
+    Click me
+  </Button>
+)
 ```
 
 ## Examples
@@ -73,16 +71,13 @@ Icon-only buttons are supported for all variants. Use an icon as the child and
 provide an `aria-label` for accessibility:
 
 ```tsx
-import { AddIcon } from '@worldline/aurora-react/components'
-import { Button } from '@worldline/aurora-react/components'
+import { AddIcon, Button } from '@worldline/aurora-react/components'
 
-function Example() {
-  return (
-    <Button variant="primary" aria-label="Add">
-      <AddIcon aria-hidden />
-    </Button>
-  )
-}
+const Example = () => (
+  <Button variant="primary" aria-label="Add">
+    <AddIcon aria-hidden />
+  </Button>
+)
 ```
 
 <Canvas of={ButtonStories.IconOnlyPrimary} />
