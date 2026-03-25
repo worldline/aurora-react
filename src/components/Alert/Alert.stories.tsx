@@ -35,7 +35,6 @@ const meta: Meta<typeof Alert> = {
     children: { control: 'text', table: { category: 'Content' } },
 
     onClose: {
-      action: 'closed',
       table: { category: 'Events' },
     },
   },
