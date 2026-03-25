@@ -17,6 +17,7 @@ export default defineConfig([
     'src/components/icons/*',
     '!src/components/icons/*stories*',
     'storybook-static',
+    'terraform',
     '.vitest-attachments',
     '.vitest-reports',
   ]),
