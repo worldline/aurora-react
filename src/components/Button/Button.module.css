@@ -146,7 +146,8 @@
 }
 
 .pending-icon {
-  animation: spin 1000ms linear infinite;
+  animation: spin var(--au-motion-spinner-duration)
+    var(--au-motion-spinner-easing) var(--au-motion-spinner-iteration);
 }
 
 @keyframes spin {
