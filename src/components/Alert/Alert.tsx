@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import type { ReactElement, ReactNode } from 'react'
-import { Button } from 'react-aria-components'
 
+import { Button } from '../Button'
 import { CheckCircleIcon, CloseIcon, ErrorIcon, WarningIcon } from '../icons'
 import { Typography } from '../main'
 
@@ -91,7 +91,12 @@ const Alert = ({
       </div>
 
       {onClose ? (
-        <Button onClick={onClose} aria-label={closeLabel}>
+        <Button
+          onPress={onClose}
+          aria-label={closeLabel}
+          variant="link"
+          size="small"
+        >
           <CloseIcon aria-hidden />
         </Button>
       ) : null}
