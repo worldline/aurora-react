@@ -1,0 +1,26 @@
+.orientation-horizontal,
+.orientation-vertical {
+  display: grid;
+}
+
+.orientation-horizontal {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.orientation-vertical {
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.orientation-horizontal .trailing {
+  grid-column: 3;
+  grid-row: 1;
+}
