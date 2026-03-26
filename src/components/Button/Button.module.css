@@ -110,6 +110,7 @@
 }
 
 .link {
+  padding: 0;
   color: var(--au-button-link-default-content);
   background: none;
   border-width: var(--au-dimensions-0);

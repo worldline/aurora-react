@@ -1,10 +1,11 @@
 .alert {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: start;
-  column-gap: var(--au-spacing-xs);
   padding: var(--au-spacing-md);
+  background-color: var(--au-surface-neutral-low);
   border-radius: var(--au-radius-xs);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: var(--au-spacing-xs);
   border-width: var(--au-border-width-thin);
   border-style: solid;
   border-color: var(--au-border-brand-solid);
