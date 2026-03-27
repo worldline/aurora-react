@@ -54,6 +54,15 @@ Icons components are automatically created from svg files. You have to manually 
  - set __style__ to __Material Symbols (new)__ and __Rounded__
  -  
 
+## AI Integration
+You can make the Storybook accessible to your AI agents by adding the Storybook MCP server to your project. You will need to run Storybook locally. See [MCP server docs](https://storybook.js.org/docs/ai/mcp/overview#docs) for more information.
+
+```bash
+npx mcp-add --type http --url "http://localhost:6006/mcp" --scope project
+```
+
+Once connected, you can try asking your AI agent to `Show me how to use the Aurora Alert component` or `Create a sign up form using Aurora components`.
+
 ## 🛠️ Technology Stack
 
 - **Framework**: React 19 + TypeScript
