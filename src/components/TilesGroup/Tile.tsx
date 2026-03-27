@@ -32,7 +32,7 @@ const ORIENTATION_CLASS_MAP: Record<TileOrientation, string> = {
 
 const Tile = ({
   ref,
-  orientation = 'vertical',
+  orientation = 'horizontal',
   disabled = false,
   selected = false,
   visualAsset,
@@ -54,7 +54,9 @@ const Tile = ({
 
   return (
     <div ref={ref} className={tileClassNames}>
-      {visualAsset ? <>{visualAsset}</> : null}
+      {visualAsset ? (
+        <span className={styles['visual-asset']}>{visualAsset}</span>
+      ) : null}
       <div className={styles.content}>
         {overline ? (
           <Typography element="p" textStyle="titleSm">

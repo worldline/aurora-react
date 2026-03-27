@@ -32,7 +32,7 @@ export const DefaultVariant: Story = {
     title: 'Tile Title',
     overline: 'Overline',
     description: 'Supporting description for the tile.',
-    orientation: 'vertical',
+    orientation: 'horizontal',
     selected: false,
     disabled: false,
   },

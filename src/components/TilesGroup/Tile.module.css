@@ -1,3 +1,32 @@
+.tile {
+  width: 100%;
+  min-width: 0;
+  padding: var(--au-spacing-md);
+  background-color: var(--au-surface-neutral-low);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  border-radius: var(--au-radius-xs);
+}
+
+.visual-asset {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: var(--au-spacing-2xs);
+}
+
+.trailing {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .orientation-horizontal,
 .orientation-vertical {
   display: grid;
@@ -6,21 +35,42 @@
 .orientation-horizontal {
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
+  column-gap: var(--au-spacing-md);
 }
 
-.orientation-vertical {
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto 1fr auto;
+.orientation-horizontal .visual-asset {
+  grid-column: 1;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.orientation-horizontal .content {
+  grid-column: 2;
 }
 
 .orientation-horizontal .trailing {
   grid-column: 3;
-  grid-row: 1;
+}
+
+.orientation-vertical {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'visual-asset'
+    'content'
+    'trailing';
+  gap: var(--au-spacing-md);
+}
+
+.orientation-vertical .visual-asset {
+  grid-area: visual-asset;
+  justify-self: start;
+  align-items: start;
+}
+
+.orientation-vertical .content {
+  grid-area: content;
+}
+
+.orientation-vertical .trailing {
+  grid-area: trailing;
+  align-self: end;
+  justify-self: end;
 }
