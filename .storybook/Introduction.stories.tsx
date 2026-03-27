@@ -1,3 +1,4 @@
+import { Link } from '@/components/Link'
 import { Code } from '@/components/storybook/Code'
 import { Typography } from '@/components/Typography'
 import preview from '@/storybook/preview'
@@ -34,9 +35,52 @@ const IntroductionPage = () => (
         , every component follows WAI-ARIA best practices and provides excellent
         keyboard navigation and screen reader support.
       </Typography>
-      <Code className={styles['import-component']}>
+      <Code className={styles.code}>
         {"import { Button } from '@worldline/aurora-react/components'"}
       </Code>
+    </section>
+
+    <section className={styles.section}>
+      <Typography
+        element="h2"
+        textStyle="titleMd"
+        textColor="contentPrimary"
+        className={styles['section-title']}
+      >
+        AI Integration
+      </Typography>
+      <Typography element="p" textStyle="bodyMd" textColor="contentSecondary">
+        You can make the Storybook accessible to your AI agents by adding the
+        Storybook MCP server to your project. See the{' '}
+        <Link
+          href="https://storybook.js.org/docs/ai/mcp/overview#docs"
+          target="_blank"
+        >
+          Storybook MCP docs
+        </Link>{' '}
+        for more details.
+      </Typography>
+      <Code className={styles.code}>
+        {
+          'npx mcp-add --type http --url "https://storybook.aurora.example.com" --scope project'
+        }
+      </Code>
+      <Typography
+        element="p"
+        textStyle="bodyMd"
+        textColor="contentSecondary"
+        className={styles['ai-example-usage']}
+      >
+        Once connected, you can try asking your AI agent to{' '}
+        <Code className={styles['ai-example-prompt']} inline>
+          Show me how to use the Aurora Alert component
+        </Code>{' '}
+        or{' '}
+        <Code className={styles['ai-example-prompt']} inline>
+          Create a sign up form using Aurora components
+        </Code>
+        .
+      </Typography>
     </section>
 
     <section className={styles.section}>

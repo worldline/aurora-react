@@ -27,6 +27,15 @@
   margin-left: var(--au-spacing-xl);
 }
 
-.import-component {
-  margin-top: var(--au-spacing-4xl);
+.code {
+  margin-top: var(--au-spacing-xl);
+}
+
+.ai-example-usage {
+  margin-top: var(--au-spacing-xl);
+  line-height: var(--au-line-height-xs);
+}
+
+.ai-example-prompt {
+  font-style: italic;
 }

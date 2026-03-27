@@ -11,10 +11,12 @@ export default defineMain({
       files: '**/*.stories.tsx',
     },
   ],
+  staticDirs: ['../src/assets/storybook'],
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-a11y',
     '@storybook/addon-vitest',
+    '@storybook/addon-mcp',
   ],
   async viteFinal(config) {
     return {
