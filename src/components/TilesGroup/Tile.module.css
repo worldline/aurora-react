@@ -74,3 +74,27 @@
   align-self: end;
   justify-self: end;
 }
+
+.hovered {
+  background-color: var(--au-surface-neutral-low-hover);
+  border-color: var(--au-border-neutral-medium);
+}
+
+.focused,
+.focus-visible {
+  border-color: var(--au-border-neutral-medium);
+}
+
+/* .selected {
+  border-color: var(--au-color-primary-neutral-medium);
+} */
+
+.disabled {
+  pointer-events: none;
+}
+
+.disabled .visual-asset,
+.disabled .content,
+.disabled .trailing {
+  opacity: 0.5;
+}
