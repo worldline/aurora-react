@@ -13,14 +13,14 @@ interface TileProps {
 
   disabled?: boolean
   selected?: boolean
+  focused?: boolean
 
   visualAsset?: ReactNode
   title: ReactNode
   overline?: ReactNode
   description?: ReactNode
-  icon?: ReactNode
 
-  trailing?: ReactNode
+  trailing: ReactNode
 
   className?: string
 }
@@ -35,6 +35,7 @@ const Tile = ({
   orientation = 'horizontal',
   disabled = false,
   selected = false,
+  focused = false,
   visualAsset,
   title,
   overline,
@@ -47,7 +48,8 @@ const Tile = ({
     ORIENTATION_CLASS_MAP[orientation],
     {
       [styles.disabled]: disabled,
-      [styles.selected]: selected,
+      [styles.selected]: selected && !disabled,
+      [styles.focused]: focused && !disabled,
     },
     className,
   )
@@ -55,7 +57,9 @@ const Tile = ({
   return (
     <div ref={ref} className={tileClassNames}>
       {visualAsset ? (
-        <span className={styles['visual-asset']}>{visualAsset}</span>
+        <span className={styles['visual-asset']} aria-hidden>
+          {visualAsset}
+        </span>
       ) : null}
       <div className={styles.content}>
         {overline ? (

@@ -1,33 +1,23 @@
 import cn from 'classnames'
-import type { ReactElement, ReactNode, Ref } from 'react'
-import { GridList } from 'react-aria-components'
+import type { ReactElement, Ref } from 'react'
+import { GridList, type GridListProps } from 'react-aria-components'
 
 import styles from './TilesGroup.module.css'
 
-interface TilesGroupProps {
+interface TilesGroupProps<T extends object> extends GridListProps<T> {
   ref?: Ref<HTMLDivElement>
-  items?: Array<unknown>
-  children?: ReactNode
-  areaLabel?: string
-  ariaLabelledby?: string
-  className?: string
 }
 
-const TilesGroup = ({
+const TilesGroup = <T extends object>({
   ref,
-  children,
-  areaLabel,
-  ariaLabelledby,
   className,
-}: TilesGroupProps): ReactElement => (
+  ...rest
+}: TilesGroupProps<T>): ReactElement => (
   <GridList
     ref={ref}
     className={cn(styles['tiles-group'], className)}
-    aria-label={areaLabel}
-    aria-labelledby={ariaLabelledby}
-  >
-    {children}
-  </GridList>
+    {...rest}
+  />
 )
 
 export { TilesGroup }
