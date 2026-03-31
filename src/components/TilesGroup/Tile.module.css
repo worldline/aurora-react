@@ -4,27 +4,24 @@
   padding: var(--au-spacing-md);
   background-color: var(--au-surface-neutral-low);
   border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
-  border-radius: var(--au-radius-xs);
+  border-radius: var(--au-radius-sm);
 }
 
-.visual-asset {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.icon {
+  width: var(--au-sizes-icon-lg);
+  height: var(--au-sizes-icon-lg);
+  color: var(--au-content-primary);
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   row-gap: var(--au-spacing-2xs);
 }
 
 .trailing {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  color: var(--au-content-primary);
 }
 
 .orientation-horizontal,
@@ -38,7 +35,7 @@
   column-gap: var(--au-spacing-md);
 }
 
-.orientation-horizontal .visual-asset {
+.orientation-horizontal .icon {
   grid-column: 1;
 }
 
@@ -53,16 +50,15 @@
 .orientation-vertical {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    'visual-asset'
+    'icon'
     'content'
     'trailing';
   gap: var(--au-spacing-md);
 }
 
-.orientation-vertical .visual-asset {
-  grid-area: visual-asset;
+.orientation-vertical .icon {
+  grid-area: icon;
   justify-self: start;
-  align-items: start;
 }
 
 .orientation-vertical .content {
@@ -71,7 +67,6 @@
 
 .orientation-vertical .trailing {
   grid-area: trailing;
-  align-self: end;
   justify-self: end;
 }
 
@@ -82,19 +77,21 @@
 
 .focused,
 .focus-visible {
-  border-color: var(--au-border-neutral-medium);
+  box-shadow: var(--au-focus-ring);
 }
 
-/* .selected {
-  border-color: var(--au-color-primary-neutral-medium);
-} */
+.selected {
+  background-color: var(--au-surface-neutral-low);
+  border-color: var(--au-border-brand-solid);
+}
 
 .disabled {
+  background-color: var(--au-surface-disabled);
+  border-color: var(--au-border-disabled);
   pointer-events: none;
 }
 
-.disabled .visual-asset,
-.disabled .content,
+.disabled .icon,
 .disabled .trailing {
-  opacity: 0.5;
+  color: var(--au-content-disabled);
 }
