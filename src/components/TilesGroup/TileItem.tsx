@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react'
+import type { ComponentProps, ReactElement } from 'react'
 import { GridListItem, type GridListItemProps } from 'react-aria-components'
 
 import { Tile } from './Tile'
@@ -9,40 +9,37 @@ type TileItemProps = Omit<
 > &
   Pick<
     GridListItemProps,
-    | 'id'
-    | 'textValue'
-    | 'isDisabled'
-    | 'onAction'
-    | 'href'
-    | 'target'
-    | 'rel'
-    | 'download'
-  >
+    'id' | 'isDisabled' | 'onAction' | 'href' | 'target' | 'rel' | 'download'
+  > & {
+    textValue?: string
+  }
 
 const TileItem = ({
   id,
   textValue,
+  title,
+  overline,
   isDisabled,
   onAction,
   href,
   target,
   rel,
-  download,
   ...tileProps
-}: TileItemProps) => (
+}: TileItemProps): ReactElement => (
   <GridListItem
     id={id}
-    textValue={textValue}
+    textValue={textValue ?? title}
     isDisabled={isDisabled}
     onAction={onAction}
     href={href}
     target={target}
     rel={rel}
-    download={download}
   >
     {({ isSelected, isFocused, isDisabled: itemDisabled }) => (
       <Tile
         {...tileProps}
+        title={title}
+        overline={overline}
         selected={isSelected}
         focused={isFocused}
         disabled={itemDisabled}

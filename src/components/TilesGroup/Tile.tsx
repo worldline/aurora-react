@@ -15,10 +15,10 @@ interface TileProps {
   selected?: boolean
   focused?: boolean
 
-  visualAsset?: ReactNode
-  title: ReactNode
-  overline?: ReactNode
-  description?: ReactNode
+  icon?: ReactElement<{ className?: string }>
+  title: string
+  overline?: string
+  description?: string
 
   trailing: ReactNode
 
@@ -36,7 +36,7 @@ const Tile = ({
   disabled = false,
   selected = false,
   focused = false,
-  visualAsset,
+  icon,
   title,
   overline,
   description,
@@ -56,9 +56,9 @@ const Tile = ({
 
   return (
     <div ref={ref} className={tileClassNames}>
-      {visualAsset ? (
+      {icon ? (
         <span className={styles['visual-asset']} aria-hidden>
-          {visualAsset}
+          {icon}
         </span>
       ) : null}
       <div className={styles.content}>
