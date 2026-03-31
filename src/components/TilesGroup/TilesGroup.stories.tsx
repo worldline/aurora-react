@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { GridListItem } from 'react-aria-components'
 
 import { ArrowForwardIcon, BlockIcon } from '../icons'
 
 import { Tile } from './Tile'
-import { TileItem } from './TileItem'
 import { TilesGroup } from './TilesGroup'
 
 const meta = {
   title: 'components/TilesGroup',
-  component: Tile,
+  component: TilesGroup,
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof Tile>
+} satisfies Meta<typeof TilesGroup>
 
 export default meta
 
@@ -25,33 +25,34 @@ const actions = [
     title: 'Title 1',
     description: 'Description 1',
   },
-  {
-    id: '2',
-    overline: 'Overline 2',
-    title: 'Title 2',
-    description: 'Description 2',
-  },
 ] as const
 
-export const ActionDownload: Story = {
-  args: {
-    title: '',
-    trailing: null,
-  },
+export const ActionItems: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
-      {actions.map((doc, idx) => (
-        <TileItem
-          key={doc.id}
-          id={doc.id}
-          icon={<BlockIcon />}
-          title={doc.title}
+      {actions.map((action, idx) => (
+        <GridListItem
+          key={action.id}
+          id={action.id}
+          textValue={action.title}
           isDisabled={idx === 1}
-          description={doc.description}
-          trailing={<ArrowForwardIcon />}
-          orientation={idx % 2 === 0 ? 'horizontal' : 'vertical'}
           onAction={() => ({})}
-        />
+        >
+          {({ isSelected, isFocused, isHovered, isDisabled }) => (
+            <Tile
+              icon={<BlockIcon />}
+              title={action.title}
+              overline={action.overline}
+              description={action.description}
+              trailing={<ArrowForwardIcon />}
+              orientation={idx % 2 === 0 ? 'horizontal' : 'vertical'}
+              selected={isSelected}
+              focused={isFocused}
+              hovered={isHovered}
+              disabled={isDisabled}
+            />
+          )}
+        </GridListItem>
       ))}
     </TilesGroup>
   ),
