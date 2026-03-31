@@ -30,12 +30,11 @@ const actions = [
 export const ActionItems: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
-      {actions.map((action, idx) => (
+      {actions.map((action) => (
         <GridListItem
           key={action.id}
           id={action.id}
           textValue={action.title}
-          isDisabled={idx === 1}
           onAction={() => ({})}
         >
           {({ isSelected, isFocused, isHovered, isDisabled }) => (
@@ -45,7 +44,7 @@ export const ActionItems: Story = {
               overline={action.overline}
               description={action.description}
               trailing={<ArrowForwardIcon />}
-              orientation={idx % 2 === 0 ? 'horizontal' : 'vertical'}
+              orientation={'horizontal'}
               selected={isSelected}
               focused={isFocused}
               hovered={isHovered}

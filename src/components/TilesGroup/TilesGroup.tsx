@@ -11,12 +11,12 @@ interface TilesGroupProps<T extends object> extends GridListProps<T> {
 const TilesGroup = <T extends object>({
   ref,
   className,
-  ...rest
+  ...props
 }: TilesGroupProps<T>): ReactElement => (
   <GridList
     ref={ref}
     className={cn(styles['tiles-group'], className)}
-    {...rest}
+    {...props}
   />
 )
 
