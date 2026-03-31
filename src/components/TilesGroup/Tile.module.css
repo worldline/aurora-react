@@ -1,6 +1,4 @@
 .tile {
-  width: 100%;
-  min-width: 0;
   padding: var(--au-spacing-md);
   background-color: var(--au-surface-neutral-low);
   border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
