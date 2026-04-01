@@ -113,7 +113,7 @@
   padding: 0;
   color: var(--au-button-link-default-content);
   background: none;
-  border-width: var(--au-dimensions-0);
+  border-width: var(--au-dimension-0);
 }
 
 .link[data-hovered],
@@ -123,17 +123,17 @@
 
 .link.sm {
   border-radius: var(--au-button-link-sm-radius);
-  border-width: var(--au-dimensions-0);
+  border-width: var(--au-dimension-0);
 }
 
 .link.md {
   border-radius: var(--au-button-link-md-radius);
-  border-width: var(--au-dimensions-0);
+  border-width: var(--au-dimension-0);
 }
 
 .link.lg {
   border-radius: var(--au-button-link-lg-radius);
-  border-width: var(--au-dimensions-0);
+  border-width: var(--au-dimension-0);
 }
 
 .link[data-disabled],
@@ -142,8 +142,8 @@
 }
 
 .icon {
-  width: var(--au-sizes-icon-md);
-  height: var(--au-sizes-icon-md);
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
 }
 
 .pending-icon {

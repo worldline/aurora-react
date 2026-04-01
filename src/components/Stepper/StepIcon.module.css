@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: var(--au-sizes-icon-md);
-  height: var(--au-sizes-icon-md);
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
   border-radius: var(--au-radius-rounded);
 }
 
 .icon-type {
-  width: var(--au-sizes-icon-xl);
-  height: var(--au-sizes-icon-xl);
+  width: var(--au-size-icon-xl);
+  height: var(--au-size-icon-xl);
   background: none;
   border: var(--au-border-width-thin) solid var(--au-border-neutral-medium);
   border-radius: var(--au-radius-sm);
@@ -37,15 +37,15 @@
 }
 
 .complete > * {
-  width: var(--au-sizes-icon-sm);
-  height: var(--au-sizes-icon-sm);
+  width: var(--au-size-icon-sm);
+  height: var(--au-size-icon-sm);
 }
 
 .complete.icon-type > *,
 .current.icon-type > *,
 .incomplete.icon-type > * {
-  width: var(--au-sizes-icon-md);
-  height: var(--au-sizes-icon-md);
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
 }
 
 .complete.check-type {
@@ -64,8 +64,8 @@
 }
 
 .current.check-type > * {
-  width: var(--au-sizes-icon-sm);
-  height: var(--au-sizes-icon-sm);
+  width: var(--au-size-icon-sm);
+  height: var(--au-size-icon-sm);
   background-color: var(--au-content-on-brand);
 
   /* TODO: get variables from UX team */
@@ -98,12 +98,5 @@
   background-color: var(--au-surface-page);
   border-width: var(--au-border-width-thin);
   border-style: solid;
-}
-
-.current.number-type {
   border-color: var(--au-border-neutral-low);
-}
-
-.incomplete.number-type {
-  border-color: var(--au-border-neutral-medium);
 }

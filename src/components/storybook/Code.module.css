@@ -1,16 +1,15 @@
 .code {
-  margin: 0;
-  padding: var(--au-dimensions-16);
+  margin: var(--au-spacing-md) 0;
+  padding: var(--au-dimension-16);
   font-size: 13px;
   line-height: 1.6;
   color: var(--au-content-primary);
-  background: var(--au-surface-neutral-high);
+  background: var(--au-surface-neutral-medium);
   border-radius: var(--au-radius-sm);
   font-family: 'Fira Code', Consolas, monospace;
-  overflow-x: auto;
 }
 
 .inline {
-  padding: var(--au-dimensions-4);
+  padding: var(--au-dimension-4);
   vertical-align: baseline;
 }

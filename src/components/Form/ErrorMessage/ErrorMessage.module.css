@@ -6,8 +6,8 @@
 
 .icon {
   flex-shrink: 0;
-  width: var(--au-sizes-icon-md);
-  height: var(--au-sizes-icon-md);
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
 }
 
 .message {

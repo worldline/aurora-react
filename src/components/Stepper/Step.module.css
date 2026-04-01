@@ -33,7 +33,7 @@
   padding-top: 0;
   padding-bottom: var(--au-spacing-none);
   justify-content: center;
-  min-height: var(--au-sizes-icon-xl);
+  min-height: var(--au-size-icon-xl);
 }
 
 .last-step .middle-column {
