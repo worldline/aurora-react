@@ -12,7 +12,11 @@ services:
     ports:
       - '3100:3000'
     command:
-      ['sh', '-c', 'npx -y playwright run-server --port 3000 --host 0.0.0.0']
+      [
+        'sh',
+        '-c',
+        'npx -y playwright@1.58.2 run-server --port 3000 --host 0.0.0.0',
+      ]
     restart: 'no'
     healthcheck:
       test: ['CMD', 'wget', '--spider', '-q', 'http://0.0.0.0:3000']
