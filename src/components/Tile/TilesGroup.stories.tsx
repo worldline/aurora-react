@@ -7,7 +7,7 @@ import { Tile } from './Tile'
 import { TilesGroup } from './TilesGroup'
 
 const meta = {
-  title: 'components/TilesGroup',
+  title: 'components/Tile/TilesGroup',
   component: TilesGroup,
   parameters: {
     layout: 'centered',
@@ -24,6 +24,12 @@ const actions = [
     overline: 'Overline 1',
     title: 'Title 1',
     description: 'Description 1',
+  },
+  {
+    id: '2',
+    overline: 'Overline 2',
+    title: 'Title 2',
+    description: 'Description 2',
   },
 ] as const
 
