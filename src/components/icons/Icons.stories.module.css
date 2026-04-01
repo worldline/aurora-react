@@ -9,20 +9,6 @@
   margin-bottom: var(--au-spacing-lg);
 }
 
-.icons-search {
-  width: 100%;
-  padding: var(--au-spacing-sm) var(--au-spacing-md);
-  font: var(--au-label-md);
-  border: var(--au-border-width-thin) solid var(--au-surface-neutral-high);
-  border-radius: var(--au-radius-lg);
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.icons-search:focus {
-  border-color: var(--au-surface-brand-solid);
-}
-
 .icons-grid {
   display: grid;
   margin: var(--au-spacing-xl) 0;
@@ -37,17 +23,6 @@
   align-items: center;
   max-width: 110px;
   gap: var(--au-spacing-xs);
-}
-
-.icons-item-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--au-spacing-md);
-  background-color: var(--au-surface-neutral-low);
-  border: var(--au-border-width-thin) solid var(--au-surface-neutral-high);
-  border-radius: var(--au-radius-lg);
-  flex-shrink: 0;
 }
 
 .icons-empty {

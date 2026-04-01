@@ -10,6 +10,8 @@ describe('FeaturedIcon', () => {
     render(
       <FeaturedIcon
         size="large"
+        type="square"
+        emphasis="medium"
         icon={<Check aria-hidden />}
         className="custom-class"
         data-testid="icon"
@@ -18,7 +20,7 @@ describe('FeaturedIcon', () => {
 
     const container = screen.getByTestId('icon')
     expect(container).toHaveClass('container')
-    expect(container).toHaveClass('large')
+    expect(container).toHaveClass('size-large')
     expect(container).toHaveClass('custom-class')
   })
 })

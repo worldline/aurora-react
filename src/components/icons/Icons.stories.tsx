@@ -1,5 +1,7 @@
 import { useState, type ComponentType, type SVGProps } from 'react'
 
+import { FeaturedIcon } from '@/components/FeaturedIcon'
+import { InputField } from '@/components/Form/InputField'
 import preview from '@/storybook/preview'
 
 import { Code } from '../storybook/Code'
@@ -44,22 +46,24 @@ const IconsGallery = () => {
           These are the icons being used in our design system. They are
           available as React components.
         </Typography>
-        <input
+        <InputField
           type="text"
-          className={styles['icons-search']}
           placeholder="Search icons..."
           value={search}
-          onChange={(e) => {
-            setSearch(e.target.value)
+          onChange={(value) => {
+            setSearch(value)
           }}
         />
         <div className={styles['icons-grid']}>
           {filteredIcons.length > 0 ? (
             filteredIcons.map(({ name, Icon }) => (
               <div key={name} className={styles['icons-item']}>
-                <div className={styles['icons-item-wrapper']}>
-                  <Icon size={48} title="alt text" />
-                </div>
+                <FeaturedIcon
+                  icon={<Icon title="alt text" />}
+                  type="square"
+                  emphasis="medium"
+                  size="2xlarge"
+                />
                 <Typography
                   element="span"
                   textStyle="labelSm"
