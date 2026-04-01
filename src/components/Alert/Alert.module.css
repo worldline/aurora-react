@@ -24,19 +24,19 @@
 }
 
 .icon {
-  color: var(--au-border-brand-solid);
+  color: var(--au-content-brand);
 }
 
 .alert[data-variant='success'] .icon {
-  color: var(--au-border-success-solid);
+  color: var(--au-content-success);
 }
 
 .alert[data-variant='warning'] .icon {
-  color: var(--au-border-warning-solid);
+  color: var(--au-content-warning);
 }
 
 .alert[data-variant='error'] .icon {
-  color: var(--au-border-error-solid);
+  color: var(--au-content-error);
 }
 
 .content {

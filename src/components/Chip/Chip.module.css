@@ -69,13 +69,13 @@
 }
 
 .icon-small {
-  width: var(--au-sizes-icon-sm);
-  height: var(--au-sizes-icon-sm);
+  width: var(--au-size-icon-sm);
+  height: var(--au-size-icon-sm);
 }
 
 .icon-large {
-  width: var(--au-sizes-icon-md);
-  height: var(--au-sizes-icon-md);
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
 }
 
 .icon-neutral {

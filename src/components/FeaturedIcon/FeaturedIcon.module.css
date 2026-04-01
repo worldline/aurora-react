@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--au-surface-page);
+  background: var(--au-surface-neutral-low);
   border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
 }
 
@@ -31,17 +31,17 @@
 }
 
 .small .icon {
-  width: var(--au-sizes-icon-sm);
-  height: var(--au-sizes-icon-sm);
+  width: var(--au-size-icon-sm);
+  height: var(--au-size-icon-sm);
 }
 
 .medium .icon {
-  width: var(--au-sizes-icon-md);
-  height: var(--au-sizes-icon-md);
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
 }
 
 .large .icon,
 .xlarge .icon {
-  width: var(--au-sizes-icon-lg);
-  height: var(--au-sizes-icon-lg);
+  width: var(--au-size-icon-lg);
+  height: var(--au-size-icon-lg);
 }

@@ -2,7 +2,6 @@ import { useState, type ComponentType, type SVGProps } from 'react'
 
 import preview from '@/storybook/preview'
 
-import { Card } from '../Card'
 import { Code } from '../storybook/Code'
 import { Typography } from '../Typography'
 
@@ -81,46 +80,43 @@ const IconsGallery = () => {
             </Typography>
           )}
         </div>
-        <Card className={styles['icons-usage']}>
-          <Typography
-            element="h2"
-            textStyle="titleMd"
-            textColor="contentPrimary"
-            className={styles['icons-usage-title']}
-          >
-            Usage
-          </Typography>
-          <Typography
-            className={styles.paragraph}
-            element="p"
-            textStyle="bodyMd"
-            textColor="contentPrimary"
-          >
-            Import the icon component and use it in your React components.
-          </Typography>
-          <Code>
-            {
-              "import { XxxxxIcon } from '@worldline/aurora-react/components'\n<XxxxxIcon size={24} />"
-            }
-          </Code>
-          <Typography
-            className={styles.paragraph}
-            element="p"
-            textStyle="bodyMd"
-            textColor="contentPrimary"
-          >
-            For decorative icons you should set the{' '}
-            <Code inline>aria-hidden</Code> attribute to{' '}
-            <Code inline>true</Code> to hide them from assistive technologies.
-            For informative icons, you should provide a useful{' '}
-            <Code inline>title</Code>.
-          </Typography>
-          <Code>
-            {
-              '<Check size={24} aria-hidden />\n<WorldlineLogoLarge size={24} title="Worldline logo" />'
-            }
-          </Code>
-        </Card>
+        <Typography
+          element="h2"
+          textStyle="titleMd"
+          textColor="contentPrimary"
+          className={styles['icons-usage-title']}
+        >
+          Usage
+        </Typography>
+        <Typography
+          className={styles.paragraph}
+          element="p"
+          textStyle="bodyMd"
+          textColor="contentPrimary"
+        >
+          Import the icon component and use it in your React components.
+        </Typography>
+        <Code>
+          {"import {XxxxxIcon} from '@worldline/aurora-react/components"}
+          {'\n'}
+          {'<XxxxxIcon size={24} />'}
+        </Code>
+        <Typography
+          className={styles.paragraph}
+          element="p"
+          textStyle="bodyMd"
+          textColor="contentPrimary"
+        >
+          For decorative icons you should set the{' '}
+          <Code inline>aria-hidden</Code> attribute to <Code inline>true</Code>{' '}
+          to hide them from assistive technologies. For informative icons, you
+          should provide a useful <Code inline>title</Code>.
+        </Typography>
+        <Code>
+          {
+            '<Check size={24} aria-hidden />\n<WorldlineLogoLarge size={24} title="Worldline logo" />'
+          }
+        </Code>
       </div>
     </>
   )
