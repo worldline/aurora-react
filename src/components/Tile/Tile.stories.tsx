@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { ArrowForwardIcon, BlockIcon } from '../icons'
+import { BlockIcon } from '../icons'
 
 import { Tile } from './Tile'
+
+const trailingArrow = <span aria-hidden="true">→</span>
 
 const meta = {
   title: 'components/Tile/Tile',
@@ -21,7 +23,7 @@ const baseArgs = {
   title: 'Title',
   overline: 'Overline',
   description: 'Description',
-  trailing: <ArrowForwardIcon />,
+  trailing: trailingArrow,
 } satisfies Partial<Story['args']>
 
 export const HorizontalDefault: Story = {

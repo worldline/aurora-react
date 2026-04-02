@@ -47,16 +47,7 @@ const Tile = ({
   className,
   trailing,
 }: TileProps) => {
-  const tileClassName = cn(
-    styles.tile,
-    {
-      [styles.disabled]: disabled,
-      [styles.selected]: selected && !disabled,
-      [styles['focus-visible']]: focusVisible && !disabled,
-      [styles.hovered]: hovered && !selected && !disabled,
-    },
-    className,
-  )
+  const tileClassName = cn(styles.tile, className)
 
   const iconElement = icon
     ? cloneElement(icon, {
@@ -66,7 +57,15 @@ const Tile = ({
     : null
 
   return (
-    <div ref={ref} className={tileClassName} data-orientation={orientation}>
+    <div
+      ref={ref}
+      className={tileClassName}
+      data-orientation={orientation}
+      data-disabled={disabled || undefined}
+      data-selected={selected && !disabled ? true : undefined}
+      data-focus-visible={focusVisible && !disabled ? true : undefined}
+      data-hovered={hovered && !selected && !disabled ? true : undefined}
+    >
       {iconElement}
       <div className={styles.content}>
         {overline ? (

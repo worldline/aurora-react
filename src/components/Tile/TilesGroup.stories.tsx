@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { ArrowForwardIcon, BlockIcon } from '../icons'
+import { BlockIcon } from '../icons'
 
-import { TileItem } from './TileItem'
+import { Tile } from './Tile'
 import { TilesGroup } from './TilesGroup'
+
+const trailingArrow = <span aria-hidden="true">→</span>
 
 const meta = {
   title: 'components/Tile/TilesGroup',
@@ -45,7 +47,7 @@ export const ActionItems: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
-        <TileItem
+        <Tile
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -55,7 +57,7 @@ export const ActionItems: Story = {
           isDisabled={action.isDisabled}
           onAction={() => ({})}
           icon={<BlockIcon />}
-          trailing={<ArrowForwardIcon />}
+          trailing={trailingArrow}
         />
       ))}
     </TilesGroup>
@@ -70,7 +72,7 @@ export const Selected: Story = {
       aria-label="Actions"
     >
       {actions.map((action) => (
-        <TileItem
+        <Tile
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -78,7 +80,7 @@ export const Selected: Story = {
           title={action.title}
           description={action.description}
           icon={<BlockIcon />}
-          trailing={<ArrowForwardIcon />}
+          trailing={trailingArrow}
         />
       ))}
     </TilesGroup>
@@ -89,7 +91,7 @@ export const Disabled: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
-        <TileItem
+        <Tile
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -99,7 +101,7 @@ export const Disabled: Story = {
           isDisabled
           onAction={() => ({})}
           icon={<BlockIcon />}
-          trailing={<ArrowForwardIcon />}
+          trailing={trailingArrow}
         />
       ))}
     </TilesGroup>
@@ -114,7 +116,7 @@ export const MultiSelect: Story = {
       aria-label="Actions"
     >
       {actions.map((action) => (
-        <TileItem
+        <Tile
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -122,7 +124,7 @@ export const MultiSelect: Story = {
           title={action.title}
           description={action.description}
           icon={<BlockIcon />}
-          trailing={<ArrowForwardIcon />}
+          trailing={trailingArrow}
         />
       ))}
     </TilesGroup>
@@ -133,7 +135,7 @@ export const VerticalOrientation: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
-        <TileItem
+        <Tile
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -142,7 +144,7 @@ export const VerticalOrientation: Story = {
           description={action.description}
           onAction={() => ({})}
           icon={<BlockIcon />}
-          trailing={<ArrowForwardIcon />}
+          trailing={trailingArrow}
           orientation="vertical"
         />
       ))}

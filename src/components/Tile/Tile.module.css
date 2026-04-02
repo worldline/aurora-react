@@ -34,8 +34,8 @@
   column-gap: var(--au-spacing-md);
 }
 
-.disabled .icon,
-.disabled .trailing {
+.tile[data-disabled] .icon,
+.tile[data-disabled] .trailing {
   color: var(--au-content-disabled);
 }
 
@@ -74,21 +74,21 @@
   justify-self: end;
 }
 
-.hovered {
+.tile[data-hovered] {
   background-color: var(--au-surface-neutral-low-hover);
   border-color: var(--au-border-neutral-medium);
 }
 
-.focus-visible {
+.tile[data-focus-visible] {
   box-shadow: var(--au-focus-ring);
 }
 
-.selected {
+.tile[data-selected] {
   background-color: var(--au-surface-neutral-low);
   border-color: var(--au-border-brand-solid);
 }
 
-.disabled {
+.tile[data-disabled] {
   background-color: var(--au-surface-disabled);
   border-color: var(--au-border-disabled);
 }
