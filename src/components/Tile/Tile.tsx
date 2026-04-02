@@ -7,7 +7,7 @@ import {
   type Ref,
 } from 'react'
 
-import { Typography } from '../main'
+import { Typography } from '@/components/Typography'
 
 import styles from './Tile.module.css'
 
@@ -19,7 +19,7 @@ interface TileProps {
 
   disabled?: boolean
   selected?: boolean
-  focused?: boolean
+  focusVisible?: boolean
   hovered?: boolean
 
   icon?: ReactElement<{ className?: string; 'aria-hidden'?: boolean | 'true' }>
@@ -32,17 +32,12 @@ interface TileProps {
   className?: string
 }
 
-const ORIENTATION_CLASS_MAP: Record<TileOrientation, string> = {
-  horizontal: styles['orientation-horizontal'],
-  vertical: styles['orientation-vertical'],
-}
-
 const Tile = ({
   ref,
   orientation = 'horizontal',
   disabled = false,
   selected = false,
-  focused = false,
+  focusVisible = false,
   hovered = false,
   icon,
   title,
@@ -50,15 +45,13 @@ const Tile = ({
   description,
   className,
   trailing,
-}: TileProps): ReactElement => {
-  const tileClassNames = cn(
+}: TileProps) => {
+  const tileClassName = cn(
     styles.tile,
-    ORIENTATION_CLASS_MAP[orientation],
     {
       [styles.disabled]: disabled,
       [styles.selected]: selected && !disabled,
-      [styles.focused]: focused && !disabled,
-      [styles['focus-visible']]: focused && !disabled,
+      [styles['focus-visible']]: focusVisible && !disabled,
       [styles.hovered]: hovered && !selected && !disabled,
     },
     className,
@@ -72,7 +65,7 @@ const Tile = ({
     : null
 
   return (
-    <div ref={ref} className={tileClassNames}>
+    <div ref={ref} className={tileClassName} data-orientation={orientation}>
       {iconElement}
       <div className={styles.content}>
         {overline ? (

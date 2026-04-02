@@ -22,30 +22,36 @@
   color: var(--au-content-primary);
 }
 
-.orientation-horizontal,
-.orientation-vertical {
+.tile[data-orientation='horizontal'],
+.tile[data-orientation='vertical'] {
   display: grid;
 }
 
-.orientation-horizontal {
+.tile[data-orientation='horizontal'] {
   grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: 'icon content trailing';
   align-items: center;
   column-gap: var(--au-spacing-md);
 }
 
-.orientation-horizontal .icon {
-  grid-column: 1;
+.disabled .icon,
+.disabled .trailing {
+  color: var(--au-content-disabled);
 }
 
-.orientation-horizontal .content {
-  grid-column: 2;
+.tile[data-orientation='horizontal'] .icon {
+  grid-area: icon;
 }
 
-.orientation-horizontal .trailing {
-  grid-column: 3;
+.tile[data-orientation='horizontal'] .content {
+  grid-area: content;
 }
 
-.orientation-vertical {
+.tile[data-orientation='horizontal'] .trailing {
+  grid-area: trailing;
+}
+
+.tile[data-orientation='vertical'] {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     'icon'
@@ -54,16 +60,16 @@
   gap: var(--au-spacing-md);
 }
 
-.orientation-vertical .icon {
+.tile[data-orientation='vertical'] .icon {
   grid-area: icon;
   justify-self: start;
 }
 
-.orientation-vertical .content {
+.tile[data-orientation='vertical'] .content {
   grid-area: content;
 }
 
-.orientation-vertical .trailing {
+.tile[data-orientation='vertical'] .trailing {
   grid-area: trailing;
   justify-self: end;
 }
@@ -73,7 +79,6 @@
   border-color: var(--au-border-neutral-medium);
 }
 
-.focused,
 .focus-visible {
   box-shadow: var(--au-focus-ring);
 }
@@ -87,9 +92,4 @@
   background-color: var(--au-surface-disabled);
   border-color: var(--au-border-disabled);
   pointer-events: none;
-}
-
-.disabled .icon,
-.disabled .trailing {
-  color: var(--au-content-disabled);
 }
