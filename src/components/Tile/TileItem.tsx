@@ -2,8 +2,12 @@ import { GridListItem, type GridListItemProps } from 'react-aria-components'
 
 import { Tile, type TileContentProps } from './Tile'
 
-interface TileItemProps
-  extends TileContentProps, Omit<GridListItemProps, 'children' | 'className'> {}
+interface TileItemProps extends TileContentProps {
+  id?: GridListItemProps['id']
+  textValue?: GridListItemProps['textValue']
+  isDisabled?: GridListItemProps['isDisabled']
+  onAction?: GridListItemProps['onAction']
+}
 
 const TileItem = ({
   id,
