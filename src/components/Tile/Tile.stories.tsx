@@ -16,41 +16,88 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+const baseArgs = {
+  icon: <BlockIcon />,
+  title: 'Title',
+  overline: 'Overline',
+  description: 'Description',
+  trailing: <ArrowForwardIcon />,
+} satisfies Partial<Story['args']>
+
+export const HorizontalDefault: Story = {
   args: {
-    icon: <BlockIcon />,
-    title: 'Title',
-    overline: 'Overline',
-    description: 'Description',
-    trailing: <ArrowForwardIcon />,
+    ...baseArgs,
     orientation: 'horizontal',
   },
 }
 
-export const Vertical: Story = {
+export const HorizontalHover: Story = {
   args: {
-    ...Default.args,
-    orientation: 'vertical',
-  },
-}
-
-export const Hovered: Story = {
-  args: {
-    ...Default.args,
+    ...baseArgs,
+    orientation: 'horizontal',
     hovered: true,
   },
 }
 
-export const Selected: Story = {
+export const HorizontalSelected: Story = {
   args: {
-    ...Default.args,
+    ...baseArgs,
+    orientation: 'horizontal',
     selected: true,
   },
 }
 
-export const Disabled: Story = {
+export const HorizontalFocused: Story = {
   args: {
-    ...Default.args,
+    ...baseArgs,
+    orientation: 'horizontal',
+    focusVisible: true,
+  },
+}
+
+export const HorizontalDisabled: Story = {
+  args: {
+    ...baseArgs,
+    orientation: 'horizontal',
+    disabled: true,
+  },
+}
+
+export const VerticalDefault: Story = {
+  args: {
+    ...baseArgs,
+    orientation: 'vertical',
+  },
+}
+
+export const VerticalHover: Story = {
+  args: {
+    ...baseArgs,
+    orientation: 'vertical',
+    hovered: true,
+  },
+}
+
+export const VerticalSelected: Story = {
+  args: {
+    ...baseArgs,
+    orientation: 'vertical',
+    selected: true,
+  },
+}
+
+export const VerticalFocused: Story = {
+  args: {
+    ...baseArgs,
+    orientation: 'vertical',
+    focusVisible: true,
+  },
+}
+
+export const VerticalDisabled: Story = {
+  args: {
+    ...baseArgs,
+    orientation: 'vertical',
     disabled: true,
   },
 }
