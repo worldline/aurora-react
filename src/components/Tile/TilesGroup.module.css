@@ -1,4 +1,38 @@
+.tiles-group > * {
+  position: relative;
+  outline: none;
+  cursor: pointer;
+}
+
 .tiles-group {
   display: flex;
   flex-direction: column;
+}
+
+.tiles-group > [data-disabled] {
+  cursor: default;
+}
+
+.tiles-group > [data-hovered],
+.tiles-group > [data-focus-visible],
+.tiles-group > [data-selected] {
+  z-index: 1;
+}
+
+.tiles-group [data-orientation] {
+  border-radius: 0;
+}
+
+.tiles-group > * + * [data-orientation] {
+  margin-block-start: calc(-1 * var(--au-border-width-thin));
+}
+
+.tiles-group > :first-child [data-orientation] {
+  border-start-start-radius: var(--au-radius-sm);
+  border-start-end-radius: var(--au-radius-sm);
+}
+
+.tiles-group > :last-child [data-orientation] {
+  border-end-start-radius: var(--au-radius-sm);
+  border-end-end-radius: var(--au-radius-sm);
 }

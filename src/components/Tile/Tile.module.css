@@ -91,5 +91,4 @@
 .disabled {
   background-color: var(--au-surface-disabled);
   border-color: var(--au-border-disabled);
-  pointer-events: none;
 }

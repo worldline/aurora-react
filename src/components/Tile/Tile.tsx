@@ -13,23 +13,24 @@ import styles from './Tile.module.css'
 
 export type TileOrientation = 'horizontal' | 'vertical'
 
-interface TileProps {
-  ref?: Ref<HTMLDivElement>
+interface TileContentProps {
   orientation?: TileOrientation
-
-  disabled?: boolean
-  selected?: boolean
-  focusVisible?: boolean
-  hovered?: boolean
-
   icon?: ReactElement<{ className?: string; 'aria-hidden'?: boolean | 'true' }>
   title: string
   overline?: string
   description?: string
-
   trailing: ReactNode
-
   className?: string
+}
+
+interface TileStateProps {
+  disabled?: boolean
+  selected?: boolean
+  focusVisible?: boolean
+  hovered?: boolean
+}
+interface TileProps extends TileContentProps, TileStateProps {
+  ref?: Ref<HTMLDivElement>
 }
 
 const Tile = ({
@@ -99,4 +100,4 @@ const Tile = ({
   )
 }
 
-export { Tile }
+export { Tile, type TileContentProps, type TileProps }
