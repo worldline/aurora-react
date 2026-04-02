@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { BlockIcon } from '../icons'
 
-import { Tile } from './Tile'
+import { TileItem } from './TileItem'
 import { TilesGroup } from './TilesGroup'
 
 const trailingArrow = <span aria-hidden="true">→</span>
@@ -47,7 +47,7 @@ export const ActionItems: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
-        <Tile
+        <TileItem
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -72,7 +72,7 @@ export const Selected: Story = {
       aria-label="Actions"
     >
       {actions.map((action) => (
-        <Tile
+        <TileItem
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -91,7 +91,7 @@ export const Disabled: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
-        <Tile
+        <TileItem
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -116,7 +116,7 @@ export const MultiSelect: Story = {
       aria-label="Actions"
     >
       {actions.map((action) => (
-        <Tile
+        <TileItem
           key={action.id}
           id={action.id}
           textValue={action.title}
@@ -135,7 +135,7 @@ export const VerticalOrientation: Story = {
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
-        <Tile
+        <TileItem
           key={action.id}
           id={action.id}
           textValue={action.title}
