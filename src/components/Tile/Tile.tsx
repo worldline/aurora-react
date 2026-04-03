@@ -1,4 +1,4 @@
-/* eslint-disable @eslint-react/no-clone-element */
+/* eslint-disable @eslint-react/no-clone-element, @typescript-eslint/prefer-nullish-coalescing */
 import cn from 'classnames'
 import {
   cloneElement,
@@ -57,10 +57,10 @@ interface TileProps extends TileContentProps, TileStateProps {
 const Tile = ({
   ref,
   orientation = 'horizontal',
-  disabled = false,
-  selected = false,
-  focusVisible = false,
-  hovered = false,
+  disabled,
+  selected,
+  focusVisible,
+  hovered,
   icon,
   title,
   overline,
@@ -82,9 +82,9 @@ const Tile = ({
       className={tileClassName}
       data-orientation={orientation}
       data-disabled={disabled || undefined}
-      data-selected={selected && !disabled ? true : undefined}
-      data-focus-visible={focusVisible && !disabled ? true : undefined}
-      data-hovered={hovered && !selected && !disabled ? true : undefined}
+      data-selected={(selected && !disabled) || undefined}
+      data-focus-visible={(focusVisible && !disabled) || undefined}
+      data-hovered={(hovered && !selected && !disabled) || undefined}
     >
       {iconElement}
       <div className={styles.content}>
