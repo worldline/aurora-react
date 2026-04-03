@@ -31,6 +31,13 @@ export const HorizontalDefault: Story = {
     ...baseArgs,
     orientation: 'horizontal',
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const HorizontalHover: Story = {
@@ -39,6 +46,13 @@ export const HorizontalHover: Story = {
     orientation: 'horizontal',
     hovered: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const HorizontalSelected: Story = {
@@ -47,6 +61,13 @@ export const HorizontalSelected: Story = {
     orientation: 'horizontal',
     selected: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const HorizontalFocused: Story = {
@@ -55,6 +76,13 @@ export const HorizontalFocused: Story = {
     orientation: 'horizontal',
     focusVisible: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const HorizontalDisabled: Story = {
@@ -63,6 +91,13 @@ export const HorizontalDisabled: Story = {
     orientation: 'horizontal',
     disabled: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const VerticalDefault: Story = {
@@ -72,7 +107,7 @@ export const VerticalDefault: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: 200 }}>
+      <div style={{ width: '242px' }}>
         <Story />
       </div>
     ),
@@ -87,7 +122,7 @@ export const VerticalHover: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: 200 }}>
+      <div style={{ width: '242px' }}>
         <Story />
       </div>
     ),
@@ -102,7 +137,7 @@ export const VerticalSelected: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: 200 }}>
+      <div style={{ width: '242px' }}>
         <Story />
       </div>
     ),
@@ -115,10 +150,9 @@ export const VerticalFocused: Story = {
     orientation: 'vertical',
     focusVisible: true,
   },
-
   decorators: [
     (Story) => (
-      <div style={{ width: 200 }}>
+      <div style={{ width: '242px' }}>
         <Story />
       </div>
     ),
@@ -133,7 +167,7 @@ export const VerticalDisabled: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: 200 }}>
+      <div style={{ width: '242px' }}>
         <Story />
       </div>
     ),
