@@ -47,6 +47,13 @@ const actions = [
 ] as const
 
 export const ActionItems: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
@@ -68,6 +75,13 @@ export const ActionItems: Story = {
 }
 
 export const Selected: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: () => (
     <TilesGroup
       selectionMode="single"
@@ -91,6 +105,13 @@ export const Selected: Story = {
 }
 
 export const Disabled: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (
@@ -112,6 +133,13 @@ export const Disabled: Story = {
 }
 
 export const MultiSelect: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: () => (
     <TilesGroup
       selectionMode="multiple"
@@ -135,6 +163,13 @@ export const MultiSelect: Story = {
 }
 
 export const VerticalOrientation: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ width: '242px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: () => (
     <TilesGroup selectionMode="none" aria-label="Actions">
       {actions.map((action) => (

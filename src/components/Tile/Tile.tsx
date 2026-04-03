@@ -21,7 +21,7 @@ interface TileContentProps {
   /**
    * Decorative icon, must accept className
    */
-  icon?: ReactElement<{ className?: string; 'aria-hidden'?: boolean }>
+  icon?: ReactElement<{ className?: string }>
   /**
    * Primary text
    */
@@ -73,7 +73,6 @@ const Tile = ({
   const iconElement = icon
     ? cloneElement(icon, {
         className: cn(styles.icon, icon.props.className),
-        'aria-hidden': true,
       })
     : null
 
