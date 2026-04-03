@@ -14,12 +14,33 @@ import styles from './Tile.module.css'
 export type TileOrientation = 'horizontal' | 'vertical'
 
 interface TileContentProps {
+  /**
+   * Layout direction
+   */
   orientation?: TileOrientation
-  icon?: ReactElement<{ className?: string; 'aria-hidden'?: boolean | 'true' }>
+  /**
+   * Decorative icon, must accept className
+   */
+  icon?: ReactElement<{ className?: string; 'aria-hidden'?: boolean }>
+  /**
+   * Primary text
+   */
   title: string
+  /**
+   * Secondary text above title
+   */
   overline?: string
+  /**
+   * Supporting text  below titke
+   */
   description?: string
+  /**
+   * right-side content: icon, checkbox, or button
+   */
   trailing: ReactNode
+  /**
+   * Additional Class on root elemnt
+   */
   className?: string
 }
 

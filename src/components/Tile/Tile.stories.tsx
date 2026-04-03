@@ -70,6 +70,13 @@ export const VerticalDefault: Story = {
     ...baseArgs,
     orientation: 'vertical',
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 200 }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const VerticalHover: Story = {
@@ -78,6 +85,13 @@ export const VerticalHover: Story = {
     orientation: 'vertical',
     hovered: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 200 }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const VerticalSelected: Story = {
@@ -86,6 +100,13 @@ export const VerticalSelected: Story = {
     orientation: 'vertical',
     selected: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 200 }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const VerticalFocused: Story = {
@@ -94,6 +115,14 @@ export const VerticalFocused: Story = {
     orientation: 'vertical',
     focusVisible: true,
   },
+
+  decorators: [
+    (Story) => (
+      <div style={{ width: 200 }}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const VerticalDisabled: Story = {
@@ -102,4 +131,11 @@ export const VerticalDisabled: Story = {
     orientation: 'vertical',
     disabled: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 200 }}>
+        <Story />
+      </div>
+    ),
+  ],
 }

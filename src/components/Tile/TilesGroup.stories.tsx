@@ -13,6 +13,9 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  args: {
+    'aria-label': 'Actions',
+  },
 } satisfies Meta<typeof TilesGroup>
 
 export default meta

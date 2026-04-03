@@ -4,6 +4,10 @@ import { Tile, type TileContentProps } from './Tile'
 
 interface TileItemProps extends TileContentProps {
   id?: GridListItemProps['id']
+  /**
+   * Plain-text label used by screen readers to announce the item.
+   * Defaults to `title` when not provided.
+   */
   textValue?: GridListItemProps['textValue']
   isDisabled?: GridListItemProps['isDisabled']
   onAction?: GridListItemProps['onAction']
@@ -18,7 +22,7 @@ const TileItem = ({
 }: TileItemProps) => (
   <GridListItem
     id={id}
-    textValue={textValue}
+    textValue={textValue ?? tileProps.title}
     isDisabled={isDisabled}
     onAction={onAction}
   >
