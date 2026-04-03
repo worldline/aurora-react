@@ -1,4 +1,5 @@
 .tile {
+  width: 100%;
   padding: var(--au-spacing-md);
   background-color: var(--au-surface-neutral-low);
   border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
@@ -6,12 +7,14 @@
 }
 
 .icon {
+  grid-area: icon;
   width: var(--au-sizes-icon-lg);
   height: var(--au-sizes-icon-lg);
   color: var(--au-content-primary);
 }
 
 .content {
+  grid-area: content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -19,6 +22,7 @@
 }
 
 .trailing {
+  grid-area: trailing;
   color: var(--au-content-primary);
 }
 
@@ -39,18 +43,6 @@
   color: var(--au-content-disabled);
 }
 
-.tile[data-orientation='horizontal'] .icon {
-  grid-area: icon;
-}
-
-.tile[data-orientation='horizontal'] .content {
-  grid-area: content;
-}
-
-.tile[data-orientation='horizontal'] .trailing {
-  grid-area: trailing;
-}
-
 .tile[data-orientation='vertical'] {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
@@ -61,16 +53,10 @@
 }
 
 .tile[data-orientation='vertical'] .icon {
-  grid-area: icon;
   justify-self: start;
 }
 
-.tile[data-orientation='vertical'] .content {
-  grid-area: content;
-}
-
 .tile[data-orientation='vertical'] .trailing {
-  grid-area: trailing;
   justify-self: end;
 }
 

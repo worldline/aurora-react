@@ -1,18 +1,20 @@
 import cn from 'classnames'
-import type { ReactElement, Ref } from 'react'
+import type { Ref } from 'react'
 import { GridList, type GridListProps } from 'react-aria-components'
+
+import type { WithAriaLabelRequirement } from '@/utils/accessibility'
 
 import styles from './TilesGroup.module.css'
 
-interface TilesGroupProps<T extends object> extends GridListProps<T> {
-  ref?: Ref<HTMLDivElement>
-}
+type TilesGroupProps<T extends object> = WithAriaLabelRequirement<
+  GridListProps<T>
+> & { ref?: Ref<HTMLDivElement> }
 
 const TilesGroup = <T extends object>({
   ref,
   className,
   ...props
-}: TilesGroupProps<T>): ReactElement => (
+}: TilesGroupProps<T>) => (
   <GridList
     ref={ref}
     className={cn(styles['tiles-group'], className)}
