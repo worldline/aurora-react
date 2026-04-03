@@ -8,8 +8,8 @@
 
 .icon {
   grid-area: icon;
-  width: var(--au-sizes-icon-lg);
-  height: var(--au-sizes-icon-lg);
+  width: var(--au-size-icon-lg);
+  height: var(--au-size-icon-lg);
   color: var(--au-content-primary);
 }
 

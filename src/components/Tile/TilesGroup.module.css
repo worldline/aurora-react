@@ -20,7 +20,7 @@
 }
 
 .tiles-group [data-orientation] {
-  border-radius: 0;
+  border-radius: var(--au-radius-none);
 }
 
 .tiles-group > * + * [data-orientation] {
