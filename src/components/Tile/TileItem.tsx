@@ -2,8 +2,9 @@ import { GridListItem, type GridListItemProps } from 'react-aria-components'
 
 import { Tile, type TileContentProps } from './Tile'
 
-interface TileItemProps extends TileContentProps {
-  id?: GridListItemProps['id']
+interface TileItemProps extends Omit<TileContentProps, 'title'> {
+  id: GridListItemProps['id']
+  title?: string
   /**
    * Plain-text label used by screen readers to announce the item.
    * Defaults to `title` when not provided.
@@ -18,17 +19,19 @@ const TileItem = ({
   textValue,
   isDisabled,
   onAction,
+  title,
   ...tileProps
 }: TileItemProps) => (
   <GridListItem
     id={id}
-    textValue={textValue ?? tileProps.title}
+    textValue={textValue ?? title}
     isDisabled={isDisabled}
     onAction={onAction}
   >
     {(states) => (
       <Tile
         {...tileProps}
+        title={title ?? ''}
         selected={states.isSelected}
         focusVisible={states.isFocusVisible}
         hovered={states.isHovered}
@@ -38,4 +41,4 @@ const TileItem = ({
   </GridListItem>
 )
 
-export { TileItem }
+export { TileItem, type TileItemProps }
