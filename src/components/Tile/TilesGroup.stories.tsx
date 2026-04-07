@@ -66,7 +66,7 @@ export const ActionItems: Story = {
           description={action.description}
           isDisabled={action.isDisabled}
           onAction={() => ({})}
-          icon={<BlockIcon />}
+          icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
         />
       ))}
@@ -96,7 +96,7 @@ export const Selected: Story = {
           overline={action.overline}
           title={action.title}
           description={action.description}
-          icon={<BlockIcon />}
+          icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
         />
       ))}
@@ -124,7 +124,7 @@ export const Disabled: Story = {
           description={action.description}
           isDisabled
           onAction={() => ({})}
-          icon={<BlockIcon />}
+          icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
         />
       ))}
@@ -154,7 +154,7 @@ export const MultiSelect: Story = {
           overline={action.overline}
           title={action.title}
           description={action.description}
-          icon={<BlockIcon />}
+          icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
         />
       ))}
@@ -181,7 +181,7 @@ export const VerticalOrientation: Story = {
           title={action.title}
           description={action.description}
           onAction={() => ({})}
-          icon={<BlockIcon />}
+          icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
           orientation="vertical"
         />

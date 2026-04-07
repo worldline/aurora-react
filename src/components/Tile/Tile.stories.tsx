@@ -19,7 +19,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const baseArgs = {
-  icon: <BlockIcon />,
+  icon: <BlockIcon aria-hidden />,
   title: 'Title',
   overline: 'Overline',
   description: 'Description',
