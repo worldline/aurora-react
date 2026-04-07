@@ -4,7 +4,7 @@ import { Tile, type TileContentProps } from './Tile'
 
 interface TileItemProps extends Omit<TileContentProps, 'title'> {
   id: GridListItemProps['id']
-  title?: string
+  title: string
   /**
    * Plain-text label used by screen readers to announce the item.
    * Defaults to `title` when not provided.
@@ -31,7 +31,7 @@ const TileItem = ({
     {(states) => (
       <Tile
         {...tileProps}
-        title={title ?? ''}
+        title={title}
         selected={states.isSelected}
         focusVisible={states.isFocusVisible}
         hovered={states.isHovered}
