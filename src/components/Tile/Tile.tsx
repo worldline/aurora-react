@@ -31,7 +31,7 @@ interface TileContentProps {
    */
   overline?: string
   /**
-   * Supporting text  below titke
+   * Supporting text below title
    */
   description?: string
   /**
