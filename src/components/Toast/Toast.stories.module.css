@@ -1,0 +1,9 @@
+.toast-region {
+  top: 0;
+}
+
+@media (width <= 480px) {
+  .toast {
+    margin: 0 16px;
+  }
+}

@@ -37,4 +37,12 @@ describe('Alert', () => {
 
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
   })
+
+  test('should apply id to content for aria-labelledby usage', () => {
+    render(<Alert id="alert-message">Important message</Alert>)
+
+    const contentElement = document.getElementById('alert-message')
+    expect(contentElement).toBeInTheDocument()
+    expect(contentElement).toHaveTextContent('Important message')
+  })
 })

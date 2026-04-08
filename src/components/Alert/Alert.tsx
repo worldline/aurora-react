@@ -31,6 +31,11 @@ interface AlertBaseProps {
    * Additional CSS class names
    */
   className?: string
+
+  /**
+   * ID of the content element for accessibility
+   */
+  id?: string
 }
 
 interface AlertClosableProps {
@@ -70,6 +75,7 @@ const Alert = ({
   onClose,
   closeLabel,
   className,
+  id,
 }: AlertProps): ReactElement => {
   const Icon = ALERT_ICON_MAP[variant]
   return (
@@ -85,7 +91,12 @@ const Alert = ({
             {title}
           </Typography>
         ) : null}
-        <Typography element="p" textStyle="bodyMd" textColor="contentSecondary">
+        <Typography
+          element="p"
+          textStyle="bodyMd"
+          textColor="contentSecondary"
+          id={id}
+        >
           {children}
         </Typography>
       </div>

@@ -141,6 +141,9 @@ export default defineConfig({
             },
             expect: {
               toMatchScreenshot: {
+                screenshotOptions: {
+                  animations: 'disabled',
+                },
                 resolveScreenshotPath: ({
                   testName,
                   browserName,
