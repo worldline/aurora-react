@@ -50,15 +50,31 @@ interface TileStateProps {
   focusVisible?: boolean
   hovered?: boolean
 }
-interface TileProps extends TileContentProps, TileStateProps {
+
+interface TileBaseProps extends TileContentProps, TileStateProps {
   ref?: Ref<HTMLDivElement>
 }
+
+interface StandaloneTileProps extends TileBaseProps {
+  /** Handler called when the tile action is triggered
+   */
+  onAction: () => void
+}
+
+interface ComposedTileProps extends TileBaseProps {
+  /** Handler called when the tile action is triggered
+   */
+  onAction?: never
+}
+
+type TileProps = StandaloneTileProps | ComposedTileProps
 
 const Tile = ({
   ref,
   orientation = 'horizontal',
   disabled,
   selected,
+  onAction,
   focusVisible,
   hovered,
   icon,
@@ -76,6 +92,15 @@ const Tile = ({
       })
     : null
 
+  const isInteractive = !!onAction && !disabled
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if ((event.key === 'Enter' || event.key === ' ') && isInteractive) {
+      event.preventDefault()
+      onAction()
+    }
+  }
+
   return (
     <div
       ref={ref}
@@ -86,6 +111,9 @@ const Tile = ({
       data-selected={(selected && !disabled) || undefined}
       data-focus-visible={(focusVisible && !disabled) || undefined}
       data-hovered={(hovered && !selected && !disabled) || undefined}
+      onClick={isInteractive ? onAction : undefined}
+      onKeyDown={isInteractive ? handleKeyDown : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
     >
       {iconElement}
       <div className={styles.content}>
