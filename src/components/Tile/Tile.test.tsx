@@ -7,16 +7,20 @@ const TrailingArrow = <span aria-hidden="true">→</span>
 
 describe('Tile', () => {
   describe('content', () => {
-    test('should render title', () => {
-      render(<Tile title="Contact Support" trailing={TrailingArrow} />)
+    test('should render title, overline, description, and trailing content', () => {
+      render(
+        <Tile
+          title="Contact Support"
+          overline="Step 1"
+          description="Get help from our team"
+          trailing={TrailingArrow}
+        />,
+      )
 
       expect(screen.getByText('Contact Support')).toBeInTheDocument()
-    })
-
-    test('should render overline when provided', () => {
-      render(<Tile title="Title" overline="Step 1" trailing={TrailingArrow} />)
-
       expect(screen.getByText('Step 1')).toBeInTheDocument()
+      expect(screen.getByText('Get help from our team')).toBeInTheDocument()
+      expect(screen.getByText('→')).toBeInTheDocument()
     })
 
     test('should not render overline when not provided', () => {
@@ -25,30 +29,12 @@ describe('Tile', () => {
       expect(screen.queryByText('Step 1')).not.toBeInTheDocument()
     })
 
-    test('should render description when provided', () => {
-      render(
-        <Tile
-          title="Title"
-          description="Get help from our team"
-          trailing={TrailingArrow}
-        />,
-      )
-
-      expect(screen.getByText('Get help from our team')).toBeInTheDocument()
-    })
-
     test('should not render description when not provided', () => {
       render(<Tile title="Title" trailing={TrailingArrow} />)
 
       expect(
         screen.queryByText('Get help from our team'),
       ).not.toBeInTheDocument()
-    })
-
-    test('should render trailing content', () => {
-      render(<Tile title="Title" trailing={TrailingArrow} />)
-
-      expect(screen.getByText('→')).toBeInTheDocument()
     })
   })
 

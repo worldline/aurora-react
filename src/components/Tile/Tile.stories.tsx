@@ -12,23 +12,21 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  args: {
+    icon: <BlockIcon aria-hidden />,
+    title: 'Title',
+    overline: 'Overline',
+    description: 'Description',
+    trailing: trailingArrow,
+  },
 } satisfies Meta<typeof Tile>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-const baseArgs = {
-  icon: <BlockIcon aria-hidden />,
-  title: 'Title',
-  overline: 'Overline',
-  description: 'Description',
-  trailing: trailingArrow,
-} satisfies Partial<Story['args']>
-
 export const HorizontalDefault: Story = {
   args: {
-    ...baseArgs,
     orientation: 'horizontal',
   },
   decorators: [
@@ -42,7 +40,6 @@ export const HorizontalDefault: Story = {
 
 export const HorizontalHover: Story = {
   args: {
-    ...baseArgs,
     orientation: 'horizontal',
     hovered: true,
   },
@@ -57,7 +54,6 @@ export const HorizontalHover: Story = {
 
 export const HorizontalSelected: Story = {
   args: {
-    ...baseArgs,
     orientation: 'horizontal',
     selected: true,
   },
@@ -72,7 +68,6 @@ export const HorizontalSelected: Story = {
 
 export const HorizontalFocused: Story = {
   args: {
-    ...baseArgs,
     orientation: 'horizontal',
     focusVisible: true,
   },
@@ -87,7 +82,6 @@ export const HorizontalFocused: Story = {
 
 export const HorizontalDisabled: Story = {
   args: {
-    ...baseArgs,
     orientation: 'horizontal',
     disabled: true,
   },
@@ -102,7 +96,6 @@ export const HorizontalDisabled: Story = {
 
 export const VerticalDefault: Story = {
   args: {
-    ...baseArgs,
     orientation: 'vertical',
   },
   decorators: [
@@ -116,7 +109,6 @@ export const VerticalDefault: Story = {
 
 export const VerticalHover: Story = {
   args: {
-    ...baseArgs,
     orientation: 'vertical',
     hovered: true,
   },
@@ -131,7 +123,6 @@ export const VerticalHover: Story = {
 
 export const VerticalSelected: Story = {
   args: {
-    ...baseArgs,
     orientation: 'vertical',
     selected: true,
   },
@@ -146,7 +137,6 @@ export const VerticalSelected: Story = {
 
 export const VerticalFocused: Story = {
   args: {
-    ...baseArgs,
     orientation: 'vertical',
     focusVisible: true,
   },
@@ -161,7 +151,6 @@ export const VerticalFocused: Story = {
 
 export const VerticalDisabled: Story = {
   args: {
-    ...baseArgs,
     orientation: 'vertical',
     disabled: true,
   },
