@@ -47,3 +47,6 @@ terraform/*.tfplan
 terraform/.build/
 *.tfstate
 *.tfstate.backup
+
+# Claude
+.claude/settings.local.json
