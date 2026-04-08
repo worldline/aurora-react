@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, test } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, test, vi } from 'vitest'
 
 import { Tile } from './Tile'
 
@@ -111,6 +112,54 @@ describe('Tile', () => {
       )
 
       expect(container.firstChild).not.toHaveAttribute('data-hovered')
+    })
+  })
+
+  describe('interaction', () => {
+    test('should call onAction when clicked', async () => {
+      const user = userEvent.setup()
+      const onAction = vi.fn()
+
+      render(
+        <Tile title="Title" trailing={TrailingArrow} onAction={onAction} />,
+      )
+
+      await user.click(screen.getByText('Title'))
+
+      expect(onAction).toHaveBeenCalledTimes(1)
+    })
+
+    test('should receive focus when tabbing to an interactive tile', async () => {
+      const user = userEvent.setup()
+
+      render(<Tile title="Title" trailing={TrailingArrow} onAction={vi.fn()} />)
+
+      await user.tab()
+
+      expect(screen.getByText('Title').closest('[tabindex="0"]')).toHaveFocus()
+    })
+
+    test('should call onAction when Enter or Space is pressed on a focused interactive tile', async () => {
+      const user = userEvent.setup()
+      const onAction = vi.fn()
+
+      render(
+        <Tile title="Title" trailing={TrailingArrow} onAction={onAction} />,
+      )
+      const tile = screen.getByText('Title').closest('[tabindex="0"]')
+
+      expect(tile).not.toBeNull()
+      if (!tile) {
+        throw new Error('Interactive tile element was not found')
+      }
+
+      await user.tab()
+      await user.keyboard('{Enter}')
+      await user.keyboard(' ')
+
+      expect(tile).toHaveFocus()
+
+      expect(onAction).toHaveBeenCalledTimes(2)
     })
   })
 })

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { fn } from 'storybook/test'
 
 import { BlockIcon } from '../icons'
 
@@ -12,18 +13,22 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+
   args: {
     icon: <BlockIcon aria-hidden />,
     title: 'Title',
     overline: 'Overline',
     description: 'Description',
     trailing: trailingArrow,
+    onAction: fn(),
   },
 } satisfies Meta<typeof Tile>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
+
+export const Action: Story = {}
 
 export const HorizontalDefault: Story = {
   args: {
