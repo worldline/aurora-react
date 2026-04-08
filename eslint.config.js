@@ -51,6 +51,17 @@ export default defineConfig([
         'error',
         { argsIgnorePattern: '^_' },
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              regex: '[./]*main',
+              message: 'Import { MyComponent } from ../MyComponent instead',
+            },
+          ],
+        },
+      ],
       'prefer-const': 'error',
       'prefer-template': 'error',
       'prettier/prettier': [
