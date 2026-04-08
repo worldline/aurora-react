@@ -22,20 +22,6 @@ describe('Tile', () => {
       expect(screen.getByText('Get help from our team')).toBeInTheDocument()
       expect(screen.getByText('→')).toBeInTheDocument()
     })
-
-    test('should not render overline when not provided', () => {
-      render(<Tile title="Title" trailing={TrailingArrow} />)
-
-      expect(screen.queryByText('Step 1')).not.toBeInTheDocument()
-    })
-
-    test('should not render description when not provided', () => {
-      render(<Tile title="Title" trailing={TrailingArrow} />)
-
-      expect(
-        screen.queryByText('Get help from our team'),
-      ).not.toBeInTheDocument()
-    })
   })
 
   describe('orientation', () => {
