@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, test, vi } from 'vitest'
 
-import { TileItem } from './TileItem'
 import { TilesGroup } from './TilesGroup'
 
 const trailingArrow = <span aria-hidden="true">→</span>
@@ -18,7 +17,10 @@ const renderTiles = (
     Partial<React.ComponentProps<typeof TilesGroup>>,
     'aria-label' | 'aria-labelledby' | 'items' | 'children'
   > = {},
-  itemProps: Omit<Partial<React.ComponentProps<typeof TileItem>>, 'id'> = {},
+  itemProps: Omit<
+    Partial<React.ComponentProps<typeof TilesGroup.Item>>,
+    'id'
+  > = {},
 ) => {
   const user = userEvent.setup()
   const onSelectionChange = vi.fn()
@@ -30,7 +32,9 @@ const renderTiles = (
       onSelectionChange={onSelectionChange}
       {...groupProps}
     >
-      {(item) => <TileItem {...item} {...itemProps} trailing={trailingArrow} />}
+      {(item) => (
+        <TilesGroup.Item {...item} {...itemProps} trailing={trailingArrow} />
+      )}
     </TilesGroup>,
   )
 

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { BlockIcon } from '../icons'
 
-import { TileItem } from './TileItem'
 import { TilesGroup } from './TilesGroup'
 
 const trailingArrow = <span aria-hidden="true">→</span>
@@ -47,118 +46,98 @@ const actions = [
 ] as const
 
 export const ActionItems: Story = {
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
   render: () => (
-    <TilesGroup selectionMode="none" aria-label="Actions">
-      {actions.map((action) => (
-        <TileItem
-          key={action.id}
-          id={action.id}
-          textValue={action.title}
-          overline={action.overline}
-          title={action.title}
-          description={action.description}
-          isDisabled={action.isDisabled}
-          onAction={() => ({})}
-          icon={<BlockIcon aria-hidden />}
-          trailing={trailingArrow}
-        />
-      ))}
-    </TilesGroup>
+    <div style={{ width: 400 }}>
+      <TilesGroup selectionMode="none" aria-label="Actions">
+        {actions.map((action) => (
+          <TilesGroup.Item
+            key={action.id}
+            id={action.id}
+            textValue={action.title}
+            overline={action.overline}
+            title={action.title}
+            description={action.description}
+            isDisabled={action.isDisabled}
+            onAction={() => ({})}
+            icon={<BlockIcon aria-hidden />}
+            trailing={trailingArrow}
+          />
+        ))}
+      </TilesGroup>
+    </div>
   ),
 }
 
 export const Selected: Story = {
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
   render: () => (
-    <TilesGroup
-      selectionMode="single"
-      defaultSelectedKeys={['1']}
-      aria-label="Actions"
-    >
-      {actions.map((action) => (
-        <TileItem
-          key={action.id}
-          id={action.id}
-          textValue={action.title}
-          overline={action.overline}
-          title={action.title}
-          description={action.description}
-          icon={<BlockIcon aria-hidden />}
-          trailing={trailingArrow}
-        />
-      ))}
-    </TilesGroup>
+    <div style={{ width: 400 }}>
+      <TilesGroup
+        selectionMode="single"
+        defaultSelectedKeys={['1']}
+        aria-label="Actions"
+      >
+        {actions.map((action) => (
+          <TilesGroup.Item
+            key={action.id}
+            id={action.id}
+            textValue={action.title}
+            overline={action.overline}
+            title={action.title}
+            description={action.description}
+            icon={<BlockIcon aria-hidden />}
+            trailing={trailingArrow}
+          />
+        ))}
+      </TilesGroup>
+    </div>
   ),
 }
 
 export const Disabled: Story = {
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
   render: () => (
-    <TilesGroup selectionMode="none" aria-label="Actions">
-      {actions.map((action) => (
-        <TileItem
-          key={action.id}
-          id={action.id}
-          textValue={action.title}
-          overline={action.overline}
-          title={action.title}
-          description={action.description}
-          isDisabled
-          onAction={() => ({})}
-          icon={<BlockIcon aria-hidden />}
-          trailing={trailingArrow}
-        />
-      ))}
-    </TilesGroup>
+    <div style={{ width: 400 }}>
+      <TilesGroup selectionMode="none" aria-label="Actions">
+        {actions.map((action) => (
+          <TilesGroup.Item
+            key={action.id}
+            id={action.id}
+            textValue={action.title}
+            overline={action.overline}
+            title={action.title}
+            description={action.description}
+            isDisabled
+            onAction={() => ({})}
+            icon={<BlockIcon aria-hidden />}
+            trailing={trailingArrow}
+          />
+        ))}
+      </TilesGroup>
+    </div>
   ),
 }
 
 export const MultiSelect: Story = {
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
   render: () => (
-    <TilesGroup
-      selectionMode="multiple"
-      defaultSelectedKeys={['1', '3']}
-      aria-label="Actions"
-    >
-      {actions.map((action) => (
-        <TileItem
-          key={action.id}
-          id={action.id}
-          textValue={action.title}
-          overline={action.overline}
-          title={action.title}
-          description={action.description}
-          icon={<BlockIcon aria-hidden />}
-          trailing={trailingArrow}
-        />
-      ))}
-    </TilesGroup>
+    <div style={{ width: 400 }}>
+      <TilesGroup
+        selectionMode="multiple"
+        defaultSelectedKeys={['1', '3']}
+        aria-label="Actions"
+      >
+        {actions.map((action) => (
+          <TilesGroup.Item
+            key={action.id}
+            id={action.id}
+            textValue={action.title}
+            overline={action.overline}
+            title={action.title}
+            description={action.description}
+            icon={<BlockIcon aria-hidden />}
+            trailing={trailingArrow}
+          />
+        ))}
+      </TilesGroup>
+    </div>
   ),
 }
 
@@ -171,21 +150,23 @@ export const VerticalOrientation: Story = {
     ),
   ],
   render: () => (
-    <TilesGroup selectionMode="none" aria-label="Actions">
-      {actions.map((action) => (
-        <TileItem
-          key={action.id}
-          id={action.id}
-          textValue={action.title}
-          overline={action.overline}
-          title={action.title}
-          description={action.description}
-          onAction={() => ({})}
-          icon={<BlockIcon aria-hidden />}
-          trailing={trailingArrow}
-          orientation="vertical"
-        />
-      ))}
-    </TilesGroup>
+    <div style={{ width: 242 }}>
+      <TilesGroup selectionMode="none" aria-label="Actions">
+        {actions.map((action) => (
+          <TilesGroup.Item
+            key={action.id}
+            id={action.id}
+            textValue={action.title}
+            overline={action.overline}
+            title={action.title}
+            description={action.description}
+            onAction={() => ({})}
+            icon={<BlockIcon aria-hidden />}
+            trailing={trailingArrow}
+            orientation="vertical"
+          />
+        ))}
+      </TilesGroup>
+    </div>
   ),
 }
