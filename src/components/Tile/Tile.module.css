@@ -38,8 +38,8 @@
   column-gap: var(--au-spacing-md);
 }
 
-.tile[data-disabled] .icon,
-.tile[data-disabled] .trailing {
+.tile[aria-disabled] .icon,
+.tile[aria-disabled] .trailing {
   color: var(--au-content-disabled);
 }
 
@@ -74,7 +74,7 @@
   border-color: var(--au-border-brand-solid);
 }
 
-.tile[data-disabled] {
+.tile[aria-disabled] {
   background-color: var(--au-surface-disabled);
   border-color: var(--au-border-disabled);
 }

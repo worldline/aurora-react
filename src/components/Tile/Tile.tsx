@@ -104,7 +104,6 @@ const Tile = ({
       ref={ref}
       className={tileClassName}
       data-orientation={orientation}
-      data-disabled={disabled || undefined}
       aria-disabled={disabled || undefined}
       data-selected={(selected && !disabled) || undefined}
       data-focus-visible={(focusVisible && !disabled) || undefined}
