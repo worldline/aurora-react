@@ -116,36 +116,32 @@ describe('Tile', () => {
   })
 
   describe('interaction', () => {
-    test('should call onAction when clicked', async () => {
+    test('should call onClick when clicked', async () => {
       const user = userEvent.setup()
-      const onAction = vi.fn()
+      const onClick = vi.fn()
 
-      render(
-        <Tile title="Title" trailing={TrailingArrow} onAction={onAction} />,
-      )
+      render(<Tile title="Title" trailing={TrailingArrow} onClick={onClick} />)
 
       await user.click(screen.getByText('Title'))
 
-      expect(onAction).toHaveBeenCalledTimes(1)
+      expect(onClick).toHaveBeenCalledTimes(1)
     })
 
     test('should receive focus when tabbing to an interactive tile', async () => {
       const user = userEvent.setup()
 
-      render(<Tile title="Title" trailing={TrailingArrow} onAction={vi.fn()} />)
+      render(<Tile title="Title" trailing={TrailingArrow} onClick={vi.fn()} />)
 
       await user.tab()
 
       expect(screen.getByText('Title').closest('[tabindex="0"]')).toHaveFocus()
     })
 
-    test('should call onAction when Enter or Space is pressed on a focused interactive tile', async () => {
+    test('should call onClick when Enter or Space is pressed on a focused interactive tile', async () => {
       const user = userEvent.setup()
-      const onAction = vi.fn()
+      const onClick = vi.fn()
 
-      render(
-        <Tile title="Title" trailing={TrailingArrow} onAction={onAction} />,
-      )
+      render(<Tile title="Title" trailing={TrailingArrow} onClick={onClick} />)
       const tile = screen.getByText('Title').closest('[tabindex="0"]')
 
       expect(tile).not.toBeNull()
@@ -159,7 +155,7 @@ describe('Tile', () => {
 
       expect(tile).toHaveFocus()
 
-      expect(onAction).toHaveBeenCalledTimes(2)
+      expect(onClick).toHaveBeenCalledTimes(2)
     })
   })
 })

@@ -10,14 +10,14 @@ interface TileItemProps extends TileContentProps {
    */
   textValue?: GridListItemProps['textValue']
   isDisabled?: GridListItemProps['isDisabled']
-  onAction?: GridListItemProps['onAction']
+  onClick?: () => void
 }
 
 const TileItem = ({
   id,
   textValue,
   isDisabled,
-  onAction,
+  onClick,
   title,
   ...tileProps
 }: TileItemProps) => (
@@ -25,7 +25,7 @@ const TileItem = ({
     id={id}
     textValue={textValue ?? title}
     isDisabled={isDisabled}
-    onAction={onAction}
+    onAction={onClick}
   >
     {(states) => (
       <Tile
