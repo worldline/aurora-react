@@ -13,7 +13,7 @@ type TilesGroupProps<T extends object> = WithAriaLabelRequirement<
 
 interface TilesGroupComponent {
   <T extends object>(props: TilesGroupProps<T>): JSX.Element
-  Tile: typeof TileItem
+  Item: typeof TileItem
 }
 
 const TilesGroupBase = <T extends object>({
@@ -29,7 +29,7 @@ const TilesGroupBase = <T extends object>({
 )
 
 const TilesGroup = Object.assign(TilesGroupBase, {
-  Tile: TileItem,
+  Item: TileItem,
 }) satisfies TilesGroupComponent
 
 export { TilesGroup }

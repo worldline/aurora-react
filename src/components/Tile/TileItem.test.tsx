@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
-import { TileItem } from './TileItem'
 import { TilesGroup } from './TilesGroup'
 
 const trailingArrow = <span aria-hidden="true">→</span>
@@ -11,7 +10,11 @@ describe('TileItem', () => {
     test('should expose title as accessible row name', () => {
       render(
         <TilesGroup aria-label="Options">
-          <TileItem id="1" title="Contact Support" trailing={trailingArrow} />
+          <TilesGroup.Item
+            id="1"
+            title="Contact Support"
+            trailing={trailingArrow}
+          />
         </TilesGroup>,
       )
 
@@ -23,7 +26,7 @@ describe('TileItem', () => {
     test('should use textValue as accessible name when provided', () => {
       render(
         <TilesGroup aria-label="Options">
-          <TileItem
+          <TilesGroup.Item
             id="1"
             title="Contact Support"
             textValue="Support option"
