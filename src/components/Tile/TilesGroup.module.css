@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.tiles-group > [data-disabled] {
+.tiles-group > [aria-disabled] {
   cursor: default;
 }
 
