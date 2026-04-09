@@ -13,6 +13,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  render: (args) => (
+    <div style={{ width: args.orientation === 'vertical' ? '242px' : '400px' }}>
+      <Tile {...args} />
+    </div>
+  ),
 
   args: {
     icon: <BlockIcon aria-hidden />,
@@ -34,13 +39,6 @@ export const HorizontalDefault: Story = {
   args: {
     orientation: 'horizontal',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const HorizontalHover: Story = {
@@ -48,13 +46,6 @@ export const HorizontalHover: Story = {
     orientation: 'horizontal',
     hovered: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const HorizontalSelected: Story = {
@@ -62,13 +53,6 @@ export const HorizontalSelected: Story = {
     orientation: 'horizontal',
     selected: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const HorizontalFocused: Story = {
@@ -76,13 +60,6 @@ export const HorizontalFocused: Story = {
     orientation: 'horizontal',
     focusVisible: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const HorizontalDisabled: Story = {
@@ -90,26 +67,12 @@ export const HorizontalDisabled: Story = {
     orientation: 'horizontal',
     disabled: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '400px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const VerticalDefault: Story = {
   args: {
     orientation: 'vertical',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '242px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const VerticalHover: Story = {
@@ -117,13 +80,6 @@ export const VerticalHover: Story = {
     orientation: 'vertical',
     hovered: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '242px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const VerticalSelected: Story = {
@@ -131,13 +87,6 @@ export const VerticalSelected: Story = {
     orientation: 'vertical',
     selected: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '242px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const VerticalFocused: Story = {
@@ -145,13 +94,6 @@ export const VerticalFocused: Story = {
     orientation: 'vertical',
     focusVisible: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '242px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export const VerticalDisabled: Story = {
@@ -159,11 +101,4 @@ export const VerticalDisabled: Story = {
     orientation: 'vertical',
     disabled: true,
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: '242px' }}>
-        <Story />
-      </div>
-    ),
-  ],
 }
