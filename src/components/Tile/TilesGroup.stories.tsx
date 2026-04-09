@@ -65,7 +65,7 @@ export const ActionItems: Story = {
           title={action.title}
           description={action.description}
           isDisabled={action.isDisabled}
-          onClick={() => ({})}
+          onAction={() => ({})}
           icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
         />
@@ -123,7 +123,7 @@ export const Disabled: Story = {
           title={action.title}
           description={action.description}
           isDisabled
-          onClick={() => ({})}
+          onAction={() => ({})}
           icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
         />
@@ -180,7 +180,7 @@ export const VerticalOrientation: Story = {
           overline={action.overline}
           title={action.title}
           description={action.description}
-          onClick={() => ({})}
+          onAction={() => ({})}
           icon={<BlockIcon aria-hidden />}
           trailing={trailingArrow}
           orientation="vertical"

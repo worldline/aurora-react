@@ -50,12 +50,12 @@ describe('Tile', () => {
   })
 
   describe('states', () => {
-    test('should set data-disabled when disabled', () => {
+    test('should set aria-disabled when disabled', () => {
       const { container } = render(
         <Tile title="Title" disabled trailing={TrailingArrow} />,
       )
 
-      expect(container.firstChild).toHaveAttribute('data-disabled')
+      expect(container.firstChild).toHaveAttribute('aria-disabled', 'true')
     })
 
     test('should set data-selected when selected', () => {
