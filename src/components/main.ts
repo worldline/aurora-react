@@ -1,7 +1,7 @@
 export { Alert } from './Alert'
 export { Button } from './Button'
 export { Card } from './Card'
-export { Chip, type ChipType, type ChipSize } from './Chip'
+export { Chip, type ChipSize, type ChipType } from './Chip'
 export { FeaturedIcon } from './FeaturedIcon'
 export { Checkbox } from './Form/Checkbox'
 export { InputField } from './Form/InputField'
