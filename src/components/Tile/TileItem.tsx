@@ -2,9 +2,8 @@ import { GridListItem, type GridListItemProps } from 'react-aria-components'
 
 import { Tile, type TileContentProps } from './Tile'
 
-interface TileItemProps extends Omit<TileContentProps, 'title'> {
+interface TileItemProps extends TileContentProps {
   id: GridListItemProps['id']
-  title: string
   /**
    * Plain-text label used by screen readers to announce the item.
    * Defaults to `title` when not provided.
