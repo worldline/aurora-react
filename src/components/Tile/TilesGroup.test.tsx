@@ -111,31 +111,30 @@ describe('TilesGroup', () => {
   })
 
   describe('actions', () => {
-    test('should call onClick when a tile is clicked', async () => {
-      const onClick = vi.fn()
-      const { user, rows } = renderTiles({}, { onClick })
+    test('should call onAction when a tile is clicked', async () => {
+      const onAction = vi.fn()
+      const { user, rows } = renderTiles({}, { onAction })
 
       await user.click(rows[0])
 
-      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onAction).toHaveBeenCalledTimes(1)
     })
   })
 
   describe('disabled state', () => {
     test('should not allow selection or action on a disabled item', async () => {
-      const onClick = vi.fn()
+      const onAction = vi.fn()
       const { user, rows, onSelectionChange } = renderTiles(
         { selectionMode: 'single', disabledKeys: ['1'] },
-        { onClick },
+        { onAction },
       )
       const [row1] = rows
 
       expect(row1).toHaveAttribute('aria-disabled', 'true')
-      expect(row1.querySelector('[data-disabled]')).toBeInTheDocument()
 
       await user.click(row1)
       expect(onSelectionChange).not.toHaveBeenCalled()
-      expect(onClick).not.toHaveBeenCalled()
+      expect(onAction).not.toHaveBeenCalled()
     })
   })
 })

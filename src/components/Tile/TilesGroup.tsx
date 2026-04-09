@@ -1,16 +1,22 @@
 import cn from 'classnames'
-import type { Ref } from 'react'
+import type { JSX, Ref } from 'react'
 import { GridList, type GridListProps } from 'react-aria-components'
 
 import type { WithAriaLabelRequirement } from '@/utils/accessibility'
 
+import { TileItem } from './TileItem'
 import styles from './TilesGroup.module.css'
 
 type TilesGroupProps<T extends object> = WithAriaLabelRequirement<
   GridListProps<T>
 > & { ref?: Ref<HTMLDivElement> }
 
-const TilesGroup = <T extends object>({
+interface TilesGroupComponent {
+  <T extends object>(props: TilesGroupProps<T>): JSX.Element
+  Tile: typeof TileItem
+}
+
+const TilesGroupBase = <T extends object>({
   ref,
   className,
   ...props
@@ -21,5 +27,9 @@ const TilesGroup = <T extends object>({
     {...props}
   />
 )
+
+const TilesGroup = Object.assign(TilesGroupBase, {
+  Tile: TileItem,
+}) satisfies TilesGroupComponent
 
 export { TilesGroup }
