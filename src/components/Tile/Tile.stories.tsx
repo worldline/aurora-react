@@ -25,7 +25,7 @@ const meta = {
     overline: 'Overline',
     description: 'Description',
     trailing: trailingArrow,
-    onAction: fn(),
+    onClick: fn(),
   },
 } satisfies Meta<typeof Tile>
 
