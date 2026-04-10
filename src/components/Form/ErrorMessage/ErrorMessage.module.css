@@ -6,11 +6,10 @@
 
 .icon {
   flex-shrink: 0;
-  width: var(--au-size-icon-md);
-  height: var(--au-size-icon-md);
+  width: var(--au-size-icon-sm);
+  height: var(--au-size-icon-sm);
 }
 
 .message {
-  padding-block: var(--au-spacing-2xs);
   color: var(--au-inputfield-error-error-message);
 }
