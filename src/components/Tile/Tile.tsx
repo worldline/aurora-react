@@ -1,4 +1,5 @@
 /* eslint-disable @eslint-react/no-clone-element, @typescript-eslint/prefer-nullish-coalescing */
+
 import cn from 'classnames'
 import {
   cloneElement,
@@ -111,6 +112,7 @@ const Tile = ({
       onClick={isInteractive ? onClick : undefined}
       onKeyDown={isInteractive ? handleKeyDown : undefined}
       tabIndex={isInteractive ? 0 : undefined}
+      role={onClick ? 'button' : undefined}
     >
       {iconElement}
       <div className={styles.content}>
