@@ -65,8 +65,10 @@
   border-color: var(--au-border-neutral-medium);
 }
 
-.tile[data-focus-visible] {
+.tile[data-focus-visible],
+.tile:focus-visible {
   box-shadow: var(--au-focus-ring);
+  outline: none;
 }
 
 .tile[data-selected] {
@@ -77,4 +79,9 @@
 .tile[aria-disabled] {
   background-color: var(--au-surface-disabled);
   border-color: var(--au-border-disabled);
+  pointer-events: none;
+}
+
+.tile[role='button'] {
+  cursor: pointer;
 }
