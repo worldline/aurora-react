@@ -14,7 +14,12 @@ const meta = {
     layout: 'centered',
   },
   render: (args) => (
-    <div style={{ width: args.orientation === 'vertical' ? '242px' : '400px' }}>
+    <div
+      style={{
+        width: '100%',
+        maxWidth: args.orientation === 'vertical' ? '242px' : '400px',
+      }}
+    >
       <Tile {...args} />
     </div>
   ),

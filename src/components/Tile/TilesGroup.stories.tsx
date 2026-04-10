@@ -6,6 +6,16 @@ import { TilesGroup } from './TilesGroup'
 
 const trailingArrow = <span aria-hidden="true">→</span>
 
+const horizontalContainerStyle = {
+  width: '100%',
+  maxWidth: 400,
+} as const
+
+const verticalContainerStyle = {
+  width: '100%',
+  maxWidth: 242,
+} as const
+
 const meta = {
   title: 'components/Tile/TilesGroup',
   component: TilesGroup,
@@ -47,7 +57,7 @@ const actions = [
 
 export const ActionItems: Story = {
   render: () => (
-    <div style={{ width: 400 }}>
+    <div style={horizontalContainerStyle}>
       <TilesGroup selectionMode="none" aria-label="Actions">
         {actions.map((action) => (
           <TilesGroup.Item
@@ -70,7 +80,7 @@ export const ActionItems: Story = {
 
 export const Selected: Story = {
   render: () => (
-    <div style={{ width: 400 }}>
+    <div style={horizontalContainerStyle}>
       <TilesGroup
         selectionMode="single"
         defaultSelectedKeys={['1']}
@@ -95,7 +105,7 @@ export const Selected: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <div style={{ width: 400 }}>
+    <div style={horizontalContainerStyle}>
       <TilesGroup selectionMode="none" aria-label="Actions">
         {actions.map((action) => (
           <TilesGroup.Item
@@ -118,7 +128,7 @@ export const Disabled: Story = {
 
 export const MultiSelect: Story = {
   render: () => (
-    <div style={{ width: 400 }}>
+    <div style={horizontalContainerStyle}>
       <TilesGroup
         selectionMode="multiple"
         defaultSelectedKeys={['1', '3']}
@@ -142,15 +152,8 @@ export const MultiSelect: Story = {
 }
 
 export const VerticalOrientation: Story = {
-  decorators: [
-    (Story) => (
-      <div style={{ width: '242px' }}>
-        <Story />
-      </div>
-    ),
-  ],
   render: () => (
-    <div style={{ width: 242 }}>
+    <div style={verticalContainerStyle}>
       <TilesGroup selectionMode="none" aria-label="Actions">
         {actions.map((action) => (
           <TilesGroup.Item

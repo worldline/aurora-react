@@ -1,6 +1,5 @@
 import { composeStories } from '@storybook/react'
-import { beforeAll, describe, expect, test } from 'vitest'
-import { page } from 'vitest/browser'
+import { describe, expect, test } from 'vitest'
 
 import { themes } from '@/__tests__/ThemeWrapper'
 import { getWrapper, render } from '@/__tests__/visual/testUtils'
@@ -13,10 +12,6 @@ const { ActionItems, Selected, Disabled, MultiSelect, VerticalOrientation } =
 describe('TilesGroup', () => {
   describe.each(themes)('%s mode', (theme) => {
     describe('horizontal layout', () => {
-      beforeAll(async () => {
-        await page.viewport(460, 900)
-      })
-
       test('action items', async () => {
         await render(<ActionItems />, theme)
         await expect(getWrapper()).toMatchScreenshot()
@@ -39,10 +34,6 @@ describe('TilesGroup', () => {
     })
 
     describe('vertical layout', () => {
-      beforeAll(async () => {
-        await page.viewport(320, 900)
-      })
-
       test('vertical orientation', async () => {
         await render(<VerticalOrientation />, theme)
         await expect(getWrapper()).toMatchScreenshot()
