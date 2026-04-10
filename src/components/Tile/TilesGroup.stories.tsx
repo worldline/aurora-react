@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { BlockIcon } from '../icons'
+import { ArrowForwardIcon, BlockIcon } from '../icons'
 
 import { TilesGroup } from './TilesGroup'
 
-const trailingArrow = <span aria-hidden="true">→</span>
+const trailingArrow = <ArrowForwardIcon aria-hidden />
 
 const horizontalContainerStyle = {
   width: '100%',

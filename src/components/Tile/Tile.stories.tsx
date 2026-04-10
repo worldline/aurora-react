@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
 
-import { BlockIcon } from '../icons'
+import { ArrowForwardIcon, BlockIcon } from '../icons'
 
 import { Tile } from './Tile'
 
-const trailingArrow = <span aria-hidden="true">→</span>
+const trailingArrow = <ArrowForwardIcon aria-hidden />
 
 const meta = {
   title: 'components/Tile/Tile',
