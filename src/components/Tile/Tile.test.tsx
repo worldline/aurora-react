@@ -15,10 +15,13 @@ describe('Tile', () => {
           overline="Step 1"
           description="Get help from our team"
           trailing={TrailingArrow}
+          onClick={vi.fn()}
         />,
       )
 
-      expect(screen.getByText('Contact Support')).toBeInTheDocument()
+      expect(
+        screen.getByRole('button', { name: /Contact Support/ }),
+      ).toBeInTheDocument()
       expect(screen.getByText('Step 1')).toBeInTheDocument()
       expect(screen.getByText('Get help from our team')).toBeInTheDocument()
       expect(screen.getByText('→')).toBeInTheDocument()
@@ -27,22 +30,25 @@ describe('Tile', () => {
 
   describe('orientation', () => {
     test('should default to horizontal', () => {
-      const { container } = render(
-        <Tile title="Title" trailing={TrailingArrow} />,
-      )
+      render(<Tile title="Title" trailing={TrailingArrow} onClick={vi.fn()} />)
 
-      expect(container.firstChild).toHaveAttribute(
+      expect(screen.getByRole('button', { name: 'Title' })).toHaveAttribute(
         'data-orientation',
         'horizontal',
       )
     })
 
     test('should set vertical when specified', () => {
-      const { container } = render(
-        <Tile title="Title" orientation="vertical" trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          orientation="vertical"
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).toHaveAttribute(
+      expect(screen.getByRole('button', { name: 'Title' })).toHaveAttribute(
         'data-orientation',
         'vertical',
       )
@@ -51,67 +57,128 @@ describe('Tile', () => {
 
   describe('states', () => {
     test('should set aria-disabled when disabled', () => {
-      const { container } = render(
-        <Tile title="Title" disabled trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          disabled
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).toHaveAttribute('aria-disabled', 'true')
+      expect(screen.getByRole('button', { name: 'Title' })).toHaveAttribute(
+        'aria-disabled',
+        'true',
+      )
     })
 
     test('should set data-selected when selected', () => {
-      const { container } = render(
-        <Tile title="Title" selected trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          selected
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).toHaveAttribute('data-selected')
+      expect(screen.getByRole('button', { name: 'Title' })).toHaveAttribute(
+        'data-selected',
+      )
     })
 
     test('should not set data-selected when selected but disabled', () => {
-      const { container } = render(
-        <Tile title="Title" selected disabled trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          selected
+          disabled
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).not.toHaveAttribute('data-selected')
+      expect(screen.getByRole('button', { name: 'Title' })).not.toHaveAttribute(
+        'data-selected',
+      )
     })
 
     test('should set data-focus-visible when focused', () => {
-      const { container } = render(
-        <Tile title="Title" focusVisible trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          focusVisible
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).toHaveAttribute('data-focus-visible')
+      expect(screen.getByRole('button', { name: 'Title' })).toHaveAttribute(
+        'data-focus-visible',
+      )
     })
 
     test('should not set data-focus-visible when focused but disabled', () => {
-      const { container } = render(
-        <Tile title="Title" focusVisible disabled trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          focusVisible
+          disabled
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).not.toHaveAttribute('data-focus-visible')
+      expect(screen.getByRole('button', { name: 'Title' })).not.toHaveAttribute(
+        'data-focus-visible',
+      )
     })
 
     test('should set data-hovered when hovered', () => {
-      const { container } = render(
-        <Tile title="Title" hovered trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          hovered
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).toHaveAttribute('data-hovered')
+      expect(screen.getByRole('button', { name: 'Title' })).toHaveAttribute(
+        'data-hovered',
+      )
     })
 
     test('should not set data-hovered when hovered but disabled', () => {
-      const { container } = render(
-        <Tile title="Title" hovered disabled trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          hovered
+          disabled
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).not.toHaveAttribute('data-hovered')
+      expect(screen.getByRole('button', { name: 'Title' })).not.toHaveAttribute(
+        'data-hovered',
+      )
     })
 
     test('should not set data-hovered when hovered but selected', () => {
-      const { container } = render(
-        <Tile title="Title" hovered selected trailing={TrailingArrow} />,
+      render(
+        <Tile
+          title="Title"
+          hovered
+          selected
+          trailing={TrailingArrow}
+          onClick={vi.fn()}
+        />,
       )
 
-      expect(container.firstChild).not.toHaveAttribute('data-hovered')
+      expect(screen.getByRole('button', { name: 'Title' })).not.toHaveAttribute(
+        'data-hovered',
+      )
     })
   })
 
@@ -122,7 +189,7 @@ describe('Tile', () => {
 
       render(<Tile title="Title" trailing={TrailingArrow} onClick={onClick} />)
 
-      await user.click(screen.getByText('Title'))
+      await user.click(screen.getByRole('button', { name: 'Title' }))
 
       expect(onClick).toHaveBeenCalledTimes(1)
     })
@@ -134,7 +201,7 @@ describe('Tile', () => {
 
       await user.tab()
 
-      expect(screen.getByText('Title').closest('[tabindex="0"]')).toHaveFocus()
+      expect(screen.getByRole('button', { name: 'Title' })).toHaveFocus()
     })
 
     test('should call onClick when Enter or Space is pressed on a focused interactive tile', async () => {
@@ -142,12 +209,7 @@ describe('Tile', () => {
       const onClick = vi.fn()
 
       render(<Tile title="Title" trailing={TrailingArrow} onClick={onClick} />)
-      const tile = screen.getByText('Title').closest('[tabindex="0"]')
-
-      expect(tile).not.toBeNull()
-      if (!tile) {
-        throw new Error('Interactive tile element was not found')
-      }
+      const tile = screen.getByRole('button', { name: 'Title' })
 
       await user.tab()
       await user.keyboard('{Enter}')
