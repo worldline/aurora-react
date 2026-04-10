@@ -1,6 +1,5 @@
 import { composeStories } from '@storybook/react'
-import { beforeAll, describe, expect, test } from 'vitest'
-import { page } from 'vitest/browser'
+import { describe, expect, test } from 'vitest'
 
 import { themes } from '@/__tests__/ThemeWrapper'
 import { getWrapper, render } from '@/__tests__/visual/testUtils'
@@ -23,10 +22,6 @@ const {
 describe('Tile', () => {
   describe.each(themes)('%s mode', (theme) => {
     describe('horizontal layout', () => {
-      beforeAll(async () => {
-        await page.viewport(460, 900)
-      })
-
       test('horizontal default', async () => {
         await render(<HorizontalDefault />, theme)
         await expect(getWrapper()).toMatchScreenshot()
@@ -54,10 +49,6 @@ describe('Tile', () => {
     })
 
     describe('vertical layout', () => {
-      beforeAll(async () => {
-        await page.viewport(320, 900)
-      })
-
       test('vertical default', async () => {
         await render(<VerticalDefault />, theme)
         await expect(getWrapper()).toMatchScreenshot()
