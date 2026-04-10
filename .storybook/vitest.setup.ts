@@ -1,8 +1,4 @@
-import { setProjectAnnotations } from '@storybook/react-vite'
-
 import sbPreview, { type Theme } from './preview'
-
-setProjectAnnotations([sbPreview.composed])
 
 const defaultTheme = sbPreview.composed.globalTypes?.theme.defaultValue as
   | Theme
