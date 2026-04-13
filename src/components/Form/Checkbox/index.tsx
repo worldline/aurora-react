@@ -5,9 +5,9 @@ import {
   type CheckboxProps,
 } from 'react-aria-components'
 
-import { ErrorMessage } from '../Form/ErrorMessage'
-import { CheckIcon, CheckIndeterminateIcon } from '../icons'
-import { Typography } from '../Typography'
+import { ErrorMessage } from '@/components/Form/ErrorMessage'
+import { CheckIcon, CheckIndeterminateIcon } from '@/components/icons'
+import { Typography } from '@/components/Typography'
 
 import styles from './Checkbox.module.css'
 
