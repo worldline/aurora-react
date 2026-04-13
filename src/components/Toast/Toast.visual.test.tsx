@@ -1,5 +1,5 @@
-import { cleanup } from '@testing-library/react'
-import { afterEach, describe, expect, test } from 'vitest'
+import { act } from '@testing-library/react'
+import { describe, expect, test } from 'vitest'
 import { page, userEvent } from 'vitest/browser'
 
 import { themes } from '@/__tests__/ThemeWrapper'
@@ -72,18 +72,19 @@ describe('Toast', () => {
     describe.each(['info', 'success', 'warning', 'error'] as const)(
       '%s',
       (type) => {
-        afterEach(() => {
-          cleanup()
-        })
         test('', async () => {
           await render(<ToastPage variant={type} />, theme)
-          await user.click(page.getByRole('button', { name: 'Show Toast' }))
+          await act(async () => {
+            await user.click(page.getByRole('button', { name: 'Show Toast' }))
+          })
 
           await expect(page.getByTestId(testId)).toMatchScreenshot()
 
-          await user.click(
-            page.getByRole('button', { name: 'Close all Toasts' }),
-          )
+          await act(async () => {
+            await user.click(
+              page.getByRole('button', { name: 'Close all Toasts' }),
+            )
+          })
         })
       },
     )
