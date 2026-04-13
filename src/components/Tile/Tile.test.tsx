@@ -15,7 +15,7 @@ describe('Tile', () => {
           overline="Step 1"
           description="Get help from our team"
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -30,7 +30,7 @@ describe('Tile', () => {
 
   describe('orientation', () => {
     test('should default to horizontal', () => {
-      render(<Tile title="Title" trailing={TrailingArrow} onClick={vi.fn()} />)
+      render(<Tile title="Title" trailing={TrailingArrow} onAction={vi.fn()} />)
 
       expect(screen.getByRole('button', { name: 'Title' })).toHaveAttribute(
         'data-orientation',
@@ -44,7 +44,7 @@ describe('Tile', () => {
           title="Title"
           orientation="vertical"
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -62,7 +62,7 @@ describe('Tile', () => {
           title="Title"
           disabled
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -78,7 +78,7 @@ describe('Tile', () => {
           title="Title"
           selected
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -94,7 +94,7 @@ describe('Tile', () => {
           selected
           disabled
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -109,7 +109,7 @@ describe('Tile', () => {
           title="Title"
           focusVisible
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -125,7 +125,7 @@ describe('Tile', () => {
           focusVisible
           disabled
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -140,7 +140,7 @@ describe('Tile', () => {
           title="Title"
           hovered
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -156,7 +156,7 @@ describe('Tile', () => {
           hovered
           disabled
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -172,7 +172,7 @@ describe('Tile', () => {
           hovered
           selected
           trailing={TrailingArrow}
-          onClick={vi.fn()}
+          onAction={vi.fn()}
         />,
       )
 
@@ -183,32 +183,36 @@ describe('Tile', () => {
   })
 
   describe('interaction', () => {
-    test('should call onClick when clicked', async () => {
+    test('should call onAction when clicked', async () => {
       const user = userEvent.setup()
-      const onClick = vi.fn()
+      const onAction = vi.fn()
 
-      render(<Tile title="Title" trailing={TrailingArrow} onClick={onClick} />)
+      render(
+        <Tile title="Title" trailing={TrailingArrow} onAction={onAction} />,
+      )
 
       await user.click(screen.getByRole('button', { name: 'Title' }))
 
-      expect(onClick).toHaveBeenCalledTimes(1)
+      expect(onAction).toHaveBeenCalledTimes(1)
     })
 
     test('should receive focus when tabbing to an interactive tile', async () => {
       const user = userEvent.setup()
 
-      render(<Tile title="Title" trailing={TrailingArrow} onClick={vi.fn()} />)
+      render(<Tile title="Title" trailing={TrailingArrow} onAction={vi.fn()} />)
 
       await user.tab()
 
       expect(screen.getByRole('button', { name: 'Title' })).toHaveFocus()
     })
 
-    test('should call onClick when Enter or Space is pressed on a focused interactive tile', async () => {
+    test('should call onAction when Enter or Space is pressed on a focused interactive tile', async () => {
       const user = userEvent.setup()
-      const onClick = vi.fn()
+      const onAction = vi.fn()
 
-      render(<Tile title="Title" trailing={TrailingArrow} onClick={onClick} />)
+      render(
+        <Tile title="Title" trailing={TrailingArrow} onAction={onAction} />,
+      )
       const tile = screen.getByRole('button', { name: 'Title' })
 
       await user.tab()
@@ -217,7 +221,7 @@ describe('Tile', () => {
 
       expect(tile).toHaveFocus()
 
-      expect(onClick).toHaveBeenCalledTimes(2)
+      expect(onAction).toHaveBeenCalledTimes(2)
     })
   })
 })

@@ -57,13 +57,14 @@ interface TileBaseProps extends TileContentProps, TileStateProps {
 }
 
 interface StandaloneTileProps extends TileBaseProps {
-  /** Handler called when the tile is clicked
+  /**
+   * Handler called when the Tile is activated
    */
-  onClick: () => void
+  onAction: () => void
 }
 
 interface ComposedTileProps extends TileBaseProps {
-  onClick?: never
+  onAction?: never
 }
 
 type TileProps = StandaloneTileProps | ComposedTileProps
@@ -73,7 +74,7 @@ const Tile = ({
   orientation = 'horizontal',
   disabled,
   selected,
-  onClick,
+  onAction,
   focusVisible,
   hovered,
   icon,
@@ -91,12 +92,12 @@ const Tile = ({
       })
     : null
 
-  const isInteractive = !!onClick && !disabled
+  const isInteractive = !!onAction && !disabled
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if ((event.key === 'Enter' || event.key === ' ') && isInteractive) {
       event.preventDefault()
-      onClick()
+      onAction()
     }
   }
 
@@ -109,10 +110,10 @@ const Tile = ({
       data-selected={(selected && !disabled) || undefined}
       data-focus-visible={(focusVisible && !disabled) || undefined}
       data-hovered={(hovered && !selected && !disabled) || undefined}
-      onClick={isInteractive ? onClick : undefined}
+      onClick={isInteractive ? onAction : undefined}
       onKeyDown={isInteractive ? handleKeyDown : undefined}
       tabIndex={isInteractive ? 0 : undefined}
-      role={onClick ? 'button' : undefined}
+      role={onAction ? 'button' : undefined}
     >
       {iconElement}
       <div className={styles.content}>
