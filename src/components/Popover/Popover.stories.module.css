@@ -1,0 +1,21 @@
+.custom-trigger {
+  padding: var(--au-spacing-xs);
+  background-color: var(--au-surface-neutral-medium);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  border-radius: var(--au-radius-rounded);
+  cursor: pointer;
+}
+
+.custom-anchor-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-sm);
+}
+
+.anchor-text {
+  padding-left: var(--au-spacing-xs);
+}
+
+.popover-content {
+  padding: var(--au-spacing-sm);
+}

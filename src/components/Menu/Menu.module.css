@@ -1,0 +1,13 @@
+.container {
+  width: 280px;
+  padding: var(--au-spacing-xs) var(--au-spacing-2xs);
+  background: var(--au-surface-neutral-low);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  border-radius: var(--au-radius-sm);
+  box-shadow: var(--au-interactive-overlay);
+  outline: none;
+}
+
+.header + [role='separator'] {
+  margin-top: 0;
+}

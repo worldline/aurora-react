@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--au-spacing-2xs);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--au-spacing-md) var(--au-spacing-xs);
+  gap: var(--au-spacing-3xs);
+  overflow: hidden;
+}
+
+.content > * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
