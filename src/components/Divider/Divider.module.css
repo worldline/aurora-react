@@ -1,0 +1,6 @@
+.container {
+  width: 100%;
+  height: var(--au-border-width-thin);
+  background: var(--au-border-neutral-low);
+  border: 0;
+}
