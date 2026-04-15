@@ -1,3 +1,5 @@
+'use client'
+
 import cn from 'classnames'
 import { useId, type ComponentProps } from 'react'
 import {

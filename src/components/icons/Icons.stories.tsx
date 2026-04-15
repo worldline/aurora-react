@@ -112,13 +112,13 @@ const IconsGallery = () => {
           textColor="contentPrimary"
         >
           For decorative icons you should set the{' '}
-          <Code inline>aria-hidden</Code> attribute to <Code inline>true</Code>{' '}
-          to hide them from assistive technologies. For informative icons, you
-          should provide a useful <Code inline>title</Code>.
+          <Code inline>aria-hidden</Code> attribute to hide them from assistive
+          technologies. For informative icons, you should provide a useful{' '}
+          <Code inline>title</Code>.
         </Typography>
         <Code>
           {
-            '<Check size={24} aria-hidden />\n<WorldlineLogoLarge size={24} title="Worldline logo" />'
+            '<CheckIcon size={24} aria-hidden />\n<WorldlineLogoLargeIcon size={24} title="Worldline logo" />'
           }
         </Code>
       </div>

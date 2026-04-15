@@ -54,8 +54,9 @@ export const ButtonVariantWithCustomElement: Story = {
     docs: {
       description: {
         story: `
-This story demonstrates how to use the \`render\` prop to customize the rendered element. In this example, we render a standard anchor tag, but you could replace it with a React Router Link or any other component. You would typically create your own Link component that wraps the Aurora Link and provides this custom rendering logic, so you can use it throughout your application without needing to specify the \`render\` prop each time.
+This story demonstrates how to use the \`render\` prop to customize the rendered element. In this example, we render a standard anchor tag, but you could replace it with a React Router Link, a NextJs Link or any other component. You would typically create your own Link component that wraps the Aurora Link and provides this custom rendering logic, so you can use it throughout your application without needing to specify the \`render\` prop each time.
 
+Example of a custom Link component that uses React Router's Link:
  \`\`\`tsx
 import { Link as AuroraLink } from '@worldline/aurora-react/components'
 import type { ComponentProps } from 'react'
@@ -89,6 +90,33 @@ The \`DistributiveOmit\` is a TypeScript utility type that allows us to omit a p
 type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
   ? Omit<T, K>
   : never
+\`\`\`
+
+Example of a custom Link component that uses NextJs Link:
+\`\`\`tsx
+'use client'
+
+import { Link as AuroraLink } from '@worldline/aurora-react/components'
+import type { ComponentProps } from 'react'
+import NextLink from 'next/link'
+
+type Props = ComponentProps<typeof AuroraLink> & ComponentProps<typeof NextLink>
+
+const Link = (props: Props) => (
+  <AuroraLink
+    {...props}
+    render={(domProps) => {
+      if ('href' in domProps) {
+        return <NextLink {...domProps} href={domProps.href} />
+      }
+      throw new Error("Expected 'href' in domProps for Link component")
+    }}
+  >
+    {props.children}
+  </AuroraLink>
+)
+
+export { Link }
 \`\`\`
 `,
       },

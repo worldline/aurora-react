@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable @eslint-react/no-clone-element */
 
 import cn from 'classnames'

@@ -1,3 +1,5 @@
+'use client'
+
 import cn from 'classnames'
 import { Link as AriaLink, type LinkProps } from 'react-aria-components'
 

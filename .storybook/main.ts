@@ -6,6 +6,7 @@ export default defineMain({
   framework: '@storybook/react-vite',
   stories: [
     './Introduction.stories.tsx',
+    './GetStarted.stories.tsx',
     {
       directory: '../src/components',
       files: '**/*.stories.tsx',
