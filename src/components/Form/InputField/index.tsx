@@ -1,3 +1,5 @@
+'use client'
+
 import { announce } from '@react-aria/live-announcer'
 import cn from 'classnames'
 import { useEffect, type ReactElement } from 'react'
