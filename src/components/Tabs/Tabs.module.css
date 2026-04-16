@@ -1,0 +1,52 @@
+.tabs {
+  display: flex;
+  border-bottom: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--au-spacing-sm);
+  border-bottom: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  color: var(--au-content-secondary);
+  cursor: pointer;
+}
+
+.tab[data-hovered] {
+  color: var(--au-content-primary);
+}
+
+.tab[data-selected] {
+  color: var(--au-content-primary);
+  border-bottom: var(--au-border-width-thin) solid var(--au-border-brand-solid);
+  outline: none;
+}
+
+.tab[data-disabled] {
+  cursor: default;
+  border-bottom: var(--au-border-width-thin) solid var(--au-border-disabled);
+}
+
+.tab[data-focus-visible] {
+  outline: var(--au-border-width-medium) solid var(--au-surface-brand-solid);
+  outline-offset: var(--au-border-width-medium);
+  z-index: 1;
+}
+
+.tabs[data-behaviour='left'] {
+  justify-content: flex-start;
+}
+
+.tabs[data-behaviour='left'] .tab {
+  flex: 0 0 auto;
+}
+
+.tabs[data-behaviour='fill'] {
+  justify-content: stretch;
+}
+
+.tabs[data-behaviour='fill'] .tab {
+  flex: 1 0 0;
+  min-width: 0;
+}
