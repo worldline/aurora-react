@@ -9,6 +9,13 @@ export { InputField } from './Form/InputField'
 export * from './icons'
 export { Link } from './Link'
 export { Menu } from './Menu'
+export {
+  Modal,
+  type Action,
+  type ModalActionsAlignment,
+  type ModalActionsProps,
+  type ModalProps,
+} from './Modal'
 export { Popover } from './Popover'
 export { Pressable } from './Pressable'
 export { Stepper, type StepItem } from './Stepper'
