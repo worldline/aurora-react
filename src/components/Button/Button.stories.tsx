@@ -11,6 +11,14 @@ const meta: Meta<typeof Button> = {
     layout: 'centered',
   },
   argTypes: {
+    className: {
+      control: 'text',
+      description: 'Additional CSS class name',
+      table: {
+        type: { summary: 'string' },
+        category: 'Appearance',
+      },
+    },
     variant: {
       control: 'select',
       options: ['primary', 'secondary', 'link'],
@@ -18,6 +26,7 @@ const meta: Meta<typeof Button> = {
       table: {
         defaultValue: { summary: 'primary' },
         type: { summary: "'primary' | 'secondary' | 'link'" },
+        category: 'Appearance',
       },
     },
     size: {
@@ -27,6 +36,17 @@ const meta: Meta<typeof Button> = {
       table: {
         defaultValue: { summary: 'medium' },
         type: { summary: "'small' | 'medium' | 'large'" },
+        category: 'Appearance',
+      },
+    },
+    leadingIcon: {
+      table: {
+        category: 'Content',
+      },
+    },
+    trailingIcon: {
+      table: {
+        category: 'Content',
       },
     },
     children: {
@@ -34,6 +54,7 @@ const meta: Meta<typeof Button> = {
       description: 'Button contents (text or React elements)',
       table: {
         type: { summary: 'ReactNode' },
+        category: 'Content',
       },
     },
     isDisabled: {
@@ -42,6 +63,7 @@ const meta: Meta<typeof Button> = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Behaviour',
       },
     },
     onPress: {
@@ -50,13 +72,7 @@ const meta: Meta<typeof Button> = {
         'Handler called when the button is pressed (React Aria uses onPress instead of onClick)',
       table: {
         type: { summary: '(e: PressEvent) => void' },
-      },
-    },
-    className: {
-      control: 'text',
-      description: 'Additional CSS class name',
-      table: {
-        type: { summary: 'string' },
+        category: 'Behaviour',
       },
     },
     type: {
@@ -66,6 +82,7 @@ const meta: Meta<typeof Button> = {
       table: {
         defaultValue: { summary: 'button' },
         type: { summary: "'button' | 'submit' | 'reset'" },
+        category: 'Behaviour',
       },
     },
     autoFocus: {
@@ -73,6 +90,7 @@ const meta: Meta<typeof Button> = {
       description: 'Whether the button should receive focus on mount',
       table: {
         type: { summary: 'boolean' },
+        category: 'Behaviour',
       },
     },
   },

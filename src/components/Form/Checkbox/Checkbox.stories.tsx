@@ -9,6 +9,11 @@ const meta: Meta<typeof Checkbox> = {
     layout: 'centered',
   },
   argTypes: {
+    'aria-label': {
+      table: {
+        category: 'Accessibility',
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium'],
@@ -16,6 +21,7 @@ const meta: Meta<typeof Checkbox> = {
       table: {
         defaultValue: { summary: 'small' },
         type: { summary: "'small' | 'medium'" },
+        category: 'Appearance',
       },
     },
     title: {
@@ -23,6 +29,8 @@ const meta: Meta<typeof Checkbox> = {
       description: 'Title text for the checkbox',
       table: {
         type: { summary: 'string' },
+
+        category: 'Content',
       },
     },
     helperText: {
@@ -30,6 +38,7 @@ const meta: Meta<typeof Checkbox> = {
       description: 'Helper text below the title',
       table: {
         type: { summary: 'string' },
+        category: 'Content',
       },
     },
     error: {
@@ -38,6 +47,7 @@ const meta: Meta<typeof Checkbox> = {
         'Error state - boolean for visual state only, string to display error message',
       table: {
         type: { summary: 'boolean | string' },
+        category: 'Content',
       },
     },
     children: {
@@ -45,6 +55,7 @@ const meta: Meta<typeof Checkbox> = {
       description: 'Custom label content (alternative to title/helperText)',
       table: {
         type: { summary: 'ReactNode' },
+        category: 'Content',
       },
     },
     isDisabled: {
@@ -53,6 +64,7 @@ const meta: Meta<typeof Checkbox> = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Behaviour',
       },
     },
     isIndeterminate: {
@@ -61,6 +73,7 @@ const meta: Meta<typeof Checkbox> = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Behaviour',
       },
     },
     isSelected: {
@@ -69,6 +82,7 @@ const meta: Meta<typeof Checkbox> = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Selection',
       },
     },
     defaultSelected: {
@@ -76,6 +90,7 @@ const meta: Meta<typeof Checkbox> = {
       description: 'Default selected state (uncontrolled)',
       table: {
         type: { summary: 'boolean' },
+        category: 'Selection',
       },
     },
     onChange: {
@@ -83,6 +98,7 @@ const meta: Meta<typeof Checkbox> = {
       description: 'Handler called when the checkbox state changes',
       table: {
         type: { summary: '(isSelected: boolean) => void' },
+        category: 'Selection',
       },
     },
   },

@@ -17,6 +17,11 @@ const meta: Meta<typeof Alert> = {
     children: 'Our support team is available 24/7 to assist you',
   },
   argTypes: {
+    id: {
+      table: {
+        category: 'Accessibility',
+      },
+    },
     variant: {
       control: 'select',
       options: ['info', 'success', 'warning', 'error'],
@@ -24,18 +29,23 @@ const meta: Meta<typeof Alert> = {
         category: 'Appearance',
       },
     },
-
+    className: {
+      table: {
+        category: 'Appearance',
+      },
+    },
     title: {
       control: 'text',
       table: {
         category: 'Content',
       },
     },
-
-    children: { control: 'text', table: { category: 'Content' } },
-
+    children: {
+      control: 'text',
+      table: { category: 'Content' },
+    },
     onClose: {
-      table: { category: 'Events' },
+      table: { category: 'Behaviour' },
     },
   },
 } satisfies Meta<typeof Alert>

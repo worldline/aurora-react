@@ -24,6 +24,16 @@ const meta: Meta<typeof Popover> = {
       control: false,
       table: {
         type: { summary: 'ReactNode' },
+        category: 'Content',
+      },
+    },
+    triggerRef: {
+      control: false,
+      description:
+        'A ref to the element that the popover should be anchored to. By default, it will anchor to the trigger element (e.g. Menu.Trigger), but you can use this prop to anchor to a different element.',
+      table: {
+        type: { summary: 'RefObject<HTMLElement>' },
+        category: 'Positioning',
       },
     },
     placement: {
@@ -52,6 +62,9 @@ const meta: Meta<typeof Popover> = {
         'end top',
         'end bottom',
       ],
+      table: {
+        category: 'Positioning',
+      },
     },
     offset: {
       control: 'number',
@@ -60,6 +73,7 @@ const meta: Meta<typeof Popover> = {
       table: {
         defaultValue: { summary: '0' },
         type: { summary: 'number' },
+        category: 'Positioning',
       },
     },
     crossOffset: {
@@ -69,30 +83,7 @@ const meta: Meta<typeof Popover> = {
       table: {
         defaultValue: { summary: '0' },
         type: { summary: 'number' },
-      },
-    },
-    isOpen: {
-      control: 'boolean',
-      description:
-        'If not provided, the popover will be uncontrolled and manage its own open state.',
-      table: {
-        type: { summary: 'boolean' },
-      },
-    },
-    defaultOpen: {
-      control: 'boolean',
-      description:
-        'The initial open state of the popover when used in uncontrolled mode.',
-      table: {
-        type: { summary: 'boolean' },
-      },
-    },
-    onOpenChange: {
-      action: 'openChange',
-      description:
-        'Handler called when the open state of the popover changes. Receives the new open state as a parameter.',
-      table: {
-        type: { summary: '(isOpen: boolean) => void' },
+        category: 'Positioning',
       },
     },
     shouldFlip: {
@@ -101,14 +92,34 @@ const meta: Meta<typeof Popover> = {
         'Whether the popover should automatically flip to the opposite side if there is not enough space in the preferred placement.',
       table: {
         type: { summary: 'boolean' },
+        category: 'Positioning',
       },
     },
-    triggerRef: {
-      control: false,
+    isOpen: {
+      control: 'boolean',
       description:
-        'A ref to the element that the popover should be anchored to. By default, it will anchor to the trigger element (e.g. Menu.Trigger), but you can use this prop to anchor to a different element.',
+        'If not provided, the popover will be uncontrolled and manage its own open state.',
       table: {
-        type: { summary: 'RefObject<HTMLElement>' },
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    defaultOpen: {
+      control: 'boolean',
+      description:
+        'The initial open state of the popover when used in uncontrolled mode.',
+      table: {
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    onOpenChange: {
+      action: 'openChange',
+      description:
+        'Handler called when the open state of the popover changes. Receives the new open state as a parameter.',
+      table: {
+        type: { summary: '(isOpen: boolean) => void' },
+        category: 'Behaviour',
       },
     },
   },

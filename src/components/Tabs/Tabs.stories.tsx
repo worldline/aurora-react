@@ -20,6 +20,7 @@ const wideContainerStyle = {
 const meta = {
   title: 'components/Tabs',
   component: Tabs,
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
@@ -30,6 +31,7 @@ const meta = {
         'The currently selected tab key (controlled). Use with onSelectionChange.',
       table: {
         type: { summary: 'Key | null' },
+        category: 'Behaviour',
       },
     },
     defaultSelectedKey: {
@@ -37,6 +39,7 @@ const meta = {
       description: 'The initial selected tab key (uncontrolled)',
       table: {
         type: { summary: 'Key' },
+        category: 'Behaviour',
       },
     },
     onSelectionChange: {
@@ -44,6 +47,7 @@ const meta = {
       description: 'Handler called when the selected tab changes',
       table: {
         type: { summary: '(key: Key) => void' },
+        category: 'Behaviour',
       },
     },
     isDisabled: {
@@ -52,6 +56,7 @@ const meta = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Behaviour',
       },
     },
     disabledKeys: {
@@ -59,6 +64,7 @@ const meta = {
       description: 'Array of tab keys that should be disabled',
       table: {
         type: { summary: 'Iterable<Key>' },
+        category: 'Behaviour',
       },
     },
     className: {
@@ -66,6 +72,7 @@ const meta = {
       description: 'Additional CSS class name',
       table: {
         type: { summary: 'string' },
+        category: 'Appearance',
       },
     },
     children: {
@@ -73,6 +80,7 @@ const meta = {
         'Tab list and tab panels (use Tabs.List, Tabs.Tab, and Tabs.Panel components)',
       table: {
         type: { summary: 'ReactNode' },
+        category: 'Content',
       },
     },
   },

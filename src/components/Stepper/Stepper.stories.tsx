@@ -18,12 +18,18 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
+    steps: {
+      table: {
+        category: 'Content',
+      },
+    },
     type: {
       control: 'select',
       options: ['check', 'number', 'icon'],
       table: {
         type: { summary: "'check' | 'number' | 'icon'" },
         defaultValue: { summary: 'check' },
+        category: 'Appearance',
       },
     },
     connector: {
@@ -31,6 +37,17 @@ const meta = {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
+        category: 'Appearance',
+      },
+    },
+    'aria-label': {
+      table: {
+        category: 'Accessibility',
+      },
+    },
+    titleElement: {
+      table: {
+        category: 'Accessibility',
       },
     },
   },

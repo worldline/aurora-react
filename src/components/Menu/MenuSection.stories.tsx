@@ -23,6 +23,7 @@ const meta: Meta<typeof Menu.Section> = {
       description: 'Optional section title displayed above the items',
       table: {
         type: { summary: 'string' },
+        category: 'Content',
       },
     },
     children: {
@@ -30,6 +31,7 @@ const meta: Meta<typeof Menu.Section> = {
       description: 'Menu.Item(s) and Menu.Divider(s) within the section',
       table: {
         type: { summary: 'ReactNode' },
+        category: 'Content',
       },
     },
     id: {
@@ -45,6 +47,7 @@ const meta: Meta<typeof Menu.Section> = {
         'An array of items for dynamic menus within this section. Pass a render function as children to iterate over them.',
       table: {
         type: { summary: 'Iterable<T>' },
+        category: 'Dynamic Menu',
       },
     },
     dependencies: {
@@ -53,6 +56,7 @@ const meta: Meta<typeof Menu.Section> = {
         'Values that invalidate the item cache when using dynamic menus.',
       table: {
         type: { summary: 'ReadonlyArray<any>' },
+        category: 'Dynamic Menu',
       },
     },
   },

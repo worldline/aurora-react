@@ -10,6 +10,33 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    size: {
+      table: {
+        category: 'Appearance',
+      },
+    },
+    type: {
+      table: {
+        category: 'Appearance',
+      },
+    },
+    label: {
+      table: {
+        category: 'Content',
+      },
+    },
+    leadingIcon: {
+      table: {
+        category: 'Content',
+      },
+    },
+    trailingIcon: {
+      table: {
+        category: 'Content',
+      },
+    },
+  },
 } satisfies Meta<typeof Chip>
 
 export default meta
