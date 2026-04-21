@@ -9,6 +9,11 @@ const meta: Meta<typeof InputField> = {
     layout: 'centered',
   },
   argTypes: {
+    announceError: {
+      table: {
+        category: 'Accessibility',
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium'],
@@ -16,6 +21,17 @@ const meta: Meta<typeof InputField> = {
       table: {
         defaultValue: { summary: 'medium' },
         type: { summary: "'small' | 'medium'" },
+        category: 'Appearance',
+      },
+    },
+    style: {
+      table: {
+        category: 'Appearance',
+      },
+    },
+    className: {
+      table: {
+        category: 'Appearance',
       },
     },
     label: {
@@ -23,6 +39,7 @@ const meta: Meta<typeof InputField> = {
       description: 'Label text for the input field',
       table: {
         type: { summary: 'string' },
+        category: 'Content',
       },
     },
     error: {
@@ -30,6 +47,15 @@ const meta: Meta<typeof InputField> = {
       description: 'Error message to display',
       table: {
         type: { summary: 'string | boolean' },
+        category: 'Content',
+      },
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text',
+      table: {
+        type: { summary: 'string' },
+        category: 'Content',
       },
     },
     isDisabled: {
@@ -38,6 +64,7 @@ const meta: Meta<typeof InputField> = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Behaviour',
       },
     },
     isReadOnly: {
@@ -46,13 +73,7 @@ const meta: Meta<typeof InputField> = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
-      },
-    },
-    placeholder: {
-      control: 'text',
-      description: 'Placeholder text',
-      table: {
-        type: { summary: 'string' },
+        category: 'Behaviour',
       },
     },
   },

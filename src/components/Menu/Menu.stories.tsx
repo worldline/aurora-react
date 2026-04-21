@@ -20,6 +20,7 @@ const meta: Meta<typeof Menu> = {
       description: 'Optional header content displayed at the top of the menu.',
       table: {
         type: { summary: 'ReactNode' },
+        category: 'Content',
       },
     },
     children: {
@@ -28,6 +29,7 @@ const meta: Meta<typeof Menu> = {
         'Menu items, sections, and dividers. Use [Menu.Item](./?path=/docs/components-menu-menu-item--docs), [Menu.Section](./?path=/docs/components-menu-menu-section--docs), and Menu.Divider components.',
       table: {
         type: { summary: 'ReactNode' },
+        category: 'Content',
       },
     },
     items: {
@@ -36,6 +38,7 @@ const meta: Meta<typeof Menu> = {
         'An array of items for dynamic menus. Pass a render function as children to iterate over them.',
       table: {
         type: { summary: 'Iterable<T>' },
+        category: 'Dynamic Menu',
       },
     },
     dependencies: {
@@ -44,6 +47,7 @@ const meta: Meta<typeof Menu> = {
         'Values that invalidate the item cache when using a dynamic menu.',
       table: {
         type: { summary: 'ReadonlyArray<any>' },
+        category: 'Dynamic Menu',
       },
     },
     selectionMode: {
@@ -53,6 +57,7 @@ const meta: Meta<typeof Menu> = {
       table: {
         defaultValue: { summary: 'none' },
         type: { summary: "'none' | 'single' | 'multiple'" },
+        category: 'Selection',
       },
     },
     onAction: {
@@ -61,6 +66,7 @@ const meta: Meta<typeof Menu> = {
         'Handler called when a menu item is selected. Receives the item id.',
       table: {
         type: { summary: '(key: Key) => void' },
+        category: 'Selection',
       },
     },
     defaultSelectedKeys: {
@@ -69,6 +75,7 @@ const meta: Meta<typeof Menu> = {
         'The initial selected keys (uncontrolled). Items must have an id prop and selectionMode must be set.',
       table: {
         type: { summary: 'Iterable<Key>' },
+        category: 'Selection',
       },
     },
     selectedKeys: {
@@ -77,6 +84,7 @@ const meta: Meta<typeof Menu> = {
         'The currently selected keys (controlled). Use with onSelectionChange.',
       table: {
         type: { summary: 'Iterable<Key>' },
+        category: 'Selection',
       },
     },
     onSelectionChange: {
@@ -85,23 +93,7 @@ const meta: Meta<typeof Menu> = {
         'Handler called when the selection changes. Receives a Set of selected keys.',
       table: {
         type: { summary: '(keys: Selection) => void' },
-      },
-    },
-    disabledKeys: {
-      control: 'object',
-      description:
-        'A set of keys for items that are disabled. These items cannot be selected or pressed.',
-      table: {
-        type: { summary: 'Iterable<Key>' },
-      },
-    },
-    disallowEmptySelection: {
-      control: 'boolean',
-      description:
-        'Whether the menu should prevent the user from deselecting all items.',
-      table: {
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
+        category: 'Selection',
       },
     },
     shouldCloseOnSelect: {
@@ -111,6 +103,32 @@ const meta: Meta<typeof Menu> = {
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Selection',
+      },
+    },
+    disallowEmptySelection: {
+      control: 'boolean',
+      description:
+        'Whether the menu should prevent the user from deselecting all items.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Selection',
+      },
+    },
+    disabledKeys: {
+      control: 'object',
+      description:
+        'A set of keys for items that are disabled. These items cannot be selected or pressed.',
+      table: {
+        type: { summary: 'Iterable<Key>' },
+        category: 'Behaviour',
+      },
+    },
+    'aria-label': {
+      control: 'text',
+      table: {
+        category: 'Accessibility',
       },
     },
     shouldFocusWrap: {
@@ -120,6 +138,7 @@ const meta: Meta<typeof Menu> = {
       table: {
         defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
+        category: 'Accessibility',
       },
     },
   },

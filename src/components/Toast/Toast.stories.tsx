@@ -85,7 +85,7 @@ const meta: Meta<typeof ToastPage> = {
       control: 'select',
       options: [undefined, 1000, 2000, 5000, 20000],
       table: {
-        category: 'Behavior',
+        category: 'Behaviour',
       },
     },
   },

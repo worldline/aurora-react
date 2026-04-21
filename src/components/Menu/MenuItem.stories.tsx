@@ -18,29 +18,40 @@ const meta: Meta<typeof Menu.Item> = {
     },
   },
   argTypes: {
+    isDisabled: {
+      control: 'boolean',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    onAction: {
+      action: 'action',
+      table: {
+        type: { summary: '() => void' },
+        category: 'Behaviour',
+      },
+    },
     title: {
       control: 'text',
       table: {
         type: { summary: 'string' },
+        category: 'Content',
       },
     },
     leadingIcon: {
       control: false,
       table: {
         type: { summary: 'ReactElement' },
+        category: 'Content',
       },
     },
     description: {
       control: 'text',
       table: {
         type: { summary: 'string' },
-      },
-    },
-    isDisabled: {
-      control: 'boolean',
-      table: {
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
+        category: 'Content',
       },
     },
     id: {
@@ -54,6 +65,7 @@ const meta: Meta<typeof Menu.Item> = {
       description: 'An href attribute to render the item as a link.',
       table: {
         type: { summary: 'string' },
+        category: 'Link',
       },
     },
     target: {
@@ -62,12 +74,7 @@ const meta: Meta<typeof Menu.Item> = {
         'An href target attribute when the item is rendered as a link (e.g. "_blank")',
       table: {
         type: { summary: 'string' },
-      },
-    },
-    onAction: {
-      action: 'action',
-      table: {
-        type: { summary: '() => void' },
+        category: 'Link',
       },
     },
   },
