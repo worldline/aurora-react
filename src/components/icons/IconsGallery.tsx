@@ -1,30 +1,23 @@
-import { useState, type ComponentType, type SVGProps } from 'react'
+import { useState, type SVGProps } from 'react'
 
 import { FeaturedIcon } from '@/components/FeaturedIcon'
 import { InputField } from '@/components/Form/InputField'
-import preview from '@/storybook/preview'
 
 import { Code } from '../storybook/Code'
 import { Typography } from '../Typography'
 
 import styles from './Icons.stories.module.css'
 
-type IconProps = SVGProps<SVGSVGElement> & {
-  size?: number | string
+const IconsGallery = ({
+  title,
+  icons,
+}: {
   title: string
-}
-
-const iconModules = import.meta.glob<{ default: ComponentType<IconProps> }>(
-  ['./*.tsx', '!./Icons.stories.tsx'],
-  { eager: true },
-)
-
-const icons = Object.entries(iconModules).map(([path, module]) => {
-  const name = path.split('/').pop()?.replace('.tsx', '') ?? ''
-  return { name, Icon: module.default }
-})
-
-const IconsGallery = () => {
+  icons: ReadonlyArray<{
+    name: string
+    Icon: React.ComponentType<{ title: string }>
+  }>
+}) => {
   const [search, setSearch] = useState('')
 
   const filteredIcons = icons.filter(({ name }) =>
@@ -35,7 +28,7 @@ const IconsGallery = () => {
     <>
       <div className={styles.icons}>
         <Typography element="h1" textStyle="titleLg" textColor="contentPrimary">
-          Icons
+          {title}
         </Typography>
         <Typography
           className={styles.paragraph}
@@ -43,8 +36,8 @@ const IconsGallery = () => {
           textStyle="bodyMd"
           textColor="contentPrimary"
         >
-          These are the icons being used in our design system. They are
-          available as React components.
+          Icons available in Aurora design system. They are available as React
+          components.
         </Typography>
         <InputField
           type="text"
@@ -59,7 +52,7 @@ const IconsGallery = () => {
             filteredIcons.map(({ name, Icon }) => (
               <div key={name} className={styles['icons-item']}>
                 <FeaturedIcon
-                  icon={<Icon title="alt text" />}
+                  icon={<Icon title={name} />}
                   type="square"
                   emphasis="medium"
                   size="2xlarge"
@@ -118,7 +111,7 @@ const IconsGallery = () => {
         </Typography>
         <Code>
           {
-            '<CheckIcon size={24} aria-hidden />\n<WorldlineLogoLargeIcon size={24} title="Worldline logo" />'
+            '<SomeDecorativeIcon size={24} aria-hidden />\n<NonDecorativeIcon size={24} title="Descriptive title" />'
           }
         </Code>
       </div>
@@ -126,13 +119,9 @@ const IconsGallery = () => {
   )
 }
 
-const meta = preview.meta({
-  title: 'components/Icons',
-  component: IconsGallery,
-  parameters: {
-    layout: 'fullscreen',
-  },
-  tags: ['!autodocs'],
-})
+type IconProps = SVGProps<SVGSVGElement> & {
+  size?: number | string
+  title: string
+}
 
-export const Icons = meta.story()
+export { IconsGallery, type IconProps }

@@ -38,12 +38,10 @@ export default ${componentName}
     plugins: [
       { name: 'removeViewBox', active: false },
       { name: 'removeDimensions', active: true },
-      { name: 'removeAttrs', params: { attrs: '(fill|stroke)' } },
     ],
   },
   svgProps: {
     width: '{size}',
-    height: '{size}',
     fill: 'currentColor',
     role: 'img',
   },
