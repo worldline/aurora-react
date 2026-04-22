@@ -25,9 +25,10 @@ dist-ssr
 *.sw?
 
 # Icons svgr
-src/components/icons/*
-!src/components/icons/Icons.stories.tsx
-!src/components/icons/Icons.stories.module.css
+src/components/icons/*/index.ts
+src/components/icons/**/*.tsx
+!src/components/icons/IconsGallery.tsx
+!src/components/icons/**/*.stories.tsx
 
 # Storybook
 *storybook.log

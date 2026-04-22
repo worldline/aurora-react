@@ -52,7 +52,7 @@
     "test:serve-report": "npx vite preview --outDir .vitest-reports --open",
     "coverage": "npm run test -- --coverage --project=unit --project=storybook",
     "typecheck": "tsc -b",
-    "icons:generate": "npx @svgr/cli  --config-file svgr.config.js -- src/assets/icons/svg"
+    "icons:generate": "npx @svgr/cli --config-file svgr.config.js -- src/assets/icons"
   },
   "dependencies": {
     "@react-aria/live-announcer": "3.4.4",
