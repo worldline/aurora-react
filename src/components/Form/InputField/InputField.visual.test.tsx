@@ -9,12 +9,21 @@ import * as stories from './InputField.stories'
 const {
   Small,
   Medium,
+  Large,
   WithValue,
   WithoutLabel,
+  Required,
+  WithLeadingIcon,
+  WithTrailingIcon,
+  WithLeadingAndTrailing,
+  WithHelperText,
+  WithCharacterCount,
+  WithHelperTextAndCharacterCount,
   ReadOnly,
   Disabled,
   WithError,
   WithErrorMessage,
+  WithErrorAndCharacterCount,
 } = composeStories(stories)
 
 describe('InputField', () => {
@@ -29,6 +38,11 @@ describe('InputField', () => {
       await expect(getWrapper()).toMatchScreenshot()
     })
 
+    test('large size', async () => {
+      await render(<Large />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
     test('with value', async () => {
       await render(<WithValue />, theme)
       await expect(getWrapper()).toMatchScreenshot()
@@ -36,6 +50,41 @@ describe('InputField', () => {
 
     test('without label', async () => {
       await render(<WithoutLabel />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('required', async () => {
+      await render(<Required />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with leading icon', async () => {
+      await render(<WithLeadingIcon />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with trailing icon', async () => {
+      await render(<WithTrailingIcon />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with leading and trailing', async () => {
+      await render(<WithLeadingAndTrailing />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with helper text', async () => {
+      await render(<WithHelperText />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with character count', async () => {
+      await render(<WithCharacterCount />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with helper text and character count', async () => {
+      await render(<WithHelperTextAndCharacterCount />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
 
@@ -56,6 +105,11 @@ describe('InputField', () => {
 
     test('with error message', async () => {
       await render(<WithErrorMessage />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with error and character count', async () => {
+      await render(<WithErrorAndCharacterCount />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
   })
