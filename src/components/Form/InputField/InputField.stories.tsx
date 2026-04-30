@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { SearchIcon, WarningIcon } from '@/components/icons'
+
 import { InputField } from '.'
 
 const meta: Meta<typeof InputField> = {
@@ -16,11 +18,11 @@ const meta: Meta<typeof InputField> = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium'],
+      options: ['small', 'medium', 'large'],
       description: 'Size of the input field',
       table: {
-        defaultValue: { summary: 'medium' },
-        type: { summary: "'small' | 'medium'" },
+        defaultValue: { summary: 'small' },
+        type: { summary: "'small' | 'medium' | 'large'" },
         category: 'Appearance',
       },
     },
@@ -58,6 +60,23 @@ const meta: Meta<typeof InputField> = {
         category: 'Content',
       },
     },
+    helperText: {
+      control: 'text',
+      description: 'Helper text displayed below the input',
+      table: {
+        type: { summary: 'string' },
+        category: 'Content',
+      },
+    },
+    maxLength: {
+      control: 'number',
+      description:
+        'Maximum character length. When set, displays a character count below the input.',
+      table: {
+        type: { summary: 'number' },
+        category: 'Content',
+      },
+    },
     isDisabled: {
       control: 'boolean',
       description: 'Whether the input is disabled',
@@ -70,6 +89,16 @@ const meta: Meta<typeof InputField> = {
     isReadOnly: {
       control: 'boolean',
       description: 'Whether the input is read-only',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    isRequired: {
+      control: 'boolean',
+      description:
+        'Whether the input is required. Displays a * indicator next to the label.',
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
@@ -102,6 +131,13 @@ export const Medium: Story = {
   },
 }
 
+export const Large: Story = {
+  args: {
+    size: 'large',
+    label: 'Label',
+  },
+}
+
 export const WithValue: Story = {
   args: {
     label: 'Label',
@@ -112,6 +148,57 @@ export const WithValue: Story = {
 export const WithoutLabel: Story = {
   args: {
     'aria-label': 'Without visible label',
+  },
+}
+
+export const Required: Story = {
+  args: {
+    label: 'Label',
+    isRequired: true,
+  },
+}
+
+export const WithLeadingIcon: Story = {
+  args: {
+    label: 'Search',
+    leading: <SearchIcon aria-hidden size={24} />,
+  },
+}
+
+export const WithTrailingIcon: Story = {
+  args: {
+    label: 'Search',
+    trailing: <WarningIcon aria-hidden size={24} />,
+  },
+}
+
+export const WithLeadingAndTrailing: Story = {
+  args: {
+    label: 'Label',
+    leading: <SearchIcon aria-hidden size={24} />,
+    trailing: <WarningIcon aria-hidden size={24} />,
+  },
+}
+
+export const WithHelperText: Story = {
+  args: {
+    label: 'Label',
+    helperText: 'This is a hint text to help user.',
+  },
+}
+
+export const WithCharacterCount: Story = {
+  args: {
+    label: 'Label',
+    maxLength: 20,
+  },
+}
+
+export const WithHelperTextAndCharacterCount: Story = {
+  args: {
+    label: 'Label',
+    helperText: 'This is a hint text to help user.',
+    maxLength: 20,
   },
 }
 
@@ -142,5 +229,14 @@ export const WithErrorMessage: Story = {
   args: {
     label: 'Label',
     error: 'Error message',
+  },
+}
+
+export const WithErrorAndCharacterCount: Story = {
+  args: {
+    label: 'Label',
+    error: 'This is an error message.',
+    maxLength: 20,
+    defaultValue: 'Some text',
   },
 }
