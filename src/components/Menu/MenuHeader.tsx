@@ -11,9 +11,12 @@ interface MenuHeaderProps {
 }
 
 const MenuHeader = ({ children, className }: MenuHeaderProps) => (
-  <Menu.Section className={cn(styles.container, className)}>
-    <Header className={styles.content}>{children}</Header>
-  </Menu.Section>
+  <>
+    <Menu.Section className={cn(styles.section, className)}>
+      <Header className={styles.content}>{children}</Header>
+    </Menu.Section>
+    <Menu.Divider />
+  </>
 )
 
 export { MenuHeader, type MenuHeaderProps }

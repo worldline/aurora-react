@@ -141,6 +141,10 @@ export default defineConfig({
             },
             expect: {
               toMatchScreenshot: {
+                comparatorOptions: {
+                  threshold: 0.025,
+                  allowedMismatchedPixels: 3,
+                },
                 screenshotOptions: {
                   animations: 'disabled',
                 },

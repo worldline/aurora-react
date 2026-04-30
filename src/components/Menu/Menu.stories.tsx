@@ -206,7 +206,6 @@ export const ActionMenuWithHeader: Story = {
     ),
     children: (
       <>
-        <Menu.Divider />
         <Menu.Item leadingIcon={<BlockIcon />} title="Option 1" />
         <Menu.Item leadingIcon={<SettingsIcon />} title="Option 2" />
         <Menu.Item leadingIcon={<MailIcon />} title="Option 3" />
@@ -252,7 +251,6 @@ export const ActionMenuWithHeaderAndSections: Story = {
     ),
     children: (
       <>
-        <Menu.Divider />
         <Menu.Section title="Section 1">
           <Menu.Item leadingIcon={<BlockIcon />} title="Option 1" />
           <Menu.Item leadingIcon={<SettingsIcon />} title="Option 2" />
@@ -458,7 +456,6 @@ export const LongText: Story = {
     ),
     children: (
       <>
-        <Menu.Divider />
         <Menu.Item
           leadingIcon={<BlockIcon />}
           title="Very long option 1 text that should truncate with ellipsis"
