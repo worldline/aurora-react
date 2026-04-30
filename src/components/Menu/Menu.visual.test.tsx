@@ -1,6 +1,6 @@
 import { composeStories } from '@storybook/react'
 import { act } from '@testing-library/react'
-import { beforeEach, describe, expect, test } from 'vitest'
+import { describe, expect, test } from 'vitest'
 import { page, userEvent } from 'vitest/browser'
 
 import { themes } from '@/__tests__/ThemeWrapper'
@@ -27,12 +27,6 @@ const {
 
 describe('Menu', () => {
   describe.each(themes)('%s mode', (theme) => {
-    beforeEach(async () => {
-      // Unhover to avoid hover styles
-      const user = userEvent.setup()
-      await user.unhover(document.body)
-    })
-
     test('action menu', async () => {
       await render(<ActionMenu />, theme)
       await expect(getWrapper()).toMatchScreenshot()

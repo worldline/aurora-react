@@ -1,11 +1,16 @@
 .container {
   width: 280px;
-  padding: var(--au-spacing-xs) var(--au-spacing-2xs);
+  padding: var(--au-spacing-xs);
   background: var(--au-surface-neutral-low);
   border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
   border-radius: var(--au-radius-sm);
   box-shadow: var(--au-interactive-overlay);
   outline: none;
+}
+
+.container [role='menuitemradio'] + [role='menuitemradio'],
+.container [role='menuitemcheckbox'] + [role='menuitemcheckbox'] {
+  margin-top: var(--au-spacing-2xs);
 }
 
 .header + [role='separator'] {

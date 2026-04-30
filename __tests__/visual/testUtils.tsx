@@ -1,6 +1,6 @@
 import { render as rtlRender, type RenderOptions } from '@testing-library/react'
 import type { ReactElement } from 'react'
-import { page } from 'vitest/browser'
+import { page, userEvent } from 'vitest/browser'
 
 import { ThemeWrapper, type Theme } from '../ThemeWrapper'
 
@@ -19,6 +19,9 @@ const render = async (
   )
 
   await document.fonts.ready
+  // Unhover to avoid mouse position / hover styles from leaking between tests
+  const user = userEvent.setup()
+  await user.unhover(document.body, { position: { x: 9999, y: 9999 } })
 
   return result
 }

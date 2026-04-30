@@ -1,7 +1,6 @@
-.container {
+.section {
   display: flex;
   flex-direction: column;
-  padding: 0 var(--au-spacing-2xs);
 }
 
 .content {
