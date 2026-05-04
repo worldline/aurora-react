@@ -9,7 +9,7 @@
  *   node scripts/download-icons.js [--dir basics|file-types|payment-methods] <icon_name[:fill]>...
  *
  * Examples:
- *   node scripts/download-icons.js add close search
+ *   node scripts/download-icons.js heart star music_note
  *   node scripts/download-icons.js account_circle:fill home:fill notifications:fill
  *   node scripts/download-icons.js --dir file-types picture_as_pdf
  *
@@ -24,9 +24,9 @@
  */
 
 import { mkdir, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
+import { join } from 'node:path'
 import process from 'node:process'
-import { fileURLToPath } from 'node:url'
+import { parseArgs } from 'node:util'
 
 const BASE_URL =
   'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/symbols/web'
@@ -37,8 +37,7 @@ const FETCH_TIMEOUT_MS = 10_000
 const ALLOWED_DIRS = new Set(['basics', 'file-types', 'payment-methods'])
 const ALLOWED_VARIANTS = new Set(['fill', undefined])
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const ICONS_DIR = join(__dirname, '..', 'src', 'assets', 'icons')
+const ICONS_DIR = join(import.meta.dirname, '..', 'src', 'assets', 'icons')
 
 /**
  * @param {string} iconName - snake_case Google Material Symbol name
@@ -78,16 +77,9 @@ const downloadIcon = async (iconName, fill, targetDir) => {
 
   await mkdir(join(ICONS_DIR, targetDir), { recursive: true })
 
-  const controller = new AbortController()
-  const timeout = setTimeout(() => {
-    controller.abort()
-  }, FETCH_TIMEOUT_MS)
-
-  const response = await fetch(url, { signal: controller.signal }).finally(
-    () => {
-      clearTimeout(timeout)
-    },
-  )
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  })
 
   if (!response.ok) {
     throw new Error(
@@ -108,7 +100,7 @@ const printUsageAndExit = () => {
   )
   console.error('')
   console.error('Examples:')
-  console.error('  node scripts/download-icons.js add close search')
+  console.error('  node scripts/download-icons.js heart star music_note')
   console.error(
     '  node scripts/download-icons.js account_circle:fill home:fill',
   )
@@ -118,37 +110,75 @@ const printUsageAndExit = () => {
   process.exit(1)
 }
 
-const args = process.argv.slice(2)
-let targetDir = 'basics'
-/** @type {string[]} */
-const iconSpecs = []
+/**
+ * @returns {{ targetDir: string, iconSpecs: string[] }}
+ */
+const parseCliArgs = () => {
+  /** @type {{ dir: string }} */
+  let values
+  /** @type {string[]} */
+  let positionals
 
-for (let i = 0; i < args.length; i++) {
-  if (args[i] === '--dir') {
-    if (i + 1 >= args.length) {
-      console.error('Error: --dir requires a value')
-      printUsageAndExit()
-    }
-    targetDir = args[++i]
-  } else {
-    iconSpecs.push(args[i])
+  try {
+    const parsedArgs = parseArgs({
+      args: process.argv.slice(2),
+      options: {
+        dir: {
+          type: 'string',
+          default: 'basics',
+        },
+      },
+      allowPositionals: true,
+      strict: true,
+    })
+    values = parsedArgs.values
+    positionals = parsedArgs.positionals
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    console.error(`Error: ${message}`)
+    printUsageAndExit()
   }
+
+  const targetDir = values.dir
+
+  if (positionals.length === 0) {
+    printUsageAndExit()
+  }
+
+  if (!ALLOWED_DIRS.has(targetDir)) {
+    console.error(
+      `Error: unknown --dir "${targetDir}". Allowed values: ${[...ALLOWED_DIRS].join(', ')}`,
+    )
+    printUsageAndExit()
+  }
+
+  return { targetDir, iconSpecs: positionals }
 }
 
-if (iconSpecs.length === 0) {
-  printUsageAndExit()
-}
-
-if (!ALLOWED_DIRS.has(targetDir)) {
-  console.error(
-    `Error: unknown --dir "${targetDir}". Allowed values: ${[...ALLOWED_DIRS].join(', ')}`,
-  )
-  printUsageAndExit()
-}
+const { targetDir, iconSpecs } = parseCliArgs()
 
 const results = await Promise.all(
   iconSpecs.map(async (spec) => {
-    const [iconName, variant] = spec.split(':')
+    const specParts = spec.split(':')
+
+    if (specParts.length > 2) {
+      return {
+        spec,
+        success: false,
+        error: 'invalid format — expected <icon_name> or <icon_name>:fill',
+      }
+    }
+
+    const [iconName, variant] = specParts
+
+    if (!iconName) {
+      return {
+        spec,
+        success: false,
+        error: 'invalid format — icon name cannot be empty',
+      }
+    }
+
     const fill = variant === 'fill'
 
     if (!ALLOWED_VARIANTS.has(variant)) {
