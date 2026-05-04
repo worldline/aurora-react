@@ -114,18 +114,47 @@ npm run coverage            # Generate coverage report
 
 ### Icons
 
-Icon components are automatically generated from SVG files using SVGR. To add or update an icon, download the SVG file from [Google Fonts / Material Symbols](https://fonts.google.com/icons) using the settings below, then place the file in `src/assets/icons/svg/`.
+Icon components are automatically generated from SVG files using SVGR. Icons under `src/assets/icons/basics/` that are part of [Google Material Symbols](https://fonts.google.com/icons) can be downloaded using the provided script:
 
-When downloading, use these exact settings:
+```bash
+# Download one or more icons (basics directory by default)
+npm run icons:download -- heart star music_note
 
-- Search for the icon by name
+# Download a filled variant (append :fill)
+npm run icons:download -- account_circle:fill notifications:fill
+
+# Download into a specific subdirectory
+npm run icons:download -- --dir file-types picture_as_pdf
+```
+
+Icon names must match the Google Material Symbols name (snake_case). Malformed specs such as `name:fill:extra` or `:fill` are rejected with a clear error message. After downloading, regenerate the React components:
+
+```bash
+npm run icons:generate
+```
+
+The icon components will also be regenerated automatically when you run `npm run storybook` or `npm run build`.
+
+#### Custom and brand icons
+
+The following icons are **not** part of Google Material Symbols and must be added manually by placing the SVG file in the appropriate directory:
+
+| Icon | Directory | Reason |
+|---|---|---|
+| `check-indeterminate` | `basics/` | Custom minimal SVG |
+| `worldline-logo-large` | `basics/` | Brand asset |
+| `worldline-logo-small` | `basics/` | Brand asset |
+| `pdf-file` | `file-types/` | Custom SVG |
+| `american-express` | `payment-methods/` | Brand asset |
+| `mastercard` | `payment-methods/` | Brand asset |
+
+When adding a custom icon manually, use these SVG settings to stay consistent with the rest of the icon set:
+
 - Toggle **Fill** depending on the icon variant you need
 - Set **Weight** to **300**
 - Set **Grade** to **0**
 - Set **Optical size** to **24px**
 - Set **Style** to **Material Symbols (new)** and **Rounded**
-
-After adding the SVG file, the icon component will be generated automatically when you run `npm run storybook` or `npm run build`.
 
 ### AI Integration
 
