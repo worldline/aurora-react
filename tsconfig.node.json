@@ -31,6 +31,7 @@
     "vitest.shims.d.ts",
     "__tests__/**/*.ts",
     "__tests__/**/*.tsx",
-    "import-icon.ts"
+    "import-icon.ts",
+    "scripts/**/*.js"
   ]
 }
