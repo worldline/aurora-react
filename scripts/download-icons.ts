@@ -24,34 +24,27 @@
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
-import { parseArgs } from 'node:util'
+
+type DownloadResult =
+  | { spec: string; success: true }
+  | { spec: string; success: false; error: string }
 
 const BASE_URL =
   'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/symbols/web'
-const WEIGHT = '300'
-const SIZE = '24'
-const STYLE = 'materialsymbolsrounded'
 const FETCH_TIMEOUT_MS = 10_000
-const ALLOWED_VARIANTS = new Set<string | undefined>(['fill', undefined])
-const TARGET_DIR = 'basics'
-
-const ICONS_DIR = join(import.meta.dirname, '..', 'src', 'assets', 'icons')
-
-const buildUrl = (iconName: string, fill: boolean): string => {
-  const fillSuffix = fill ? 'fill1' : ''
-  const fileName = `${iconName}_wght${WEIGHT}${fillSuffix}_${SIZE}px.svg`
-  return `${BASE_URL}/${iconName}/${STYLE}/${fileName}`
-}
-
-const buildLocalFileName = (iconName: string, fill: boolean): string => {
-  const kebabName = iconName.replaceAll('_', '-')
-  return fill ? `${kebabName}-fill.svg` : `${kebabName}.svg`
-}
+const ICONS_DIR = join(
+  import.meta.dirname,
+  '..',
+  'src',
+  'assets',
+  'icons',
+  'basics',
+)
 
 const downloadIcon = async (iconName: string, fill: boolean): Promise<void> => {
-  const url = buildUrl(iconName, fill)
-  const localName = buildLocalFileName(iconName, fill)
-  const targetPath = join(ICONS_DIR, TARGET_DIR, localName)
+  const fillSuffix = fill ? 'fill1' : ''
+  const url = `${BASE_URL}/${iconName}/materialsymbolsrounded/${iconName}_wght300${fillSuffix}_24px.svg`
+  const localName = `${iconName.replaceAll('_', '-')}${fill ? '-fill' : ''}.svg`
 
   const response = await fetch(url, {
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
@@ -63,66 +56,35 @@ const downloadIcon = async (iconName: string, fill: boolean): Promise<void> => {
     )
   }
 
-  const svg = await response.text()
+  await writeFile(join(ICONS_DIR, localName), await response.text(), 'utf8')
 
-  await writeFile(targetPath, svg, 'utf8')
-
-  console.log(`✓ ${localName}  →  src/assets/icons/${TARGET_DIR}/${localName}`)
+  console.log(`✓ ${localName}  →  src/assets/icons/basics/${localName}`)
 }
 
 const printUsageAndExit = (): never => {
-  console.error('Usage: npm run icons:download -- <icon_name[:fill]>...')
-  console.error('')
-  console.error('Examples:')
-  console.error('  npm run icons:download -- heart star music_note')
-  console.error('  npm run icons:download -- account_circle:fill home:fill')
+  console.error(
+    'Usage: npm run icons:download -- <icon_name[:fill]>...\n' +
+      '\n' +
+      'Examples:\n' +
+      '  npm run icons:download -- heart star music_note\n' +
+      '  npm run icons:download -- account_circle:fill home:fill',
+  )
   process.exit(1)
 }
 
-type DownloadResult =
-  | { spec: string; success: true }
-  | { spec: string; success: false; error: string }
+const iconSpecs = process.argv.slice(2)
 
-const parseCliArgs = () => {
-  const rawArgs = process.argv.slice(2)
-
-  try {
-    const parsedArgs = parseArgs({
-      args: rawArgs,
-      options: {},
-      allowPositionals: true,
-      strict: true,
-    })
-
-    if (parsedArgs.positionals.length === 0) {
-      printUsageAndExit()
-    }
-
-    return { iconSpecs: parsedArgs.positionals }
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error)
-    console.error(`Error: ${message}`)
-    return printUsageAndExit()
-  }
+if (iconSpecs.length === 0) {
+  printUsageAndExit()
 }
-
-const { iconSpecs } = parseCliArgs()
 
 const results = await Promise.all(
   iconSpecs.map(async (spec): Promise<DownloadResult> => {
-    const specParts = spec.split(':')
+    const colonIndex = spec.indexOf(':')
+    const iconName = colonIndex === -1 ? spec : spec.slice(0, colonIndex)
+    const variant = colonIndex === -1 ? undefined : spec.slice(colonIndex + 1)
 
-    if (specParts.length > 2) {
-      return {
-        spec,
-        success: false,
-        error: 'invalid format — expected <icon_name> or <icon_name>:fill',
-      }
-    }
-
-    const [iconName, variant] = specParts
-
-    if (!iconName) {
+    if (iconName === '') {
       return {
         spec,
         success: false,
@@ -130,7 +92,7 @@ const results = await Promise.all(
       }
     }
 
-    if (!ALLOWED_VARIANTS.has(variant)) {
+    if (variant !== undefined && variant !== 'fill') {
       return {
         spec,
         success: false,
@@ -138,26 +100,25 @@ const results = await Promise.all(
       }
     }
 
-    const fill = variant === 'fill'
-
     try {
-      await downloadIcon(iconName, fill)
+      await downloadIcon(iconName, variant !== undefined)
       return { spec, success: true }
     } catch (err) {
-      const message = err instanceof Error ? err.message : String(err)
-      return { spec, success: false, error: message }
+      return {
+        spec,
+        success: false,
+        error: err instanceof Error ? err.message : String(err),
+      }
     }
   }),
 )
 
-const failures = results.filter(
-  (result): result is DownloadResult & { success: false } => !result.success,
-)
-
-for (const failure of failures) {
-  console.error(`✗ ${failure.spec}: ${failure.error}`)
+for (const result of results) {
+  if (!result.success) {
+    console.error(`✗ ${result.spec}: ${result.error}`)
+  }
 }
 
-if (failures.length > 0) {
+if (results.some((result) => !result.success)) {
   process.exitCode = 1
 }
