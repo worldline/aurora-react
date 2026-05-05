@@ -122,9 +122,6 @@ npm run icons:download -- heart star music_note
 
 # Download a filled variant (append :fill)
 npm run icons:download -- account_circle:fill notifications:fill
-
-# Download into a specific subdirectory
-npm run icons:download -- --dir file-types picture_as_pdf
 ```
 
 Icon names must match the Google Material Symbols name (snake_case). Malformed specs such as `name:fill:extra` or `:fill` are rejected with a clear error message. After downloading, regenerate the React components:
