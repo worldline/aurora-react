@@ -5,11 +5,11 @@
  * Settings: Rounded style, weight 300, 24px optical size.
  *
  * Usage:
- *   node scripts/download-icons.js <icon_name[:fill]>...
+ *   npm run icons:download -- <icon_name[:fill]>...
  *
  * Examples:
- *   node scripts/download-icons.js heart star music_note
- *   node scripts/download-icons.js account_circle:fill home:fill notifications:fill
+ *   npm run icons:download -- heart star music_note
+ *   npm run icons:download -- account_circle:fill home:fill notifications:fill
  *
  * Icon names must match Google Material Symbols names (snake_case).
  * Append ":fill" for the filled variant.
@@ -21,7 +21,7 @@
  *   - american-express / mastercard (payment-methods, brand assets)
  */
 
-import { mkdir, writeFile } from 'node:fs/promises'
+import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { parseArgs } from 'node:util'
@@ -32,48 +32,26 @@ const WEIGHT = '300'
 const SIZE = '24'
 const STYLE = 'materialsymbolsrounded'
 const FETCH_TIMEOUT_MS = 10_000
-const ALLOWED_VARIANTS = new Set(['fill', undefined])
+const ALLOWED_VARIANTS = new Set<string | undefined>(['fill', undefined])
 const TARGET_DIR = 'basics'
 
 const ICONS_DIR = join(import.meta.dirname, '..', 'src', 'assets', 'icons')
 
-/**
- * @param {string} iconName - snake_case Google Material Symbol name
- * @param {boolean} fill - whether to download the filled variant
- * @returns {string}
- */
-const buildUrl = (iconName, fill) => {
+const buildUrl = (iconName: string, fill: boolean): string => {
   const fillSuffix = fill ? 'fill1' : ''
   const fileName = `${iconName}_wght${WEIGHT}${fillSuffix}_${SIZE}px.svg`
   return `${BASE_URL}/${iconName}/${STYLE}/${fileName}`
 }
 
-/**
- * Converts a Google icon name + fill flag to the local kebab-case filename.
- * Local files use the "-fill" suffix for filled variants.
- * e.g. account_circle + fill=true  -> account-circle-fill.svg
- *      arrow_forward  + fill=false -> arrow-forward.svg
- *
- * @param {string} iconName - snake_case Google Material Symbol name
- * @param {boolean} fill
- * @returns {string}
- */
-const buildLocalFileName = (iconName, fill) => {
+const buildLocalFileName = (iconName: string, fill: boolean): string => {
   const kebabName = iconName.replaceAll('_', '-')
   return fill ? `${kebabName}-fill.svg` : `${kebabName}.svg`
 }
 
-/**
- * @param {string} iconName - snake_case Google Material Symbol name
- * @param {boolean} fill
- * @returns {Promise<void>}
- */
-const downloadIcon = async (iconName, fill) => {
+const downloadIcon = async (iconName: string, fill: boolean): Promise<void> => {
   const url = buildUrl(iconName, fill)
   const localName = buildLocalFileName(iconName, fill)
   const targetPath = join(ICONS_DIR, TARGET_DIR, localName)
-
-  await mkdir(join(ICONS_DIR, TARGET_DIR), { recursive: true })
 
   const response = await fetch(url, {
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
@@ -92,29 +70,21 @@ const downloadIcon = async (iconName, fill) => {
   console.log(`✓ ${localName}  →  src/assets/icons/${TARGET_DIR}/${localName}`)
 }
 
-const printUsageAndExit = () => {
-  console.error('Usage: node scripts/download-icons.js <icon_name[:fill]>...')
+const printUsageAndExit = (): never => {
+  console.error('Usage: npm run icons:download -- <icon_name[:fill]>...')
   console.error('')
   console.error('Examples:')
-  console.error('  node scripts/download-icons.js heart star music_note')
-  console.error(
-    '  node scripts/download-icons.js account_circle:fill home:fill',
-  )
+  console.error('  npm run icons:download -- heart star music_note')
+  console.error('  npm run icons:download -- account_circle:fill home:fill')
   process.exit(1)
 }
 
-/**
- * @returns {{ iconSpecs: string[] }}
- */
+type DownloadResult =
+  | { spec: string; success: true }
+  | { spec: string; success: false; error: string }
+
 const parseCliArgs = () => {
   const rawArgs = process.argv.slice(2)
-
-  if (rawArgs.includes('--dir')) {
-    console.error(
-      'Error: --dir is no longer supported. Icons are always downloaded to basics.',
-    )
-    printUsageAndExit()
-  }
 
   try {
     const parsedArgs = parseArgs({
@@ -132,14 +102,14 @@ const parseCliArgs = () => {
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
     console.error(`Error: ${message}`)
-    printUsageAndExit()
+    return printUsageAndExit()
   }
 }
 
 const { iconSpecs } = parseCliArgs()
 
 const results = await Promise.all(
-  iconSpecs.map(async (spec) => {
+  iconSpecs.map(async (spec): Promise<DownloadResult> => {
     const specParts = spec.split(':')
 
     if (specParts.length > 2) {
@@ -160,8 +130,6 @@ const results = await Promise.all(
       }
     }
 
-    const fill = variant === 'fill'
-
     if (!ALLOWED_VARIANTS.has(variant)) {
       return {
         spec,
@@ -169,6 +137,8 @@ const results = await Promise.all(
         error: `unknown variant ":${variant}" — only ":fill" is supported`,
       }
     }
+
+    const fill = variant === 'fill'
 
     try {
       await downloadIcon(iconName, fill)
@@ -180,10 +150,12 @@ const results = await Promise.all(
   }),
 )
 
-const failures = results.filter((result) => !result.success)
+const failures = results.filter(
+  (result): result is DownloadResult & { success: false } => !result.success,
+)
 
 for (const failure of failures) {
-  console.error(`✗ ${failure.spec}: ${failure.error ?? 'unknown error'}`)
+  console.error(`✗ ${failure.spec}: ${failure.error}`)
 }
 
 if (failures.length > 0) {

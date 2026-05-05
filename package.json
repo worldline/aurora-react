@@ -53,7 +53,7 @@
     "coverage": "npm run test -- --coverage --project=unit --project=storybook",
     "typecheck": "tsc -b",
     "icons:generate": "npx @svgr/cli --config-file svgr.config.js -- src/assets/icons",
-    "icons:download": "node scripts/download-icons.js"
+    "icons:download": "node scripts/download-icons.ts"
   },
   "dependencies": {
     "@react-aria/live-announcer": "3.4.4",
