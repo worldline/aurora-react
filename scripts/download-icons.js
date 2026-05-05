@@ -6,12 +6,10 @@
  *
  * Usage:
  *   node scripts/download-icons.js <icon_name[:fill]>...
- *   node scripts/download-icons.js [--dir basics|file-types|payment-methods] <icon_name[:fill]>...
  *
  * Examples:
  *   node scripts/download-icons.js heart star music_note
  *   node scripts/download-icons.js account_circle:fill home:fill notifications:fill
- *   node scripts/download-icons.js --dir file-types picture_as_pdf
  *
  * Icon names must match Google Material Symbols names (snake_case).
  * Append ":fill" for the filled variant.
@@ -34,8 +32,8 @@ const WEIGHT = '300'
 const SIZE = '24'
 const STYLE = 'materialsymbolsrounded'
 const FETCH_TIMEOUT_MS = 10_000
-const ALLOWED_DIRS = new Set(['basics', 'file-types', 'payment-methods'])
 const ALLOWED_VARIANTS = new Set(['fill', undefined])
+const TARGET_DIR = 'basics'
 
 const ICONS_DIR = join(import.meta.dirname, '..', 'src', 'assets', 'icons')
 
@@ -52,8 +50,9 @@ const buildUrl = (iconName, fill) => {
 
 /**
  * Converts a Google icon name + fill flag to the local kebab-case filename.
- * e.g. account_circle + fill=true  → account-circle-fill.svg
- *      arrow_forward  + fill=false → arrow-forward.svg
+ * Local files use the "-fill" suffix for filled variants.
+ * e.g. account_circle + fill=true  -> account-circle-fill.svg
+ *      arrow_forward  + fill=false -> arrow-forward.svg
  *
  * @param {string} iconName - snake_case Google Material Symbol name
  * @param {boolean} fill
@@ -67,15 +66,14 @@ const buildLocalFileName = (iconName, fill) => {
 /**
  * @param {string} iconName - snake_case Google Material Symbol name
  * @param {boolean} fill
- * @param {string} targetDir - subdirectory under src/assets/icons/
  * @returns {Promise<void>}
  */
-const downloadIcon = async (iconName, fill, targetDir) => {
+const downloadIcon = async (iconName, fill) => {
   const url = buildUrl(iconName, fill)
   const localName = buildLocalFileName(iconName, fill)
-  const targetPath = join(ICONS_DIR, targetDir, localName)
+  const targetPath = join(ICONS_DIR, TARGET_DIR, localName)
 
-  await mkdir(join(ICONS_DIR, targetDir), { recursive: true })
+  await mkdir(join(ICONS_DIR, TARGET_DIR), { recursive: true })
 
   const response = await fetch(url, {
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
@@ -91,71 +89,54 @@ const downloadIcon = async (iconName, fill, targetDir) => {
 
   await writeFile(targetPath, svg, 'utf8')
 
-  console.log(`✓ ${localName}  →  src/assets/icons/${targetDir}/${localName}`)
+  console.log(`✓ ${localName}  →  src/assets/icons/${TARGET_DIR}/${localName}`)
 }
 
 const printUsageAndExit = () => {
-  console.error(
-    'Usage: node scripts/download-icons.js [--dir basics|file-types|payment-methods] <icon_name[:fill]>...',
-  )
+  console.error('Usage: node scripts/download-icons.js <icon_name[:fill]>...')
   console.error('')
   console.error('Examples:')
   console.error('  node scripts/download-icons.js heart star music_note')
   console.error(
     '  node scripts/download-icons.js account_circle:fill home:fill',
   )
-  console.error(
-    '  node scripts/download-icons.js --dir file-types picture_as_pdf',
-  )
   process.exit(1)
 }
 
 /**
- * @returns {{ targetDir: string, iconSpecs: string[] }}
+ * @returns {{ iconSpecs: string[] }}
  */
 const parseCliArgs = () => {
-  /** @type {{ dir: string }} */
-  let values
-  /** @type {string[]} */
-  let positionals
+  const rawArgs = process.argv.slice(2)
+
+  if (rawArgs.includes('--dir')) {
+    console.error(
+      'Error: --dir is no longer supported. Icons are always downloaded to basics.',
+    )
+    printUsageAndExit()
+  }
 
   try {
     const parsedArgs = parseArgs({
-      args: process.argv.slice(2),
-      options: {
-        dir: {
-          type: 'string',
-          default: 'basics',
-        },
-      },
+      args: rawArgs,
+      options: {},
       allowPositionals: true,
       strict: true,
     })
-    values = parsedArgs.values
-    positionals = parsedArgs.positionals
+
+    if (parsedArgs.positionals.length === 0) {
+      printUsageAndExit()
+    }
+
+    return { iconSpecs: parsedArgs.positionals }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
     console.error(`Error: ${message}`)
     printUsageAndExit()
   }
-
-  const targetDir = values.dir
-
-  if (positionals.length === 0) {
-    printUsageAndExit()
-  }
-
-  if (!ALLOWED_DIRS.has(targetDir)) {
-    console.error(
-      `Error: unknown --dir "${targetDir}". Allowed values: ${[...ALLOWED_DIRS].join(', ')}`,
-    )
-    printUsageAndExit()
-  }
-
-  return { targetDir, iconSpecs: positionals }
 }
 
-const { targetDir, iconSpecs } = parseCliArgs()
+const { iconSpecs } = parseCliArgs()
 
 const results = await Promise.all(
   iconSpecs.map(async (spec) => {
@@ -190,7 +171,7 @@ const results = await Promise.all(
     }
 
     try {
-      await downloadIcon(iconName, fill, targetDir)
+      await downloadIcon(iconName, fill)
       return { spec, success: true }
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err)
