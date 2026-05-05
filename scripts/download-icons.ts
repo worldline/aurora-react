@@ -32,7 +32,7 @@ type DownloadResult =
 const BASE_URL =
   'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/symbols/web'
 const FETCH_TIMEOUT_MS = 10_000
-const ICONS_DIR = join(
+const ICONS_BASICS_DIR = join(
   import.meta.dirname,
   '..',
   'src',
@@ -56,7 +56,11 @@ const downloadIcon = async (iconName: string, fill: boolean): Promise<void> => {
     )
   }
 
-  await writeFile(join(ICONS_DIR, localName), await response.text(), 'utf8')
+  await writeFile(
+    join(ICONS_BASICS_DIR, localName),
+    await response.text(),
+    'utf8',
+  )
 
   console.log(`✓ ${localName}  →  src/assets/icons/basics/${localName}`)
 }
