@@ -127,7 +127,8 @@ export default defineConfig({
         extends: true,
         test: {
           name: 'visual',
-          include: ['./src/**/*.visual.test.tsx'],
+          // TODO: Disable visual regression tests until the Git LFS issue is resolved
+          include: [],
           globalSetup: './__tests__/visual/globalSetup.ts',
           setupFiles: ['./__tests__/visual/setupVitest.ts'],
           browser: {
