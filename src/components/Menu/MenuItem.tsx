@@ -10,7 +10,6 @@ import {
 
 import { CheckIcon } from '../icons'
 import { Typography } from '../Typography'
-
 import styles from './MenuItem.module.css'
 
 interface MenuItemProps extends Omit<AriaMenuItemProps, 'children'> {

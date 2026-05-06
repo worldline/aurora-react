@@ -1,11 +1,10 @@
-import { useState, type SVGProps } from 'react'
+import { type SVGProps, useState } from 'react'
 
 import { FeaturedIcon } from '@/components/FeaturedIcon'
 import { InputField } from '@/components/Form/InputField'
 
 import { Code } from '../storybook/Code'
 import { Typography } from '../Typography'
-
 import styles from './Icons.stories.module.css'
 
 const IconsGallery = ({

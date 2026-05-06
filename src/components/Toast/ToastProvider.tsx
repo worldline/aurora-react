@@ -2,7 +2,7 @@
 
 import { createContext, type PropsWithChildren } from 'react'
 
-import { toastService, type ToastContent } from './toast.service'
+import { type ToastContent, toastService } from './toast.service'
 
 const ToastContext = createContext<{
   addToast: (toast: ToastContent) => void

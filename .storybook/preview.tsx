@@ -1,11 +1,12 @@
 import addonA11y from '@storybook/addon-a11y'
 import addonDocs from '@storybook/addon-docs'
-import { definePreview, type Decorator } from '@storybook/react-vite'
+import { type Decorator, definePreview } from '@storybook/react-vite'
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport'
 
-import '../src/styles/styles.css'
+import { type Theme, ThemeWrapper } from '@/__tests__/ThemeWrapper'
+
 import '../src/assets/fonts/fonts.css'
-import { ThemeWrapper, type Theme } from '@/__tests__/ThemeWrapper'
+import '../src/styles/styles.css'
 
 const withTheme: Decorator = (Story, context) => {
   const theme = context.globals.theme as Theme

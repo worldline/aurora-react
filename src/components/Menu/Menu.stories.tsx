@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '@/components/Button'
-import { SettingsIcon, MailIcon, BlockIcon } from '@/components/icons'
+import { BlockIcon, MailIcon, SettingsIcon } from '@/components/icons'
 import { Popover } from '@/components/Popover'
 import { Typography } from '@/components/Typography'
 

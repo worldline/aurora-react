@@ -2,8 +2,7 @@ import cn from 'classnames'
 import { type HTMLAttributes, type ReactElement, type ReactNode } from 'react'
 
 import { Chip } from '../Chip'
-import { Typography, type HeadingElement } from '../Typography'
-
+import { type HeadingElement, Typography } from '../Typography'
 import styles from './Step.module.css'
 import { StepIcon } from './StepIcon'
 

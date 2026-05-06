@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { SettingsIcon, PersonFillIcon } from '../icons'
-
+import { PersonFillIcon, SettingsIcon } from '../icons'
 import { Chip } from './index'
 
 const meta = {

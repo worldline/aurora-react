@@ -1,23 +1,22 @@
 import cn from 'classnames'
 import type { ReactNode } from 'react'
 import {
+  Modal as AriaModal,
   Dialog,
+  type DialogProps,
   DialogTrigger,
   Heading,
-  Modal as AriaModal,
   ModalOverlay,
   type ModalOverlayProps,
-  type DialogProps,
 } from 'react-aria-components'
 
 import { Button } from '../Button'
 import { CloseIcon } from '../icons'
 import { Typography } from '../Typography'
-
 import styles from './Modal.module.css'
 import {
-  ModalActions,
   type Action,
+  ModalActions,
   type ModalActionsAlignment,
 } from './ModalActions'
 

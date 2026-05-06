@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { ArrowForwardIcon, BlockIcon } from '../icons'
-
 import { TilesGroup } from './TilesGroup'
 
 const trailingArrow = <ArrowForwardIcon aria-hidden />

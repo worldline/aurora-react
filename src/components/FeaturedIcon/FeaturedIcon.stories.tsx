@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CheckCircleIcon } from '@/components/icons'
 
 import styles from './FeaturedIcon.stories.module.css'
-
 import { FeaturedIcon } from './index'
 
 const meta = {

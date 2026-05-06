@@ -5,7 +5,6 @@ import { assertUnreachable } from '@/utils/asserts'
 
 import { CheckIcon } from '../icons'
 import { Typography } from '../Typography'
-
 import type { StepStatus, StepType } from './Step'
 import styles from './StepIcon.module.css'
 

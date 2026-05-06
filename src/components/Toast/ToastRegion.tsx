@@ -1,14 +1,14 @@
 import cn from 'classnames'
 import {
-  UNSTABLE_ToastRegion as RAToastRegion,
   UNSTABLE_Toast as RAToast,
   UNSTABLE_ToastContent as RAToastContent,
   UNSTABLE_ToastQueue as RAToastQueue,
+  UNSTABLE_ToastRegion as RAToastRegion,
 } from 'react-aria-components'
 
 import { Toast } from './Toast'
 import styles from './Toast.module.css'
-import { toastService, type ToastContent } from './toast.service'
+import { type ToastContent, toastService } from './toast.service'
 import { useToast } from './useToast'
 
 const ToastRegion = ({

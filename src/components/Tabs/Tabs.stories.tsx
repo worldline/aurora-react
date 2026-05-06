@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { Tabs } from './index'
 import {
   basicTabs,
   disabledTabs,
   richContentTabsWithTypography,
   tabsWithDisabled,
 } from './Tabs.fixtures'
-
-import { Tabs } from './index'
 
 const containerStyle = {
   minWidth: '400px',

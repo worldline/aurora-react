@@ -3,7 +3,6 @@ import cn from 'classnames'
 import { cloneElement, type HTMLAttributes, type ReactElement } from 'react'
 
 import { Typography } from '../Typography'
-
 import styles from './Chip.module.css'
 
 type ChipType = 'neutral' | 'brand' | 'info' | 'success' | 'warning' | 'error'

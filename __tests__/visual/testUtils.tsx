@@ -1,8 +1,8 @@
-import { render as rtlRender, type RenderOptions } from '@testing-library/react'
+import { type RenderOptions, render as rtlRender } from '@testing-library/react'
 import type { ReactElement } from 'react'
 import { page, userEvent } from 'vitest/browser'
 
-import { ThemeWrapper, type Theme } from '../ThemeWrapper'
+import { type Theme, ThemeWrapper } from '../ThemeWrapper'
 
 const testId = 'theme-wrapper'
 
