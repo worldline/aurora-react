@@ -1,7 +1,6 @@
 'use client'
 
 /* eslint-disable @eslint-react/no-clone-element */
-
 import cn from 'classnames'
 import { cloneElement, type ReactElement } from 'react'
 import {
@@ -10,7 +9,6 @@ import {
 } from 'react-aria-components'
 
 import { ProgressActivityIcon } from '../icons'
-
 import styles from './Button.module.css'
 import { buttonClassName } from './buttonStyles'
 

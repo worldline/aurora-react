@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { Stepper } from './index'
 import {
   allCompletedSteps,
   allCompletedStepsMultiline,
@@ -8,8 +9,6 @@ import {
   allNotStartedSteps,
   steps,
 } from './Stepper.fixtures'
-
-import { Stepper } from './index'
 
 const meta = {
   title: 'components/Stepper',

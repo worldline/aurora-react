@@ -1,7 +1,6 @@
 import cn from 'classnames'
 
 import { Button } from '../Button'
-
 import styles from './ModalActions.module.css'
 
 type ModalActionsAlignment = 'fill' | 'left' | 'right'

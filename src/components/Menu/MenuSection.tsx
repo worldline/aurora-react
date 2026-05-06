@@ -1,12 +1,11 @@
 import {
   MenuSection as AriaMenuSection,
-  type SectionProps,
-  Header,
   Collection,
+  Header,
+  type SectionProps,
 } from 'react-aria-components'
 
 import { Typography } from '../Typography'
-
 import styles from './MenuSection.module.css'
 
 interface MenuSectionProps<T extends object> extends SectionProps<T> {

@@ -2,7 +2,7 @@ import { type ComponentType } from 'react'
 
 import preview from '@/storybook/preview'
 
-import { IconsGallery, type IconProps } from '../IconsGallery'
+import { type IconProps, IconsGallery } from '../IconsGallery'
 
 const iconModules = import.meta.glob<{ default: ComponentType<IconProps> }>(
   ['./*.tsx', '!./Basics.stories.tsx'],

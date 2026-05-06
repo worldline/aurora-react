@@ -1,6 +1,5 @@
 import { withoutVitePlugins } from '@storybook/builder-vite'
 import { defineMain } from '@storybook/react-vite/node'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineMain({
   framework: '@storybook/react-vite',
@@ -27,7 +26,6 @@ export default defineMain({
           'vite:dts',
           'vite:lib-inject-css',
         ])),
-        tsconfigPaths(),
       ],
     }
   },

@@ -1,10 +1,9 @@
 import { MotionFadeOutDuration } from '@worldline/aurora-design-tokens/variables'
 import cn from 'classnames'
-import { useCallback, useEffect, useState, type ComponentProps } from 'react'
+import { type ComponentProps, useCallback, useEffect, useState } from 'react'
 import { type ToastProps as RAToastProps } from 'react-aria-components'
 
 import { Alert } from '../Alert'
-
 import styles from './Toast.module.css'
 
 const motionFadeOutDuration = parseInt(MotionFadeOutDuration, 10)

@@ -8,16 +8,14 @@ import react from '@vitejs/plugin-react'
 import { playwright } from '@vitest/browser-playwright'
 import { globSync } from 'glob'
 import preserveDirectives from 'rollup-preserve-directives'
+import dts from 'unplugin-dts/vite'
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
     react(),
     libInjectCss(),
-    tsconfigPaths(),
     dts({
       tsconfigPath: fileURLToPath(
         new URL('tsconfig.lib.json', import.meta.url),
@@ -208,5 +206,8 @@ export default defineConfig({
         },
       },
     ],
+  },
+  resolve: {
+    tsconfigPaths: true,
   },
 })

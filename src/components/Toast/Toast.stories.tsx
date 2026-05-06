@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '../Button'
-
 import styles from './Toast.stories.module.css'
 import { ToastProvider } from './ToastProvider'
 import { ToastRegion } from './ToastRegion'

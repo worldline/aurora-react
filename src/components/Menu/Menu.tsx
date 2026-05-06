@@ -4,8 +4,8 @@ import cn from 'classnames'
 import type { ReactNode } from 'react'
 import {
   Menu as AriaMenu,
-  Collection,
   type MenuProps as AriaMenuProps,
+  Collection,
 } from 'react-aria-components'
 
 import type { WithAriaLabelRequirement } from '@/utils/accessibility'

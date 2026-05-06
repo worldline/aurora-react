@@ -6,9 +6,9 @@ import { type ReactNode, useEffect, useState } from 'react'
 import {
   TextField as AriaTextField,
   type TextFieldProps as AriaTextFieldProps,
-  Label,
-  Input,
   Group,
+  Input,
+  Label,
 } from 'react-aria-components'
 
 import { Typography } from '@/components/Typography'

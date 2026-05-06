@@ -2,10 +2,8 @@ import type { ReactNode } from 'react'
 
 import { Chip } from '../Chip'
 import { BlockIcon } from '../icons'
-
-import type { StepType } from './Step'
-
 import type { StepItem } from './index'
+import type { StepType } from './Step'
 
 type StepOverrides<T extends StepType> = Partial<StepItem<T>> &
   (T extends 'icon' ? { icon: ReactNode } : { icon?: never })

@@ -8,9 +8,8 @@ import { Menu } from '@/components/Menu'
 import { Pressable } from '@/components/Pressable'
 import { Typography } from '@/components/Typography'
 
-import styles from './Popover.stories.module.css'
-
 import { Popover } from './index'
+import styles from './Popover.stories.module.css'
 
 const meta: Meta<typeof Popover> = {
   title: 'Components/Popover',

@@ -1,12 +1,11 @@
-import js from '@eslint/js'
 import eslintReact from '@eslint-react/eslint-plugin'
+import js from '@eslint/js'
 import stylistic from '@stylistic/eslint-plugin'
-import { defineConfig, globalIgnores } from 'eslint/config'
-import importPlugin from 'eslint-plugin-import'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import reactDom from 'eslint-plugin-react-dom'
 import reactHooks from 'eslint-plugin-react-hooks'
 import { reactRefresh } from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
 import globals from 'globals'
 import { configs as tseslint } from 'typescript-eslint'
 
@@ -31,14 +30,13 @@ export default defineConfig([
       tseslint.strictTypeChecked,
       tseslint.stylisticTypeChecked,
       reactRefresh.configs.vite,
-      importPlugin.flatConfigs.recommended,
-      importPlugin.flatConfigs.typescript,
     ],
     plugins: {
       '@stylistic': stylistic,
     },
     rules: {
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
+      '@eslint-react/jsx-no-children-prop': 'error',
       '@eslint-react/no-forward-ref': 'error',
       '@eslint-react/no-leaked-conditional-rendering': 'error',
       'arrow-body-style': ['error', 'as-needed'],
@@ -75,31 +73,6 @@ export default defineConfig([
       'react-hooks/unsupported-syntax': 'error',
       'react-hooks/incompatible-library': 'error',
       'react-refresh/only-export-components': 'off',
-      'import/order': [
-        'error',
-        {
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-          ],
-          'newlines-between': 'always',
-          pathGroups: [
-            {
-              pattern: '@/**',
-              group: 'internal',
-              position: 'after',
-            },
-          ],
-        },
-      ],
       '@typescript-eslint/array-type': [
         'error',
         {
@@ -121,6 +94,12 @@ export default defineConfig([
           project: 'tsconfig.json',
         },
       },
+    },
+  },
+  {
+    files: ['**/*.test.{ts,tsx}'],
+    rules: {
+      '@eslint-react/jsx-no-children-prop': 'off',
     },
   },
   {

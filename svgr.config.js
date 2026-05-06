@@ -4,7 +4,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 // eslint-disable-next-line @typescript-eslint/ban-tslint-comment
 /* tslint:disable */
-
 import nodePath from 'path'
 
 export default {

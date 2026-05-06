@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
 import { themes } from '@/__tests__/ThemeWrapper'
-import { render, getWrapper } from '@/__tests__/visual/testUtils'
+import { getWrapper, render } from '@/__tests__/visual/testUtils'
 
 import { Tabs } from '.'
 

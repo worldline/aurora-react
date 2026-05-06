@@ -82,8 +82,8 @@ const Typography = ({
   <Type
     ref={ref}
     className={cn([
-      styles[toKebabCase(textStyle as string)],
-      styles[toKebabCase(textColor as string)],
+      styles[toKebabCase(textStyle)],
+      styles[toKebabCase(textColor)],
       className,
     ])}
     {...props}

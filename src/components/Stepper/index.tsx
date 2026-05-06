@@ -4,7 +4,6 @@ import React, { type ReactElement } from 'react'
 import type { WithAriaLabelRequirement } from '@/utils/accessibility'
 
 import { type HeadingElement } from '../Typography'
-
 import { Step, type StepItem, type StepType } from './Step'
 import styles from './Stepper.module.css'
 

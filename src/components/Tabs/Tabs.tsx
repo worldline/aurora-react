@@ -1,16 +1,16 @@
 import cn from 'classnames'
 import {
-  Tabs as AriaTabs,
-  TabList as AriaTabList,
   Tab as AriaTab,
-  TabPanel as AriaTabPanel,
-  type TabsProps as AriaTabsProps,
+  TabList as AriaTabList,
   type TabListProps as AriaTabListProps,
-  type TabProps as AriaTabProps,
+  TabPanel as AriaTabPanel,
   type TabPanelProps as AriaTabPanelProps,
+  type TabProps as AriaTabProps,
+  Tabs as AriaTabs,
+  type TabsProps as AriaTabsProps,
 } from 'react-aria-components'
 
-import { Typography, type TextColor } from '@/components/Typography'
+import { type TextColor, Typography } from '@/components/Typography'
 
 import styles from './Tabs.module.css'
 

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { BlockIcon, MailIcon, SettingsIcon } from '../icons'
-
 import { Menu } from './Menu'
 
 const meta: Meta<typeof Menu.Item> = {

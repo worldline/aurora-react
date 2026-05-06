@@ -20,7 +20,6 @@
  *   - pdf-file (file-types, custom)
  *   - american-express / mastercard (payment-methods, brand assets)
  */
-
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'

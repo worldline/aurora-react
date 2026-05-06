@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 import { Button } from '../Button'
 import { Typography } from '../Typography'
-
 import { Modal } from './Modal'
 
 const meta: Meta<typeof Modal> = {

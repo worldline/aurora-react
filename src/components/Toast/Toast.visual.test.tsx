@@ -6,7 +6,6 @@ import { themes } from '@/__tests__/ThemeWrapper'
 import { render } from '@/__tests__/visual/testUtils'
 
 import { Button } from '../Button'
-
 import styles from './Toast.stories.module.css'
 import { ToastProvider } from './ToastProvider'
 import { ToastRegion } from './ToastRegion'

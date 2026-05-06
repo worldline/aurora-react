@@ -1,7 +1,7 @@
 'use client'
 
 import cn from 'classnames'
-import { useId, type ComponentProps } from 'react'
+import { type ComponentProps, useId } from 'react'
 import {
   Checkbox as AriaCheckbox,
   type CheckboxProps,

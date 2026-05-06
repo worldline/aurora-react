@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import type { Selection } from 'react-aria-components'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { BlockIcon, SettingsIcon } from '../icons'
-
 import { Menu } from './index'
 
 describe('Menu', () => {

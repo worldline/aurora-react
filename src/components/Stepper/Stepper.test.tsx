@@ -1,11 +1,11 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
 
+import type { StepItem } from './index'
 import type { StepType } from './Step'
 import { allIconSteps, steps } from './Stepper.fixtures'
 
 import { Stepper } from '.'
-import type { StepItem } from './index'
 
 interface TestCase<T extends StepType> {
   label: string

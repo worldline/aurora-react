@@ -2,7 +2,7 @@ import { announce } from '@react-aria/live-announcer'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useState } from 'react'
-import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { SearchIcon } from '@/components/icons'
 

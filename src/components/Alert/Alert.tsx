@@ -4,7 +4,6 @@ import type { ReactElement, ReactNode } from 'react'
 import { Button } from '../Button'
 import { CheckCircleIcon, CloseIcon, ErrorIcon, WarningIcon } from '../icons'
 import { Typography } from '../Typography'
-
 import styles from './Alert.module.css'
 
 type AlertVariant = 'info' | 'success' | 'warning' | 'error'
