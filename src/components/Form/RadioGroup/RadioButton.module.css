@@ -1,0 +1,85 @@
+.radio {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--au-spacing-xs);
+  cursor: pointer;
+}
+
+.radio.md {
+  gap: var(--au-spacing-sm);
+}
+
+.indicator {
+  flex-shrink: 0;
+  width: var(--au-dimension-16);
+  height: var(--au-dimension-16);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-high);
+  border-radius: var(--au-radius-rounded);
+}
+
+.md .indicator {
+  width: var(--au-dimension-20);
+  height: var(--au-dimension-20);
+}
+
+.radio[data-disabled] {
+  cursor: default;
+}
+
+.radio[data-disabled] .indicator {
+  background-color: var(--au-surface-disabled);
+  border-color: var(--au-border-disabled);
+}
+
+.radio[data-focus-visible] .indicator {
+  box-shadow:
+    0 0 0 var(--au-border-width-medium) var(--au-surface-page),
+    0 0 0 var(--au-border-width-thick) var(--au-surface-brand-solid);
+}
+
+.radio[data-selected] .indicator > * {
+  display: block;
+  border-radius: var(--au-radius-rounded);
+}
+
+.radio[data-disabled][data-selected] .indicator > * {
+  height: calc(var(--au-dimension-16) - var(--au-border-width-thin) * 3 / 2);
+  background-color: var(--au-border-disabled);
+  border: 5px solid var(--au-surface-disabled);
+}
+
+.radio[data-selected]:not([data-disabled]) .indicator {
+  border: none;
+}
+
+.radio[data-selected]:not([data-disabled]) .indicator > * {
+  width: var(--au-dimension-16);
+  height: var(--au-dimension-16);
+  background-color: var(--au-content-on-brand);
+  border: 5px solid var(--au-surface-brand-solid);
+}
+
+.radio[data-selected].md .indicator > * {
+  border-width: 6px;
+}
+
+.radio[data-disabled][data-selected].md .indicator > * {
+  height: calc(var(--au-dimension-20) - var(--au-border-width-thin) * 3 / 2);
+}
+
+.radio[data-selected]:not([data-disabled]).md .indicator > * {
+  width: var(--au-dimension-20);
+  height: var(--au-dimension-20);
+}
+
+.radio[data-hovered][data-selected]:not([data-disabled]) .indicator > *,
+.radio[data-focus-visible][data-selected]:not([data-disabled]) .indicator > * {
+  border-color: var(--au-surface-brand-solid-hover);
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-3xs);
+}
