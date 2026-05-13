@@ -1,0 +1,132 @@
+.row {
+  position: relative;
+  z-index: 10;
+  background: var(--au-surface-neutral-low);
+  outline: none;
+}
+
+.row[data-hovered] {
+  background: var(--au-surface-neutral-low-hover);
+}
+
+.row[data-selected] {
+  background: var(--au-surface-brand-subtile);
+}
+
+.cell-checkbox {
+  position: sticky;
+  left: 0;
+  z-index: 30;
+  width: var(--au-spacing-4xl);
+  min-width: max-content;
+  padding: var(--au-spacing-xs) var(--au-spacing-sm) var(--au-spacing-xs)
+    var(--au-spacing-md);
+  text-align: center;
+  background-color: var(--au-surface-neutral-low);
+  vertical-align: middle;
+  border-bottom: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  outline: none;
+  white-space: nowrap;
+}
+
+.cell-action {
+  position: sticky;
+  right: 0;
+  z-index: 30;
+  width: var(--au-spacing-5xl);
+  min-width: var(--au-spacing-5xl);
+  max-width: var(--au-spacing-5xl);
+  padding: var(--au-spacing-xs);
+  text-align: center;
+  background-color: var(--au-surface-neutral-low);
+  vertical-align: middle;
+  border-bottom: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  outline: none;
+  white-space: nowrap;
+}
+
+.row[data-hovered] :is(.cell-checkbox, .cell-action) {
+  background-color: var(--au-surface-neutral-low-hover);
+}
+
+.row[data-selected] :is(.cell-checkbox, .cell-action) {
+  background-color: var(--au-surface-brand-subtile);
+}
+
+@media (width <= 480px) {
+  .row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    row-gap: var(--au-spacing-xs);
+    padding: var(--au-spacing-md);
+    overflow: hidden;
+    background: var(--au-surface-neutral-low);
+    border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+    margin-bottom: calc(-1 * var(--au-border-width-thin));
+  }
+
+  .row:has(.cell-checkbox) {
+    padding-left: var(--au-spacing-4xl);
+  }
+
+  .row[data-hovered] {
+    background: var(--au-surface-neutral-low-hover);
+  }
+
+  .row[data-selected] {
+    background: var(--au-surface-brand-subtile);
+  }
+
+  .cell-checkbox {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex: none;
+    align-items: center;
+    min-width: auto;
+    padding: var(--au-spacing-xs) var(--au-spacing-sm) var(--au-spacing-xs)
+      var(--au-spacing-md);
+    border: none;
+  }
+
+  .cell-action {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex: none;
+    align-items: center;
+    min-width: auto;
+    padding: var(--au-spacing-xs);
+  }
+
+  .mobile-card .cell-checkbox,
+  .mobile-card .cell-action {
+    top: auto;
+  }
+
+  .mobile-card {
+    border-top: none;
+    margin-top: var(--au-spacing-md);
+    padding-top: 0;
+  }
+
+  .mobile-card::before {
+    display: block;
+    width: 100%;
+    padding-top: var(--au-spacing-lg);
+    padding-bottom: var(--au-spacing-sm);
+    font-family: var(--au-typescale-caption-md-font-family, sans-serif);
+    font-size: var(--au-typescale-caption-md-font-size, 14px);
+    font-weight: var(--au-typescale-caption-md-font-weight, 400);
+    line-height: var(--au-typescale-caption-md-line-height, 18px);
+    color: var(--au-content-primary);
+    letter-spacing: var(--au-typescale-caption-md-letter-spacing, 0);
+    content: attr(data-mobile-heading);
+  }
+}

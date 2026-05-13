@@ -1,0 +1,24 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--au-spacing-xl);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
+  color: var(--au-content-secondary);
+  animation: spin var(--au-motion-spinner-duration)
+    var(--au-motion-spinner-easing) var(--au-motion-spinner-iteration);
+}

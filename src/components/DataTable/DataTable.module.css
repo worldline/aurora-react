@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--au-radius-xs);
+  overflow: auto;
+}
+
+.table {
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: var(--au-spacing-md);
+}
+
+@media (width <= 480px) {
+  .table {
+    display: block;
+  }
+}
