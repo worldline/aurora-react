@@ -1,6 +1,23 @@
 export { Alert } from './Alert'
 export { Button } from './Button'
 export { Card } from './Card'
+export {
+  DataTable,
+  DataTableHeader,
+  DataTableColumn,
+  DataTableBody,
+  DataTableRow,
+  DataTableCell,
+  DataTableSectionHeader,
+  type DataTableProps,
+  type DataTableHeaderProps,
+  type DataTableColumnProps,
+  type DataTableBodyProps,
+  type DataTableRowProps,
+  type DataTableCellProps,
+  type DataTableSectionHeaderProps,
+  type FixedColumnProps,
+} from './DataTable'
 export { Chip, type ChipSize, type ChipType } from './Chip'
 export { Divider } from './Divider'
 export { FeaturedIcon } from './FeaturedIcon'

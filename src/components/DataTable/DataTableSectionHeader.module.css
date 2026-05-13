@@ -1,0 +1,24 @@
+.section-header {
+  display: none;
+}
+
+.section-header-empty {
+  display: none;
+}
+
+@media (width <= 480px) {
+  .section-header {
+    display: flex;
+    padding: var(--au-spacing-lg) var(--au-spacing-md) var(--au-spacing-sm);
+    background: transparent;
+    border: none;
+    margin-top: var(--au-spacing-md);
+  }
+
+  .section-header-cell {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    border-bottom: none;
+  }
+}

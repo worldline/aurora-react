@@ -1,0 +1,25 @@
+.column {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-width: max-content;
+  padding: var(--au-spacing-xs);
+  text-align: left;
+  background: var(--au-surface-neutral-low);
+  vertical-align: middle;
+  border-bottom: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  outline: none;
+  white-space: nowrap;
+}
+
+.column-content {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: var(--au-spacing-3xs);
+  flex-shrink: 0;
+}
+
+.column[data-focus-visible] {
+  box-shadow: var(--au-focus-ring);
+}
