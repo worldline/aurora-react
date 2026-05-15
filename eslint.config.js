@@ -19,6 +19,7 @@ export default defineConfig([
     'terraform',
     '.vitest-attachments',
     '.vitest-reports',
+    '__tests__/start-playwright-container.mjs',
   ]),
   {
     extends: [

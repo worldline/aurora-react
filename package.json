@@ -6,6 +6,10 @@
   "engines": {
     "node": ">=24"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "sideEffects": [
     "**/*.css"
   ],
@@ -34,7 +38,6 @@
     "lint:fix": "eslint . --fix",
     "slint": "npx stylelint \"**/*.css\"",
     "slint:fix": "npx stylelint \"**/*.css\" --fix",
-    "commitlint:ci": "commitlint --from origin/master --to HEAD",
     "format": "prettier --write .",
     "ncui": "npx npm-check-updates -i",
     "prestorybook": "npm run icons:generate",
@@ -58,7 +61,7 @@
   },
   "dependencies": {
     "@react-aria/live-announcer": "3.5.0",
-    "@worldline/aurora-design-tokens": "1.9.0"
+    "@worldline/aurora-design-tokens": "1.10.0"
   },
   "peerDependencies": {
     "classnames": "^2.5.1",
@@ -73,7 +76,7 @@
     "@eslint/js": "10.0.1",
     "@semantic-release/commit-analyzer": "13.0.1",
     "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "12.0.6",
+    "@semantic-release/gitlab": "13.3.2",
     "@semantic-release/npm": "13.1.5",
     "@semantic-release/release-notes-generator": "14.1.0",
     "@storybook/addon-a11y": "10.3.6",
@@ -120,6 +123,7 @@
     "stylelint-config-standard": "40.0.0",
     "stylelint-prettier": "5.0.3",
     "stylelint-value-no-unknown-custom-properties": "6.1.1",
+    "testcontainers": "11.14.0",
     "typescript": "6.0.3",
     "typescript-eslint": "8.59.2",
     "unplugin-dts": "1.0.0",
