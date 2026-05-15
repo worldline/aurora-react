@@ -12,6 +12,25 @@ import dts from 'unplugin-dts/vite'
 import { defineConfig } from 'vite'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
 
+const playwrightBrowserConfig = () => ({
+  connectTimeout: 30000, // container is already up; 30s is enough
+  provider: playwright({
+    ...(process.env.PLAYWRIGHT_WS_ENDPOINT
+      ? {
+          connectOptions: {
+            wsEndpoint: process.env.PLAYWRIGHT_WS_ENDPOINT,
+            exposeNetwork: '<loopback>',
+          },
+        }
+      : {
+          launchOptions: {
+            args: ['--no-sandbox', '--disable-dev-shm-usage'],
+          },
+        }),
+  }),
+  instances: [{ browser: 'chromium' as const }],
+})
+
 export default defineConfig({
   plugins: [
     react(),
@@ -157,19 +176,7 @@ export default defineConfig({
                   `${testFileDirectory}/__screenshots__/${testFileName}/${testName}-${browserName}${ext}`,
               },
             },
-            provider: playwright({
-              connectOptions: {
-                wsEndpoint: process.env.CI
-                  ? 'ws://aurora-react-playwright:3000'
-                  : 'ws://0.0.0.0:3100',
-                exposeNetwork: '<loopback>',
-              },
-            }),
-            instances: [
-              {
-                browser: 'chromium',
-              },
-            ],
+            ...playwrightBrowserConfig(),
           },
         },
       },
@@ -195,12 +202,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: playwright({}),
-            instances: [
-              {
-                browser: 'chromium',
-              },
-            ],
+            ...playwrightBrowserConfig(),
           },
           setupFiles: ['.storybook/vitest.setup.ts'],
         },
