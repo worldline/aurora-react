@@ -32,7 +32,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "npm run icons:generate",
-    "wli": "npm login --registry=https://registry.npmjs.org --auth-type=web && npm i",
+    "wli": "npm login --registry=https://registry.npmjs.org/ && npm i",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
