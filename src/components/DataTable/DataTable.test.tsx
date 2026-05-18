@@ -21,11 +21,15 @@ vi.mock('react', async (importOriginal) => {
         useRefMockControl.nullifyNext = false
         return new Proxy(ref, {
           get(target, prop) {
-            if (prop === 'current') return null
+            if (prop === 'current') {
+              return null
+            }
             return Reflect.get(target, prop) as unknown
           },
           set(target, prop, value) {
-            if (prop === 'current') return true
+            if (prop === 'current') {
+              return true
+            }
             return Reflect.set(target, prop, value)
           },
         })

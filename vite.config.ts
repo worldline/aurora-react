@@ -36,6 +36,7 @@ export default defineConfig({
     react(),
     libInjectCss(),
     dts({
+      entryRoot: 'src',
       tsconfigPath: fileURLToPath(
         new URL('tsconfig.lib.json', import.meta.url),
       ),
@@ -44,10 +45,12 @@ export default defineConfig({
         '**/*.stories.tsx',
         '**/*.test.ts',
         '**/*.test.tsx',
-        '__tests__/*.ts',
-        '__tests__/*.tsx',
-        '.storybook/*.ts',
-        '.storybook/*.tsx',
+        '**/*.fixtures.ts',
+        '**/*.fixtures.tsx',
+        '__tests__/**/*.ts',
+        '__tests__/**/*.tsx',
+        '.storybook/**/*.ts',
+        '.storybook/**/*.tsx',
       ],
     }),
     preserveDirectives(),
@@ -72,6 +75,8 @@ export default defineConfig({
   },
   build: {
     copyPublicDir: false,
+    sourcemap: true,
+    minify: false,
     lib: {
       entry: fileURLToPath(new URL('src/components/main.ts', import.meta.url)),
       formats: ['es'],
@@ -83,23 +88,19 @@ export default defineConfig({
         'react/jsx-runtime',
         'classnames',
         'react-aria-components',
+        /^@react-aria\/live-announcer/,
+        /^@worldline\/aurora-design-tokens/,
       ],
       input: Object.fromEntries(
-        globSync(
-          [
-            'src/styles/styles.css',
-            'src/assets/fonts/fonts.css',
-            'src/**/*.{ts,tsx}',
+        globSync(['src/styles/styles.css', 'src/**/*.{ts,tsx}'], {
+          ignore: [
+            'src/**/*types*.ts',
+            'src/**/*stories*.{ts,tsx}',
+            'src/**/*test.{ts,tsx}',
+            'src/**/*fixtures*.{ts,tsx}',
+            '__tests__/*.{ts,tsx}',
           ],
-          {
-            ignore: [
-              'src/**/*types*.ts',
-              'src/**/*stories*.{ts,tsx}',
-              'src/**/*test.{ts,tsx}',
-              '__tests__/*.{ts,tsx}',
-            ],
-          },
-        ).map((file) => [
+        }).map((file) => [
           relative('src', file.slice(0, file.length - extname(file).length)),
           fileURLToPath(new URL(file, import.meta.url)),
         ]),
@@ -107,6 +108,7 @@ export default defineConfig({
       output: {
         assetFileNames: 'assets/[name][extname]',
         entryFileNames: '[name].js',
+        chunkFileNames: '_chunks/[name]-[hash].js',
       },
     },
   },
@@ -123,6 +125,7 @@ export default defineConfig({
         '*.scss',
         'src/components/main.ts',
         'src/components/**/*.stories.ts',
+        'src/components/icons/**',
       ],
       clean: true,
     },
