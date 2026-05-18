@@ -104,7 +104,8 @@ This story demonstrates how to display Toast notifications. You will have to :
 ### ToastProvider
 
 The \`<ToastProvider />\` component is responsible for providing the toast context to your application. 
-It should be placed at the root of your application, or at least above any component that needs to trigger toasts through the \`useToast()\` hook, and above the \`<ToastRegion />\` component.
+It should be placed at the root of your application, or at least above any component that needs to trigger toasts through the \`useToast()\` hook, 
+and above the \`<ToastRegion />\` component.
 It can be declared among the other providers you might have in your application, for example, the ThemeProvider.
 
 
@@ -125,7 +126,8 @@ export { Providers }
 The \`<ToastRegion />\` component is responsible for rendering the toasts in your application. You can place it in the main layout of your application.
 It can be customized with a \`className\` props, and it will render the toasts in a fixed position at the top-right of the screen by default.
 Recommanded CSS class to apply to the \`<ToastRegion />\` component are:
-- \`top\` to position the toasts below the header of your application (which is 72px high for desktop and 48px for tablet and mobile in this example). Use className for this property.
+- \`top\` to position the toasts below the header of your application (which is 72px high for desktop and 48px for tablet and mobile in this example). 
+Use className for this property.
 - \`margin\` to customize horizontal margin of the toasts on mobile, to align the toasts with the content of your application. Use toastClassName for this property.
 
 \`\`\`css

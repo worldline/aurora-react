@@ -10,7 +10,7 @@ const {
   Default,
   Success,
   Warning,
-  Error: ErrorVariant,
+  WithError: ErrorVariant,
   Closable,
   WithoutTitle,
   LongContent,

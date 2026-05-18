@@ -26,7 +26,9 @@ const buildFixedStyle = (
   fixedOffset: number,
   style: CSSProperties | undefined,
 ): CSSProperties | undefined => {
-  if (!fixed) return style
+  if (!fixed) {
+    return style
+  }
   return {
     ...style,
     [fixed === 'left' ? 'left' : 'right']: fixedOffset,

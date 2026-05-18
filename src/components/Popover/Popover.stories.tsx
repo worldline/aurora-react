@@ -29,7 +29,8 @@ const meta: Meta<typeof Popover> = {
     triggerRef: {
       control: false,
       description:
-        'A ref to the element that the popover should be anchored to. By default, it will anchor to the trigger element (e.g. Menu.Trigger), but you can use this prop to anchor to a different element.',
+        'A ref to the element that the popover should be anchored to. By default, it will anchor to the trigger element (e.g. Menu.Trigger), ' +
+        'but you can use this prop to anchor to a different element.',
       table: {
         type: { summary: 'RefObject<HTMLElement>' },
         category: 'Positioning',

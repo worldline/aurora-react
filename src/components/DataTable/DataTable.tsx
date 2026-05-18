@@ -30,12 +30,18 @@ const countColumns = (children: ReactNode): number => {
       isValidElement<{ children?: ReactNode }>(child) &&
       child.type === DataTableHeader,
   )
-  if (!header) return 0
+  if (!header) {
+    return 0
+  }
 
   const headerChildren = header.props.children
-  if (headerChildren === undefined || headerChildren === null) return 0
+  if (headerChildren === undefined || headerChildren === null) {
+    return 0
+  }
 
-  if (!Array.isArray(headerChildren)) return 1
+  if (!Array.isArray(headerChildren)) {
+    return 1
+  }
 
   return (headerChildren as Array<ReactNode>).filter((c: ReactNode) =>
     isValidElement(c),

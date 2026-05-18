@@ -20,6 +20,7 @@ export default defineConfig([
     '.vitest-attachments',
     '.vitest-reports',
     '__tests__/start-playwright-container.mjs',
+    'coverage',
   ]),
   {
     extends: [
@@ -41,6 +42,8 @@ export default defineConfig([
       '@eslint-react/no-forward-ref': 'error',
       '@eslint-react/no-leaked-conditional-rendering': 'error',
       'arrow-body-style': ['error', 'as-needed'],
+      'consistent-return': 'error',
+      curly: ['error', 'all'],
       eqeqeq: 'error',
       'no-console': 'error',
       'no-duplicate-imports': 'error',

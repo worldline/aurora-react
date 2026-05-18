@@ -3,7 +3,7 @@ name: aurora-react-visual-tests
 services:
   playwright:
     container_name: aurora-react-playwright
-    image: mcr.microsoft.com/playwright:v1.59.0-noble
+    image: mcr.microsoft.com/playwright:v1.60.0-noble
     user: pwuser
     working_dir: /home/pwuser
     init: true
@@ -15,7 +15,7 @@ services:
       [
         'sh',
         '-c',
-        'npx -y playwright@1.59.0 run-server --port 3000 --host 0.0.0.0',
+        'npx -y playwright@1.60.0 run-server --port 3000 --host 0.0.0.0',
       ]
     restart: 'no'
     healthcheck:
