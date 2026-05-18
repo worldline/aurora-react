@@ -26,7 +26,8 @@ const meta: Meta<typeof Menu> = {
     children: {
       control: false,
       description:
-        'Menu items, sections, and dividers. Use [Menu.Item](./?path=/docs/components-menu-menu-item--docs), [Menu.Section](./?path=/docs/components-menu-menu-section--docs), and Menu.Divider components.',
+        'Menu items, sections, and dividers. ' +
+        'Use [Menu.Item](./?path=/docs/components-menu-menu-item--docs), [Menu.Section](./?path=/docs/components-menu-menu-section--docs), and Menu.Divider components.',
       table: {
         type: { summary: 'ReactNode' },
         category: 'Content',
@@ -403,7 +404,8 @@ export const DynamicMenu: Story = {
     docs: {
       description: {
         story:
-          'A dynamic menu should be used when you need to load external data (e.g. from an API) for the items or sections. Pass an array of items and a render function as children to render them.',
+          'A dynamic menu should be used when you need to load external data (e.g. from an API) for the items or sections.' +
+          ' Pass an array of items and a render function as children to render them.',
       },
     },
   },
@@ -492,7 +494,8 @@ export const InPopover: Story = {
     docs: {
       description: {
         story:
-          'Menu can be used inside a Popover for positioning. See the [Popover documentation](./?path=/docs/components-popover--docs) for more examples on different trigger patterns and positioning options.',
+          'Menu can be used inside a Popover for positioning. ' +
+          'See the [Popover documentation](./?path=/docs/components-popover--docs) for more examples on different trigger patterns and positioning options.',
       },
     },
   },

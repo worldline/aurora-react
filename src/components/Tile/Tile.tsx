@@ -68,6 +68,11 @@ interface ComposedTileProps extends TileBaseProps {
 
 type TileProps = StandaloneTileProps | ComposedTileProps
 
+const getTextColor = (
+  disabled = false,
+  activeColor: 'contentPrimary' | 'contentSecondary',
+) => (disabled ? 'contentDisabled' : activeColor)
+
 const Tile = ({
   ref,
   orientation = 'horizontal',
@@ -120,7 +125,7 @@ const Tile = ({
           <Typography
             element="p"
             textStyle="bodySm"
-            textColor={disabled ? 'contentDisabled' : 'contentSecondary'}
+            textColor={getTextColor(disabled, 'contentSecondary')}
           >
             {overline}
           </Typography>
@@ -128,7 +133,7 @@ const Tile = ({
         <Typography
           element="p"
           textStyle="titleSm"
-          textColor={disabled ? 'contentDisabled' : 'contentPrimary'}
+          textColor={getTextColor(disabled, 'contentPrimary')}
         >
           {title}
         </Typography>
@@ -136,7 +141,7 @@ const Tile = ({
           <Typography
             element="p"
             textStyle="bodyMd"
-            textColor={disabled ? 'contentDisabled' : 'contentSecondary'}
+            textColor={getTextColor(disabled, 'contentSecondary')}
           >
             {description}
           </Typography>
