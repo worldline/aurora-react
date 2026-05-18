@@ -31,7 +31,7 @@ const Toast = ({ toast, onClose, className }: ToastProps) => {
 
   useEffect(() => {
     if (isVisible) {
-      return
+      return () => void 0
     }
 
     const timeout = setTimeout(onClose, motionFadeOutDuration)

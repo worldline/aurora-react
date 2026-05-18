@@ -54,7 +54,10 @@ export const ButtonVariantWithCustomElement: Story = {
     docs: {
       description: {
         story: `
-This story demonstrates how to use the \`render\` prop to customize the rendered element. In this example, we render a standard anchor tag, but you could replace it with a React Router Link, a NextJs Link or any other component. You would typically create your own Link component that wraps the Aurora Link and provides this custom rendering logic, so you can use it throughout your application without needing to specify the \`render\` prop each time.
+This story demonstrates how to use the \`render\` prop to customize the rendered element. 
+In this example, we render a standard anchor tag, but you could replace it with a React Router Link, a NextJs Link or any other component. 
+You would typically create your own Link component that wraps the Aurora Link and provides this custom rendering logic, 
+so you can use it throughout your application without needing to specify the \`render\` prop each time.
 
 Example of a custom Link component that uses React Router's Link:
  \`\`\`tsx
@@ -85,7 +88,8 @@ const Link = (props: Props) => (
 export { Link }
 \`\`\`
 
-The \`DistributiveOmit\` is a TypeScript utility type that allows us to omit a property from a union type. This is needed to exclude \`href\` from the Aurora Link props in favor of React Router's \`to\` prop.
+The \`DistributiveOmit\` is a TypeScript utility type that allows us to omit a property from a union type. 
+This is needed to exclude \`href\` from the Aurora Link props in favor of React Router's \`to\` prop.
  \`\`\`tsx
 type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
   ? Omit<T, K>

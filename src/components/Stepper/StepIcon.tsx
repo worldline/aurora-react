@@ -38,7 +38,7 @@ const StepIcon = ({ type, status, number, icon }: Props): ReactElement => {
               </Typography>
             )
           default:
-            assertUnreachable(type)
+            return assertUnreachable(type)
         }
         break
       case 'incomplete':
@@ -58,11 +58,11 @@ const StepIcon = ({ type, status, number, icon }: Props): ReactElement => {
               </Typography>
             )
           default:
-            assertUnreachable(type)
+            return assertUnreachable(type)
         }
         break
       default:
-        assertUnreachable(status)
+        return assertUnreachable(status)
     }
   }
 

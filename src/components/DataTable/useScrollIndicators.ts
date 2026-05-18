@@ -14,7 +14,9 @@ export const useScrollIndicators = (
 ): void => {
   useEffect(() => {
     const wrapper = wrapperRef.current
-    if (!wrapper) return
+    if (!wrapper) {
+      return () => void 0
+    }
 
     const onScroll = (): void => {
       updateScrollIndicators(wrapper)
