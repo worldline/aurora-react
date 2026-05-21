@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  align-items: center;
+  min-height: var(--au-dimension-40);
+  padding: var(--au-spacing-xs);
+  gap: var(--au-spacing-sm);
+  border-radius: var(--au-radius-sm);
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.item[data-hovered],
+.item[data-selected],
+.item[data-focused] {
+  background-color: var(--au-surface-neutral-low-hover);
+}
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--au-spacing-3xs);
+}
+
+.item-description {
+  color: var(--au-content-tertiary);
+}
+
+.check-icon {
+  flex-shrink: 0;
+  color: var(--au-content-brand);
+}
