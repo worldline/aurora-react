@@ -141,6 +141,11 @@ export const Typographies = meta.story({
           labelSm / Lorem ipsum dolor sit amet
         </Typography>
       </li>
+      <li>
+        <Typography element="p" textColor="contentPrimary" textStyle="labelXs">
+          labelXs / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
     </ul>
   ),
 })

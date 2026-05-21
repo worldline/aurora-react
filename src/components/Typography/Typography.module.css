@@ -119,6 +119,10 @@
   font: var(--au-label-sm);
 }
 
+.label-xs {
+  font: var(--au-label-xs);
+}
+
 .caption-lg {
   font: var(--au-caption-lg);
 }
