@@ -24,6 +24,12 @@ export { FeaturedIcon } from './FeaturedIcon'
 export { Checkbox } from './Form/Checkbox'
 export { InputField, type InputFieldProps } from './Form/InputField'
 export { RadioGroup, type RadioGroupProps } from './Form/RadioGroup'
+export {
+  Select,
+  SelectItem,
+  type AuroraSelectProps,
+  type SelectItemProps,
+} from './Form/Select'
 export * from './icons'
 export { Link } from './Link'
 export { Menu } from './Menu'

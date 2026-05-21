@@ -1,0 +1,163 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--au-spacing-2xs);
+}
+
+.label {
+  display: flex;
+  gap: var(--au-spacing-3xs);
+  color: var(--au-inputfield-placeholder-label);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  background-color: var(--au-inputfield-placeholder-background);
+  border-style: solid;
+  border-color: var(--au-inputfield-placeholder-border);
+  cursor: pointer;
+}
+
+.small .trigger {
+  padding: var(--au-inputfield-text-field-sm-padding-vertical)
+    var(--au-inputfield-text-field-sm-padding-horizontal);
+  gap: var(--au-inputfield-text-field-sm-gap);
+  border-radius: var(--au-inputfield-text-field-sm-radius);
+  border-width: var(--au-inputfield-text-field-sm-border-width);
+}
+
+.medium .trigger {
+  padding: var(--au-inputfield-text-field-md-padding-vertical)
+    var(--au-inputfield-text-field-md-padding-horizontal);
+  gap: var(--au-inputfield-text-field-md-gap);
+  border-radius: var(--au-inputfield-text-field-md-radius);
+  border-width: var(--au-inputfield-text-field-md-border-width);
+}
+
+.leading {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.selected-value {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected-text {
+  color: var(--au-inputfield-placeholder-text);
+}
+
+.selected-text[data-selected] {
+  color: var(--au-inputfield-filled-text);
+}
+
+.selected-text[data-placeholder],
+.selected-text[data-focused] {
+  color: var(--au-inputfield-placeholder-text);
+}
+
+.chevron {
+  color: var(--au-inputfield-placeholder-text);
+}
+
+.container[data-selected] .label {
+  color: var(--au-inputfield-filled-label);
+}
+
+.container[data-selected] .trigger {
+  background-color: var(--au-inputfield-filled-background);
+  border-color: var(--au-inputfield-filled-border);
+}
+
+.container[data-focus-visible] .trigger,
+.container[data-open] .trigger {
+  background-color: var(--au-inputfield-selected-background);
+  border-color: var(--au-inputfield-selected-border);
+}
+
+.container[data-focus-visible] .label,
+.container[data-open] .label {
+  color: var(--au-inputfield-selected-label);
+}
+
+.container[data-invalid] .trigger {
+  border-color: var(--au-inputfield-error-border);
+}
+
+.help-line {
+  display: flex;
+  gap: var(--au-spacing-2xs);
+}
+
+.help-line > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.helper-text {
+  color: var(--au-inputfield-placeholder-helper-text);
+}
+
+.container[data-disabled] .trigger {
+  background-color: var(--au-inputfield-disabled-background);
+  border-color: var(--au-inputfield-disabled-border);
+  cursor: default;
+}
+
+.container[data-disabled] .label {
+  color: var(--au-inputfield-disabled-label);
+}
+
+.container[data-disabled] .selected-text {
+  color: var(--au-inputfield-disabled-text);
+}
+
+.container[data-disabled] .chevron {
+  color: var(--au-inputfield-disabled-text);
+}
+
+.container[data-disabled] .helper-text {
+  color: var(--au-inputfield-disabled-helper-text);
+}
+
+.container[data-readonly] .trigger {
+  background-color: var(--au-inputfield-read-only-background);
+  border-color: var(--au-inputfield-read-only-border);
+  cursor: default;
+}
+
+.container[data-readonly] .label {
+  color: var(--au-inputfield-read-only-label);
+}
+
+.container[data-readonly] .selected-text {
+  color: var(--au-inputfield-read-only-text);
+}
+
+.popover {
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties -- set by React Aria Popover */
+  width: var(--trigger-width);
+  max-height: 256px;
+  background-color: var(--au-surface-neutral-low);
+  border: var(--au-border-width-thin) solid var(--au-surface-neutral-medium);
+  border-radius: var(--au-radius-xs);
+  box-shadow: var(--au-interactive-overlay);
+  overflow: auto;
+}
+
+.listbox {
+  display: flex;
+  flex-direction: column;
+  padding: var(--au-spacing-xs) var(--au-spacing-2xs);
+  gap: var(--au-spacing-2xs);
+  outline: none;
+}
