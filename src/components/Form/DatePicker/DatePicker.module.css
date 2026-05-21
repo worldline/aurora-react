@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-2xs);
+}
+
+.label {
+  display: flex;
+  gap: var(--au-spacing-3xs);
+  color: var(--au-inputfield-placeholder-label);
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border-style: solid;
+  background-color: var(--au-inputfield-placeholder-background);
+  border-color: var(--au-inputfield-placeholder-border);
+  cursor: pointer;
+}
+
+.small .input-wrapper {
+  padding: var(--au-inputfield-text-field-sm-padding-vertical)
+    var(--au-inputfield-text-field-sm-padding-horizontal);
+  gap: var(--au-inputfield-text-field-sm-gap);
+  border-radius: var(--au-inputfield-text-field-sm-radius);
+  border-width: var(--au-inputfield-text-field-sm-border-width);
+}
+
+.medium .input-wrapper {
+  padding: var(--au-inputfield-text-field-md-padding-vertical)
+    var(--au-inputfield-text-field-md-padding-horizontal);
+  gap: var(--au-inputfield-text-field-md-gap);
+  border-radius: var(--au-inputfield-text-field-md-radius);
+  border-width: var(--au-inputfield-text-field-md-border-width);
+}
+
+.date-input {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  font: var(--au-body-md);
+  color: var(--au-inputfield-filled-text);
+}
+
+.segment {
+  color: var(--au-inputfield-placeholder-text);
+}
+
+.segment[data-focused] {
+  color: var(--au-content-on-brand);
+  background-color: var(--au-surface-brand-solid);
+  outline: none;
+}
+
+.segment[data-placeholder] {
+  color: var(--au-inputfield-placeholder-text);
+  text-transform: uppercase;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--au-spacing-3xs);
+  color: var(--au-content-secondary);
+  flex-shrink: 0;
+}
+
+.calendar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  color: var(--au-content-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.container[data-focus-within] .label {
+  color: var(--au-inputfield-selected-label);
+}
+
+.container[data-focus-within] .date-input {
+  color: var(--au-inputfield-selected-text);
+}
+
+.input-wrapper[data-focus-within] {
+  background-color: var(--au-inputfield-selected-background);
+  border-color: var(--au-inputfield-selected-border);
+}
+
+.container[data-invalid] .input-wrapper {
+  border-color: var(--au-inputfield-error-border);
+}
+
+.container[data-disabled] .label {
+  color: var(--au-inputfield-disabled-label);
+}
+
+.container[data-disabled] .input-wrapper {
+  background-color: var(--au-inputfield-disabled-background);
+  border-color: var(--au-inputfield-disabled-border);
+  cursor: default;
+}
+
+.container[data-disabled] .date-input {
+  color: var(--au-inputfield-disabled-text);
+}
+
+.container[data-disabled] .calendar-button {
+  color: var(--au-content-disabled);
+  cursor: default;
+}
+
+.container[data-disabled] .separator {
+  color: var(--au-content-disabled);
+}
+
+.container[data-readonly] .label {
+  color: var(--au-inputfield-read-only-label);
+}
+
+.container[data-readonly] .input-wrapper {
+  background-color: var(--au-inputfield-read-only-background);
+  border-color: var(--au-inputfield-read-only-border);
+  cursor: default;
+}
+
+.container[data-readonly] .date-input {
+  color: var(--au-inputfield-read-only-text);
+}
+
+.container[data-readonly] .calendar-button {
+  color: var(--au-content-disabled);
+  cursor: default;
+}

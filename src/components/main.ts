@@ -22,6 +22,12 @@ export { Chip, type ChipSize, type ChipType } from './Chip'
 export { Divider } from './Divider'
 export { FeaturedIcon } from './FeaturedIcon'
 export { Checkbox } from './Form/Checkbox'
+export {
+  DatePicker,
+  type DatePickerProps,
+  DateRangePicker,
+  type DateRangePickerProps,
+} from './Form/DatePicker'
 export { InputField, type InputFieldProps } from './Form/InputField'
 export { RadioGroup, type RadioGroupProps } from './Form/RadioGroup'
 export {
