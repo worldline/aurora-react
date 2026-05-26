@@ -20,6 +20,7 @@ export {
 } from './DataTable'
 export { Chip, type ChipSize, type ChipType } from './Chip'
 export { Divider } from './Divider'
+export { FilterGroup, FilterItem } from './Filter'
 export { FeaturedIcon } from './FeaturedIcon'
 export { Checkbox } from './Form/Checkbox'
 export {
