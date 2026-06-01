@@ -22,17 +22,55 @@ import {
 
 type ModalAlignment = 'center' | 'left' | 'right'
 
-interface ModalProps extends Omit<ModalOverlayProps, 'className'> {
+interface ModalProps extends ModalOverlayProps {
+  /**
+   * The text content displayed within the main header slot of the modal dialog.
+   */
   title: string
+  /**
+   * The primary body content rendered inside the modal container.
+   */
   children: ReactNode
+  /**
+   * Controls whether the exit icon button is visible in the top-right corner.
+   * @default true
+   */
   closable?: boolean
+  /**
+   * Determines the structural placement alignment. Side layouts ('left' | 'right')
+   * trigger a full-height sidebar variation.
+   * @default 'center'
+   */
   alignment?: ModalAlignment
+  /**
+   * Customizes the button grid stretching and sizing inside the footer action area.
+   * @default 'fill'
+   */
   actionsAlignment?: ModalActionsAlignment
+  /**
+   * Configuration options for the primary confirming action button inside the footer.
+   */
   primaryAction?: Action
+  /**
+   * Configuration options for the secondary dismissing action button inside the footer.
+   */
   secondaryAction?: Action
+  /**
+   * Custom CSS class name appended directly to the inner layout container frame.
+   */
   className?: string
+  /**
+   * Accessibility label passed into the closing button element for screen readers.
+   */
   closeLabel?: string
+  /**
+   * Direct override settings forwarded straight to the lower React Aria `Dialog` primitive.
+   */
   dialogProps?: DialogProps
+  /**
+   * Custom CSS class name appended directly to the backdrop mask container frame.
+   */
+  modalOverlayClassName?: string
 }
 
 const BaseModal = ({
@@ -46,6 +84,7 @@ const BaseModal = ({
   className,
   closeLabel,
   dialogProps,
+  modalOverlayClassName,
   ...modalProps
 }: ModalProps) => {
   const hasActions = Boolean(primaryAction ?? secondaryAction)
@@ -53,7 +92,11 @@ const BaseModal = ({
   return (
     <ModalOverlay
       {...modalProps}
-      className={cn(styles.overlay, styles[`overlay-${alignment}`])}
+      className={cn(
+        styles.overlay,
+        styles[`overlay-${alignment}`],
+        modalOverlayClassName,
+      )}
     >
       <AriaModal
         className={cn(
