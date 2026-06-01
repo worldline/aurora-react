@@ -50,7 +50,7 @@
     "test:report": "vitest run --reporter=html; npm run test:serve-report",
     "test:unit": "vitest run --project=unit --watch",
     "test:storybook": "vitest run --project=storybook --watch",
-    "test:visual": "vitest run --project=visual --passWithNoTests",
+    "test:visual": "vitest run --project=visual",
     "test:visual:report": "npm run test:visual -- --reporter=html; npm run test:serve-report",
     "test:visual:update": "npm run test:visual -- --update",
     "test:serve-report": "npx vite preview --outDir .vitest-reports --open",

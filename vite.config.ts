@@ -15,18 +15,10 @@ import { libInjectCss } from 'vite-plugin-lib-inject-css'
 const playwrightBrowserConfig = () => ({
   connectTimeout: 30000, // container is already up; 30s is enough
   provider: playwright({
-    ...(process.env.PLAYWRIGHT_WS_ENDPOINT
-      ? {
-          connectOptions: {
-            wsEndpoint: process.env.PLAYWRIGHT_WS_ENDPOINT,
-            exposeNetwork: '<loopback>',
-          },
-        }
-      : {
-          launchOptions: {
-            args: ['--no-sandbox', '--disable-dev-shm-usage'],
-          },
-        }),
+    connectOptions: {
+      wsEndpoint: process.env.PLAYWRIGHT_WS_ENDPOINT ?? 'ws://0.0.0.0:3100',
+      exposeNetwork: '<loopback>',
+    },
   }),
   instances: [{ browser: 'chromium' as const }],
 })
@@ -148,7 +140,7 @@ export default defineConfig({
         test: {
           name: 'visual',
           // TODO: Disable visual regression tests until the Git LFS issue is resolved
-          include: [],
+          include: ['./src/**/*.visual.test.tsx'],
           globalSetup: './__tests__/visual/globalSetup.ts',
           setupFiles: ['./__tests__/visual/setupVitest.ts'],
           browser: {
