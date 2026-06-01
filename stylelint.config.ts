@@ -9,6 +9,7 @@ export default {
     '**/dist/**',
     '**/build/**',
     '**/storybook-static/**',
+    'coverage/**',
   ],
 
   rules: {

@@ -214,7 +214,9 @@ export const PreSelected: Story = {
 }
 
 const ControlledExample = () => {
-  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set(['news']))
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(
+    () => new Set(['news']),
+  )
 
   return (
     <FilterGroup
