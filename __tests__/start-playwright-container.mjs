@@ -11,6 +11,8 @@ const image     = process.env.PLAYWRIGHT_IMAGE       || 'mcr.microsoft.com/playw
 const version   = process.env.PLAYWRIGHT_VERSION     || '1.59.0';
 const port      = parseInt(process.env.PLAYWRIGHT_SERVER_PORT || '3000', 10);
 const envFile   = process.env.PLAYWRIGHT_TC_ENV_FILE || '/tmp/playwright-tc.env';
+const startupTimeoutMs = parseInt(process.env.PLAYWRIGHT_STARTUP_TIMEOUT_MS || '300000', 10);
+const startupAttempts = parseInt(process.env.PLAYWRIGHT_STARTUP_ATTEMPTS || '2', 10);
 const jobId     = process.env.CI_JOB_ID              || '0';
 const projectId = process.env.CI_PROJECT_ID          || '0';
 
@@ -28,6 +30,12 @@ if (!/^\d+\.\d+\.\d+$/.test(version)) {
 if (isNaN(port) || port < 1024 || port > 65535) {
   fail(`PLAYWRIGHT_SERVER_PORT must be 1024-65535`);
 }
+if (isNaN(startupTimeoutMs) || startupTimeoutMs < 30_000) {
+  fail('PLAYWRIGHT_STARTUP_TIMEOUT_MS must be >= 30000');
+}
+if (isNaN(startupAttempts) || startupAttempts < 1 || startupAttempts > 5) {
+  fail('PLAYWRIGHT_STARTUP_ATTEMPTS must be 1-5');
+}
 if (!resolve(envFile).startsWith('/') || envFile.includes('..')) {
   fail(`PLAYWRIGHT_TC_ENV_FILE must be an absolute path without traversal`);
 }
@@ -35,30 +43,43 @@ if (!resolve(envFile).startsWith('/') || envFile.includes('..')) {
 process.stderr.write(`[playwright-tc] Starting ${image} (playwright@${version} on port ${port})\n`);
 
 try {
-  const container = await new GenericContainer(image)
-    .withLabels({
-      'ci.job.id':     jobId,
-      'ci.project.id': projectId,
-      'com.joyrex2001.kubedock.request-memory': '2Gi',
-      'com.joyrex2001.kubedock.request-cpu':    '1000m',
-    })
-    .withExposedPorts(port)
-    .withCommand(['npx', '-y', `playwright@${version}`, 'run-server', '--port', String(port), '--host', '0.0.0.0'])
-    .withStartupTimeout(120_000)
-    .start();
+  for (let attempt = 1; attempt <= startupAttempts; attempt++) {
+    try {
+      const container = await new GenericContainer(image)
+        .withLabels({
+          'ci.job.id':     jobId,
+          'ci.project.id': projectId,
+          'com.joyrex2001.kubedock.request-memory': '2Gi',
+          'com.joyrex2001.kubedock.request-cpu':    '1000m',
+        })
+        .withExposedPorts(port)
+        .withCommand(['npx', '-y', `playwright@${version}`, 'run-server', '--port', String(port), '--host', '0.0.0.0'])
+        .withStartupTimeout(startupTimeoutMs)
+        .start();
 
-  const wsEndpoint = `ws://${container.getHost()}:${container.getMappedPort(port)}`;
-  const fd = openSync(
-    envFile,
-    fsConstants.O_WRONLY | fsConstants.O_CREAT | fsConstants.O_EXCL | fsConstants.O_NOFOLLOW,
-    0o600
-  );
-  try {
-    writeSync(fd, `PLAYWRIGHT_WS_ENDPOINT=${wsEndpoint}\n`);
-  } finally {
-    closeSync(fd);
+      const wsEndpoint = `ws://${container.getHost()}:${container.getMappedPort(port)}`;
+      const fd = openSync(
+        envFile,
+        fsConstants.O_WRONLY | fsConstants.O_CREAT | fsConstants.O_EXCL | fsConstants.O_NOFOLLOW,
+        0o600
+      );
+      try {
+        writeSync(fd, `PLAYWRIGHT_WS_ENDPOINT=${wsEndpoint}\n`);
+      } finally {
+        closeSync(fd);
+      }
+      process.stderr.write(`[playwright-tc] Ready - ${wsEndpoint}\n`);
+      break;
+    } catch (err) {
+      const message = err?.message || String(err);
+      if (attempt >= startupAttempts) {
+        throw err;
+      }
+      process.stderr.write(`[playwright-tc] WARN: attempt ${attempt}/${startupAttempts} failed: ${message}\n`);
+      // Backoff helps when kubedock is congested.
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+    }
   }
-  process.stderr.write(`[playwright-tc] Ready - ${wsEndpoint}\n`);
 } catch (err) {
   process.stderr.write(`[playwright-tc] ERROR: ${err.message}\n`);
   process.exit(1);
