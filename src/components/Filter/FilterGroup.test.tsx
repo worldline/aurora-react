@@ -150,7 +150,9 @@ describe('FilterGroup Component', () => {
 
     test('should update when controlled value changes', async () => {
       const ControlledFilterGroup = () => {
-        const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]))
+        const [selectedKeys, setSelectedKeys] = useState<Selection>(
+          () => new Set([]),
+        )
 
         return (
           <FilterGroup

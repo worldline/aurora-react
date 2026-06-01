@@ -47,8 +47,10 @@ export default defineConfig([
       eqeqeq: 'error',
       'no-console': 'error',
       'no-duplicate-imports': 'error',
+      'no-nested-ternary': 'error',
       'no-restricted-syntax': ['error', 'FunctionDeclaration'],
       'no-unused-vars': 'off',
+      'object-shorthand': ['error', 'always'],
       '@typescript-eslint/no-unused-vars': [
         'error',
         { argsIgnorePattern: '^_' },
