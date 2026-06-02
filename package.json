@@ -65,8 +65,8 @@
     "@internationalized/date": "3.12.2"
   },
   "peerDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
     "classnames": "^2.5.1",
     "react": "^19.2.6",
     "react-aria-components": "~1.17.0",
