@@ -20,6 +20,22 @@
   flex-shrink: 0;
 }
 
+.sortable {
+  cursor: pointer;
+}
+
+.sort-indicator-idle {
+  display: flex;
+  opacity: 0;
+  transition: opacity var(--au-motion-primitive-delay-150)
+    var(--au-motion-primitive-easing-ease-in);
+}
+
+.sortable:hover .sort-indicator-idle,
+.sortable[data-focus-visible] .sort-indicator-idle {
+  opacity: 1;
+}
+
 .column[data-focus-visible] {
   box-shadow: var(--au-focus-ring);
 }
