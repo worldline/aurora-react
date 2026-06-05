@@ -29,7 +29,11 @@ const SortIndicator = ({
     return <ArrowDownwardIcon aria-hidden size={16} />
   }
 
-  return null
+  return (
+    <span className={styles['sort-indicator-idle']}>
+      <ArrowDownwardIcon aria-hidden size={16} />
+    </span>
+  )
 }
 
 interface DataTableColumnProps
