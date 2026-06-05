@@ -311,7 +311,7 @@ describe('DataTable Component', () => {
       expect(handleSortChange).toHaveBeenCalled()
     })
 
-    test('should display ascending sort indicator', () => {
+    test('should have ascending sort indicator attribute', () => {
       render(
         <DataTable
           aria-label="Test table"
@@ -337,7 +337,7 @@ describe('DataTable Component', () => {
       expect(column).toHaveAttribute('aria-sort', 'ascending')
     })
 
-    test('should display descending sort indicator', () => {
+    test('should have descending sort indicator attribute', () => {
       render(
         <DataTable
           aria-label="Test table"
@@ -361,6 +361,81 @@ describe('DataTable Component', () => {
 
       const column = screen.getByRole('columnheader', { name: 'Name' })
       expect(column).toHaveAttribute('aria-sort', 'descending')
+    })
+
+    test('should not render sort indicator on non-sortable columns', () => {
+      render(
+        <DataTable
+          aria-label="Test table"
+          sortDescriptor={{ column: 'name', direction: 'ascending' }}
+          onSortChange={() => undefined}
+        >
+          <DataTable.Header>
+            <DataTable.Column id="name" isRowHeader allowsSorting>
+              Name
+            </DataTable.Column>
+            <DataTable.Column id="quantity">Quantity</DataTable.Column>
+          </DataTable.Header>
+          <DataTable.Body items={shortProducts}>
+            {(currentProduct) => (
+              <DataTable.Row id={currentProduct.id}>
+                <DataTable.Cell>{currentProduct.name}</DataTable.Cell>
+                <DataTable.Cell>{currentProduct.quantity}</DataTable.Cell>
+              </DataTable.Row>
+            )}
+          </DataTable.Body>
+        </DataTable>,
+      )
+
+      const nonSortableColumn = screen.getByRole('columnheader', {
+        name: 'Quantity',
+      })
+      expect(nonSortableColumn).not.toHaveAttribute('aria-sort')
+    })
+
+    test('should keep sort indicator visible after clicking a sortable column', async () => {
+      const user = userEvent.setup()
+
+      const SortingWrapper = () => {
+        const [sortDescriptor, setSortDescriptor] = useState({
+          column: 'name' as string | number,
+          direction: 'ascending' as 'ascending' | 'descending',
+        })
+
+        return (
+          <DataTable
+            aria-label="Test table"
+            sortDescriptor={sortDescriptor}
+            onSortChange={setSortDescriptor}
+          >
+            <DataTable.Header>
+              <DataTable.Column id="name" isRowHeader allowsSorting>
+                Name
+              </DataTable.Column>
+              <DataTable.Column id="quantity" allowsSorting>
+                Quantity
+              </DataTable.Column>
+            </DataTable.Header>
+            <DataTable.Body items={shortProducts}>
+              {(currentProduct) => (
+                <DataTable.Row id={currentProduct.id}>
+                  <DataTable.Cell>{currentProduct.name}</DataTable.Cell>
+                  <DataTable.Cell>{currentProduct.quantity}</DataTable.Cell>
+                </DataTable.Row>
+              )}
+            </DataTable.Body>
+          </DataTable>
+        )
+      }
+
+      render(<SortingWrapper />)
+
+      const quantityColumn = screen.getByRole('columnheader', {
+        name: 'Quantity',
+      })
+      await user.click(quantityColumn)
+
+      expect(quantityColumn).toHaveAttribute('aria-sort')
     })
   })
 
