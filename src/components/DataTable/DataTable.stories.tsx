@@ -60,18 +60,17 @@ export const Default: Story = {
 }
 
 const SortableTable = () => {
-  const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-    column: 'name',
-    direction: 'ascending',
-  })
+  const [sortDescriptor, setSortDescriptor] = useState<
+    SortDescriptor | undefined
+  >(undefined)
 
   const sortedProducts = [...products].sort((first, second) => {
-    const column = sortDescriptor.column as keyof Product
+    const column = sortDescriptor?.column as keyof Product
     const firstValue = first[column]
     const secondValue = second[column]
     const comparison = String(firstValue).localeCompare(String(secondValue))
 
-    return sortDescriptor.direction === 'descending' ? -comparison : comparison
+    return sortDescriptor?.direction === 'descending' ? -comparison : comparison
   })
 
   return (
