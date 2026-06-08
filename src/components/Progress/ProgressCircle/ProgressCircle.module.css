@@ -1,0 +1,33 @@
+.container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--au-size-component-xl);
+  height: var(--au-size-component-xl);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: var(--au-border-width-thick);
+  background: conic-gradient(
+    var(--au-surface-brand-solid) 0,
+    var(--au-surface-neutral-medium) 0 100%
+  );
+  border-radius: var(--au-radius-rounded);
+}
+
+.label {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  background: var(--au-surface-neutral-low);
+  border-radius: var(--au-radius-rounded);
+}

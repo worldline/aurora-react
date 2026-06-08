@@ -60,9 +60,9 @@
     "icons:download": "node scripts/download-icons.ts"
   },
   "dependencies": {
+    "@internationalized/date": "3.12.2",
     "@react-aria/live-announcer": "3.5.1",
-    "@worldline/aurora-design-tokens": "1.12.1",
-    "@internationalized/date": "3.12.2"
+    "@worldline/aurora-design-tokens": "1.13.0"
   },
   "peerDependencies": {
     "@types/react": "^19.2.15",
