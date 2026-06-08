@@ -48,10 +48,11 @@ export {
   type ModalProps,
 } from './Modal'
 export { Popover } from './Popover'
+export { ProgressCircle } from './Progress/ProgressCircle'
 export { Pressable } from './Pressable'
 export { Stepper, type StepItem } from './Stepper'
 export { Tabs } from './Tabs'
 export { Tile, TilesGroup } from './Tile'
 export { ToastProvider, ToastRegion, toastService, useToast } from './Toast'
-export { Switch, type SwitchProps } from './Form/Switch'
+export { Switch } from './Form/Switch'
 export { Typography, type HeadingElement, type TextColor } from './Typography'
