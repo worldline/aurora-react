@@ -33,7 +33,7 @@ class ToastService {
     this.queue.clear()
   }
 
-  getQueue() {
+  getQueue(): RAToastQueue<ToastContent> {
     return this.queue
   }
 }

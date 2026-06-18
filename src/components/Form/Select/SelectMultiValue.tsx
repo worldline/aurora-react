@@ -13,16 +13,13 @@ interface SelectMultiValueProps {
 const SelectMultiValue = ({ placeholder }: SelectMultiValueProps) => (
   <SelectValue className={styles['selected-value']}>
     {({ selectedText, state }) => {
-      let displayText = placeholder
-
       const { selectedItems } = state
-
-      if (selectedItems.length === 1) {
-        displayText = selectedText
-      } else if (selectedItems.length > 1) {
-        const firstItemText = selectedItems[0]?.textValue ?? ''
-        displayText = `${firstItemText}, +${String(selectedItems.length - 1)}`
-      }
+      const displayText = resolveDisplayText(
+        selectedItems.length,
+        selectedItems.at(0)?.textValue,
+        selectedText,
+        placeholder,
+      )
 
       return (
         <Typography
@@ -37,5 +34,20 @@ const SelectMultiValue = ({ placeholder }: SelectMultiValueProps) => (
     }}
   </SelectValue>
 )
+
+const resolveDisplayText = (
+  count: number,
+  firstItemText: string | undefined,
+  selectedText: string,
+  placeholder: string,
+): string => {
+  if (count === 1) {
+    return selectedText
+  }
+  if (count > 1) {
+    return `${firstItemText ?? ''}, +${String(count - 1)}`
+  }
+  return placeholder
+}
 
 export { SelectMultiValue }

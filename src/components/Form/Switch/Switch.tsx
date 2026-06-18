@@ -6,7 +6,8 @@ import {
   type SwitchProps as AriaSwitchProps,
 } from 'react-aria-components'
 
-import { Typography } from '../../Typography'
+import { Typography } from '@/components/Typography'
+
 import styles from './Switch.module.css'
 
 interface WithoutTextProps {

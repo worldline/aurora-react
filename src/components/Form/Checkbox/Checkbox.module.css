@@ -32,12 +32,6 @@
   flex: 1;
 }
 
-.container {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--au-spacing-xs);
-}
-
 .checkbox[data-disabled] .indicator {
   background: var(--au-surface-disabled);
   border-color: var(--au-border-disabled);

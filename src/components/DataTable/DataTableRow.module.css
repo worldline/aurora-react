@@ -118,15 +118,15 @@
 
   .mobile-card::before {
     display: block;
-    width: 100%;
+    flex: 0 0 100%;
     padding-top: var(--au-spacing-lg);
     padding-bottom: var(--au-spacing-sm);
-    font-family: var(--au-typescale-caption-md-font-family, sans-serif);
-    font-size: var(--au-typescale-caption-md-font-size, 14px);
-    font-weight: var(--au-typescale-caption-md-font-weight, 400);
-    line-height: var(--au-typescale-caption-md-line-height, 18px);
+    font-family: var(--au-typescale-caption-md-font-family);
+    font-size: var(--au-typescale-caption-md-font-size);
+    font-weight: var(--au-typescale-caption-md-font-weight);
+    line-height: var(--au-typescale-caption-md-line-height);
     color: var(--au-content-primary);
-    letter-spacing: var(--au-typescale-caption-md-letter-spacing, 0);
+    letter-spacing: var(--au-typescale-caption-md-letter-spacing);
     content: attr(data-mobile-heading);
   }
 }

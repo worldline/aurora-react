@@ -1,7 +1,7 @@
 'use client'
 
 import cn from 'classnames'
-import { type ComponentProps, useId } from 'react'
+import { type ComponentProps, type ReactNode, useId } from 'react'
 import {
   Checkbox as AriaCheckbox,
   type CheckboxProps,
@@ -17,7 +17,7 @@ export type CheckboxSize = 'small' | 'medium'
 
 export interface CustomCheckboxProps extends Omit<CheckboxProps, 'children'> {
   /** Custom label content as children (alternative to title/helperText props) */
-  children?: React.ReactNode
+  children?: ReactNode
   /** Size variant of the checkbox */
   size?: CheckboxSize
   /** Main title text displayed next to checkbox */

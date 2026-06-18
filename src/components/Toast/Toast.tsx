@@ -23,7 +23,7 @@ interface ToastProps extends RAToastProps<ToastContent> {
 }
 
 const Toast = ({ toast, onClose, className }: ToastProps) => {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState<boolean>(true)
 
   const handleClose = useCallback((): void => {
     setIsVisible(false)

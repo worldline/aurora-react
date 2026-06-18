@@ -4,7 +4,7 @@ import { cloneElement, type ReactElement } from 'react'
 import { Tag, type TagProps } from 'react-aria-components'
 
 import { CloseIcon } from '@/components/icons'
-import { Typography } from '@/components/Typography'
+import { type TextColor, Typography } from '@/components/Typography'
 
 import { Button } from '../Button'
 import styles from './Filter.module.css'
@@ -31,7 +31,7 @@ interface FilterItemProps extends Omit<TagProps, 'children' | 'className'> {
   closeLabel?: string
 }
 
-const getTextColor = (isDisabled: boolean, isSelected: boolean) => {
+const getTextColor = (isDisabled: boolean, isSelected: boolean): TextColor => {
   if (isDisabled) {
     return 'contentDisabled'
   }

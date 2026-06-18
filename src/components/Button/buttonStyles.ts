@@ -15,6 +15,6 @@ const buttonClassName = ({
 }: {
   variant: AuroraButtonProps['variant']
   size: AuroraButtonProps['size']
-}) => cn(styles.button, styles[variant], sizeStyles[size])
+}): string => cn(styles.button, styles[variant], sizeStyles[size])
 
 export { buttonClassName }
