@@ -7,7 +7,7 @@ import {
   type Ref,
 } from 'react'
 
-import { Typography } from '@/components/Typography'
+import { type TextColor, Typography } from '@/components/Typography'
 
 import styles from './Tile.module.css'
 
@@ -71,7 +71,7 @@ type TileProps = StandaloneTileProps | ComposedTileProps
 const getTextColor = (
   disabled = false,
   activeColor: 'contentPrimary' | 'contentSecondary',
-) => (disabled ? 'contentDisabled' : activeColor)
+): TextColor => (disabled ? 'contentDisabled' : activeColor)
 
 const Tile = ({
   ref,

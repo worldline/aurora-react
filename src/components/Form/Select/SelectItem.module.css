@@ -23,10 +23,6 @@
   gap: var(--au-spacing-3xs);
 }
 
-.item-description {
-  color: var(--au-content-tertiary);
-}
-
 .check-icon {
   flex-shrink: 0;
   color: var(--au-content-brand);

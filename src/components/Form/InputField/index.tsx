@@ -48,7 +48,7 @@ const InputField = ({
   defaultValue,
   ...props
 }: Props) => {
-  const [internalLength, setInternalLength] = useState(
+  const [internalLength, setInternalLength] = useState<number>(
     (defaultValue ?? '').length,
   )
 

@@ -1,7 +1,7 @@
 'use client'
 
 import cn from 'classnames'
-import { useId } from 'react'
+import { type ReactNode, useId } from 'react'
 import {
   RadioGroup as AriaRadioGroup,
   type RadioGroupProps as AriaRadioGroupProps,
@@ -50,7 +50,7 @@ const Header = ({ title, description }: HeaderProps) => (
 )
 
 type RadioGroupProps = AriaRadioGroupProps & {
-  children: React.ReactNode
+  children: ReactNode
   error?: false | string
 } & (PropsWithText | PropsWithoutText)
 

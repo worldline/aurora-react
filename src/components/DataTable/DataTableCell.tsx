@@ -10,17 +10,6 @@ import {
   type FixedColumnProps,
 } from './dataTableStyles'
 
-const renderCellContent = (children: ReactNode) => {
-  if (typeof children === 'string' || typeof children === 'number') {
-    return (
-      <Typography element="span" textStyle="bodySm">
-        {children}
-      </Typography>
-    )
-  }
-  return children
-}
-
 interface DataTableCellProps
   extends
     Omit<CellProps, 'className' | 'children' | 'style'>,
@@ -49,8 +38,19 @@ const DataTableCell = ({
     style={buildFixedStyle(fixed, fixedOffset, style)}
     {...props}
   >
-    {renderCellContent(children)}
+    <CellContent>{children}</CellContent>
   </Cell>
 )
+
+const CellContent = ({ children }: { children: ReactNode }) => {
+  if (typeof children === 'string' || typeof children === 'number') {
+    return (
+      <Typography element="span" textStyle="bodySm">
+        {children}
+      </Typography>
+    )
+  }
+  return children
+}
 
 export { DataTableCell, type DataTableCellProps }

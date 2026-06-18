@@ -1,6 +1,7 @@
 # Aurora React
 
-Component library for the Aurora Design System, built with React, TypeScript, and Storybook.
+Component library for the Aurora Design System, built with React, TypeScript,
+and Storybook.
 
 ## Table of Contents
 
@@ -24,7 +25,8 @@ Component library for the Aurora Design System, built with React, TypeScript, an
 
 ## Getting Started
 
-`@worldline/aurora-react` has been tested with **React Router v7** and **Next.js 16** (App Router).
+`@worldline/aurora-react` has been tested with **React Router v7** and **Next.js
+16** (App Router).
 
 ### Prerequisites
 
@@ -33,13 +35,15 @@ Component library for the Aurora Design System, built with React, TypeScript, an
 
 ### Installation
 
-The package is available on a private npm registry (soon to be publicly released on npmjs.com). Install it using npm:
+The package is available on a private npm registry (soon to be publicly released
+on npmjs.com). Install it using npm:
 
 ```bash
 npm install -S @worldline/aurora-react
 ```
 
-You also need to install the required peer dependencies if they are not already present in your project:
+You also need to install the required peer dependencies if they are not already
+present in your project:
 
 ```bash
 npm install -S classnames react-aria-components
@@ -47,7 +51,9 @@ npm install -S classnames react-aria-components
 
 ### Import CSS files
 
-To properly display Aurora components, import the CSS files in your application's main entry file — for example, the root layout (`app/layout.tsx` in Next.js, `app/root.tsx` in React Router):
+To properly display Aurora components, import the CSS files in your
+application's main entry file — for example, the root layout (`app/layout.tsx`
+in Next.js, `app/root.tsx` in React Router):
 
 ```ts
 import '@worldline/aurora-react/fonts.css'
@@ -56,7 +62,8 @@ import '@worldline/aurora-react/styles.css'
 
 ### Import components
 
-Components are available as named exports from the `@worldline/aurora-react/components` entry point:
+Components are available as named exports from the
+`@worldline/aurora-react/components` entry point:
 
 ```ts
 import { Button, Card } from '@worldline/aurora-react/components'
@@ -64,7 +71,9 @@ import { Button, Card } from '@worldline/aurora-react/components'
 
 ### SSR configuration (React Router v7 / Vite)
 
-When rendering Aurora components on the server side (SSR), add the following configuration to your `vite.config.ts`. Without it, Vite will attempt to process the CSS files imported by the library's TSX files, which causes build errors:
+When rendering Aurora components on the server side (SSR), add the following
+configuration to your `vite.config.ts`. Without it, Vite will attempt to process
+the CSS files imported by the library's TSX files, which causes build errors:
 
 ```ts
 export default defineConfig({
@@ -114,7 +123,10 @@ npm run coverage            # Generate coverage report
 
 ### Icons
 
-Icon components are automatically generated from SVG files using SVGR. Icons under `src/assets/icons/basics/` that are part of [Google Material Symbols](https://fonts.google.com/icons) can be downloaded using the provided script:
+Icon components are automatically generated from SVG files using SVGR. Icons
+under `src/assets/icons/basics/` that are part of
+[Google Material Symbols](https://fonts.google.com/icons) can be downloaded
+using the provided script:
 
 ```bash
 # Download one or more icons (basics directory by default)
@@ -124,28 +136,33 @@ npm run icons:download -- heart star music_note
 npm run icons:download -- account_circle:fill notifications:fill
 ```
 
-Icon names must match the Google Material Symbols name (snake_case). Malformed specs such as `name:fill:extra` or `:fill` are rejected with a clear error message. After downloading, regenerate the React components:
+Icon names must match the Google Material Symbols name (snake_case). Malformed
+specs such as `name:fill:extra` or `:fill` are rejected with a clear error
+message. After downloading, regenerate the React components:
 
 ```bash
 npm run icons:generate
 ```
 
-The icon components will also be regenerated automatically when you run `npm run storybook` or `npm run build`.
+The icon components will also be regenerated automatically when you run
+`npm run storybook` or `npm run build`.
 
 #### Custom and brand icons
 
-The following icons are **not** part of Google Material Symbols and must be added manually by placing the SVG file in the appropriate directory:
+The following icons are **not** part of Google Material Symbols and must be
+added manually by placing the SVG file in the appropriate directory:
 
-| Icon | Directory | Reason |
-|---|---|---|
-| `check-indeterminate` | `basics/` | Custom minimal SVG |
-| `worldline-logo-large` | `basics/` | Brand asset |
-| `worldline-logo-small` | `basics/` | Brand asset |
-| `pdf-file` | `file-types/` | Custom SVG |
-| `american-express` | `payment-methods/` | Brand asset |
-| `mastercard` | `payment-methods/` | Brand asset |
+| Icon                   | Directory          | Reason             |
+| ---------------------- | ------------------ | ------------------ |
+| `check-indeterminate`  | `basics/`          | Custom minimal SVG |
+| `worldline-logo-large` | `basics/`          | Brand asset        |
+| `worldline-logo-small` | `basics/`          | Brand asset        |
+| `pdf-file`             | `file-types/`      | Custom SVG         |
+| `american-express`     | `payment-methods/` | Brand asset        |
+| `mastercard`           | `payment-methods/` | Brand asset        |
 
-When adding a custom icon manually, use these SVG settings to stay consistent with the rest of the icon set:
+When adding a custom icon manually, use these SVG settings to stay consistent
+with the rest of the icon set:
 
 - Toggle **Fill** depending on the icon variant you need
 - Set **Weight** to **300**
@@ -155,24 +172,30 @@ When adding a custom icon manually, use these SVG settings to stay consistent wi
 
 ### AI Integration
 
-You can make the Storybook accessible to your AI agents by adding the Storybook MCP server to your project. Storybook must be running locally for the server to be available. See the [Storybook MCP documentation](https://storybook.js.org/docs/ai/mcp/overview#docs) for details.
+You can make the Storybook accessible to your AI agents by adding the Storybook
+MCP server to your project. Storybook must be running locally for the server to
+be available. See the
+[Storybook MCP documentation](https://storybook.js.org/docs/ai/mcp/overview#docs)
+for details.
 
 ```bash
 npx mcp-add --type http --url "http://localhost:6006/mcp" --scope project
 ```
 
-Once connected, you can prompt your AI agent with requests such as _"Show me how to use the Aurora Alert component"_ or _"Create a sign-up form using Aurora components"_.
+Once connected, you can prompt your AI agent with requests such as _"Show me how
+to use the Aurora Alert component"_ or _"Create a sign-up form using Aurora
+components"_.
 
 ### Technology Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | React 19 + TypeScript |
-| Build tool | Vite (with Rolldown) |
-| Testing | Vitest + Playwright |
-| Documentation | Storybook v10 |
+| Layer         | Technology                        |
+| ------------- | --------------------------------- |
+| Framework     | React 19 + TypeScript             |
+| Build tool    | Vite (with Rolldown)              |
+| Testing       | Vitest + Playwright               |
+| Documentation | Storybook v10                     |
 | Design tokens | `@worldline/aurora-design-tokens` |
-| Versioning | Semantic Release (automated) |
+| Versioning    | Semantic Release (automated)      |
 
 ### Build & Release
 
@@ -194,7 +217,9 @@ See [CI_CD_PIPELINE.md](./CI_CD_PIPELINE.md) for pipeline details.
 The Storybook documentation site is deployed to AWS:
 
 - **S3 + CloudFront** for static hosting
-- **ACM certificate** with custom domains (`storybook.aurora.example.com`, `storybook.aurora.example.com`)
+- **ACM certificate** with custom domains
+  (`storybook.aurora.example.com`,
+  `storybook.aurora.example.com`)
 - **WAFv2 IP allowlist** for access control (office and VPN only)
 - **Multi-region deployment** (us-east-1 for WAF/ACM, eu-west-1 for S3)
 
@@ -204,8 +229,8 @@ See [cfn/README.md](./cfn/README.md) for the full infrastructure architecture.
 
 ## Documentation
 
-| Resource | Description |
-|---|---|
-| [CI/CD Pipeline](./CI_CD_PIPELINE.md) | Jenkins pipeline stages, branch strategy, and troubleshooting |
-| [Infrastructure Architecture](./cfn/README.md) | CloudFormation stacks, security, and multi-region setup |
-| [Manual Deployment Guide](./cfn/DEPLOYMENT.md) | Step-by-step infrastructure deployment |
+| Resource                                       | Description                                                   |
+| ---------------------------------------------- | ------------------------------------------------------------- |
+| [CI/CD Pipeline](./CI_CD_PIPELINE.md)          | Jenkins pipeline stages, branch strategy, and troubleshooting |
+| [Infrastructure Architecture](./cfn/README.md) | CloudFormation stacks, security, and multi-region setup       |
+| [Manual Deployment Guide](./cfn/DEPLOYMENT.md) | Step-by-step infrastructure deployment                        |

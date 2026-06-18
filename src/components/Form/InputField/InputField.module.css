@@ -47,7 +47,8 @@
   min-width: 0;
   padding: 0;
   font: var(--au-body-md);
-  line-height: var(--au-body-md-letter-spacing);
+  line-height: var(--au-typescale-body-md-line-height);
+  letter-spacing: var(--au-typescale-body-md-letter-spacing);
   color: var(--au-inputfield-placeholder-text);
   background: transparent;
   flex: 1;
