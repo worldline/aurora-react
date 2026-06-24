@@ -186,10 +186,10 @@ describe('Menu', () => {
       )
 
       await user.click(screen.getByRole('menuitem', { name: 'Option 1' }))
-      expect(onAction).toHaveBeenCalledWith('option1')
+      expect(onAction).toHaveBeenCalledWith('option1', undefined)
 
       await user.click(screen.getByRole('menuitem', { name: 'Option 2' }))
-      expect(onAction).toHaveBeenCalledWith('option2')
+      expect(onAction).toHaveBeenCalledWith('option2', undefined)
     })
   })
 
@@ -391,7 +391,7 @@ describe('Menu', () => {
       expect(onAction).not.toHaveBeenCalled()
 
       await user.click(screen.getByRole('menuitem', { name: 'Option 1' }))
-      expect(onAction).toHaveBeenCalledWith('option1')
+      expect(onAction).toHaveBeenCalledWith('option1', undefined)
     })
   })
 })

@@ -1,10 +1,11 @@
 'use client'
 
 import cn from 'classnames'
-import { type ComponentProps, type ReactNode, useId } from 'react'
+import { type ComponentProps, type ReactNode, useId, useRef } from 'react'
 import {
-  Checkbox as AriaCheckbox,
-  type CheckboxProps,
+  CheckboxButton as AriaCheckboxButton,
+  CheckboxField as AriaCheckboxField,
+  type CheckboxFieldProps,
 } from 'react-aria-components'
 
 import { ErrorMessage } from '@/components/Form/ErrorMessage'
@@ -15,10 +16,13 @@ import styles from './Checkbox.module.css'
 
 export type CheckboxSize = 'small' | 'medium'
 
-export interface CustomCheckboxProps extends Omit<CheckboxProps, 'children'> {
+export interface CustomCheckboxProps extends Omit<
+  CheckboxFieldProps,
+  'children'
+> {
   /** Custom label content as children (alternative to title/helperText props) */
   children?: ReactNode
-  /** Size variant of the checkbox */
+  /** CSS class applied to the checkbox button element */
   size?: CheckboxSize
   /** Main title text displayed next to checkbox */
   title?: string
@@ -72,71 +76,86 @@ const Checkbox = ({
   title,
   helperText,
   error = false,
+  className,
   ...props
 }: CustomCheckboxProps) => {
   const hasErrorMessage = error && typeof error === 'string'
   const id = useId()
   const titleId = title ? `${id}-title` : undefined
   const errorId = hasErrorMessage ? `${id}-error` : undefined
+  const inputRef = useRef<HTMLInputElement>(null)
 
   return (
-    <AriaCheckbox
+    <AriaCheckboxField
       isInvalid={Boolean(error)}
       aria-labelledby={titleId}
       aria-describedby={errorId}
+      inputRef={inputRef}
       {...props}
-      className={cn(
-        styles.checkbox,
-        sizeStyles[size],
-        {
-          [styles.error]: error,
-        },
-        props.className,
-      )}
     >
-      {({ isIndeterminate, isSelected }) => (
-        <>
-          <div className={styles.indicator}>
-            <CheckboxStateIcon
-              isIndeterminate={isIndeterminate}
-              isSelected={isSelected}
-            />
-          </div>
-          {title || helperText || hasErrorMessage ? (
-            <div className={styles.content}>
-              {title ? (
-                <Typography
-                  id={titleId}
-                  element="p"
-                  textStyle={sizesToStyleProps[size].labelTextStyle}
-                  textColor={
-                    props.isDisabled ? 'contentDisabled' : 'contentPrimary'
-                  }
-                >
-                  {title}
-                </Typography>
-              ) : null}
-              {helperText ? (
-                <Typography
-                  element="p"
-                  textStyle={sizesToStyleProps[size].bodyTextStyle}
-                  textColor={
-                    props.isDisabled ? 'contentDisabled' : 'contentSecondary'
-                  }
-                >
-                  {helperText}
-                </Typography>
-              ) : null}
-              {hasErrorMessage ? (
-                <ErrorMessage id={errorId} error={error} />
-              ) : null}
+      <AriaCheckboxButton
+        className={cn(
+          styles.checkbox,
+          sizeStyles[size],
+          { [styles.error]: error },
+          className,
+        )}
+      >
+        {({
+          isIndeterminate,
+          isSelected,
+          isDisabled,
+        }: {
+          isIndeterminate: boolean
+          isSelected: boolean
+          isDisabled: boolean
+        }) => (
+          <>
+            <div className={styles.indicator}>
+              <CheckboxStateIcon
+                isIndeterminate={isIndeterminate}
+                isSelected={isSelected}
+              />
             </div>
-          ) : (
-            children
-          )}
-        </>
-      )}
-    </AriaCheckbox>
+            {title || helperText || hasErrorMessage ? (
+              <div
+                className={styles.content}
+                onClick={() => !isDisabled && inputRef.current?.click()}
+              >
+                {title ? (
+                  <Typography
+                    id={titleId}
+                    element="p"
+                    textStyle={sizesToStyleProps[size].labelTextStyle}
+                    textColor={
+                      isDisabled ? 'contentDisabled' : 'contentPrimary'
+                    }
+                  >
+                    {title}
+                  </Typography>
+                ) : null}
+                {helperText ? (
+                  <Typography
+                    element="p"
+                    textStyle={sizesToStyleProps[size].bodyTextStyle}
+                    textColor={
+                      isDisabled ? 'contentDisabled' : 'contentSecondary'
+                    }
+                  >
+                    {helperText}
+                  </Typography>
+                ) : null}
+                {hasErrorMessage ? (
+                  <ErrorMessage id={errorId} error={error} />
+                ) : null}
+              </div>
+            ) : (
+              children
+            )}
+          </>
+        )}
+      </AriaCheckboxButton>
+    </AriaCheckboxField>
   )
 }
 
