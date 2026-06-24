@@ -2,8 +2,9 @@
 
 import cn from 'classnames'
 import {
-  Switch as AriaSwitch,
-  type SwitchProps as AriaSwitchProps,
+  SwitchButton as AriaSwitchButton,
+  SwitchField as AriaSwitchField,
+  type SwitchFieldProps as AriaSwitchFieldProps,
 } from 'react-aria-components'
 
 import { Typography } from '@/components/Typography'
@@ -20,22 +21,8 @@ interface WithTextProps {
   description?: string
 }
 
-interface BaseSwitchProps extends Omit<AriaSwitchProps, 'children'> {
-  /**
-   * The name of the switch submitted with its owning form.
-   * When selected, `value` is included in the form data under this key.
-   * @see https://react-aria.adobe.com/Switch.html
-   */
-  name?: string
-  /**
-   * The value submitted with the form when the switch is selected.
-   * Defaults to `"on"` if not specified — standard checkbox behaviour.
-   * @see https://react-aria.adobe.com/Switch.html
-   */
-  value?: string
-}
-
-type SwitchProps = BaseSwitchProps & (WithoutTextProps | WithTextProps)
+type SwitchProps = Omit<AriaSwitchFieldProps, 'children'> &
+  (WithoutTextProps | WithTextProps)
 
 interface TextContentProps {
   label?: string
@@ -70,21 +57,23 @@ const TextContent = ({ label, description, isDisabled }: TextContentProps) => {
   )
 }
 
-const Switch = ({ label, description, ...props }: SwitchProps) => (
-  <AriaSwitch {...props} className={cn(styles.switch, props.className)}>
-    {({ isDisabled }) => (
-      <>
-        <div className={styles.surface}>
-          <div className={styles.dot} />
-        </div>
-        <TextContent
-          label={label}
-          description={description}
-          isDisabled={isDisabled}
-        />
-      </>
-    )}
-  </AriaSwitch>
+const Switch = ({ label, description, className, ...props }: SwitchProps) => (
+  <AriaSwitchField {...props}>
+    <AriaSwitchButton className={cn(styles.switch, className)}>
+      {({ isDisabled }: { isDisabled: boolean }) => (
+        <>
+          <div className={styles.surface}>
+            <div className={styles.dot} />
+          </div>
+          <TextContent
+            label={label}
+            description={description}
+            isDisabled={isDisabled}
+          />
+        </>
+      )}
+    </AriaSwitchButton>
+  </AriaSwitchField>
 )
 
 export { Switch, type SwitchProps }

@@ -2,7 +2,11 @@
 
 import cn from 'classnames'
 import type { ComponentProps } from 'react'
-import { Radio as AriaRadio, type RadioProps } from 'react-aria-components'
+import {
+  RadioButton as AriaRadioButton,
+  RadioField as AriaRadioField,
+  type RadioFieldProps,
+} from 'react-aria-components'
 
 import { Typography } from '@/components/Typography'
 
@@ -20,8 +24,12 @@ interface WithTextProps {
   description?: string
 }
 
-interface BaseRadioButtonProps extends Omit<RadioProps, 'children'> {
+interface BaseRadioButtonProps extends Omit<
+  RadioFieldProps,
+  'children' | 'className'
+> {
   size?: RadioButtonSize
+  className?: string
 }
 
 export type RadioButtonProps = BaseRadioButtonProps &
@@ -92,27 +100,27 @@ const RadioButton = ({
   size = 'small',
   label,
   description,
-  ...props
+  className,
+  ...fieldProps
 }: RadioButtonProps) => (
-  <AriaRadio
-    {...props}
-    className={cn(styles.radio, sizeStyles[size], props.className)}
-  >
-    {({ isDisabled }) => (
-      <>
-        <div className={styles.indicator}>
-          <div />
-        </div>
+  <AriaRadioField {...fieldProps}>
+    <AriaRadioButton className={cn(styles.radio, sizeStyles[size], className)}>
+      {({ isDisabled }: { isDisabled: boolean }) => (
+        <>
+          <div className={styles.indicator}>
+            <div />
+          </div>
 
-        <TextContent
-          label={label}
-          description={description}
-          size={size}
-          isDisabled={isDisabled}
-        />
-      </>
-    )}
-  </AriaRadio>
+          <TextContent
+            label={label}
+            description={description}
+            size={size}
+            isDisabled={isDisabled}
+          />
+        </>
+      )}
+    </AriaRadioButton>
+  </AriaRadioField>
 )
 
 export { RadioButton }
