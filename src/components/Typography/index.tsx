@@ -47,7 +47,7 @@ type TextColor = Extract<
   | 'contentBrand'
   | 'contentOnBrand'
   | 'contentOnBrandHover'
-  | 'contentError'
+  | 'contentDanger'
   | 'contentWarning'
   | 'contentSuccess'
   | 'contentInfo'

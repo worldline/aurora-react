@@ -20,7 +20,7 @@
 }
 
 .alert[data-variant='error'] {
-  border-color: var(--au-border-error-solid);
+  border-color: var(--au-border-danger-solid);
 }
 
 .icon {
@@ -36,7 +36,7 @@
 }
 
 .alert[data-variant='error'] .icon {
-  color: var(--au-content-error);
+  color: var(--au-content-danger);
 }
 
 .content {

@@ -256,8 +256,8 @@ export const Colors = meta.story({
         </Typography>
       </li>
       <li>
-        <Typography element="p" textStyle="displayMd" textColor="contentError">
-          This is contentError
+        <Typography element="p" textStyle="displayMd" textColor="contentDanger">
+          This is contentDanger
         </Typography>
       </li>
     </ul>
