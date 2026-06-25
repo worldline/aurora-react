@@ -9,7 +9,7 @@
 .toast {
   width: 360px;
   flex: 1;
-  box-shadow: var(--au-content-overlay);
+  box-shadow: var(--au-elevation-content-overlay);
 }
 
 .toast-content {

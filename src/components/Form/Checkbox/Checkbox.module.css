@@ -47,7 +47,7 @@
 }
 
 .checkbox[data-invalid][data-focus-visible] .indicator {
-  outline: var(--au-border-width-medium) solid var(--au-surface-error-solid);
+  outline: var(--au-border-width-medium) solid var(--au-surface-danger-solid);
   outline-offset: var(--au-border-width-medium);
 }
 
@@ -58,13 +58,13 @@
 }
 
 .checkbox[data-invalid]:not([data-disabled]) .indicator {
-  border-color: var(--au-border-error-solid);
+  border-color: var(--au-border-danger-solid);
 }
 
 .checkbox[data-invalid][data-selected]:not([data-disabled]) .indicator,
 .checkbox[data-invalid][data-indeterminate]:not([data-disabled]) .indicator {
-  background: var(--au-surface-error-solid);
-  border-color: var(--au-surface-error-solid);
+  background: var(--au-surface-danger-solid);
+  border-color: var(--au-surface-danger-solid);
 }
 
 .checkbox[data-selected][data-hovered]:not([data-disabled], [data-invalid])

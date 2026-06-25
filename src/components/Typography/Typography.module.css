@@ -39,8 +39,8 @@
   color: var(--au-content-on-brand-hover);
 }
 
-.content-error {
-  color: var(--au-content-error);
+.content-danger {
+  color: var(--au-content-danger);
 }
 
 .content-warning {

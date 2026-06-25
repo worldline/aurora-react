@@ -1,6 +1,11 @@
 /* eslint-disable @eslint-react/no-clone-element */
 import cn from 'classnames'
-import { cloneElement, type HTMLAttributes, type ReactElement } from 'react'
+import {
+  cloneElement,
+  type ComponentProps,
+  type HTMLAttributes,
+  type ReactElement,
+} from 'react'
 
 import { Typography } from '../Typography'
 import styles from './Chip.module.css'
@@ -82,10 +87,10 @@ export { Chip, type ChipType, type ChipSize }
 
 const typesToTextColor: Record<
   ChipType,
-  React.ComponentProps<typeof Typography>['textColor']
+  ComponentProps<typeof Typography>['textColor']
 > = {
   brand: 'contentBrand',
-  error: 'contentError',
+  error: 'contentDanger',
   info: 'contentInfo',
   neutral: 'contentSecondary',
   success: 'contentSuccess',
@@ -94,7 +99,7 @@ const typesToTextColor: Record<
 
 const sizesToTextStyle: Record<
   ChipSize,
-  React.ComponentProps<typeof Typography>['textStyle']
+  ComponentProps<typeof Typography>['textStyle']
 > = {
   small: 'labelSm',
   large: 'labelMd',

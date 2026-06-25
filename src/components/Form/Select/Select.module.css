@@ -150,7 +150,7 @@
   background-color: var(--au-surface-neutral-low);
   border: var(--au-border-width-thin) solid var(--au-surface-neutral-medium);
   border-radius: var(--au-radius-xs);
-  box-shadow: var(--au-interactive-overlay);
+  box-shadow: var(--au-elevation-interactive-overlay);
   overflow: auto;
 }
 
