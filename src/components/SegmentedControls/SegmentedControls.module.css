@@ -1,0 +1,14 @@
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--au-spacing-3xs);
+  background: var(--au-surface-neutral-low);
+  border: var(--au-inputfield-text-field-sm-border-width) solid
+    var(--au-border-neutral-low);
+  border-radius: var(--au-radius-xs);
+}
+
+.group[data-orientation='vertical'] {
+  flex-direction: column;
+  align-items: stretch;
+}
