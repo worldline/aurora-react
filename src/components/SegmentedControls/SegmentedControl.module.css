@@ -1,0 +1,54 @@
+.control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--au-size-component-xl);
+  padding: var(--au-spacing-2xs) var(--au-spacing-xs);
+  gap: var(--au-spacing-2xs);
+  background: var(--au-surface-neutral-low);
+  border: none;
+  border-radius: var(--au-radius-xs);
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.label {
+  pointer-events: none;
+}
+
+.icon {
+  width: var(--au-size-icon-md);
+  height: var(--au-size-icon-md);
+}
+
+.control[data-hovered] {
+  background: var(--au-surface-neutral-low-hover);
+}
+
+.control[data-pressed] {
+  background: var(--au-surface-neutral-medium);
+}
+
+.control[data-selected] {
+  background: var(--au-surface-neutral-medium);
+  outline: var(--au-border-width-thin) solid var(--au-border-neutral-medium);
+}
+
+.field:focus-within {
+  position: relative;
+  z-index: 1;
+}
+
+.control[data-focus-visible] {
+  background: var(--au-surface-neutral-low);
+  box-shadow:
+    0 0 0 var(--au-border-width-medium) var(--au-surface-page),
+    0 0 0 var(--au-border-width-thick) var(--au-surface-brand-solid);
+}
+
+.control[data-selected][data-focus-visible] {
+  background: var(--au-surface-neutral-medium);
+  outline: none;
+}
