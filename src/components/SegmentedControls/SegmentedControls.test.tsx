@@ -207,7 +207,7 @@ describe('SegmentedControls Component', () => {
     })
   })
 
-  describe('direction', () => {
+  describe('orientation', () => {
     test('should have horizontal orientation by default', () => {
       render(
         <SegmentedControls aria-label="Options">
@@ -220,9 +220,9 @@ describe('SegmentedControls Component', () => {
       ).toHaveAttribute('aria-orientation', 'horizontal')
     })
 
-    test('should have vertical orientation when direction is vertical', () => {
+    test('should have vertical orientation when orientation is vertical', () => {
       render(
-        <SegmentedControls aria-label="Options" direction="vertical">
+        <SegmentedControls aria-label="Options" orientation="vertical">
           <ThreeControls />
         </SegmentedControls>,
       )
