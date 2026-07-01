@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: var(--au-size-component-xl);
+  height: 100%;
+  min-height: var(--au-size-component-xl);
   padding: var(--au-spacing-2xs) var(--au-spacing-xs);
   gap: var(--au-spacing-2xs);
   background: var(--au-surface-neutral-low);
@@ -12,6 +13,10 @@
   outline: none;
   white-space: nowrap;
   user-select: none;
+}
+
+.field {
+  height: 100%;
 }
 
 .label {

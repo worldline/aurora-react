@@ -15,7 +15,7 @@ const meta: Meta<typeof SegmentedControls> = {
     layout: 'centered',
   },
   argTypes: {
-    direction: {
+    orientation: {
       control: 'radio',
       options: ['horizontal', 'vertical'],
       description: 'Layout direction of the controls group',
@@ -186,7 +186,7 @@ export const Vertical: Story = {
   args: {
     defaultValue: 'option1',
     'aria-label': 'Options',
-    direction: 'vertical',
+    orientation: 'vertical',
   },
   render: (args) => (
     <SegmentedControls {...args}>

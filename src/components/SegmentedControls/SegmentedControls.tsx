@@ -7,21 +7,36 @@ import { RadioGroup, type RadioGroupProps } from 'react-aria-components'
 import { SegmentedControl } from './SegmentedControl'
 import styles from './SegmentedControls.module.css'
 
-interface SegmentedControlsProps extends Omit<RadioGroupProps, 'children'> {
+interface SegmentedControlsProps<T extends string> extends Omit<
+  RadioGroupProps,
+  'children' | 'value' | 'defaultValue' | 'onChange'
+> {
   /** SegmentedControls.Control items */
   children: ReactNode
-  /** Layout direction of the controls group */
-  direction?: 'horizontal' | 'vertical'
+  /** Currently selected value */
+  value?: T
+  /** Default selected value for uncontrolled usage */
+  defaultValue?: T
+  /** Callback fired when the selected value changes */
+  onChange?: (value: T) => void
 }
 
-const SegmentedControlsBase = ({
+const SegmentedControlsBase = <T extends string>({
   children,
-  direction = 'horizontal',
+  orientation = 'horizontal',
+  onChange,
   ...props
-}: SegmentedControlsProps) => (
+}: SegmentedControlsProps<T>) => (
   <RadioGroup
     {...props}
-    orientation={direction}
+    orientation={orientation}
+    onChange={
+      onChange === undefined
+        ? undefined
+        : (value: string) => {
+            onChange(value as T)
+          }
+    }
     className={cn(styles.group, props.className)}
   >
     {children}
