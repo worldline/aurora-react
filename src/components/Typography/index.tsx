@@ -39,6 +39,7 @@ type Element = HeadingElement | TextElement | ContainerElement
 type TextColor = Extract<
   AuColor,
   | 'contentPrimary'
+  | 'contentPrimaryStatic'
   | 'contentSecondary'
   | 'contentTertiary'
   | 'contentPlaceholder'

@@ -1,0 +1,57 @@
+.embla {
+  --slide-spacing: var(--au-spacing-xs);
+  --slide-size: 70%;
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--slide-size);
+  grid-template-rows: var(--carousel-grid-rows);
+  column-gap: var(--slide-spacing);
+  touch-action: pan-y pinch-zoom;
+}
+
+.slide {
+  display: grid;
+  min-width: 0;
+  transform: translate3d(0, 0, 0);
+  grid-template-rows: subgrid;
+  grid-row: 1 / -1;
+}
+
+.slide:first-of-type {
+  padding-left: var(--au-spacing-md);
+}
+
+.slide:last-of-type {
+  padding-right: var(--au-spacing-md);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--au-spacing-xs) var(--au-spacing-sm);
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: var(--au-spacing-xs);
+}
+
+.dot {
+  width: var(--au-size-component-3xs);
+  height: var(--au-size-component-3xs);
+  background-color: var(--au-surface-neutral-high);
+  border-radius: var(--au-radius-rounded);
+  flex-shrink: 0;
+}
+
+.dot.selected {
+  background-color: var(--au-content-primary);
+}

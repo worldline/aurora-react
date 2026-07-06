@@ -62,12 +62,13 @@
   "dependencies": {
     "@internationalized/date": "3.12.2",
     "@react-aria/live-announcer": "3.5.1",
-    "@worldline/aurora-design-tokens": "1.16.0"
+    "@worldline/aurora-design-tokens": "1.17.0"
   },
   "peerDependencies": {
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "classnames": "^2.5.1",
+    "embla-carousel-react": "^8.6.0",
     "react": "^19.2.6",
     "react-aria-components": "~1.19.0",
     "react-dom": "^19.2.6"
