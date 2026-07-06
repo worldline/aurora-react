@@ -6,13 +6,7 @@ import styles from './FeaturedIcon.module.css'
 
 type FeaturedIconType = 'square' | 'circle'
 type FeaturedIconSize =
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'xlarge'
-  | '2xlarge'
-  | '3xlarge'
-  | '4xlarge'
+  'small' | 'medium' | 'large' | 'xlarge' | '2xlarge' | '3xlarge' | '4xlarge'
 type FeaturedIconEmphasis = 'low' | 'medium'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
