@@ -55,6 +55,10 @@
   color: var(--au-content-info);
 }
 
+.content-primary-static {
+  color: var(--au-content-primary-static);
+}
+
 .hero {
   font: var(--au-hero);
 }

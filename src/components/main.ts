@@ -1,6 +1,8 @@
 export { Alert } from './Alert'
 export { Button } from './Button'
 export { Card } from './Card'
+export { Carousel } from './Carousel'
+export { Chip, type ChipSize, type ChipType } from './Chip'
 export {
   DataTable,
   DataTableHeader,
@@ -18,10 +20,9 @@ export {
   type DataTableSectionHeaderProps,
   type FixedColumnProps,
 } from './DataTable'
-export { Chip, type ChipSize, type ChipType } from './Chip'
 export { Divider } from './Divider'
-export { FilterGroup, FilterItem } from './Filter'
 export { FeaturedIcon } from './FeaturedIcon'
+export { FilterGroup, FilterItem } from './Filter'
 export { Checkbox } from './Form/Checkbox'
 export {
   DatePicker,
@@ -37,6 +38,7 @@ export {
   type AuroraSelectProps,
   type SelectItemProps,
 } from './Form/Select'
+export { Switch } from './Form/Switch'
 export * from './icons'
 export { Link } from './Link'
 export { Menu } from './Menu'
@@ -48,12 +50,11 @@ export {
   type ModalProps,
 } from './Modal'
 export { Popover } from './Popover'
-export { ProgressCircle } from './Progress/ProgressCircle'
 export { Pressable } from './Pressable'
+export { ProgressCircle } from './Progress/ProgressCircle'
+export { SegmentedControl, SegmentedControls } from './SegmentedControls'
 export { Stepper, type StepItem } from './Stepper'
 export { Tabs } from './Tabs'
 export { Tile, TilesGroup } from './Tile'
 export { ToastProvider, ToastRegion, toastService, useToast } from './Toast'
-export { SegmentedControl, SegmentedControls } from './SegmentedControls'
-export { Switch } from './Form/Switch'
 export { Typography, type HeadingElement, type TextColor } from './Typography'

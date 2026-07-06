@@ -87,6 +87,7 @@ export default {
       {
         importFrom: [
           'node_modules/@worldline/aurora-design-tokens/build/css/style.css',
+          '.storybook/variables.stories.css',
         ],
       },
     ],
