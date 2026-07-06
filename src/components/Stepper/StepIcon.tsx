@@ -12,8 +12,7 @@ type Props = {
   status: StepStatus
   number?: number
 } & (
-  | { type: 'check' | 'number'; icon?: never }
-  | { type: 'icon'; icon: ReactNode }
+  { type: 'check' | 'number'; icon?: never } | { type: 'icon'; icon: ReactNode }
 )
 
 const StepIcon = ({ type, status, number, icon }: Props): ReactElement => {
