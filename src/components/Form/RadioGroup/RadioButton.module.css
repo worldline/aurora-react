@@ -83,3 +83,45 @@
   flex-direction: column;
   gap: var(--au-spacing-3xs);
 }
+
+.with-component {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: 1 / -1;
+  align-items: stretch;
+  justify-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--au-spacing-xs);
+}
+
+.md .card {
+  gap: var(--au-spacing-sm);
+}
+
+.radio[data-hovered] .card {
+  background-color: var(--au-surface-neutral-low-hover);
+}
+
+.radio[data-selected] .card {
+  background-color: var(--au-surface-neutral-high);
+}
+
+.radio[data-disabled] .card {
+  background-color: var(--au-surface-disabled);
+  border-color: var(--au-border-disabled);
+}
+
+.radio[data-focus-visible] .card {
+  box-shadow: var(--au-focus-ring);
+  outline: none;
+}
+
+.radio.with-component[data-focus-visible] .indicator {
+  box-shadow: none;
+}

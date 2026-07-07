@@ -162,13 +162,20 @@ export default defineConfig({
                   animations: 'disabled',
                 },
                 resolveScreenshotPath: ({
+                  root,
                   testName,
                   browserName,
                   ext,
                   testFileDirectory,
                   testFileName,
                 }) =>
-                  `${testFileDirectory}/__screenshots__/${testFileName}/${testName}-${browserName}${ext}`,
+                  path.join(
+                    root,
+                    testFileDirectory,
+                    '__screenshots__',
+                    testFileName,
+                    `${testName}-${browserName}${ext}`,
+                  ),
               },
             },
             ...playwrightBrowserConfig(),

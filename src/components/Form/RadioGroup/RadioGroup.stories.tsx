@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { FeaturedIcon } from '../../../components/FeaturedIcon'
+import { CheckCircleIcon } from '../../../components/icons'
 import { RadioGroup } from './index'
 
 const meta: Meta<typeof RadioGroup> = {
@@ -434,6 +436,76 @@ export const WithoutText: Story = {
       <RadioGroup.Radio value="option3" aria-label="Option 3" />
     </RadioGroup>
   ),
+}
+
+export const WithComponentLabel: Story = {
+  args: {
+    defaultValue: 'option1',
+    'aria-label': 'Options',
+    orientation: 'horizontal',
+  },
+  render: (args) => (
+    <RadioGroup {...args}>
+      <RadioGroup.Radio
+        value="option1"
+        description="Automatic"
+        label={
+          <FeaturedIcon
+            type="square"
+            size="medium"
+            emphasis="low"
+            icon={<CheckCircleIcon aria-hidden />}
+          />
+        }
+      />
+      <RadioGroup.Radio
+        value="option2"
+        description="Light mode"
+        label={
+          <FeaturedIcon
+            type="circle"
+            size="medium"
+            emphasis="medium"
+            icon={<CheckCircleIcon aria-hidden />}
+          />
+        }
+      />
+      <RadioGroup.Radio
+        value="option3"
+        description="Dark mode"
+        label={
+          <FeaturedIcon
+            type="square"
+            size="medium"
+            emphasis="medium"
+            icon={<CheckCircleIcon aria-hidden />}
+          />
+        }
+        isDisabled
+      />
+    </RadioGroup>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Pass a \`ReactElement\` via \`label\` to use the component label variant. When \`label\` is a \`ReactElement\`, \`description\` is required.
+
+\`\`\`tsx
+<RadioGroup aria-label="Pick icon" defaultValue="a">
+  <RadioGroup.Radio
+    value="a"
+    description="My option"
+    label={
+      <FeaturedIcon type="square" size="medium" emphasis="low" icon={<MyIcon />} />
+    }
+  />
+</RadioGroup>
+\`\`\`
+`,
+      },
+    },
+  },
 }
 
 export const WithErrorMessage: Story = {

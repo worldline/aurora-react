@@ -1,13 +1,14 @@
 'use client'
 
 import cn from 'classnames'
-import type { ComponentProps } from 'react'
+import { type ComponentProps, isValidElement, type ReactElement } from 'react'
 import {
   RadioButton as AriaRadioButton,
   RadioField as AriaRadioField,
   type RadioFieldProps,
 } from 'react-aria-components'
 
+import { Card } from '@/components/Card'
 import { Typography } from '@/components/Typography'
 
 import styles from './RadioButton.module.css'
@@ -24,6 +25,11 @@ interface WithTextProps {
   description?: string
 }
 
+interface WithComponentProps {
+  label: ReactElement
+  description: string
+}
+
 interface BaseRadioButtonProps extends Omit<
   RadioFieldProps,
   'children' | 'className'
@@ -33,7 +39,7 @@ interface BaseRadioButtonProps extends Omit<
 }
 
 export type RadioButtonProps = BaseRadioButtonProps &
-  (WithoutTextProps | WithTextProps)
+  (WithoutTextProps | WithTextProps | WithComponentProps)
 
 const sizesToTypographyProps: Record<
   RadioButtonSize,
@@ -103,22 +109,49 @@ const RadioButton = ({
   className,
   ...fieldProps
 }: RadioButtonProps) => (
-  <AriaRadioField {...fieldProps}>
-    <AriaRadioButton className={cn(styles.radio, sizeStyles[size], className)}>
-      {({ isDisabled }: { isDisabled: boolean }) => (
-        <>
-          <div className={styles.indicator}>
-            <div />
-          </div>
-
-          <TextContent
-            label={label}
-            description={description}
-            size={size}
-            isDisabled={isDisabled}
-          />
-        </>
+  <AriaRadioField
+    data-with-component={isValidElement(label) ? '' : undefined}
+    {...fieldProps}
+  >
+    <AriaRadioButton
+      className={cn(
+        styles.radio,
+        sizeStyles[size],
+        isValidElement(label) && styles['with-component'],
+        className,
       )}
+    >
+      {({ isDisabled }: { isDisabled: boolean }) =>
+        isValidElement(label) ? (
+          <>
+            <Card className={styles.card}>
+              {label}
+              <div className={styles.indicator}>
+                <div />
+              </div>
+            </Card>
+            <Typography
+              element="p"
+              textStyle={sizesToTypographyProps[size].descriptionTextStyle}
+              textColor={isDisabled ? 'contentDisabled' : 'contentSecondary'}
+            >
+              {description}
+            </Typography>
+          </>
+        ) : (
+          <>
+            <div className={styles.indicator}>
+              <div />
+            </div>
+            <TextContent
+              label={label}
+              description={description}
+              size={size}
+              isDisabled={isDisabled}
+            />
+          </>
+        )
+      }
     </AriaRadioButton>
   </AriaRadioField>
 )

@@ -19,3 +19,17 @@
 .group[data-orientation='horizontal'] .radios {
   flex-flow: row wrap;
 }
+
+.group[data-orientation='horizontal'] .radios:has([data-with-component]) {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  row-gap: var(--au-spacing-xs);
+}
+
+.group[data-orientation='horizontal'] .radios:has([data-with-component]) > * {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: 1 / -1;
+}
