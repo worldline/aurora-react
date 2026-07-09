@@ -51,7 +51,7 @@ const IntroductionPage = () => (
         development environment, refer to the{' '}
         <Typography element="span" textStyle="bodyMd" textColor="contentBrand">
           <a
-            href="https://github.com/bambora/aurora-react/blob/master/README.md"
+            href="https://github.com/worldline/aurora-react/-/blob/master/README.md"
             target="_blank"
             rel="noreferrer"
           >
@@ -158,14 +158,7 @@ const IntroductionPage = () => (
             textStyle="bodyMd"
             textColor="contentSecondary"
           >
-            <Typography
-              element="span"
-              textStyle="bodyMd"
-              textColor="contentSecondary"
-            >
-              Accessible by default
-            </Typography>{' '}
-            - Every component works for everyone
+            Accessible by default - Every component works for everyone
           </Typography>
         </li>
         <li>
@@ -174,14 +167,8 @@ const IntroductionPage = () => (
             textStyle="bodyMd"
             textColor="contentSecondary"
           >
-            <Typography
-              element="span"
-              textStyle="bodyMd"
-              textColor="contentSecondary"
-            >
-              Developer friendly
-            </Typography>{' '}
-            - Simple APIs with TypeScript support
+            Developer friendly - Simple and well-documented APIs with TypeScript
+            support
           </Typography>
         </li>
       </ul>

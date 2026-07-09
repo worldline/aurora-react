@@ -1,0 +1,41 @@
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.home-link {
+  display: flex;
+  align-items: center;
+  color: var(--au-content-primary);
+  text-decoration: none;
+}
+
+.home-icon {
+  color: var(--au-content-primary);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.separator {
+  color: var(--au-content-secondary);
+  flex-shrink: 0;
+}
+
+.accessibility {
+  position: absolute;
+  width: var(--au-dimension-1);
+  height: var(--au-dimension-1);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
