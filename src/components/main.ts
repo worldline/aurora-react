@@ -1,4 +1,10 @@
 export { Alert } from './Alert'
+export {
+  Breadcrumbs,
+  type BreadcrumbItemData,
+  type BreadcrumbsProps,
+  type RenderLink,
+} from './Breadcrumbs'
 export { Button } from './Button'
 export { Card } from './Card'
 export { Carousel } from './Carousel'
