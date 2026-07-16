@@ -16,7 +16,9 @@ import { RadioButton } from './RadioButton'
 import styles from './RadioGroup.module.css'
 
 interface PropsWithText {
+  /** Visible label displayed above the radio buttons. */
   title: string
+  /** Optional description displayed below the title. */
   description?: string
 }
 
@@ -49,19 +51,31 @@ const Header = ({ title, description }: HeaderProps) => (
   </div>
 )
 
-type RadioGroupProps = AriaRadioGroupProps & {
+type RadioGroupProps<T extends string> = Omit<
+  AriaRadioGroupProps,
+  'onChange' | 'value' | 'defaultValue'
+> & {
+  /** Radio buttons to render inside the group. */
   children: ReactNode
+  /** Error message to display below the group, or `false` to show no error. */
   error?: false | string
+  /** Currently selected value (controlled). */
+  value?: T
+  /** Default selected value for uncontrolled usage. */
+  defaultValue?: T
+  /** Callback fired when the selected value changes. */
+  onChange?: (value: T) => void
 } & (PropsWithText | PropsWithoutText)
 
-const RadioGroupBase = ({
+const RadioGroupBase = <T extends string>({
   title,
   description,
   children,
   error = false,
   orientation = 'vertical',
+  onChange,
   ...props
-}: RadioGroupProps) => {
+}: RadioGroupProps<T>) => {
   const hasErrorMessage = error && typeof error === 'string'
   const id = useId()
   const errorId = hasErrorMessage ? `${id}-error` : undefined
@@ -71,8 +85,15 @@ const RadioGroupBase = ({
       isInvalid={Boolean(error)}
       aria-describedby={errorId}
       orientation={orientation}
-      {...props}
       className={cn(styles.group, props.className)}
+      onChange={
+        onChange === undefined
+          ? undefined
+          : (value: string) => {
+              onChange(value as T)
+            }
+      }
+      {...props}
     >
       {title !== undefined ? (
         <Header title={title} description={description} />

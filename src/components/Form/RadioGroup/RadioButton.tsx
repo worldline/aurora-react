@@ -21,25 +21,33 @@ interface WithoutTextProps {
 }
 
 interface WithTextProps {
+  /** Visible text label displayed next to the radio indicator. */
   label: string
+  /** Optional secondary text displayed below the label. */
   description?: string
 }
 
 interface WithComponentProps {
+  /** Custom React element rendered as the radio label (e.g. an icon or card content). */
   label: ReactElement
+  /** Required description displayed below the custom label component. */
   description: string
 }
 
-interface BaseRadioButtonProps extends Omit<
+interface BaseRadioButtonProps<T extends string = string> extends Omit<
   RadioFieldProps,
-  'children' | 'className'
+  'children' | 'className' | 'value'
 > {
+  /** The value submitted when this radio button is selected. Must match the parent `RadioGroup`'s value type. */
+  value: T
+  /** Controls the size of the radio button and its typography. Defaults to `'small'`. */
   size?: RadioButtonSize
   className?: string
 }
 
-export type RadioButtonProps = BaseRadioButtonProps &
-  (WithoutTextProps | WithTextProps | WithComponentProps)
+export type RadioButtonProps<T extends string = string> =
+  BaseRadioButtonProps<T> &
+    (WithoutTextProps | WithTextProps | WithComponentProps)
 
 const sizesToTypographyProps: Record<
   RadioButtonSize,
@@ -102,13 +110,13 @@ const TextContent = ({
   )
 }
 
-const RadioButton = ({
+const RadioButton = <T extends string = string>({
   size = 'small',
   label,
   description,
   className,
   ...fieldProps
-}: RadioButtonProps) => (
+}: RadioButtonProps<T>) => (
   <AriaRadioField
     data-with-component={isValidElement(label) ? '' : undefined}
     {...fieldProps}
