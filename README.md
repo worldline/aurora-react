@@ -30,7 +30,7 @@ and Storybook.
 
 ### Prerequisites
 
-- Node.js >= 24
+- Node.js >= 26
 - React >= 19
 
 ### Installation
