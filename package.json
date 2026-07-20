@@ -62,7 +62,7 @@
   "dependencies": {
     "@internationalized/date": "3.12.2",
     "@react-aria/live-announcer": "3.5.1",
-    "@worldline/aurora-design-tokens": "1.17.0"
+    "@worldline/aurora-design-tokens": "1.20.0"
   },
   "peerDependencies": {
     "@types/react": "^19.2.17",

@@ -1,6 +1,10 @@
 .embla {
   --slide-spacing: var(--au-spacing-xs);
   --slide-size: 70%;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-lg);
 }
 
 .viewport {

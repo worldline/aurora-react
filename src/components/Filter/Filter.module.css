@@ -13,6 +13,7 @@
 .filter-item {
   display: inline-flex;
   align-items: center;
+  min-height: var(--au-filters-inactive-min-height);
   padding: var(--au-filters-inactive-padding-vertical)
     var(--au-filters-inactive-padding-horizontal);
   gap: var(--au-filters-inactive-gap);
@@ -45,6 +46,7 @@
 }
 
 .filter-item[data-selected] {
+  min-height: var(--au-filters-active-min-height);
   padding: var(--au-filters-active-padding-vertical)
     var(--au-filters-active-padding-horizontal);
   gap: var(--au-filters-active-gap);
