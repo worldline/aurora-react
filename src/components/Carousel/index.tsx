@@ -103,6 +103,7 @@ const Carousel = ({
           onClick={onPrevButtonClick}
           isDisabled={prevBtnDisabled}
           variant="link"
+          className={styles['navigation-arrow']}
         />
 
         <div className={styles.dots}>
@@ -121,6 +122,7 @@ const Carousel = ({
           onClick={onNextButtonClick}
           isDisabled={nextBtnDisabled}
           variant="link"
+          className={styles['navigation-arrow']}
         />
       </div>
     </div>
