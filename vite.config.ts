@@ -1,52 +1,17 @@
-/// <reference types="vitest/config" />
 import { createHash } from 'node:crypto'
-import path, { extname, relative } from 'node:path'
-import { fileURLToPath } from 'node:url'
 
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
 import react from '@vitejs/plugin-react'
-import { playwright } from '@vitest/browser-playwright'
-import { globSync } from 'glob'
-import preserveDirectives from 'rollup-preserve-directives'
-import dts from 'unplugin-dts/vite'
-import { defineConfig } from 'vite'
-import { libInjectCss } from 'vite-plugin-lib-inject-css'
+import { defineConfig, type UserConfig } from 'vite'
 
-const playwrightBrowserConfig = () => ({
-  connectTimeout: 30000, // container is already up; 30s is enough
-  provider: playwright({
-    connectOptions: {
-      wsEndpoint: process.env.PLAYWRIGHT_WS_ENDPOINT ?? 'ws://0.0.0.0:3100',
-      exposeNetwork: '<loopback>',
-    },
-  }),
-  instances: [{ browser: 'chromium' as const }],
-})
-
-export default defineConfig({
-  plugins: [
-    react(),
-    libInjectCss(),
-    dts({
-      entryRoot: 'src',
-      tsconfigPath: fileURLToPath(
-        new URL('tsconfig.lib.json', import.meta.url),
-      ),
-      exclude: [
-        '**/*.stories.ts',
-        '**/*.stories.tsx',
-        '**/*.test.ts',
-        '**/*.test.tsx',
-        '**/*.fixtures.ts',
-        '**/*.fixtures.tsx',
-        '__tests__/**/*.ts',
-        '__tests__/**/*.tsx',
-        '.storybook/**/*.ts',
-        '.storybook/**/*.tsx',
-      ],
-    }),
-    preserveDirectives(),
-  ],
+/**
+ * Shared configuration consumed by the dev server, Storybook, the library build
+ * ([vite.lib.config.ts]) and the test runner ([vitest.config.ts]).
+ *
+ * It must stay free of library-build concerns: Storybook inherits this file as
+ * is, and any lib-only plugin added here would have to be stripped back out.
+ */
+export const baseConfig: UserConfig = {
+  plugins: [react()],
   css: {
     devSourcemap: true,
     modules: {
@@ -65,153 +30,9 @@ export default defineConfig({
       },
     },
   },
-  build: {
-    copyPublicDir: false,
-    sourcemap: true,
-    minify: false,
-    lib: {
-      entry: fileURLToPath(new URL('src/components/main.ts', import.meta.url)),
-      formats: ['es'],
-    },
-    rolldownOptions: {
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        'classnames',
-        'react-aria-components',
-        /^@react-aria\/live-announcer/,
-        /^@worldline\/aurora-design-tokens/,
-      ],
-      input: Object.fromEntries(
-        globSync(['src/styles/styles.css', 'src/**/*.{ts,tsx}'], {
-          ignore: [
-            'src/**/*types*.ts',
-            'src/**/*stories*.{ts,tsx}',
-            'src/**/*test.{ts,tsx}',
-            'src/**/*fixtures*.{ts,tsx}',
-            '__tests__/*.{ts,tsx}',
-          ],
-        }).map((file) => [
-          relative('src', file.slice(0, file.length - extname(file).length)),
-          fileURLToPath(new URL(file, import.meta.url)),
-        ]),
-      ),
-      output: {
-        assetFileNames: 'assets/[name][extname]',
-        entryFileNames: '[name].js',
-        chunkFileNames: '_chunks/[name]-[hash].js',
-      },
-    },
-  },
-  test: {
-    environment: 'jsdom',
-    globals: true,
-    setupFiles: './__tests__/setupVitest.ts',
-    outputFile: {
-      html: './.vitest-reports/index.html',
-    },
-    coverage: {
-      provider: 'v8',
-      exclude: [
-        '*.scss',
-        'src/components/main.ts',
-        'src/components/**/*.stories.ts',
-        'src/components/icons/**',
-      ],
-      clean: true,
-    },
-    css: {
-      modules: {
-        classNameStrategy: 'non-scoped',
-      },
-    },
-    projects: [
-      {
-        extends: true,
-        test: {
-          name: 'unit',
-          include: ['./src/**/*.test.ts', './src/**/*.test.tsx'],
-          exclude: ['./src/**/*.visual.test.tsx'],
-        },
-      },
-      {
-        extends: true,
-        test: {
-          name: 'visual',
-          // TODO: Disable visual regression tests until the Git LFS issue is resolved
-          include: ['./src/**/*.visual.test.tsx'],
-          globalSetup: './__tests__/visual/globalSetup.ts',
-          setupFiles: ['./__tests__/visual/setupVitest.ts'],
-          browser: {
-            enabled: true,
-            headless: true,
-            screenshotFailures: false,
-            viewport: {
-              // mobile-xs (smallest breakpoint)
-              width: 360,
-              height: 640,
-            },
-            expect: {
-              toMatchScreenshot: {
-                comparatorOptions: {
-                  threshold: 0.025,
-                  allowedMismatchedPixels: 3,
-                },
-                screenshotOptions: {
-                  animations: 'disabled',
-                },
-                resolveScreenshotPath: ({
-                  root,
-                  testName,
-                  browserName,
-                  ext,
-                  testFileDirectory,
-                  testFileName,
-                }) =>
-                  path.join(
-                    root,
-                    testFileDirectory,
-                    '__screenshots__',
-                    testFileName,
-                    `${testName}-${browserName}${ext}`,
-                  ),
-              },
-            },
-            ...playwrightBrowserConfig(),
-          },
-        },
-      },
-      {
-        extends: true,
-        plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-          storybookTest({
-            configDir: path.join(
-              typeof __dirname !== 'undefined'
-                ? __dirname
-                : path.dirname(fileURLToPath(import.meta.url)),
-              '.storybook',
-            ),
-            tags: {
-              exclude: ['notest'],
-            },
-          }),
-        ],
-        test: {
-          name: 'storybook',
-          browser: {
-            enabled: true,
-            headless: true,
-            ...playwrightBrowserConfig(),
-          },
-          setupFiles: ['.storybook/vitest.setup.ts'],
-        },
-      },
-    ],
-  },
   resolve: {
     tsconfigPaths: true,
   },
-})
+}
+
+export default defineConfig(baseConfig)

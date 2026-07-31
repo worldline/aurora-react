@@ -1,11 +1,9 @@
-import { withoutVitePlugins } from '@storybook/builder-vite'
 import { defineMain } from '@storybook/react-vite/node'
 
 export default defineMain({
   framework: '@storybook/react-vite',
   stories: [
     './Introduction.stories.tsx',
-    './GetStarted.stories.tsx',
     {
       directory: '../src/components',
       files: '**/*.stories.tsx',
@@ -18,15 +16,4 @@ export default defineMain({
     '@storybook/addon-vitest',
     '@storybook/addon-mcp',
   ],
-  async viteFinal(config) {
-    return {
-      ...config,
-      plugins: [
-        ...(await withoutVitePlugins(config.plugins, [
-          'vite:dts',
-          'vite:lib-inject-css',
-        ])),
-      ],
-    }
-  },
 })
