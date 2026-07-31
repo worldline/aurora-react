@@ -60,6 +60,16 @@ import '@worldline/aurora-react/fonts.css'
 import '@worldline/aurora-react/styles.css'
 ```
 
+`styles.css` already embeds the design tokens: `@worldline/aurora-design-tokens`
+is inlined at Aurora build time, so **do not** import
+`@worldline/aurora-design-tokens/style.css` as well — you would ship a duplicate
+copy of every `--au-*` custom property.
+
+This means the token version is frozen at Aurora's build time, while the
+JavaScript side (`@worldline/aurora-design-tokens/variables`) resolves against
+whatever your app has installed. Aurora pins the dependency to an exact version
+so the two cannot drift; keep that pin exact if you ever change it.
+
 ### Import components
 
 Components are available as named exports from the
