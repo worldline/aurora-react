@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-2xs);
+}
+
+.label {
+  display: flex;
+  gap: var(--au-spacing-3xs);
+  color: var(--au-inputfield-placeholder-label);
+}
+
+.textarea {
+  width: 100%;
+  height: var(--au-size-component-12xl);
+  min-width: 0;
+  min-height: var(--au-size-component-12xl);
+  font: var(--au-body-md);
+  line-height: var(--au-typescale-body-md-line-height);
+  color: var(--au-inputfield-placeholder-text);
+  background-color: var(--au-inputfield-placeholder-background);
+  letter-spacing: var(--au-typescale-body-md-letter-spacing);
+  border-style: solid;
+  border-color: var(--au-inputfield-placeholder-border);
+  caret-color: var(--au-inputfield-filled-text);
+  resize: vertical;
+}
+
+.textarea[data-placeholder] {
+  color: var(--au-inputfield-placeholder-text);
+}
+
+.small .textarea {
+  padding: var(--au-inputfield-text-field-sm-padding-vertical)
+    var(--au-inputfield-text-field-sm-padding-horizontal);
+  gap: var(--au-inputfield-text-field-sm-gap);
+  border-radius: var(--au-inputfield-text-field-sm-radius);
+  border-width: var(--au-inputfield-text-field-sm-border-width);
+}
+
+.medium .textarea {
+  padding: var(--au-inputfield-text-field-md-padding-vertical)
+    var(--au-inputfield-text-field-md-padding-horizontal);
+  gap: var(--au-inputfield-text-field-md-gap);
+  border-radius: var(--au-inputfield-text-field-md-radius);
+  border-width: var(--au-inputfield-text-field-md-border-width);
+}
+
+.filled .label {
+  color: var(--au-inputfield-filled-label);
+}
+
+.filled .textarea {
+  color: var(--au-inputfield-filled-text);
+  background-color: var(--au-inputfield-filled-background);
+  border-color: var(--au-inputfield-filled-border);
+}
+
+.filled .textarea[data-placeholder] {
+  color: var(--au-inputfield-filled-text);
+}
+
+.container[data-invalid] .textarea {
+  border-color: var(--au-inputfield-error-border);
+}
+
+.container[data-readonly] .label {
+  color: var(--au-inputfield-read-only-label);
+}
+
+.container[data-readonly] .textarea {
+  color: var(--au-inputfield-read-only-text);
+  background-color: var(--au-inputfield-read-only-background);
+  border-color: var(--au-inputfield-read-only-border);
+  cursor: default;
+}
+
+.container[data-readonly] .textarea[data-placeholder] {
+  color: var(--au-inputfield-read-only-text);
+}
+
+.container[data-disabled] .label {
+  color: var(--au-inputfield-disabled-label);
+}
+
+.container[data-disabled] .textarea {
+  color: var(--au-inputfield-disabled-text);
+  background-color: var(--au-inputfield-disabled-background);
+  border-color: var(--au-inputfield-disabled-border);
+}
+
+.container[data-disabled] .textarea[data-placeholder] {
+  color: var(--au-inputfield-disabled-text);
+}
+
+.container[data-disabled] [data-helper-text],
+.container[data-disabled] [data-character-count] {
+  color: var(--au-inputfield-disabled-helper-text);
+}
+
+.container[data-invalid] [data-character-count] {
+  color: var(--au-inputfield-error-error-message);
+}
+
+.container:not([data-disabled], [data-invalid], [data-readonly]):focus-within
+  [data-helper-text],
+.container:not(
+    [data-disabled],
+    [data-invalid],
+    [data-readonly]
+  )[data-focus-within]
+  [data-helper-text] {
+  color: var(--au-inputfield-selected-helper-text);
+}
+
+.container:not([data-disabled], [data-invalid], [data-readonly]):focus-within
+  .label,
+.container:not(
+    [data-disabled],
+    [data-invalid],
+    [data-readonly]
+  )[data-focus-within]
+  .label {
+  color: var(--au-inputfield-selected-label);
+}
+
+.container:not([data-disabled], [data-invalid], [data-readonly]):focus-within
+  .textarea,
+.container:not(
+    [data-disabled],
+    [data-invalid],
+    [data-readonly]
+  )[data-focus-within]
+  .textarea {
+  color: var(--au-inputfield-selected-text);
+  background-color: var(--au-inputfield-selected-background);
+  border-color: var(--au-inputfield-selected-border);
+  outline: none;
+}
+
+.container:not([data-disabled], [data-invalid], [data-readonly]):focus-within
+  .textarea[data-placeholder],
+.container:not(
+    [data-disabled],
+    [data-invalid],
+    [data-readonly]
+  )[data-focus-within]
+  .textarea[data-placeholder] {
+  color: var(--au-inputfield-selected-text);
+}

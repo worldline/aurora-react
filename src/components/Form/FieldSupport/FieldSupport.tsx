@@ -3,14 +3,20 @@ import { FieldError, Text } from 'react-aria-components'
 import { ErrorMessage } from '@/components/Form/ErrorMessage'
 import { Typography } from '@/components/Typography'
 
-import styles from './InputField.module.css'
+import styles from './FieldSupport.module.css'
 
 interface FieldSupportProps {
+  /** Error message or boolean to indicate error state */
   error?: string | boolean
+  /** Helper text displayed below the field */
   helperText?: string
+  /** Maximum character length for the counter display */
   maxLength?: number
+  /** Current character count */
   currentLength: number
+  /** Whether the field is disabled */
   isDisabled?: boolean
+  /** Whether the field is read-only */
   isReadOnly?: boolean
 }
 
@@ -27,6 +33,7 @@ const FieldSupport = ({
   return (
     <div
       className={styles['help-line']}
+      aria-disabled={isDisabled ? true : undefined}
       data-disabled={isDisabled}
       data-invalid={Boolean(error)}
       data-readonly={isReadOnly}
@@ -41,6 +48,7 @@ const FieldSupport = ({
             element="span"
             textStyle="captionMd"
             className={styles['helper-text']}
+            data-helper-text
           >
             {helperText}
           </Typography>
@@ -52,6 +60,7 @@ const FieldSupport = ({
           element="span"
           textStyle="captionMd"
           className={styles['character-count']}
+          data-character-count
         >
           {currentLength}/{maxLength}
         </Typography>
@@ -60,4 +69,4 @@ const FieldSupport = ({
   )
 }
 
-export { FieldSupport }
+export { FieldSupport, type FieldSupportProps }
