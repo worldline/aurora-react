@@ -56,6 +56,7 @@ export {
   type ModalProps,
 } from './Modal'
 export { Popover } from './Popover'
+export { TextArea, type TextAreaProps } from './Form/TextArea'
 export { Pressable } from './Pressable'
 export { ProgressCircle } from './Progress/ProgressCircle'
 export { SegmentedControl, SegmentedControls } from './SegmentedControls'

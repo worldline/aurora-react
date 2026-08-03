@@ -1,0 +1,20 @@
+.help-line {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--au-spacing-2xs);
+}
+
+.help-line > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.helper-text,
+.character-count {
+  display: flex;
+  color: var(--au-inputfield-placeholder-helper-text);
+}
+
+.character-count {
+  white-space: nowrap;
+}

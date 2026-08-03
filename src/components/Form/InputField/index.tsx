@@ -11,9 +11,9 @@ import {
   Label,
 } from 'react-aria-components'
 
+import { FieldSupport } from '@/components/Form/FieldSupport'
 import { Typography } from '@/components/Typography'
 
-import { FieldSupport } from './FieldSupport'
 import styles from './InputField.module.css'
 
 interface InputFieldProps {

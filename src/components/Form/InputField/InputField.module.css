@@ -55,16 +55,6 @@
   caret-color: var(--au-inputfield-filled-text);
 }
 
-.character-count {
-  white-space: nowrap;
-}
-
-.character-count,
-.helper-text {
-  display: flex;
-  color: var(--au-inputfield-placeholder-helper-text);
-}
-
 .filled .label {
   color: var(--au-inputfield-filled-label);
 }
@@ -73,27 +63,16 @@
   color: var(--au-inputfield-filled-text);
 }
 
-.filled .helper-text,
-.filled .character-count {
+.filled [data-helper-text],
+.filled [data-character-count] {
   color: var(--au-inputfield-filled-helper-text);
-}
-
-.help-line {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--au-spacing-2xs);
-}
-
-.help-line > :first-child {
-  flex: 1;
-  min-width: 0;
 }
 
 .container[data-invalid] .input-wrapper {
   border-color: var(--au-inputfield-error-border);
 }
 
-.container[data-invalid] .character-count {
+.container[data-invalid] [data-character-count] {
   color: var(--au-inputfield-error-error-message);
 }
 
@@ -140,7 +119,7 @@
   color: var(--au-inputfield-disabled-text);
 }
 
-.container[data-disabled] .helper-text,
-.container[data-disabled] .character-count {
+.container[data-disabled] [data-helper-text],
+.container[data-disabled] [data-character-count] {
   color: var(--au-inputfield-disabled-helper-text);
 }
