@@ -1,0 +1,63 @@
+.tooltip {
+  width: fit-content;
+  padding: var(--au-spacing-xs) var(--au-spacing-sm);
+  background-color: var(--au-content-primary);
+  border-radius: var(--au-radius-sm);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--au-spacing-3xs);
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-svg {
+  display: block;
+  fill: var(--au-content-primary);
+}
+
+.tooltip[data-placement='top'] .arrow {
+  bottom: calc(-1 * var(--au-spacing-2xs));
+}
+
+.tooltip[data-placement='top'] .arrow-start,
+.tooltip[data-placement='bottom'] .arrow-start {
+  margin-left: calc(-1 * (var(--au-spacing-2xs) + var(--au-spacing-xl)));
+}
+
+.tooltip[data-placement='top'] .arrow-end,
+.tooltip[data-placement='bottom'] .arrow-end {
+  margin-left: calc(var(--au-spacing-2xs) + var(--au-spacing-xl));
+}
+
+.tooltip[data-placement='bottom'] .arrow {
+  top: calc(-1 * var(--au-spacing-2xs));
+}
+
+.tooltip[data-placement='bottom'] .arrow-svg {
+  transform: rotate(180deg);
+}
+
+.tooltip[data-placement='left'] .arrow {
+  right: calc(-1 * var(--au-spacing-xs));
+}
+
+.tooltip[data-placement='left'] .arrow-svg {
+  transform: rotate(-90deg);
+  translate: calc(-1 * var(--au-spacing-3xs)) var(--au-spacing-none);
+}
+
+.tooltip[data-placement='right'] .arrow {
+  left: calc(-1 * var(--au-spacing-xs));
+}
+
+.tooltip[data-placement='right'] .arrow-svg {
+  transform: rotate(90deg);
+  translate: var(--au-spacing-3xs) var(--au-spacing-none);
+}
