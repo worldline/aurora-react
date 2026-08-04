@@ -1,0 +1,13 @@
+.all-placements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--au-dimension-80) var(--au-dimension-40);
+  gap: var(--au-dimension-48);
+}
+
+.placement-row {
+  display: flex;
+  align-items: center;
+  gap: var(--au-dimension-24);
+}
