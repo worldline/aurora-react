@@ -6,7 +6,7 @@
   display: none;
 }
 
-@media (width <= 480px) {
+@media (width <= 768px) {
   .section-header {
     display: flex;
     padding: var(--au-spacing-lg) var(--au-spacing-md) var(--au-spacing-sm);
