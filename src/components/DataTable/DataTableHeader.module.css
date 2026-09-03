@@ -46,7 +46,7 @@
   border-width: 0;
 }
 
-@media (width <= 480px) {
+@media (width <= 768px) {
   .header-row {
     display: none;
   }
