@@ -1,0 +1,136 @@
+.overlay {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: var(--au-surface-scrim);
+  inset: 0;
+  padding-top: var(--au-spacing-3xl);
+}
+
+.overlay[data-entering] {
+  animation: fade-in var(--au-motion-slide-in-duration)
+    var(--au-motion-slide-in-easing) forwards;
+}
+
+.overlay[data-exiting] {
+  animation: fade-out var(--au-motion-fade-out-duration)
+    var(--au-motion-fade-out-easing) forwards;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 0;
+  max-width: 100%;
+}
+
+.modal-flex {
+  flex: 1 0 0;
+}
+
+.modal[data-entering] {
+  animation: slide-in-bottom var(--au-motion-slide-in-duration)
+    var(--au-motion-slide-in-easing) forwards;
+}
+
+.modal[data-exiting] {
+  animation: slide-out-bottom var(--au-motion-fade-out-duration)
+    var(--au-motion-fade-out-easing) forwards;
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  background: var(--au-surface-neutral-low);
+  backdrop-filter: blur(var(--au-overlay-background-blur));
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  border-radius: var(--au-radius-sm) var(--au-radius-sm) 0 0;
+  box-shadow: var(--au-elevation-content-overlay);
+}
+
+.height-content {
+  flex: 0 1 auto;
+  min-height: 0;
+}
+
+.height-sm {
+  flex: 0 1 320px;
+  min-height: 0;
+}
+
+.height-md {
+  flex: 0 1 520px;
+  min-height: 0;
+}
+
+.height-lg {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.handle-container {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: var(--au-spacing-xs) 0;
+}
+
+.handle {
+  width: var(--au-size-component-lg);
+  height: 4px; /* TODO: use variable for this var(--au-size-component-4xs) */
+  background: var(--au-surface-neutral-high);
+  border-radius: var(--au-radius-rounded);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.content-padded {
+  padding: var(--au-spacing-md);
+}
+
+.content-padded > * + * {
+  margin-top: var(--au-spacing-xl);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-entering],
+  .overlay[data-exiting],
+  .modal[data-entering],
+  .modal[data-exiting] {
+    animation: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-bottom {
+  from {
+    translate: 0 100%;
+  }
+}
+
+@keyframes slide-out-bottom {
+  to {
+    translate: 0 100%;
+  }
+}
