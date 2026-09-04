@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  align-items: center;
+  padding: var(--au-spacing-md) var(--au-spacing-xl);
+  gap: var(--au-spacing-md);
+  background: var(--au-surface-neutral-low);
+  flex-shrink: 0;
+  border-top: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+}
+
+.button {
+  flex: 1;
+}

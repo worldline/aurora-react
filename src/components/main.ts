@@ -1,5 +1,11 @@
 export { Alert } from './Alert'
 export {
+  BottomSheet,
+  type Action as BottomSheetAction,
+  type BottomSheetHeight,
+  type BottomSheetProps,
+} from './BottomSheet'
+export {
   Breadcrumbs,
   type BreadcrumbItemData,
   type BreadcrumbsProps,
