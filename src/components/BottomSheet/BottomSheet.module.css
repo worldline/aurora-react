@@ -9,10 +9,13 @@
   padding-top: var(--au-spacing-3xl);
 }
 
+/*
+Have to remove this to avoid software keyboard issues on mobile when autoFocus inside the BottomSheet is triggered...
 .overlay[data-entering] {
   animation: fade-in var(--au-motion-slide-in-duration)
     var(--au-motion-slide-in-easing) forwards;
 }
+*/
 
 .overlay[data-exiting] {
   animation: fade-out var(--au-motion-fade-out-duration)
@@ -83,7 +86,7 @@
 
 .handle {
   width: var(--au-size-component-lg);
-  height: 4px; /* TODO: use variable for this var(--au-size-component-4xs) */
+  height: var(--au-size-component-4xs);
   background: var(--au-surface-neutral-high);
   border-radius: var(--au-radius-rounded);
 }
