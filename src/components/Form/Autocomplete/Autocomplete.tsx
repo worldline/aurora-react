@@ -1,0 +1,249 @@
+'use client'
+
+import { announce } from '@react-aria/live-announcer'
+import { useEffect, useState } from 'react'
+import type { Key } from 'react-aria-components'
+
+import { useMediaQuery } from '@/utils/useMediaQuery'
+
+import { AutocompleteDropdown } from './AutocompleteDropdown'
+import { AutocompleteSheet } from './AutocompleteSheet'
+import type {
+  AutocompleteFilter,
+  AutocompleteOption,
+  AutocompleteSize,
+  FooterAction,
+} from './types'
+
+/** Viewport below which the autocomplete switches to the bottom sheet. */
+const MOBILE_MEDIA_QUERY = '(width <= 480px)'
+
+interface AutocompleteProps {
+  /** Options offered in the list. */
+  options: Array<AutocompleteOption>
+  /** Label displayed above the field. */
+  label?: string
+  /** Accessible name used when no visible `label` is provided. */
+  'aria-label'?: string
+  /**
+   * Size variant of the field.
+   * @default 'small'
+   */
+  size?: AutocompleteSize
+  /** Placeholder shown while the field is empty. */
+  placeholder: string
+  /** Helper text displayed below the field. */
+  helperText?: string
+  /** Error message displayed below the field. */
+  error?: string
+  /**
+   * Live-region politeness for the error announcement, or `false` to disable it.
+   * @default 'polite'
+   */
+  announceError?: 'polite' | 'assertive' | false
+  /** Key of the selected option, for controlled usage. */
+  selectedKey?: Key | null
+  /** Key of the option selected initially, for uncontrolled usage. */
+  defaultSelectedKey?: Key
+  /** Called when the selected option changes. */
+  onSelectionChange?: (key: Key | null) => void
+  /** Text currently typed in the field, for controlled usage. */
+  inputValue?: string
+  /** Text typed in the field initially, for uncontrolled usage. */
+  defaultInputValue?: string
+  /** Called whenever the text typed in the field changes. */
+  onInputValueChange?: (inputValue: string) => void
+  /**
+   * Determines whether an option matches the typed input value.
+   * @default A case-insensitive "contains" match on the option's label.
+   */
+  filter?: AutocompleteFilter
+  /** Whether a value must be selected before the enclosing form can be submitted. */
+  isRequired?: boolean
+  /** Whether the field is disabled. */
+  isDisabled?: boolean
+  /** Whether the field only displays its value. */
+  isReadOnly?: boolean
+  /** Row appended below the options, offering to enter a value manually. */
+  footerAction?: FooterAction
+  /** Builds the count line displayed above the options. */
+  formatResultsCount: (count: number) => string
+  /** Text shown in place of the options when none of them match the input. */
+  emptyLabel: string
+  /** Accessible name of the button clearing the field. */
+  clearLabel: string
+  /** Title displayed at the top of the bottom sheet. Falls back to `label`. */
+  sheetTitle?: string
+  /** Accessible name of the button closing the bottom sheet. */
+  closeLabel: string
+  /** Name submitted with the enclosing form. */
+  name?: string
+  /** Additional CSS class name applied to the field container. */
+  className?: string
+}
+
+/**
+ * Text field that suggests matching options as the user types.
+ *
+ * On viewports wider than the mobile breakpoint the options open in a popover
+ * anchored to the field. On narrower ones they open in a bottom sheet holding
+ * its own search field, which gives the list room next to the on-screen
+ * keyboard.
+ *
+ * @example
+ * ```tsx
+ * <Autocomplete
+ *   label="Country"
+ *   options={countries}
+ *   onSelectionChange={setCountry}
+ *   placeholder="Search ..."
+ *   formatResultsCount={(count) => `${count} results found`}
+ *   emptyLabel="No result found"
+ *   clearLabel="Clear"
+ *   closeLabel="Close"
+ * />
+ * ```
+ */
+const Autocomplete = ({
+  options,
+  label,
+  'aria-label': ariaLabel,
+  size = 'small',
+  placeholder,
+  helperText,
+  error,
+  announceError = 'polite',
+  selectedKey,
+  defaultSelectedKey,
+  onSelectionChange,
+  inputValue: inputValueProp,
+  defaultInputValue,
+  onInputValueChange,
+  filter,
+  isRequired,
+  isDisabled,
+  isReadOnly,
+  footerAction,
+  formatResultsCount,
+  emptyLabel,
+  clearLabel,
+  sheetTitle,
+  closeLabel,
+  name,
+  className,
+}: AutocompleteProps) => {
+  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY)
+
+  const isSelectionControlled = selectedKey !== undefined
+
+  const [internalSelectedKey, setInternalSelectedKey] = useState<Key | null>(
+    defaultSelectedKey ?? null,
+  )
+  const currentSelectedKey = isSelectionControlled
+    ? selectedKey
+    : internalSelectedKey
+  const selectedLabel =
+    options.find((option) => option.id === currentSelectedKey)?.label ?? ''
+
+  const isInputValueControlled = inputValueProp !== undefined
+
+  const [internalInputValue, setInternalInputValue] = useState(
+    defaultInputValue ?? selectedLabel,
+  )
+  const inputValue = isInputValueControlled
+    ? inputValueProp
+    : internalInputValue
+  const [lastSelectedLabel, setLastSelectedLabel] = useState(selectedLabel)
+
+  const setInputValue = (value: string): void => {
+    if (!isInputValueControlled) {
+      setInternalInputValue(value)
+    }
+
+    onInputValueChange?.(value)
+  }
+
+  // Follows selections the field did not make itself: a parent driving
+  // `selectedKey`, or options that only name the selected key once they have
+  // been fetched.
+  if (lastSelectedLabel !== selectedLabel) {
+    setLastSelectedLabel(selectedLabel)
+    setInputValue(selectedLabel)
+  }
+
+  useEffect(() => {
+    if (error && announceError) {
+      announce(error, announceError)
+    }
+  }, [error, announceError])
+
+  const handleSelectionChange = (key: Key | null): void => {
+    setInternalSelectedKey(key)
+
+    // React Aria leaves the input text alone when both the value and the input
+    // value are controlled, so the label is mirrored here. Under a controlled
+    // `selectedKey` that is left to the sync above instead, so the text only
+    // changes once the parent has accepted the new selection.
+    if (!isSelectionControlled) {
+      setInputValue(options.find((option) => option.id === key)?.label ?? '')
+    }
+
+    onSelectionChange?.(key)
+  }
+
+  if (isMobile) {
+    return (
+      <AutocompleteSheet
+        footerAction={footerAction}
+        ariaLabel={ariaLabel}
+        className={className}
+        clearLabel={clearLabel}
+        closeLabel={closeLabel}
+        emptyLabel={emptyLabel}
+        error={error}
+        filter={filter}
+        formatResultsCount={formatResultsCount}
+        helperText={helperText}
+        isDisabled={isDisabled}
+        isReadOnly={isReadOnly}
+        isRequired={isRequired}
+        label={label}
+        name={name}
+        onSelectionChange={handleSelectionChange}
+        options={options}
+        placeholder={placeholder}
+        selectedKey={currentSelectedKey}
+        sheetTitle={sheetTitle ?? label ?? ariaLabel ?? ''}
+        size={size}
+      />
+    )
+  }
+
+  return (
+    <AutocompleteDropdown
+      footerAction={footerAction}
+      ariaLabel={ariaLabel}
+      className={className}
+      clearLabel={clearLabel}
+      emptyLabel={emptyLabel}
+      error={error}
+      filter={filter}
+      formatResultsCount={formatResultsCount}
+      helperText={helperText}
+      inputValue={inputValue}
+      isDisabled={isDisabled}
+      isReadOnly={isReadOnly}
+      isRequired={isRequired}
+      label={label}
+      name={name}
+      onInputChange={setInputValue}
+      onSelectionChange={handleSelectionChange}
+      options={options}
+      placeholder={placeholder}
+      selectedKey={currentSelectedKey}
+      size={size}
+    />
+  )
+}
+
+export { Autocomplete, type AutocompleteProps }

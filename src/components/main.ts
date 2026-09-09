@@ -35,6 +35,14 @@ export {
 export { Divider } from './Divider'
 export { FeaturedIcon } from './FeaturedIcon'
 export { FilterGroup, FilterItem } from './Filter'
+export {
+  Autocomplete,
+  type FooterAction,
+  type AutocompleteFilter,
+  type AutocompleteOption,
+  type AutocompleteProps,
+  type AutocompleteSize,
+} from './Form/Autocomplete'
 export { Checkbox } from './Form/Checkbox'
 export {
   DatePicker,
