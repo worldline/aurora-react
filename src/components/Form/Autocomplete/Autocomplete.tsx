@@ -58,6 +58,12 @@ interface AutocompleteProps {
    * @default A case-insensitive "contains" match on the option's label.
    */
   filter?: AutocompleteFilter
+  /**
+   * Minimum number of characters typed before the popover opens. Only applies
+   * to the popover presentation; the bottom sheet always opens on demand.
+   * @default 0 opens as soon as the field is focused
+   */
+  minCharsToOpen?: number
   /** Whether a value must be selected before the enclosing form can be submitted. */
   isRequired?: boolean
   /** Whether the field is disabled. */
@@ -120,6 +126,7 @@ const Autocomplete = ({
   defaultInputValue,
   onInputValueChange,
   filter,
+  minCharsToOpen,
   isRequired,
   isDisabled,
   isReadOnly,
@@ -235,6 +242,7 @@ const Autocomplete = ({
       isReadOnly={isReadOnly}
       isRequired={isRequired}
       label={label}
+      minCharsToOpen={minCharsToOpen}
       name={name}
       onInputChange={setInputValue}
       onSelectionChange={handleSelectionChange}

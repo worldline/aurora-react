@@ -1,7 +1,7 @@
 'use client'
 
 import cn from 'classnames'
-import { use } from 'react'
+import { use, useEffect } from 'react'
 import {
   ComboBox,
   ComboBoxStateContext,
@@ -42,7 +42,7 @@ interface ClearButtonProps {
 const ClearButton = ({ label }: ClearButtonProps) => {
   const state = use(ComboBoxStateContext)
 
-  if (!state?.inputValue || state.isOpen) {
+  if (!state?.inputValue) {
     return null
   }
 
@@ -50,6 +50,7 @@ const ClearButton = ({ label }: ClearButtonProps) => {
     <Button
       aria-label={label}
       className={styles['clear-button']}
+      excludeFromTabOrder={state.isOpen}
       onPress={() => {
         state.setValue(null)
         state.setInputValue('')
@@ -61,6 +62,35 @@ const ClearButton = ({ label }: ClearButtonProps) => {
       <CancelIcon aria-hidden className={styles['clear-icon']} />
     </Button>
   )
+}
+
+interface OpenThresholdControllerProps {
+  /** Minimum number of characters required before the popover can open. */
+  minCharsToOpen: number
+}
+
+const OpenThresholdController = ({
+  minCharsToOpen,
+}: OpenThresholdControllerProps) => {
+  const state = use(ComboBoxStateContext)
+
+  useEffect(() => {
+    if (!state?.isFocused) {
+      return
+    }
+
+    const hasEnoughCharacters = state.inputValue.length >= minCharsToOpen
+
+    if (hasEnoughCharacters && !state.isOpen) {
+      state.open(null, 'input')
+    }
+
+    if (!hasEnoughCharacters && state.isOpen) {
+      state.close()
+    }
+  }, [state, minCharsToOpen])
+
+  return null
 }
 
 interface DropdownPanelProps {
@@ -140,6 +170,11 @@ interface AutocompleteDropdownProps {
    * @default A case-insensitive "contains" match on the option's label.
    */
   filter?: AutocompleteFilter
+  /**
+   * Minimum number of characters typed before the popover can open.
+   * @default 0 opens as soon as the field is focused
+   */
+  minCharsToOpen?: number
   /** Additional CSS class name applied to the field container. */
   className?: string
 }
@@ -169,6 +204,7 @@ const AutocompleteDropdown = ({
   clearLabel,
   footerAction,
   filter,
+  minCharsToOpen = 0,
   className,
 }: AutocompleteDropdownProps) => (
   <ComboBox
@@ -186,12 +222,16 @@ const AutocompleteDropdown = ({
     isInvalid={Boolean(error)}
     isReadOnly={isReadOnly}
     isRequired={isRequired}
-    menuTrigger="focus"
+    menuTrigger={minCharsToOpen > 0 ? 'manual' : 'focus'}
     name={name}
     onChange={onSelectionChange}
     onInputChange={onInputChange}
     value={selectedKey}
   >
+    {minCharsToOpen > 0 ? (
+      <OpenThresholdController minCharsToOpen={minCharsToOpen} />
+    ) : null}
+
     {label ? (
       <Label>
         <Typography element="span" textStyle="labelSm" className={styles.label}>
