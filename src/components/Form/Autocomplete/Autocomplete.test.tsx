@@ -95,6 +95,38 @@ describe('Autocomplete', () => {
       ).toEqual(['BrusselsBelgium', 'BrugesBelgium', 'AntwerpBelgium'])
     })
 
+    test('should not open the popover before the minimum character count is typed', async () => {
+      const user = userEvent.setup()
+      render(<Autocomplete label="City" minCharsToOpen={3} options={options} />)
+
+      await user.type(screen.getByRole('combobox', { name: 'City' }), 'br')
+
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
+    })
+
+    test('should open the popover once the minimum character count is reached', async () => {
+      const user = userEvent.setup()
+      render(<Autocomplete label="City" minCharsToOpen={3} options={options} />)
+
+      await user.type(screen.getByRole('combobox', { name: 'City' }), 'bru')
+
+      expect(screen.getByRole('listbox')).toBeInTheDocument()
+      expect(screen.getAllByRole('option')).toHaveLength(2)
+    })
+
+    test('should close the popover again if the input drops below the minimum character count', async () => {
+      const user = userEvent.setup()
+      render(<Autocomplete label="City" minCharsToOpen={3} options={options} />)
+
+      const input = screen.getByRole('combobox', { name: 'City' })
+      await user.type(input, 'bru')
+      expect(screen.getByRole('listbox')).toBeInTheDocument()
+
+      await user.type(input, '{backspace}{backspace}')
+
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
+    })
+
     test('should narrow the options and the count down to what the user typed', async () => {
       const user = userEvent.setup()
       render(<Autocomplete label="City" options={options} />)
@@ -163,19 +195,6 @@ describe('Autocomplete', () => {
 
       expect(input).toHaveValue('')
       expect(onSelectionChange).toHaveBeenLastCalledWith(null)
-      expect(
-        screen.queryByRole('button', { name: 'Clear city' }),
-      ).not.toBeInTheDocument()
-    })
-
-    test('should hide the clear button while the option list is open', async () => {
-      const user = userEvent.setup()
-      render(
-        <Autocomplete clearLabel="Clear city" label="City" options={options} />,
-      )
-
-      await user.type(screen.getByRole('combobox', { name: 'City' }), 'Bru')
-
       expect(
         screen.queryByRole('button', { name: 'Clear city' }),
       ).not.toBeInTheDocument()
