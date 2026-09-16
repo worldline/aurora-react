@@ -51,6 +51,7 @@ export {
   type DateRangePickerProps,
 } from './Form/DatePicker'
 export { InputField, type InputFieldProps } from './Form/InputField'
+export { QuantityField, type QuantityFieldProps } from './Form/QuantityField'
 export { RadioGroup, type RadioGroupProps } from './Form/RadioGroup'
 export {
   Select,
