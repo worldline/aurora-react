@@ -1,0 +1,99 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row[data-author='system'] {
+  align-items: flex-start;
+  padding: var(--au-spacing-xs) var(--au-spacing-6xl) var(--au-spacing-xs) 0;
+  gap: var(--au-spacing-2xs);
+}
+
+.row[data-author='user'] {
+  align-items: flex-end;
+  padding: var(--au-spacing-xs) 0 var(--au-spacing-xs) var(--au-spacing-6xl);
+  gap: var(--au-spacing-2xs);
+}
+
+.row[data-variant='chat'],
+.row[data-variant='attachment'] {
+  gap: var(--au-spacing-xs);
+}
+
+.row[data-variant='custom'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.bubble {
+  display: flex;
+  align-items: center;
+  padding: var(--au-spacing-xs) var(--au-spacing-sm);
+  gap: var(--au-spacing-2xs);
+  border-radius: var(--au-radius-sm);
+}
+
+.bubble[data-author='system'][data-variant='chat'] {
+  background-color: var(--au-surface-invert-alpha-low);
+  border-bottom-left-radius: 0;
+}
+
+.bubble[data-author='user'][data-variant='chat'],
+.bubble[data-author='user'][data-variant='attachment'] {
+  background-color: var(--au-surface-info-subtile);
+  border-bottom-right-radius: 0;
+}
+
+.bubble[data-variant='custom'] {
+  width: 100%;
+  background-color: var(--au-surface-neutral-low);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  border-bottom-right-radius: 0;
+}
+
+.chat-group {
+  display: flex;
+  align-items: center;
+  gap: var(--au-spacing-xs);
+}
+
+.action-slot {
+  display: flex;
+  opacity: 0;
+  transition: var(--au-motion-behavior-interaction-duration)
+    var(--au-motion-behavior-interaction-easing);
+}
+
+.chat-group:hover .action-slot,
+.chat-group:focus-within .action-slot {
+  opacity: 1;
+}
+
+.lock-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--au-spacing-2xs);
+  color: var(--au-content-primary);
+  background-color: var(--au-surface-info-subtile);
+  border-radius: var(--au-radius-rounded);
+}
+
+button.edit-button.edit-button {
+  padding: var(--au-spacing-2xs);
+  color: var(--au-content-primary);
+  background-color: var(--au-surface-info-subtile);
+  border-radius: var(--au-radius-rounded);
+}
+
+.attachment {
+  display: flex;
+  align-items: center;
+  gap: var(--au-spacing-2xs);
+}
+
+.file-icon {
+  flex-shrink: 0;
+  fill: var(--au-border-neutral-high);
+}
