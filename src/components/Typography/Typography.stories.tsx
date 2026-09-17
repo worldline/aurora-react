@@ -94,8 +94,35 @@ export const Typographies = meta.story({
         </Typography>
       </li>
       <li>
+        <Typography
+          element="p"
+          textColor="contentPrimary"
+          textStyle="bodyMdBold"
+        >
+          bodyMdBold / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography
+          element="p"
+          textColor="contentPrimary"
+          textStyle="bodyMdPrimarySemibold"
+        >
+          bodyMdPrimarySemibold / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
         <Typography element="p" textColor="contentPrimary" textStyle="bodySm">
           bodySm / Lorem ipsum dolor sit amet
+        </Typography>
+      </li>
+      <li>
+        <Typography
+          element="p"
+          textColor="contentPrimary"
+          textStyle="bodySmMedium"
+        >
+          bodySmMedium / Lorem ipsum dolor sit amet
         </Typography>
       </li>
       <li>

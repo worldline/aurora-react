@@ -107,8 +107,20 @@
   font: var(--au-body-md);
 }
 
+.body-md-bold {
+  font: var(--au-body-md-bold);
+}
+
+.body-md-primary-semibold {
+  font: var(--au-body-md-primary-semibold);
+}
+
 .body-sm {
   font: var(--au-body-sm);
+}
+
+.body-sm-medium {
+  font: var(--au-body-sm-medium);
 }
 
 .label-lg {
