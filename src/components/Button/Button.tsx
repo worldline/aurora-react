@@ -2,7 +2,7 @@
 
 /* eslint-disable @eslint-react/no-clone-element */
 import cn from 'classnames'
-import { cloneElement, type ReactElement } from 'react'
+import { cloneElement, type ReactElement, type Ref } from 'react'
 import {
   Button as AriaButton,
   type ButtonProps as AriaButtonProps,
@@ -44,6 +44,11 @@ interface AuroraButtonProps {
   trailingIcon?: ReactElement<{
     className?: string
   }>
+
+  /**
+   * Ref forwarded to the underlying button element
+   */
+  ref?: Ref<HTMLButtonElement>
 }
 
 type Props = AuroraButtonProps & AriaButtonProps
@@ -65,8 +70,9 @@ const Button = ({
   leadingIcon,
   trailingIcon,
   isPending,
+  ref,
   ...props
-}: Props): ReactElement => {
+}: Props) => {
   const className = cn(buttonClassName({ variant, size }), props.className)
 
   const leadingIconElement =
@@ -84,7 +90,12 @@ const Button = ({
       : null
 
   return (
-    <AriaButton {...props} isPending={isPending} className={className}>
+    <AriaButton
+      ref={ref}
+      {...props}
+      isPending={isPending}
+      className={className}
+    >
       <>
         {isPending ? (
           <ProgressActivityIcon
