@@ -47,6 +47,7 @@
 
 .bubble[data-variant='custom'] {
   width: 100%;
+  padding: var(--au-spacing-2xl);
   background-color: var(--au-surface-neutral-low);
   border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
   border-bottom-right-radius: 0;

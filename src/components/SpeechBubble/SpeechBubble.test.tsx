@@ -60,6 +60,7 @@ describe('SpeechBubble', () => {
         onEdit={vi.fn()}
         editLabel="Edit answer"
         locked
+        lockedLabel="Locked"
       >
         Blue
       </SpeechBubble>,

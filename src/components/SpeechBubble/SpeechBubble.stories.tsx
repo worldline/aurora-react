@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { Typography } from '../Typography'
 import { SpeechBubble } from './SpeechBubble'
 
 const meta: Meta<typeof SpeechBubble> = {
@@ -76,7 +77,11 @@ export const Custom: Story = {
   args: {
     author: 'user',
     variant: 'custom',
-    children: 'Custom content goes here',
+    children: (
+      <Typography element="p" textStyle="bodyMd">
+        Custom content goes here
+      </Typography>
+    ),
   },
 }
 
@@ -116,6 +121,7 @@ export const Conversation: Story = {
         variant="chat"
         timestamp="4 sep, 10:50"
         locked
+        lockedLabel="Locked"
       >
         Blue, like the sky.
       </SpeechBubble>
