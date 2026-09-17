@@ -61,6 +61,28 @@ interface UserChatStaticProps {
   editLabel?: never
 }
 
+interface UserChatLockedProps {
+  /**
+   * Marks the message as no longer editable. Shows a lock indicator instead
+   * of the edit action on hover/focus
+   */
+  locked: true
+  /**
+   * Tooltip label for the lock indicator. Required when `locked` is `true`
+   */
+  lockedLabel: string
+}
+
+interface UserChatUnlockedProps {
+  /**
+   * Marks the message as no longer editable. Shows a lock indicator instead
+   * of the edit action on hover/focus
+   * @default false
+   */
+  locked?: false
+  lockedLabel?: never
+}
+
 type UserChatProps = SpeechBubbleCommonProps & {
   /**
    * Author of the message, controls alignment and bubble color
@@ -74,17 +96,8 @@ type UserChatProps = SpeechBubbleCommonProps & {
    * Message text
    */
   children: string
-  /**
-   * Marks the message as no longer editable. Shows a lock indicator instead
-   * of the edit action on hover/focus
-   * @default false
-   */
-  locked?: boolean
-  /**
-   * Tooltip label for the lock indicator.
-   */
-  lockedLabel?: string
-} & (UserChatEditableProps | UserChatStaticProps)
+} & (UserChatEditableProps | UserChatStaticProps) &
+  (UserChatLockedProps | UserChatUnlockedProps)
 
 interface AttachmentProps extends SpeechBubbleCommonProps {
   /**
@@ -145,7 +158,7 @@ const SpeechBubble = (props: SpeechBubbleProps): ReactElement => {
         data-author="system"
         data-variant="question"
       >
-        <Typography element="p" textStyle="titleSm">
+        <Typography element="p" textStyle="bodyMdPrimarySemibold">
           {props.children}
         </Typography>
       </div>
