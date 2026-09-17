@@ -50,6 +50,12 @@ export {
   DateRangePicker,
   type DateRangePickerProps,
 } from './Form/DatePicker'
+export {
+  FileUpload,
+  type FileUploadMessages,
+  type FileUploadProps,
+  type UploadedFile,
+} from './Form/FileUpload'
 export { InputField, type InputFieldProps } from './Form/InputField'
 export { QuantityField, type QuantityFieldProps } from './Form/QuantityField'
 export { RadioGroup, type RadioGroupProps } from './Form/RadioGroup'

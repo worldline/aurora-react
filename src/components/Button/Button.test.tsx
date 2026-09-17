@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import { createRef } from 'react'
 import { describe, expect, test, vi } from 'vitest'
 
 import { Button } from '.'
@@ -10,6 +11,14 @@ describe('Button Component', () => {
     const btn = screen.getByRole('button', { name: 'My Button' })
 
     expect(btn).toBeTruthy()
+  })
+
+  test('should forward ref to the button element', () => {
+    const buttonRef = createRef<HTMLButtonElement>()
+    render(<Button ref={buttonRef}>My Button</Button>)
+
+    const btn = screen.getByRole('button', { name: 'My Button' })
+    expect(buttonRef.current).toBe(btn)
   })
 
   test('should handle click', () => {
