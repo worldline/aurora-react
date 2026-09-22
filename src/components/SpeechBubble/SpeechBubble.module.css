@@ -64,6 +64,7 @@
   opacity: 0;
   transition: var(--au-motion-behavior-interaction-duration)
     var(--au-motion-behavior-interaction-easing);
+  flex-shrink: 0;
 }
 
 .chat-group:hover .action-slot,
