@@ -1,5 +1,7 @@
 .overlay {
   position: fixed;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  z-index: var(--bottom-sheet-z-index);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

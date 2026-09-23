@@ -774,6 +774,29 @@ describe('Autocomplete', () => {
         within(sheet).queryByRole('option', { name: 'Bruges, Belgium' }),
       ).not.toBeInTheDocument()
     })
+
+    test('should report text typed in the bottom sheet', async () => {
+      stubViewport({ isMobile: true })
+      const user = userEvent.setup()
+      const onInputValueChange = vi.fn()
+      render(
+        <Autocomplete
+          label="City"
+          onInputValueChange={onInputValueChange}
+          options={options}
+          sheetTitle="Search a city"
+        />,
+      )
+
+      await user.click(screen.getByRole('button', { name: /^City/ }))
+      const sheet = screen.getByRole('dialog', { name: 'Search a city' })
+      await user.type(
+        within(sheet).getByRole('textbox', { name: 'City' }),
+        'Bru',
+      )
+
+      expect(onInputValueChange).toHaveBeenLastCalledWith('Bru')
+    })
   })
 
   describe('automatic presentation', () => {
