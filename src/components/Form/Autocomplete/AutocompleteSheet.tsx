@@ -44,6 +44,8 @@ interface SheetSearchFieldProps {
   clearLabel: string
   /** Whether a value must be selected before the form can be submitted. */
   isRequired?: boolean
+  /** Called whenever the text held by the input changes. */
+  onInputChange?: (inputValue: string) => void
 }
 
 /**
@@ -128,6 +130,8 @@ interface AutocompleteSheetProps {
   selectedKey: Key | null
   /** Called with the key of the option the user picked. */
   onSelectionChange: (key: Key | null) => void
+  /** Called whenever the text held by the sheet search input changes. */
+  onInputChange: (inputValue: string) => void
   /** Helper text displayed below the field. */
   helperText?: string
   /** Error message displayed below the field. */
@@ -173,6 +177,7 @@ const AutocompleteSheet = ({
   placeholder,
   selectedKey,
   onSelectionChange,
+  onInputChange,
   helperText,
   error,
   isRequired,
@@ -293,11 +298,15 @@ const AutocompleteSheet = ({
         isOpen={isOpen}
         onOpenChange={setIsOpen}
         title={sheetTitle}
+        className={styles.sheet}
       >
         <AriaAutocomplete
           filter={filterOption}
           inputValue={searchValue}
-          onInputChange={setSearchValue}
+          onInputChange={(inputValue) => {
+            setSearchValue(inputValue)
+            onInputChange(inputValue)
+          }}
         >
           <div className={styles['sheet-body']}>
             <SheetSearchField

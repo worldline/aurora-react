@@ -216,6 +216,7 @@ const Autocomplete = ({
         isRequired={isRequired}
         label={label}
         name={name}
+        onInputChange={setInputValue}
         onSelectionChange={handleSelectionChange}
         options={options}
         placeholder={placeholder}
