@@ -217,8 +217,8 @@ npm run lint:fix   # Auto-fix linting issues
 
 Releases are fully automated via the Jenkins pipeline:
 
-- `develop` branch → Semantic Release → Auto-PR to `master`
-- `master` branch → Storybook deployed to AWS
+- `develop` branch → Semantic Release → Auto-PR to `main`
+- `main` branch → Storybook deployed to AWS
 
 See [CI_CD_PIPELINE.md](./CI_CD_PIPELINE.md) for pipeline details.
 
@@ -228,8 +228,7 @@ The Storybook documentation site is deployed to AWS:
 
 - **S3 + CloudFront** for static hosting
 - **ACM certificate** with custom domains
-  (`storybook.aurora.example.com`,
-  `storybook.aurora.example.com`)
+  (`storybook.aurora.example.com`)
 - **WAFv2 IP allowlist** for access control (office and VPN only)
 - **Multi-region deployment** (us-east-1 for WAF/ACM, eu-west-1 for S3)
 
