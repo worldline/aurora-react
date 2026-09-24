@@ -309,6 +309,46 @@ export const ControlledInputValue: Story = {
   render: (args) => <ControlledInputValueAutocomplete {...args} />,
 }
 
+const PendingAfterThreeCharactersAutocomplete = (args: Story['args']) => {
+  const [inputValue, setInputValue] = useState('')
+
+  return (
+    <Autocomplete
+      {...args}
+      inputValue={inputValue}
+      isPending={inputValue.length >= 3}
+      onInputValueChange={setInputValue}
+      options={addresses}
+      pendingLabel="Loading..."
+      clearLabel="Clear"
+      closeLabel="Close"
+      emptyLabel="No results found"
+      formatResultsCount={(count) => `${count.toString()} results found`}
+      placeholder="Search..."
+    />
+  )
+}
+
+export const PendingAfterThreeCharacters: Story = {
+  args: {
+    label: 'Address',
+    options: addresses,
+  },
+  render: (args) => <PendingAfterThreeCharactersAutocomplete {...args} />,
+}
+
+export const MobilePendingAfterThreeCharacters: Story = {
+  globals: {
+    viewport: { value: 'mobile2', isRotated: false },
+  },
+  args: {
+    label: 'Address',
+    options: addresses,
+    sheetTitle: 'Search address',
+  },
+  render: (args) => <PendingAfterThreeCharactersAutocomplete {...args} />,
+}
+
 export const WithCustomFilter: Story = {
   args: {
     label: 'Address',

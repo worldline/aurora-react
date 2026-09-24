@@ -1,7 +1,7 @@
 'use client'
 
 import { announce } from '@react-aria/live-announcer'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Key } from 'react-aria-components'
 
 import { useMediaQuery } from '@/utils/useMediaQuery'
@@ -86,6 +86,10 @@ interface AutocompleteProps {
   name?: string
   /** Additional CSS class name applied to the field container. */
   className?: string
+  /** Autocomplete dropdown / bottom sheet is in pending state */
+  isPending?: boolean
+  /** Label to go with the pending state */
+  pendingLabel?: string
 }
 
 /**
@@ -138,6 +142,8 @@ const Autocomplete = ({
   closeLabel,
   name,
   className,
+  isPending = false,
+  pendingLabel,
 }: AutocompleteProps) => {
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY)
 
@@ -161,8 +167,18 @@ const Autocomplete = ({
     ? inputValueProp
     : internalInputValue
   const [lastSelectedLabel, setLastSelectedLabel] = useState(selectedLabel)
+  const lastNotifiedSelectedLabelRef = useRef(selectedLabel)
 
-  const setInputValue = (value: string): void => {
+  const setInputValue = (value: string, shouldClearSelection = true): void => {
+    if (shouldClearSelection && value !== inputValue && currentSelectedKey) {
+      if (!isSelectionControlled) {
+        setInternalSelectedKey(null)
+        setLastSelectedLabel('')
+      }
+
+      onSelectionChange?.(null)
+    }
+
     if (!isInputValueControlled) {
       setInternalInputValue(value)
     }
@@ -170,13 +186,32 @@ const Autocomplete = ({
     onInputValueChange?.(value)
   }
 
+  const synchronizeSelectedLabel = (value: string): void => {
+    setLastSelectedLabel(value)
+
+    if (!isInputValueControlled) {
+      setInternalInputValue(value)
+    }
+  }
+
   // Follows selections the field did not make itself: a parent driving
   // `selectedKey`, or options that only name the selected key once they have
   // been fetched.
   if (lastSelectedLabel !== selectedLabel) {
-    setLastSelectedLabel(selectedLabel)
-    setInputValue(selectedLabel)
+    synchronizeSelectedLabel(selectedLabel)
   }
+
+  // Notify controlled consumers after rendering; invoking their callback in
+  // the synchronization above could update a parent while this component is
+  // still rendering.
+  useEffect(() => {
+    if (lastNotifiedSelectedLabelRef.current === selectedLabel) {
+      return
+    }
+
+    lastNotifiedSelectedLabelRef.current = selectedLabel
+    onInputValueChange?.(selectedLabel)
+  }, [onInputValueChange, selectedLabel])
 
   useEffect(() => {
     if (error && announceError) {
@@ -192,7 +227,10 @@ const Autocomplete = ({
     // `selectedKey` that is left to the sync above instead, so the text only
     // changes once the parent has accepted the new selection.
     if (!isSelectionControlled) {
-      setInputValue(options.find((option) => option.id === key)?.label ?? '')
+      setInputValue(
+        options.find((option) => option.id === key)?.label ?? '',
+        false,
+      )
     }
 
     onSelectionChange?.(key)
@@ -223,6 +261,8 @@ const Autocomplete = ({
         selectedKey={currentSelectedKey}
         sheetTitle={sheetTitle ?? label ?? ariaLabel ?? ''}
         size={size}
+        isPending={isPending}
+        pendingLabel={pendingLabel}
       />
     )
   }
@@ -251,6 +291,8 @@ const Autocomplete = ({
       placeholder={placeholder}
       selectedKey={currentSelectedKey}
       size={size}
+      isPending={isPending}
+      pendingLabel={pendingLabel}
     />
   )
 }
