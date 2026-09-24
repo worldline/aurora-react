@@ -15,7 +15,11 @@ import {
 import { BottomSheet } from '@/components/BottomSheet'
 import { Button } from '@/components/Button'
 import { ErrorMessage } from '@/components/Form/ErrorMessage'
-import { CancelIcon, SearchIcon } from '@/components/icons'
+import {
+  CancelIcon,
+  ProgressActivityIcon,
+  SearchIcon,
+} from '@/components/icons'
 import { Typography } from '@/components/Typography'
 
 import styles from './Autocomplete.module.css'
@@ -71,6 +75,11 @@ const SheetSearchField = ({
     inputRef.current?.focus({ preventScroll: true })
   }, [])
 
+  const handleClear = (): void => {
+    onClear()
+    inputRef.current?.focus({ preventScroll: true })
+  }
+
   return (
     <TextField
       aria-label={label ? undefined : ariaLabel}
@@ -102,7 +111,7 @@ const SheetSearchField = ({
           <Button
             aria-label={clearLabel}
             className={styles['clear-button']}
-            onPress={onClear}
+            onPress={handleClear}
             size="small"
             slot={null}
             variant="link"
@@ -163,6 +172,10 @@ interface AutocompleteSheetProps {
   filter?: AutocompleteFilter
   /** Additional CSS class name applied to the field container. */
   className?: string
+  /** Whether the sheet is displaying pending results. */
+  isPending?: boolean
+  /** Label announced while the sheet is pending. */
+  pendingLabel?: string
 }
 
 /**
@@ -192,6 +205,8 @@ const AutocompleteSheet = ({
   footerAction,
   filter,
   className,
+  isPending = false,
+  pendingLabel,
 }: AutocompleteSheetProps) => {
   const id = useId()
   const labelId = `${id}-label`
@@ -218,6 +233,11 @@ const AutocompleteSheet = ({
   const selectOption = (key: Key): void => {
     onSelectionChange(key)
     setIsOpen(false)
+  }
+
+  const handleInputChange = (inputValue: string): void => {
+    setSearchValue(inputValue)
+    onInputChange(inputValue)
   }
 
   return (
@@ -303,10 +323,7 @@ const AutocompleteSheet = ({
         <AriaAutocomplete
           filter={filterOption}
           inputValue={searchValue}
-          onInputChange={(inputValue) => {
-            setSearchValue(inputValue)
-            onInputChange(inputValue)
-          }}
+          onInputChange={handleInputChange}
         >
           <div className={styles['sheet-body']}>
             <SheetSearchField
@@ -315,21 +332,42 @@ const AutocompleteSheet = ({
               isRequired={isRequired}
               label={label}
               onClear={() => {
-                setSearchValue('')
+                handleInputChange('')
               }}
               placeholder={placeholder}
               searchValue={searchValue}
               size={size}
             />
 
-            <AutocompleteList
-              footerAction={footerAction}
-              emptyLabel={emptyLabel}
-              listAriaLabel={label ?? ariaLabel}
-              options={options}
-              resultsLabel={formatResultsCount(matchingOptions.length)}
-              selection={{ selectedKey, onSelect: selectOption }}
-            />
+            <div
+              className={cn(styles['sheet-panel'], {
+                [styles.pending]: isPending,
+              })}
+            >
+              <AutocompleteList
+                footerAction={footerAction}
+                emptyLabel={emptyLabel}
+                listAriaLabel={label ?? ariaLabel}
+                options={options}
+                resultsLabel={formatResultsCount(matchingOptions.length)}
+                selection={{ selectedKey, onSelect: selectOption }}
+              />
+              <div
+                aria-hidden={!isPending}
+                className={styles['pending-overlay']}
+                role={isPending ? 'status' : undefined}
+              >
+                <ProgressActivityIcon
+                  className={styles['pending-icon']}
+                  aria-hidden
+                />
+                {pendingLabel ? (
+                  <Typography element="p" textStyle="labelSm">
+                    {pendingLabel}
+                  </Typography>
+                ) : null}
+              </div>
+            </div>
           </div>
         </AriaAutocomplete>
       </BottomSheet>

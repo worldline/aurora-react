@@ -40,6 +40,20 @@ interface AutocompleteListProps {
 const firstKeyOf = (keys: Selection): Key | undefined =>
   keys === 'all' ? undefined : [...keys].at(0)
 
+const selectedKeysOf = (
+  selection: ListSelection | undefined,
+): Array<Key> | undefined => {
+  if (!selection) {
+    return undefined
+  }
+
+  if (selection.selectedKey === null) {
+    return []
+  }
+
+  return [selection.selectedKey]
+}
+
 /**
  * Results count, option rows and optional "footer action" row shared by the
  * popover and bottom sheet presentations.
@@ -94,11 +108,7 @@ const AutocompleteList = ({
           </Typography>
         </div>
       )}
-      selectedKeys={
-        selection?.selectedKey === undefined || selection.selectedKey === null
-          ? undefined
-          : [selection.selectedKey]
-      }
+      selectedKeys={selectedKeysOf(selection)}
       selectionMode={selection ? 'single' : undefined}
     >
       {(option) => (

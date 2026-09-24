@@ -95,6 +95,37 @@ describe('Autocomplete', () => {
       ).toEqual(['BrusselsBelgium', 'BrugesBelgium', 'AntwerpBelgium'])
     })
 
+    test('should show a pending status over the option list', async () => {
+      const user = userEvent.setup()
+      const { rerender } = render(
+        <Autocomplete
+          label="City"
+          options={options}
+          pendingLabel="Loading cities"
+        />,
+      )
+
+      await user.click(screen.getByRole('combobox', { name: 'City' }))
+
+      expect(screen.getByText('Loading cities').parentElement).toHaveAttribute(
+        'aria-hidden',
+        'true',
+      )
+
+      rerender(
+        <Autocomplete
+          isPending
+          label="City"
+          options={options}
+          pendingLabel="Loading cities"
+        />,
+      )
+
+      expect(
+        screen.getByText('Loading cities').parentElement,
+      ).not.toHaveAttribute('aria-hidden', 'true')
+    })
+
     test('should not open the popover before the minimum character count is typed', async () => {
       const user = userEvent.setup()
       render(<Autocomplete label="City" minCharsToOpen={3} options={options} />)
@@ -194,10 +225,31 @@ describe('Autocomplete', () => {
       await user.click(screen.getByRole('button', { name: 'Clear city' }))
 
       expect(input).toHaveValue('')
+      expect(input).toHaveFocus()
       expect(onSelectionChange).toHaveBeenLastCalledWith(null)
       expect(
         screen.queryByRole('button', { name: 'Clear city' }),
       ).not.toBeInTheDocument()
+    })
+
+    test('should clear the selection when the user starts another search', async () => {
+      const user = userEvent.setup()
+      const onSelectionChange = vi.fn()
+      render(
+        <Autocomplete
+          defaultSelectedKey="bruges"
+          label="City"
+          onSelectionChange={onSelectionChange}
+          options={options}
+        />,
+      )
+
+      await user.type(screen.getByRole('combobox', { name: 'City' }), 'a')
+
+      expect(onSelectionChange).toHaveBeenLastCalledWith(null)
+      expect(screen.getByRole('combobox', { name: 'City' })).toHaveValue(
+        'Brugesa',
+      )
     })
 
     test('should link the error message to the field for screen readers', () => {
@@ -333,6 +385,51 @@ describe('Autocomplete', () => {
 
       expect(within(sheet).getAllByRole('option')).toHaveLength(2)
       expect(within(sheet).getByText('2 Results found')).toBeInTheDocument()
+    })
+
+    test('should clear the selection when the search is cleared', async () => {
+      const user = userEvent.setup()
+      const onSelectionChange = vi.fn()
+      render(
+        <Autocomplete
+          defaultSelectedKey="bruges"
+          label="City"
+          onSelectionChange={onSelectionChange}
+          options={options}
+          sheetTitle="Search a city"
+        />,
+      )
+
+      await user.click(screen.getByRole('button', { name: 'City Bruges' }))
+      await user.type(screen.getByRole('textbox', { name: 'City' }), 'bru')
+      await user.click(screen.getByRole('button', { name: 'Clear' }))
+
+      expect(onSelectionChange).toHaveBeenLastCalledWith(null)
+      const searchInput = screen.getByRole('textbox', { name: 'City' })
+      expect(searchInput).toHaveValue('')
+      expect(searchInput).toHaveFocus()
+      expect(
+        screen.getByRole('option', { name: 'Bruges, Belgium' }),
+      ).toHaveAttribute('aria-selected', 'false')
+    })
+
+    test('should show a pending status over the sheet content while keeping the search input accessible', async () => {
+      const user = userEvent.setup()
+      render(
+        <Autocomplete
+          isPending
+          label="City"
+          options={options}
+          pendingLabel="Loading cities"
+          sheetTitle="Search a city"
+        />,
+      )
+
+      await user.click(screen.getByRole('button', { name: /^City/ }))
+      const sheet = screen.getByRole('dialog', { name: 'Search a city' })
+
+      expect(screen.getByRole('status')).toHaveTextContent('Loading cities')
+      expect(within(sheet).getByRole('textbox', { name: 'City' })).toBeVisible()
     })
 
     test('should close the sheet and show the option the user picked', async () => {
@@ -555,6 +652,45 @@ describe('Autocomplete', () => {
       await user.click(screen.getByRole('option', { name: 'Bruges, Belgium' }))
 
       expect(screen.getByRole('status')).toHaveTextContent('bruges')
+    })
+
+    test('should not update parent input state while rendering a selection', async () => {
+      stubViewport({ isMobile: false })
+      const user = userEvent.setup()
+      const consoleError = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => undefined)
+
+      const Form = () => {
+        const [selectedKey, setSelectedKey] = useState<Key | null>(null)
+        const [inputValue, setInputValue] = useState('')
+
+        return (
+          <>
+            <Autocomplete
+              label="City"
+              onInputValueChange={setInputValue}
+              onSelectionChange={setSelectedKey}
+              options={options}
+              selectedKey={selectedKey}
+            />
+            <output>{inputValue}</output>
+          </>
+        )
+      }
+
+      render(<Form />)
+
+      await user.click(screen.getByRole('combobox', { name: 'City' }))
+      await user.click(screen.getByRole('option', { name: 'Bruges, Belgium' }))
+
+      expect(screen.getByRole('combobox', { name: 'City' })).toHaveValue(
+        'Bruges',
+      )
+      expect(screen.getByRole('status')).toHaveTextContent('Bruges')
+      expect(consoleError.mock.calls.flat().join(' ')).not.toContain(
+        'Cannot update a component',
+      )
     })
 
     test('should follow a selection the parent makes on its own', async () => {

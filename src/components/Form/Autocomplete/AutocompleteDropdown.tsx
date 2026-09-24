@@ -1,7 +1,7 @@
 'use client'
 
 import cn from 'classnames'
-import { use, useEffect } from 'react'
+import { type RefObject, use, useEffect, useRef } from 'react'
 import {
   ComboBox,
   ComboBoxStateContext,
@@ -13,7 +13,11 @@ import {
 
 import { Button } from '@/components/Button'
 import { FieldSupport } from '@/components/Form/FieldSupport'
-import { CancelIcon, SearchIcon } from '@/components/icons'
+import {
+  CancelIcon,
+  ProgressActivityIcon,
+  SearchIcon,
+} from '@/components/icons'
 import { Popover } from '@/components/Popover'
 import { Typography } from '@/components/Typography'
 
@@ -29,6 +33,8 @@ import type {
 interface ClearButtonProps {
   /** Accessible name of the button. */
   label: string
+  /** Ref to the autocomplete input that should regain focus after clearing. */
+  inputRef: RefObject<HTMLInputElement | null>
 }
 
 /**
@@ -39,7 +45,7 @@ interface ClearButtonProps {
  * and the popover `aria-hidden`, which a focusable button must never sit
  * inside. Backspace covers clearing while the user is still searching.
  */
-const ClearButton = ({ label }: ClearButtonProps) => {
+const ClearButton = ({ label, inputRef }: ClearButtonProps) => {
   const state = use(ComboBoxStateContext)
 
   if (!state?.inputValue) {
@@ -54,6 +60,7 @@ const ClearButton = ({ label }: ClearButtonProps) => {
       onPress={() => {
         state.setValue(null)
         state.setInputValue('')
+        inputRef.current?.focus({ preventScroll: true })
       }}
       size="small"
       slot={null}
@@ -177,6 +184,10 @@ interface AutocompleteDropdownProps {
   minCharsToOpen?: number
   /** Additional CSS class name applied to the field container. */
   className?: string
+  /** Autocomplete dropdown / bottom sheet is in pending state */
+  isPending?: boolean
+  /** Label to go with the pending state */
+  pendingLabel?: string
 }
 
 /**
@@ -206,66 +217,101 @@ const AutocompleteDropdown = ({
   filter,
   minCharsToOpen = 0,
   className,
-}: AutocompleteDropdownProps) => (
-  <ComboBox
-    allowsEmptyCollection
-    aria-label={label ? undefined : ariaLabel}
-    className={cn(
-      styles.container,
-      styles[size],
-      { [styles.filled]: inputValue.length > 0 },
-      className,
-    )}
-    defaultFilter={filter}
-    inputValue={inputValue}
-    isDisabled={isDisabled}
-    isInvalid={Boolean(error)}
-    isReadOnly={isReadOnly}
-    isRequired={isRequired}
-    menuTrigger={minCharsToOpen > 0 ? 'manual' : 'focus'}
-    name={name}
-    onChange={onSelectionChange}
-    onInputChange={onInputChange}
-    value={selectedKey}
-  >
-    {minCharsToOpen > 0 ? (
-      <OpenThresholdController minCharsToOpen={minCharsToOpen} />
-    ) : null}
+  isPending = false,
+  pendingLabel,
+}: AutocompleteDropdownProps) => {
+  const inputRef = useRef<HTMLInputElement>(null)
 
-    {label ? (
-      <Label>
-        <Typography element="span" textStyle="labelSm" className={styles.label}>
-          {label}
-          {isRequired ? <span aria-hidden="true">*</span> : null}
-        </Typography>
-      </Label>
-    ) : null}
+  return (
+    <ComboBox
+      allowsEmptyCollection
+      aria-label={label ? undefined : ariaLabel}
+      className={cn(
+        styles.container,
+        styles[size],
+        { [styles.filled]: inputValue.length > 0 },
+        className,
+      )}
+      defaultFilter={filter}
+      inputValue={inputValue}
+      isDisabled={isDisabled}
+      isInvalid={Boolean(error)}
+      isReadOnly={isReadOnly}
+      isRequired={isRequired}
+      menuTrigger={minCharsToOpen > 0 ? 'manual' : 'focus'}
+      name={name}
+      onChange={onSelectionChange}
+      onInputChange={onInputChange}
+      value={selectedKey}
+    >
+      {minCharsToOpen > 0 ? (
+        <OpenThresholdController minCharsToOpen={minCharsToOpen} />
+      ) : null}
 
-    <Group className={styles['input-wrapper']}>
-      <SearchIcon aria-hidden className={styles['search-icon']} />
-      <Input className={styles.input} placeholder={placeholder} />
-      {isReadOnly || isDisabled ? null : <ClearButton label={clearLabel} />}
-    </Group>
+      {label ? (
+        <Label>
+          <Typography
+            element="span"
+            textStyle="labelSm"
+            className={styles.label}
+          >
+            {label}
+            {isRequired ? <span aria-hidden="true">*</span> : null}
+          </Typography>
+        </Label>
+      ) : null}
 
-    <Popover className={styles.popover} offset={4} maxHeight={320}>
-      <DropdownPanel
-        footerAction={footerAction}
-        emptyLabel={emptyLabel}
-        formatResultsCount={formatResultsCount}
-        options={options}
-      />
-    </Popover>
+      <Group className={styles['input-wrapper']}>
+        <SearchIcon aria-hidden className={styles['search-icon']} />
+        <Input
+          className={styles.input}
+          placeholder={placeholder}
+          ref={inputRef}
+        />
+        {isReadOnly || isDisabled ? null : (
+          <ClearButton label={clearLabel} inputRef={inputRef} />
+        )}
+      </Group>
 
-    {(error ?? helperText) ? (
-      <FieldSupport
-        currentLength={inputValue.length}
-        error={error}
-        helperText={helperText}
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-      />
-    ) : null}
-  </ComboBox>
-)
+      <Popover
+        className={cn(styles.popover, { [styles.pending]: isPending })}
+        offset={4}
+        maxHeight={320}
+      >
+        <DropdownPanel
+          footerAction={footerAction}
+          emptyLabel={emptyLabel}
+          formatResultsCount={formatResultsCount}
+          options={options}
+        />
+        <div
+          aria-hidden={!isPending}
+          className={styles['pending-overlay']}
+          role={isPending ? 'status' : undefined}
+        >
+          <ProgressActivityIcon
+            className={cn(styles.icon, styles['pending-icon'])}
+            aria-hidden
+          />
+          {pendingLabel ? (
+            <Typography element="p" textStyle="labelSm">
+              {pendingLabel}
+            </Typography>
+          ) : null}
+        </div>
+      </Popover>
+
+      {(error ?? helperText) ? (
+        <FieldSupport
+          currentLength={inputValue.length}
+          error={error}
+          helperText={helperText}
+          isDisabled={isDisabled}
+          isReadOnly={isReadOnly}
+        />
+      ) : null}
+    </ComboBox>
+  )
+}
 
 export { AutocompleteDropdown, type AutocompleteDropdownProps }
