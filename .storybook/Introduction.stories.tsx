@@ -51,7 +51,7 @@ const IntroductionPage = () => (
         development environment, refer to the{' '}
         <Typography element="span" textStyle="bodyMd" textColor="contentBrand">
           <a
-            href="https://github.com/worldline/aurora-react/-/blob/master/README.md"
+            href="https://github.com/worldline/aurora-react/-/blob/main/README.md"
             target="_blank"
             rel="noreferrer"
           >
