@@ -12,6 +12,7 @@ class ToastService {
     content,
     closeLabel,
     options,
+    className,
   }: ToastContent): void {
     this.queue.add(
       {
@@ -20,6 +21,7 @@ class ToastService {
         content,
         closeLabel,
         options,
+        className,
       },
       { timeout: options?.timeout },
     )

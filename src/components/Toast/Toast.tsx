@@ -12,10 +12,11 @@ type ToastVariant = NonNullable<ComponentProps<typeof Alert>['variant']>
 
 interface ToastContent {
   variant: ToastVariant
-  title: string
-  content: string
+  title?: string
+  content?: string
   closeLabel: string
   options?: { timeout?: number }
+  className?: string
 }
 
 interface ToastProps extends RAToastProps<ToastContent> {
@@ -67,7 +68,7 @@ const Toast = ({ toast, onClose, className }: ToastProps) => {
       })}
       id={toast.key}
     >
-      {toast.content.content}
+      {toast.content.content ?? null}
     </Alert>
   )
 }
