@@ -135,6 +135,66 @@ describe('QuantityField', () => {
     expect(quantityInput).toHaveAttribute('aria-valuenow', '12')
   })
 
+  test.each([
+    { expectedQuantity: 1, minValue: 1, scenario: 'a positive minimum' },
+    { expectedQuantity: 0, minValue: 0, scenario: 'a zero minimum' },
+    { expectedQuantity: 0, minValue: -1, scenario: 'a negative minimum' },
+    { expectedQuantity: 0, scenario: 'no minimum' },
+  ])(
+    'normalizes an empty quantity after blur to $expectedQuantity with $scenario',
+    async ({ expectedQuantity, minValue }) => {
+      const user = userEvent.setup()
+      const onChange = vi.fn()
+
+      render(
+        <QuantityField
+          aria-label="Quantity"
+          defaultValue={2}
+          minValue={minValue}
+          onChange={onChange}
+          {...quantityFieldLabels}
+        />,
+      )
+
+      const quantityInput = screen.getByRole('spinbutton', { name: 'Quantity' })
+      await user.clear(quantityInput)
+      await user.tab()
+
+      expect(quantityInput).toHaveValue(String(expectedQuantity))
+      expect(quantityInput).toHaveAttribute(
+        'aria-valuenow',
+        String(expectedQuantity),
+      )
+      expect(onChange).toHaveBeenLastCalledWith(expectedQuantity)
+    },
+  )
+
+  test('normalizes an empty controlled quantity after blur', async () => {
+    const user = userEvent.setup()
+    const ControlledQuantityField = () => {
+      const [quantity, setQuantity] = useState<number>(2)
+
+      return (
+        <QuantityField
+          aria-label="Quantity"
+          minValue={1}
+          onChange={setQuantity}
+          value={quantity}
+          {...quantityFieldLabels}
+        />
+      )
+    }
+
+    render(<ControlledQuantityField />)
+
+    const quantityInput = screen.getByRole('spinbutton', { name: 'Quantity' })
+    await user.clear(quantityInput)
+    await user.tab()
+
+    expect(quantityInput).toHaveValue('1')
+    expect(quantityInput).toHaveAttribute('aria-valuenow', '1')
+  })
+
   test('uses consumer-provided labels for quantity buttons', () => {
     render(
       <QuantityField
