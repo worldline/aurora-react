@@ -66,6 +66,10 @@ const getQuantityCharacterCount = (
 const getQuantityExtraInlineSize = (characterCount: number): string =>
   `${String(Math.max(0, characterCount - 2))}ch`
 
+const getEmptyQuantityFallback = (
+  minValue: number | null | undefined,
+): number => (Number.isFinite(minValue) ? Math.max(0, minValue ?? 0) : 0)
+
 const QuantityField = ({
   className,
   error,
@@ -77,9 +81,11 @@ const QuantityField = ({
   minValue,
   maxValue,
   formatOptions,
+  onChange,
   ...props
 }: QuantityFieldProps) => {
   const { locale } = useLocale()
+  const emptyQuantityFallback = getEmptyQuantityFallback(minValue)
   const errorMessage = typeof error === 'string' ? error : undefined
   const quantityCharacterCount = getQuantityCharacterCount(
     minValue,
@@ -103,6 +109,11 @@ const QuantityField = ({
       minValue={minValue}
       maxValue={maxValue}
       formatOptions={formatOptions}
+      onChange={(newQuantity) => {
+        if (Number.isFinite(newQuantity)) {
+          onChange?.(newQuantity)
+        }
+      }}
       isInvalid={Boolean(error) || props.isInvalid}
       className={cn(styles.container, className)}
     >
@@ -144,6 +155,14 @@ const QuantityField = ({
               aria-valuemin={state.minValue}
               aria-valuemax={state.maxValue}
               className={styles.input}
+              onBlur={() => {
+                if (
+                  state.inputValue.length === 0 &&
+                  Number.isNaN(state.numberValue)
+                ) {
+                  state.commit(String(emptyQuantityFallback))
+                }
+              }}
             />
             <Button
               slot="increment"
