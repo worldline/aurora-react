@@ -33,7 +33,11 @@ const ToastRegion = ({
         return (
           <RAToast
             toast={toast}
-            className={cn(styles['toast-slide-in'], toastClassName)}
+            className={cn(
+              styles['toast-slide-in'],
+              toastClassName,
+              toast.content.className,
+            )}
             aria-labelledby={toast.key}
           >
             <RAToastContent className={styles['toast-content']}>
