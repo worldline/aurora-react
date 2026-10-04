@@ -114,6 +114,7 @@ const Tile = ({
       data-selected={(selected && !disabled) || undefined}
       data-focus-visible={(focusVisible && !disabled) || undefined}
       data-hovered={(hovered && !selected && !disabled) || undefined}
+      data-has-trailing={!!trailing || undefined}
       onClick={isInteractive ? onAction : undefined}
       onKeyDown={isInteractive ? handleKeyDown : undefined}
       tabIndex={isInteractive ? 0 : undefined}
@@ -147,7 +148,7 @@ const Tile = ({
           </Typography>
         ) : null}
       </div>
-      <div className={styles.trailing}>{trailing}</div>
+      {trailing ? <div className={styles.trailing}>{trailing}</div> : null}
     </div>
   )
 }
