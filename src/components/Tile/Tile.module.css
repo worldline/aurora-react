@@ -38,6 +38,11 @@
   column-gap: var(--au-spacing-md);
 }
 
+.tile[data-orientation='horizontal']:not([data-has-trailing]) {
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas: 'icon content';
+}
+
 .tile[aria-disabled] .icon,
 .tile[aria-disabled] .trailing {
   color: var(--au-content-disabled);
@@ -50,6 +55,12 @@
     'content'
     'trailing';
   gap: var(--au-spacing-md);
+}
+
+.tile[data-orientation='vertical']:not([data-has-trailing]) {
+  grid-template-areas:
+    'icon'
+    'content';
 }
 
 .tile[data-orientation='vertical'] .icon {
