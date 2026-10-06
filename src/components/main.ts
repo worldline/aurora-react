@@ -83,6 +83,12 @@ export { Pressable } from './Pressable'
 export { ProgressCircle } from './Progress/ProgressCircle'
 export { SegmentedControl, SegmentedControls } from './SegmentedControls'
 export { SpeechBubble, type SpeechBubbleProps } from './SpeechBubble'
+export {
+  Spinner,
+  type SpinnerProps,
+  type SpinnerSize,
+  type SpinnerVariant,
+} from './Spinner'
 export { Stepper, type StepItem } from './Stepper'
 export { Tabs } from './Tabs'
 export { Tile, TilesGroup } from './Tile'
