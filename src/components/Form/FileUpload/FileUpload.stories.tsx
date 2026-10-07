@@ -112,6 +112,16 @@ const meta: Meta<typeof FileUpload> = {
         category: 'State',
       },
     },
+    isUploadDisabled: {
+      control: 'boolean',
+      description:
+        'Disable browsing and dropping while keeping removal available',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'State',
+      },
+    },
   },
 }
 

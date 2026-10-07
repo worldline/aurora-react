@@ -463,6 +463,31 @@ describe('FileUpload', () => {
         screen.queryByRole('button', { name: 'Remove existing.pdf' }),
       ).not.toBeInTheDocument()
     })
+
+    test('isUploadDisabled leaves existing files removable', async () => {
+      const onUpload = vi.fn(() => Promise.resolve('server-new'))
+      render(
+        <FileUpload
+          maxFiles={2}
+          isUploadDisabled
+          messages={messages}
+          onUpload={onUpload}
+          onRemove={resolveRemove}
+          defaultFiles={[{ id: 'server-7', name: 'existing.pdf' }]}
+        />,
+      )
+
+      expect(
+        screen.getByRole('button', { name: 'Browse files' }),
+      ).toBeDisabled()
+      await userEvent.upload(getFileInput(), makeFile('blocked.pdf'))
+      expect(onUpload).not.toHaveBeenCalled()
+
+      await userEvent.click(
+        screen.getByRole('button', { name: 'Remove existing.pdf' }),
+      )
+      expect(resolveRemove).toHaveBeenCalledWith('server-7')
+    })
   })
 
   describe('Multiple files', () => {
