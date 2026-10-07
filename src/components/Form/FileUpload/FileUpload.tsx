@@ -86,6 +86,8 @@ interface FileUploadProps {
   error?: string | boolean
   /** Whether the upload field is disabled */
   isDisabled?: boolean
+  /** Whether selecting or dropping files is disabled while existing files remain removable */
+  isUploadDisabled?: boolean
   /** CSS class applied to the root element */
   className?: string
   /** CSS class applied to the drop zone element */
@@ -199,6 +201,7 @@ const FileUpload = ({
   onChange,
   error,
   isDisabled = false,
+  isUploadDisabled = false,
   className,
   dropzoneClassName,
 }: FileUploadProps) => {
@@ -217,6 +220,7 @@ const FileUpload = ({
   const committedSignatureRef = useRef<string | null>(null)
   const browseButtonRef = useRef<HTMLButtonElement>(null)
   const labelledby = label !== undefined ? labelId : undefined
+  const isUploadBlocked = isDisabled || isUploadDisabled
 
   useEffect(() => {
     const uploadedFiles = toUploadedFiles(fileEntries)
@@ -399,7 +403,7 @@ const FileUpload = ({
   }
 
   const handleSelect = async (fileList: FileList | null): Promise<void> => {
-    if (fileList === null) {
+    if (fileList === null || isUploadBlocked) {
       return
     }
 
@@ -439,12 +443,14 @@ const FileUpload = ({
         <DropZone
           aria-labelledby={labelledby}
           aria-describedby={hasFieldError ? errorId : undefined}
-          aria-disabled={isDisabled || undefined}
+          aria-disabled={isUploadBlocked || undefined}
           getDropOperation={() => 'copy'}
           onDrop={(event) => {
-            void handleDrop(event)
+            if (!isUploadBlocked) {
+              void handleDrop(event)
+            }
           }}
-          isDisabled={isDisabled}
+          isDisabled={isUploadBlocked}
           data-invalid={(Boolean(error) && !isDisabled) || undefined}
           className={cn(styles['drop-zone'], dropzoneClassName)}
         >
@@ -452,7 +458,7 @@ const FileUpload = ({
             <Typography
               element="p"
               textStyle="bodyMd"
-              textColor={isDisabled ? 'contentDisabled' : 'contentPrimary'}
+              textColor={isUploadBlocked ? 'contentDisabled' : 'contentPrimary'}
               className={styles['drop-text']}
             >
               {messages.dropZoneInstruction}
@@ -481,7 +487,7 @@ const FileUpload = ({
                 leadingIcon={<UploadIcon aria-hidden />}
                 variant="secondary"
                 size="small"
-                isDisabled={isDisabled}
+                isDisabled={isUploadBlocked}
               >
                 {messages.browseFilesButton}
               </Button>
