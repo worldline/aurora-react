@@ -6,8 +6,14 @@ import { getWrapper, render } from '@/__tests__/visual/testUtils'
 
 import * as stories from './TilesGroup.stories'
 
-const { ActionItems, Selected, Disabled, MultiSelect, VerticalOrientation } =
-  composeStories(stories)
+const {
+  ActionItems,
+  Selected,
+  Disabled,
+  MultiSelect,
+  VerticalOrientation,
+  HorizontalOrientation,
+} = composeStories(stories)
 
 describe('TilesGroup', () => {
   describe.each(themes)('%s mode', (theme) => {
@@ -36,6 +42,13 @@ describe('TilesGroup', () => {
     describe('vertical layout', () => {
       test('vertical orientation', async () => {
         await render(<VerticalOrientation />, theme)
+        await expect(getWrapper()).toMatchScreenshot()
+      })
+    })
+
+    describe('group layout', () => {
+      test('horizontal orientation', async () => {
+        await render(<HorizontalOrientation />, theme)
         await expect(getWrapper()).toMatchScreenshot()
       })
     })
