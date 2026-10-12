@@ -172,3 +172,30 @@ export const VerticalOrientation: Story = {
     </div>
   ),
 }
+
+export const HorizontalOrientation: Story = {
+  render: () => (
+    <div style={horizontalContainerStyle}>
+      <TilesGroup
+        selectionMode="none"
+        aria-label="Actions"
+        orientation="horizontal"
+      >
+        {actions.map((action) => (
+          <TilesGroup.Item
+            key={action.id}
+            id={action.id}
+            textValue={action.title}
+            overline={action.overline}
+            title={action.title}
+            description={action.description}
+            onAction={() => ({})}
+            icon={<BlockIcon aria-hidden />}
+            trailing={trailingArrow}
+            orientation="vertical"
+          />
+        ))}
+      </TilesGroup>
+    </div>
+  ),
+}

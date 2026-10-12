@@ -125,6 +125,17 @@ describe('TilesGroup', () => {
     })
   })
 
+  describe('orientation', () => {
+    test('should default to a vertical layout', () => {
+      renderTiles()
+
+      expect(screen.getByRole('grid', { name: 'Actions' })).toHaveAttribute(
+        'data-orientation',
+        'vertical',
+      )
+    })
+  })
+
   describe('disabled state', () => {
     test('should not allow selection or action on a disabled item', async () => {
       const onAction = vi.fn()
