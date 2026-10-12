@@ -470,3 +470,291 @@ describe('InputField Component', () => {
     return document.getElementById(errorId)
   }
 })
+
+describe('InputField Currency type', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.clearAllMocks()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.restoreAllMocks()
+  })
+
+  test('should render with spinbutton role', () => {
+    render(<InputField type="currency" label="Amount" />)
+    const input = screen.getByRole('textbox', { name: 'Amount' })
+    expect(input).toBeVisible()
+  })
+
+  test('should associate label with input', () => {
+    render(<InputField type="currency" label="Amount" />)
+    const input = screen.getByLabelText('Amount')
+    expect(input).toHaveRole('textbox')
+  })
+
+  test('should support custom aria-label', () => {
+    render(<InputField type="currency" aria-label="Custom amount" />)
+    const input = screen.getByLabelText('Custom amount')
+    expect(input).toHaveRole('textbox')
+  })
+
+  test('should display required indicator when isRequired is true', () => {
+    render(<InputField type="currency" label="Amount" isRequired />)
+    expect(screen.getByText('*')).toBeVisible()
+  })
+
+  test('should mark the input as required', () => {
+    render(<InputField type="currency" label="Amount" isRequired />)
+    const input = screen.getByRole('textbox', { name: 'Amount' })
+    expect(input).toBeRequired()
+  })
+
+  test('should render leading content', () => {
+    render(
+      <InputField
+        type="currency"
+        label="Amount"
+        leading={<span data-testid="currency-symbol">EUR</span>}
+      />,
+    )
+    expect(screen.getByTestId('currency-symbol')).toBeVisible()
+  })
+
+  test('should render trailing content', () => {
+    render(
+      <InputField
+        type="currency"
+        label="Amount"
+        trailing={<SearchIcon aria-hidden data-testid="trailing-icon" />}
+      />,
+    )
+    expect(screen.getByTestId('trailing-icon')).toBeVisible()
+  })
+
+  test('should display helper text', () => {
+    render(
+      <InputField
+        type="currency"
+        label="Amount"
+        helperText="Enter the amount"
+      />,
+    )
+    expect(screen.getByText('Enter the amount')).toBeVisible()
+  })
+
+  test('should display error message', () => {
+    render(
+      <InputField type="currency" label="Amount" error="Amount is required" />,
+    )
+    const errorMessage = getCurrencyErrorMessage()
+    expect(errorMessage).toBeVisible()
+    expect(errorMessage).toHaveTextContent('Amount is required')
+  })
+
+  test('should have aria-invalid when error is set', () => {
+    render(<InputField type="currency" label="Amount" error="Error" />)
+    const input = screen.getByRole('textbox', { name: 'Amount' })
+    expect(input).toHaveAttribute('aria-invalid', 'true')
+  })
+
+  test('should have aria-invalid when error is boolean true', () => {
+    render(<InputField type="currency" label="Amount" error={true} />)
+    const input = screen.getByRole('textbox', { name: 'Amount' })
+    expect(input).toHaveAttribute('aria-invalid', 'true')
+  })
+
+  test('should announce error message to screen readers', () => {
+    render(
+      <InputField type="currency" label="Amount" error="Amount is required" />,
+    )
+    expect(announce).toHaveBeenCalledWith('Amount is required', 'polite')
+  })
+
+  test('should not announce when announceError is false', () => {
+    render(
+      <InputField
+        type="currency"
+        label="Amount"
+        error="Amount is required"
+        announceError={false}
+      />,
+    )
+    expect(announce).not.toHaveBeenCalled()
+  })
+
+  describe('Controlled usage', () => {
+    test('should display controlled value', () => {
+      render(<InputField type="currency" label="Amount" value={1000} />)
+      const input = screen.getByRole('textbox', { name: 'Amount' })
+      expect(input).toHaveValue('1,000')
+    })
+
+    test('should update value when parent state changes', async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+
+      const ControlledCurrencyInput = () => {
+        const [amount, setAmount] = useState(0)
+
+        return (
+          <InputField
+            type="currency"
+            label="Amount"
+            value={amount}
+            onChange={(newAmount) => {
+              setAmount(newAmount)
+            }}
+          />
+        )
+      }
+
+      render(<ControlledCurrencyInput />)
+      const input = screen.getByRole('textbox', { name: 'Amount' })
+
+      expect(input).toHaveValue('0')
+
+      await user.clear(input)
+      await user.type(input, '500')
+
+      expect(input).toHaveValue('500')
+    })
+
+    test('should not self-toggle when controlled', async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      render(<InputField type="currency" label="Amount" value={42} />)
+      const input = screen.getByRole('textbox', { name: 'Amount' })
+
+      await user.clear(input)
+      await user.type(input, '999')
+      await user.tab()
+
+      expect(input).toHaveValue('42')
+    })
+  })
+
+  describe('Uncontrolled usage', () => {
+    test('should accept defaultValue', () => {
+      render(<InputField type="currency" label="Amount" defaultValue={500} />)
+      const input = screen.getByRole('textbox', { name: 'Amount' })
+      expect(input).toHaveValue('500')
+    })
+
+    test('should trigger onChange callback', async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      const handleChange = vi.fn()
+      render(
+        <InputField
+          type="currency"
+          label="Amount"
+          defaultValue={0}
+          onChange={handleChange}
+        />,
+      )
+      const input = screen.getByRole('textbox', { name: 'Amount' })
+
+      await user.clear(input)
+      await user.type(input, '100')
+      await user.tab()
+
+      expect(handleChange).toHaveBeenCalled()
+    })
+  })
+
+  test('should support formatOptions for number formatting', () => {
+    render(
+      <InputField
+        type="currency"
+        label="Amount"
+        value={1000}
+        formatOptions={{
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }}
+      />,
+    )
+    const input = screen.getByRole('textbox', { name: 'Amount' })
+    expect(input).toHaveValue('1,000.00')
+  })
+
+  test('should support minValue and maxValue', () => {
+    render(
+      <InputField
+        type="currency"
+        label="Amount"
+        minValue={0}
+        maxValue={10000}
+        defaultValue={5000}
+      />,
+    )
+    const input = screen.getByRole('textbox', { name: 'Amount' })
+    expect(input).toHaveValue('5,000')
+  })
+
+  describe('Disabled state', () => {
+    test('should have disabled attribute when isDisabled is true', () => {
+      render(
+        <InputField
+          type="currency"
+          label="Amount"
+          isDisabled={true}
+          defaultValue={100}
+        />,
+      )
+      const input = screen.getByRole('textbox', { name: 'Amount' })
+      expect(input).toBeDisabled()
+    })
+  })
+
+  describe('Read-only state', () => {
+    test('should have readonly attribute when isReadOnly is true', () => {
+      render(
+        <InputField
+          type="currency"
+          label="Amount"
+          isReadOnly={true}
+          defaultValue={100}
+        />,
+      )
+      const input = screen.getByRole('textbox', { name: 'Amount' })
+      expect(input).toHaveAttribute('readonly', '')
+    })
+  })
+
+  describe('Size variants', () => {
+    test('should render small size by default', () => {
+      const { container } = render(
+        <InputField type="currency" label="Amount" />,
+      )
+      const numberField = container.firstElementChild
+      expect(numberField?.className).toContain('small')
+    })
+
+    test('should render medium size', () => {
+      const { container } = render(
+        <InputField type="currency" label="Amount" size="medium" />,
+      )
+      const numberField = container.firstElementChild
+      expect(numberField?.className).toContain('medium')
+    })
+
+    test('should render large size', () => {
+      const { container } = render(
+        <InputField type="currency" label="Amount" size="large" />,
+      )
+      const numberField = container.firstElementChild
+      expect(numberField?.className).toContain('large')
+    })
+  })
+
+  const getCurrencyErrorMessage = () => {
+    const input = screen.getByRole('textbox', { name: 'Amount' })
+    const errorId = input.getAttribute('aria-describedby')
+    if (!errorId) {
+      throw new Error(
+        'Input should have aria-describedby attribute when error message is provided',
+      )
+    }
+    return document.getElementById(errorId)
+  }
+})

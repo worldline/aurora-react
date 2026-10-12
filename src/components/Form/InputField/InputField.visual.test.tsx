@@ -24,6 +24,15 @@ const {
   WithError,
   WithErrorMessage,
   WithErrorAndCharacterCount,
+  Currency,
+  CurrencyRequired,
+  CurrencyWithHelperText,
+  CurrencyWithTrailingIcon,
+  CurrencyWithError,
+  CurrencyDisabled,
+  CurrencyReadOnly,
+  CurrencyMedium,
+  CurrencyLarge,
 } = composeStories(stories)
 
 describe('InputField', () => {
@@ -110,6 +119,51 @@ describe('InputField', () => {
 
     test('with error and character count', async () => {
       await render(<WithErrorAndCharacterCount />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency', async () => {
+      await render(<Currency />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency required', async () => {
+      await render(<CurrencyRequired />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency with helper text', async () => {
+      await render(<CurrencyWithHelperText />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency with trailing icon', async () => {
+      await render(<CurrencyWithTrailingIcon />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency with error', async () => {
+      await render(<CurrencyWithError />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency disabled', async () => {
+      await render(<CurrencyDisabled />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency read-only', async () => {
+      await render(<CurrencyReadOnly />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency medium', async () => {
+      await render(<CurrencyMedium />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('currency large', async () => {
+      await render(<CurrencyLarge />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
   })

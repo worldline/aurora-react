@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { SearchIcon, WarningIcon } from '@/components/icons'
+import { Typography } from '@/components/Typography'
 
 import { InputField } from '.'
 
@@ -238,5 +239,165 @@ export const WithErrorAndCharacterCount: Story = {
     error: 'This is an error message.',
     maxLength: 20,
     defaultValue: 'Some text',
+  },
+}
+
+export const Currency: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    defaultValue: 1000,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyRequired: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    isRequired: true,
+    defaultValue: 1000,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyWithHelperText: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    helperText: 'This is a hint text to help user.',
+    defaultValue: 1000,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyWithTrailingIcon: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    defaultValue: 1000,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    trailing: <SearchIcon aria-hidden size={24} />,
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyWithError: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    error: 'Amount is required',
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyDisabled: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    isDisabled: true,
+    defaultValue: 500,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyReadOnly: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    isReadOnly: true,
+    defaultValue: 500,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyMedium: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    size: 'medium',
+    defaultValue: 1000,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
+  },
+}
+
+export const CurrencyLarge: Story = {
+  args: {
+    type: 'currency',
+    label: 'Amount',
+    size: 'large',
+    defaultValue: 1000,
+    leading: (
+      <Typography element="span" textStyle="bodyMd">
+        EUR
+      </Typography>
+    ),
+    formatOptions: {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    },
   },
 }
