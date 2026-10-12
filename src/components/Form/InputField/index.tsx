@@ -9,6 +9,8 @@ import {
   Group,
   Input,
   Label,
+  NumberField,
+  type NumberFieldProps,
 } from 'react-aria-components'
 
 import { FieldSupport } from '@/components/Form/FieldSupport'
@@ -16,22 +18,51 @@ import { Typography } from '@/components/Typography'
 
 import styles from './InputField.module.css'
 
-interface InputFieldProps {
+interface InputFieldBaseProps {
+  /** Size of the input field. */
   size?: 'small' | 'medium' | 'large'
+  /** Visible label for the input field. */
   label?: string
+  /** Error state or error message. */
   error?: string | boolean
+  /** How an error message is announced to assistive technology. */
   announceError?: 'polite' | 'assertive' | false
+  /** Placeholder text. */
   placeholder?: string
+  /** Content to display at the start of the input. */
   leading?: ReactNode
+  /** Content to display at the end of the input. */
   trailing?: ReactNode
+  /** Helper text displayed below the input. */
   helperText?: string
+}
+
+interface DefaultInputFieldProps extends InputFieldBaseProps {
+  /** The type of input field. */
+  type?: 'default' | 'text' | 'search' | 'url' | 'tel' | 'email' | 'password'
+  /** Maximum character length. */
   maxLength?: number
 }
 
-type Props = InputFieldProps &
-  Omit<AriaTextFieldProps, 'children' | 'validate' | 'validationBehavior'>
+interface CurrencyInputFieldProps extends InputFieldBaseProps {
+  /** The type of input field. */
+  type: 'currency'
+}
 
-const InputField = ({
+type DefaultProps = DefaultInputFieldProps &
+  Omit<
+    AriaTextFieldProps,
+    'children' | 'validate' | 'validationBehavior' | 'type'
+  >
+
+type CurrencyProps = CurrencyInputFieldProps &
+  Omit<NumberFieldProps, 'children'>
+
+type InputFieldProps = DefaultInputFieldProps | CurrencyInputFieldProps
+
+type Props = DefaultProps | CurrencyProps
+
+const DefaultInputField = ({
   size = 'small',
   label,
   error,
@@ -46,13 +77,16 @@ const InputField = ({
   onChange,
   value,
   defaultValue,
+  type,
   ...props
-}: Props) => {
+}: DefaultProps) => {
   const [internalLength, setInternalLength] = useState<number>(
     (defaultValue ?? '').length,
   )
 
   const currentLength = value !== undefined ? value.length : internalLength
+  const htmlInputType =
+    type === 'default' || type === undefined ? undefined : type
 
   useEffect(() => {
     if (error && typeof error === 'string' && announceError) {
@@ -68,6 +102,7 @@ const InputField = ({
   return (
     <AriaTextField
       {...props}
+      type={htmlInputType}
       className={cn(
         styles.container,
         styles[size],
@@ -115,6 +150,94 @@ const InputField = ({
       ) : null}
     </AriaTextField>
   )
+}
+
+const CurrencyInputField = ({
+  size = 'small',
+  label,
+  error,
+  className,
+  announceError = 'polite',
+  placeholder,
+  leading,
+  trailing,
+  helperText,
+  isRequired,
+  onChange,
+  value,
+  defaultValue,
+  type: _type,
+  ...props
+}: CurrencyProps) => {
+  const [internalFilled, setInternalFilled] = useState(
+    defaultValue !== undefined && !Number.isNaN(defaultValue),
+  )
+
+  const isFilled = value !== undefined ? !Number.isNaN(value) : internalFilled
+
+  useEffect(() => {
+    if (error && typeof error === 'string' && announceError) {
+      announce(error, announceError)
+    }
+  }, [error, announceError])
+
+  const handleChange = (newValue: number): void => {
+    setInternalFilled(!Number.isNaN(newValue))
+    onChange?.(newValue)
+  }
+
+  return (
+    <NumberField
+      {...props}
+      className={cn(
+        styles.container,
+        styles[size],
+        { [styles.filled]: isFilled },
+        className,
+      )}
+      isInvalid={Boolean(error)}
+      isRequired={isRequired}
+      onChange={handleChange}
+      value={value}
+      defaultValue={defaultValue}
+    >
+      {label ? (
+        <Label>
+          <Typography
+            element="span"
+            textStyle="labelSm"
+            className={styles.label}
+          >
+            {label}
+            {isRequired ? <span aria-hidden="true">*</span> : null}
+          </Typography>
+        </Label>
+      ) : null}
+
+      <Group className={styles['input-wrapper']}>
+        {leading}
+        <Input className={styles.input} placeholder={placeholder} />
+        {trailing}
+      </Group>
+
+      {typeof error === 'string' || helperText ? (
+        <FieldSupport
+          error={error}
+          helperText={helperText}
+          currentLength={0}
+          isDisabled={props.isDisabled}
+          isReadOnly={props.isReadOnly}
+        />
+      ) : null}
+    </NumberField>
+  )
+}
+
+const InputField = (props: Props) => {
+  if (props.type === 'currency') {
+    return <CurrencyInputField {...props} />
+  }
+  return <DefaultInputField {...props} />
 }
 
 export { InputField, type InputFieldProps }
