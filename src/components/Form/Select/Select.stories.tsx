@@ -27,6 +27,14 @@ const meta: Meta<typeof Select> = {
         category: 'Content',
       },
     },
+    tooltip: {
+      control: 'text',
+      description: 'Text content for the tooltip shown next to the label',
+      table: {
+        type: { summary: 'string' },
+        category: 'Content',
+      },
+    },
     error: {
       control: 'text',
       table: {
@@ -101,6 +109,15 @@ export const Required: Story = {
   args: {
     label: 'Label',
     isRequired: true,
+  },
+  render: (args) => <Select {...args}>{defaultItems}</Select>,
+}
+
+export const WithTooltip: Story = {
+  args: {
+    label: 'Label',
+    tooltip: 'This is some additional information.',
+    tooltipTriggerAriaLabel: 'More information',
   },
   render: (args) => <Select {...args}>{defaultItems}</Select>,
 }

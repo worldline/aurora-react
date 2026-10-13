@@ -33,6 +33,14 @@ const meta: Meta<typeof TextArea> = {
         category: 'Content',
       },
     },
+    tooltip: {
+      control: 'text',
+      description: 'Text content for the tooltip shown next to the label',
+      table: {
+        type: { summary: 'string' },
+        category: 'Content',
+      },
+    },
     error: {
       control: 'text',
       description: 'Error message to display',
@@ -173,6 +181,14 @@ export const Required: Story = {
   args: {
     label: 'Label',
     isRequired: true,
+  },
+}
+
+export const WithTooltip: Story = {
+  args: {
+    label: 'Label',
+    tooltip: 'This is some additional information.',
+    tooltipTriggerAriaLabel: 'More information',
   },
 }
 

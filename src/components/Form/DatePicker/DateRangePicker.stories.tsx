@@ -43,6 +43,14 @@ const meta: Meta<typeof DateRangePicker> = {
         category: 'Content',
       },
     },
+    tooltip: {
+      control: 'text',
+      description: 'Text content for the tooltip shown next to the label',
+      table: {
+        type: { summary: 'string' },
+        category: 'Content',
+      },
+    },
     error: {
       control: 'text',
       description: 'Error message to display',
@@ -133,6 +141,13 @@ export const Disabled: Story = {
       end: parseDate('2026-03-20'),
     },
     isDisabled: true,
+  },
+}
+
+export const WithTooltip: Story = {
+  args: {
+    tooltip: 'This is some additional information.',
+    tooltipTriggerAriaLabel: 'More information',
   },
 }
 

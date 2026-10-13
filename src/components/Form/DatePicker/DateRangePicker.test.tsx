@@ -270,4 +270,47 @@ describe('DateRangePicker Component', () => {
       expect(screen.queryByText(LABEL)).not.toBeInTheDocument()
     })
   })
+
+  describe('Tooltip', () => {
+    test('renders tooltip trigger when tooltip is provided', () => {
+      render(
+        <DateRangePicker
+          label={LABEL}
+          tooltip="Use the format DD/MM/YYYY"
+          tooltipTriggerAriaLabel="More information"
+        />,
+      )
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
+    })
+
+    test('does not render tooltip trigger when tooltip is not provided', () => {
+      render(<DateRangePicker label={LABEL} />)
+      expect(
+        screen.queryByRole('button', { name: 'More information' }),
+      ).not.toBeInTheDocument()
+    })
+
+    test('throws when tooltip is provided without label', () => {
+      expect(() => {
+        render(
+          <DateRangePicker
+            tooltip="Use the format DD/MM/YYYY"
+            tooltipTriggerAriaLabel="More information"
+          />,
+        )
+      }).toThrow('DateRangePicker: tooltip requires label to be provided.')
+    })
+
+    test('throws when tooltip is provided without tooltipTriggerAriaLabel', () => {
+      expect(() => {
+        render(
+          <DateRangePicker label={LABEL} tooltip="Use the format DD/MM/YYYY" />,
+        )
+      }).toThrow(
+        'DateRangePicker: tooltip requires tooltipTriggerAriaLabel to be provided.',
+      )
+    })
+  })
 })

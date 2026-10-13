@@ -237,4 +237,45 @@ describe('DatePicker Component', () => {
       expect(buttons.length).toBeGreaterThan(0)
     })
   })
+
+  describe('Tooltip', () => {
+    test('renders tooltip trigger when tooltip is provided', () => {
+      render(
+        <DatePicker
+          label="Date"
+          tooltip="Use the format DD/MM/YYYY"
+          tooltipTriggerAriaLabel="More information"
+        />,
+      )
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
+    })
+
+    test('does not render tooltip trigger when tooltip is not provided', () => {
+      render(<DatePicker label="Date" />)
+      expect(
+        screen.queryByRole('button', { name: 'More information' }),
+      ).not.toBeInTheDocument()
+    })
+
+    test('throws when tooltip is provided without label', () => {
+      expect(() => {
+        render(
+          <DatePicker
+            tooltip="Use the format DD/MM/YYYY"
+            tooltipTriggerAriaLabel="More information"
+          />,
+        )
+      }).toThrow('DatePicker: tooltip requires label to be provided.')
+    })
+
+    test('throws when tooltip is provided without tooltipTriggerAriaLabel', () => {
+      expect(() => {
+        render(<DatePicker label="Date" tooltip="Use the format DD/MM/YYYY" />)
+      }).toThrow(
+        'DatePicker: tooltip requires tooltipTriggerAriaLabel to be provided.',
+      )
+    })
+  })
 })

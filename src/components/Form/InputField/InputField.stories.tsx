@@ -45,6 +45,14 @@ const meta: Meta<typeof InputField> = {
         category: 'Content',
       },
     },
+    tooltip: {
+      control: 'text',
+      description: 'Text content for the tooltip shown next to the label',
+      table: {
+        type: { summary: 'string' },
+        category: 'Content',
+      },
+    },
     error: {
       control: 'text',
       description: 'Error message to display',
@@ -178,6 +186,14 @@ export const WithLeadingAndTrailing: Story = {
     label: 'Label',
     leading: <SearchIcon aria-hidden size={24} />,
     trailing: <WarningIcon aria-hidden size={24} />,
+  },
+}
+
+export const WithTooltip: Story = {
+  args: {
+    label: 'Label',
+    tooltip: 'This is some additional information.',
+    tooltipTriggerAriaLabel: 'More information',
   },
 }
 

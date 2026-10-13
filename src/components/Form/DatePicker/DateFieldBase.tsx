@@ -4,9 +4,9 @@ import { announce } from '@react-aria/live-announcer'
 import { type ReactNode, useEffect, useRef } from 'react'
 import { Button, Dialog, Group, Label } from 'react-aria-components'
 
+import { FieldLabel } from '@/components/Form/FieldLabel'
 import { CalendarTodayIcon } from '@/components/icons'
 import { Popover } from '@/components/Popover'
-import { Typography } from '@/components/Typography'
 
 import { ErrorMessage } from '../ErrorMessage'
 import calendarStyles from './Calendar.module.css'
@@ -15,6 +15,8 @@ import styles from './DatePicker.module.css'
 interface DateFieldBaseProps {
   label?: string
   isRequired?: boolean
+  tooltip?: string
+  tooltipTriggerAriaLabel?: string
   error?: string
   announceError?: 'polite' | 'assertive' | false
   dateInputContent: ReactNode
@@ -25,6 +27,8 @@ interface DateFieldBaseProps {
 const DateFieldBase = ({
   label,
   isRequired,
+  tooltip,
+  tooltipTriggerAriaLabel,
   error,
   announceError = 'polite',
   dateInputContent,
@@ -40,16 +44,15 @@ const DateFieldBase = ({
 
   return (
     <>
-      {label ? (
+      {label !== undefined || tooltip !== undefined ? (
         <Label>
-          <Typography
-            element="span"
-            textStyle="labelSm"
+          <FieldLabel
+            label={label}
+            isRequired={isRequired}
+            tooltip={tooltip}
+            tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}
-          >
-            {label}
-            {isRequired ? <span aria-hidden>*</span> : null}
-          </Typography>
+          />
         </Label>
       ) : null}
 
