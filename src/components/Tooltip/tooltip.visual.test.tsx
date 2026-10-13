@@ -4,7 +4,7 @@ import { type Theme, themes } from '@/__tests__/ThemeWrapper'
 import { render } from '@/__tests__/visual/testUtils'
 import { Button } from '@/components/Button'
 
-import { Tooltip, type TooltipAlignment, TooltipTrigger } from './Tooltip'
+import { Tooltip, type TooltipAlignment, TooltipTrigger } from '.'
 
 const alignments = [
   'top start',

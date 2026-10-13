@@ -78,4 +78,3 @@ const Tooltip = ({
 )
 
 export { Tooltip, type TooltipAlignment }
-export { TooltipTrigger } from 'react-aria-components'
