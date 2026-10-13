@@ -1,1 +1,2 @@
-export { Tooltip, TooltipTrigger, type TooltipAlignment } from './Tooltip'
+export { Tooltip, type TooltipAlignment } from './Tooltip'
+export { TooltipTrigger } from './TooltipTrigger'
