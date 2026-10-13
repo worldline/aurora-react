@@ -10,8 +10,8 @@ import {
   Label,
 } from 'react-aria-components'
 
+import { FieldLabel } from '@/components/Form/FieldLabel'
 import { FieldSupport } from '@/components/Form/FieldSupport'
-import { Typography } from '@/components/Typography'
 
 import styles from './TextArea.module.css'
 
@@ -20,11 +20,20 @@ const DEFAULT_ANNOUNCE_ERROR = 'polite' as const
 const DEFAULT_CHARACTER_COUNT = true
 const DEFAULT_ROWS = 5
 
+const TOOLTIP_REQUIRES_LABEL_ERROR =
+  'TextArea: tooltip requires label to be provided.'
+const TOOLTIP_REQUIRES_ARIA_LABEL_ERROR =
+  'TextArea: tooltip requires tooltipTriggerAriaLabel to be provided.'
+
 interface TextAreaProps {
   /** Size variant of the textarea */
   size?: 'small' | 'medium'
   /** Label text displayed above the textarea */
   label?: string
+  /** Text content for the tooltip shown next to the label; requires label. */
+  tooltip?: string
+  /** Accessible name for the tooltip trigger button; required when tooltip is set. */
+  tooltipTriggerAriaLabel?: string
   /** Error message or boolean to indicate error state */
   error?: string | boolean
   /** Controls how errors are announced to screen readers */
@@ -47,6 +56,8 @@ type Props = TextAreaProps &
 const TextArea = ({
   size = DEFAULT_SIZE,
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   error,
   className,
   announceError = DEFAULT_ANNOUNCE_ERROR,
@@ -78,6 +89,13 @@ const TextArea = ({
     }
   }, [error, announceError])
 
+  if (tooltip !== undefined && label === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_LABEL_ERROR)
+  }
+  if (tooltip !== undefined && tooltipTriggerAriaLabel === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_ARIA_LABEL_ERROR)
+  }
+
   const handleChange = (newValue: string): void => {
     setInternalLength(newValue.length)
     onChange?.(newValue)
@@ -99,16 +117,15 @@ const TextArea = ({
       value={value}
       defaultValue={defaultValue}
     >
-      {label ? (
+      {label !== undefined || tooltip !== undefined ? (
         <Label>
-          <Typography
-            element="span"
-            textStyle="labelSm"
+          <FieldLabel
+            label={label}
+            isRequired={isRequired}
+            tooltip={tooltip}
+            tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}
-          >
-            {label}
-            {isRequired ? <span aria-hidden="true">*</span> : null}
-          </Typography>
+          />
         </Label>
       ) : null}
 

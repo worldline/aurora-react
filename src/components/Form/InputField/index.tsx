@@ -13,16 +13,25 @@ import {
   type NumberFieldProps,
 } from 'react-aria-components'
 
+import { FieldLabel } from '@/components/Form/FieldLabel'
 import { FieldSupport } from '@/components/Form/FieldSupport'
-import { Typography } from '@/components/Typography'
 
 import styles from './InputField.module.css'
+
+const TOOLTIP_REQUIRES_LABEL_ERROR =
+  'InputField: tooltip requires label to be provided.'
+const TOOLTIP_REQUIRES_ARIA_LABEL_ERROR =
+  'InputField: tooltip requires tooltipTriggerAriaLabel to be provided.'
 
 interface InputFieldBaseProps {
   /** Size of the input field. */
   size?: 'small' | 'medium' | 'large'
   /** Visible label for the input field. */
   label?: string
+  /** Text content for the tooltip shown next to the label; requires label. */
+  tooltip?: string
+  /** Accessible name for the tooltip trigger button; required when tooltip is set. */
+  tooltipTriggerAriaLabel?: string
   /** Error state or error message. */
   error?: string | boolean
   /** How an error message is announced to assistive technology. */
@@ -65,6 +74,8 @@ type Props = DefaultProps | CurrencyProps
 const DefaultInputField = ({
   size = 'small',
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   error,
   className,
   announceError = 'polite',
@@ -115,16 +126,15 @@ const DefaultInputField = ({
       value={value}
       defaultValue={defaultValue}
     >
-      {label ? (
+      {label !== undefined || tooltip !== undefined ? (
         <Label>
-          <Typography
-            element="span"
-            textStyle="labelSm"
+          <FieldLabel
+            label={label}
+            isRequired={isRequired}
+            tooltip={tooltip}
+            tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}
-          >
-            {label}
-            {isRequired ? <span aria-hidden="true">*</span> : null}
-          </Typography>
+          />
         </Label>
       ) : null}
 
@@ -155,6 +165,8 @@ const DefaultInputField = ({
 const CurrencyInputField = ({
   size = 'small',
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   error,
   className,
   announceError = 'polite',
@@ -201,16 +213,15 @@ const CurrencyInputField = ({
       value={value}
       defaultValue={defaultValue}
     >
-      {label ? (
+      {label !== undefined || tooltip !== undefined ? (
         <Label>
-          <Typography
-            element="span"
-            textStyle="labelSm"
+          <FieldLabel
+            label={label}
+            isRequired={isRequired}
+            tooltip={tooltip}
+            tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}
-          >
-            {label}
-            {isRequired ? <span aria-hidden="true">*</span> : null}
-          </Typography>
+          />
         </Label>
       ) : null}
 
@@ -234,6 +245,15 @@ const CurrencyInputField = ({
 }
 
 const InputField = (props: Props) => {
+  if (props.tooltip !== undefined && props.label === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_LABEL_ERROR)
+  }
+  if (
+    props.tooltip !== undefined &&
+    props.tooltipTriggerAriaLabel === undefined
+  ) {
+    throw new Error(TOOLTIP_REQUIRES_ARIA_LABEL_ERROR)
+  }
   if (props.type === 'currency') {
     return <CurrencyInputField {...props} />
   }

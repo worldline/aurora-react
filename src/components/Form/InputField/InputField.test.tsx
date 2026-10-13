@@ -459,6 +459,49 @@ describe('InputField Component', () => {
     expect(input).not.toHaveAttribute('aria-invalid', 'true')
     expect(screen.queryByText('Invalid email')).not.toBeInTheDocument()
   })
+  describe('Tooltip', () => {
+    test('renders tooltip trigger when tooltip is provided', () => {
+      render(
+        <InputField
+          label="Email"
+          tooltip="We use this to send receipts"
+          tooltipTriggerAriaLabel="More information"
+        />,
+      )
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
+    })
+
+    test('does not render tooltip trigger when tooltip is not provided', () => {
+      render(<InputField label="Email" />)
+      expect(
+        screen.queryByRole('button', { name: 'More information' }),
+      ).not.toBeInTheDocument()
+    })
+
+    test('throws when tooltip is provided without label', () => {
+      expect(() => {
+        render(
+          <InputField
+            tooltip="We use this to send receipts"
+            tooltipTriggerAriaLabel="More information"
+          />,
+        )
+      }).toThrow('InputField: tooltip requires label to be provided.')
+    })
+
+    test('throws when tooltip is provided without tooltipTriggerAriaLabel', () => {
+      expect(() => {
+        render(
+          <InputField label="Email" tooltip="We use this to send receipts" />,
+        )
+      }).toThrow(
+        'InputField: tooltip requires tooltipTriggerAriaLabel to be provided.',
+      )
+    })
+  })
+
   const getErrorMessage = () => {
     const input = screen.getByRole('textbox')
     const errorId = input.getAttribute('aria-describedby')
@@ -744,6 +787,55 @@ describe('InputField Currency type', () => {
       )
       const numberField = container.firstElementChild
       expect(numberField?.className).toContain('large')
+    })
+  })
+
+  describe('Tooltip', () => {
+    test('renders tooltip trigger when tooltip is provided', () => {
+      render(
+        <InputField
+          type="currency"
+          label="Amount"
+          tooltip="Enter the pre-tax amount"
+          tooltipTriggerAriaLabel="More information"
+        />,
+      )
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
+    })
+
+    test('does not render tooltip trigger when tooltip is not provided', () => {
+      render(<InputField type="currency" label="Amount" />)
+      expect(
+        screen.queryByRole('button', { name: 'More information' }),
+      ).not.toBeInTheDocument()
+    })
+
+    test('throws when tooltip is provided without label', () => {
+      expect(() => {
+        render(
+          <InputField
+            type="currency"
+            tooltip="Enter the pre-tax amount"
+            tooltipTriggerAriaLabel="More information"
+          />,
+        )
+      }).toThrow('InputField: tooltip requires label to be provided.')
+    })
+
+    test('throws when tooltip is provided without tooltipTriggerAriaLabel', () => {
+      expect(() => {
+        render(
+          <InputField
+            type="currency"
+            label="Amount"
+            tooltip="Enter the pre-tax amount"
+          />,
+        )
+      }).toThrow(
+        'InputField: tooltip requires tooltipTriggerAriaLabel to be provided.',
+      )
     })
   })
 

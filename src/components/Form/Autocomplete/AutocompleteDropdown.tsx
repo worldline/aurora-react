@@ -12,6 +12,7 @@ import {
 } from 'react-aria-components'
 
 import { Button } from '@/components/Button'
+import { FieldLabel } from '@/components/Form/FieldLabel'
 import { FieldSupport } from '@/components/Form/FieldSupport'
 import {
   CancelIcon,
@@ -138,6 +139,10 @@ interface AutocompleteDropdownProps {
   options: Array<AutocompleteOption>
   /** Label displayed above the field. */
   label?: string
+  /** Text content for the tooltip shown next to the label; requires label. */
+  tooltip?: string
+  /** Accessible name for the tooltip trigger button; required when tooltip is set. */
+  tooltipTriggerAriaLabel?: string
   /** Accessible name used when no visible `label` is provided. */
   ariaLabel?: string
   /** Size variant of the field. */
@@ -197,6 +202,8 @@ interface AutocompleteDropdownProps {
 const AutocompleteDropdown = ({
   options,
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   ariaLabel,
   size,
   placeholder,
@@ -248,16 +255,15 @@ const AutocompleteDropdown = ({
         <OpenThresholdController minCharsToOpen={minCharsToOpen} />
       ) : null}
 
-      {label ? (
+      {label !== undefined || tooltip !== undefined ? (
         <Label>
-          <Typography
-            element="span"
-            textStyle="labelSm"
+          <FieldLabel
+            label={label}
+            isRequired={isRequired}
+            tooltip={tooltip}
+            tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}
-          >
-            {label}
-            {isRequired ? <span aria-hidden="true">*</span> : null}
-          </Typography>
+          />
         </Label>
       ) : null}
 

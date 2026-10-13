@@ -1,0 +1,18 @@
+.label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--au-spacing-3xs);
+}
+
+.label {
+  display: flex;
+  gap: var(--au-spacing-3xs);
+  color: var(--au-inputfield-placeholder-label);
+}
+
+.tooltip-trigger {
+  display: flex;
+  align-items: center;
+  min-height: unset;
+  padding: 0;
+}

@@ -15,6 +15,7 @@ import {
 import { BottomSheet } from '@/components/BottomSheet'
 import { Button } from '@/components/Button'
 import { ErrorMessage } from '@/components/Form/ErrorMessage'
+import { FieldLabel } from '@/components/Form/FieldLabel'
 import {
   CancelIcon,
   ProgressActivityIcon,
@@ -129,6 +130,10 @@ interface AutocompleteSheetProps {
   options: Array<AutocompleteOption>
   /** Label displayed above the field. */
   label?: string
+  /** Text content for the tooltip shown next to the label; requires label. */
+  tooltip?: string
+  /** Accessible name for the tooltip trigger button; required when tooltip is set. */
+  tooltipTriggerAriaLabel?: string
   /** Accessible name used when no visible `label` is provided. */
   ariaLabel?: string
   /** Size variant of the field. */
@@ -185,6 +190,8 @@ interface AutocompleteSheetProps {
 const AutocompleteSheet = ({
   options,
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   ariaLabel,
   size,
   placeholder,
@@ -253,16 +260,15 @@ const AutocompleteSheet = ({
       data-open={isOpen ? true : undefined}
       data-readonly={isReadOnly ? true : undefined}
     >
-      {label ? (
-        <Typography
-          element="span"
+      {label !== undefined || tooltip !== undefined ? (
+        <FieldLabel
           id={labelId}
-          textStyle="labelSm"
+          label={label}
+          isRequired={isRequired}
+          tooltip={tooltip}
+          tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
           className={styles.label}
-        >
-          {label}
-          {isRequired ? <span aria-hidden="true">*</span> : null}
-        </Typography>
+        />
       ) : null}
 
       <Button

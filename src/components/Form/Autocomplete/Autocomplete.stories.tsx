@@ -27,6 +27,11 @@ const meta: Meta<typeof Autocomplete> = {
       control: 'text',
       table: { type: { summary: 'string' }, category: 'Content' },
     },
+    tooltip: {
+      control: 'text',
+      description: 'Text content for the tooltip shown next to the label',
+      table: { type: { summary: 'string' }, category: 'Content' },
+    },
     placeholder: {
       control: 'text',
       table: { type: { summary: 'string' }, category: 'Content' },
@@ -180,6 +185,15 @@ export const Required: Story = {
     label: 'Address',
     options: addresses,
     isRequired: true,
+  },
+}
+
+export const WithTooltip: Story = {
+  args: {
+    label: 'Address',
+    options: addresses,
+    tooltip: 'Start typing to search for your address.',
+    tooltipTriggerAriaLabel: 'More information',
   },
 }
 

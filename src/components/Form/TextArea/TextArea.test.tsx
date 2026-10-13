@@ -365,6 +365,47 @@ describe('TextArea Component', () => {
     })
   })
 
+  describe('Tooltip', () => {
+    test('renders tooltip trigger when tooltip is provided', () => {
+      render(
+        <TextArea
+          label="Comment"
+          tooltip="Describe what happened"
+          tooltipTriggerAriaLabel="More information"
+        />,
+      )
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
+    })
+
+    test('does not render tooltip trigger when tooltip is not provided', () => {
+      render(<TextArea label="Comment" />)
+      expect(
+        screen.queryByRole('button', { name: 'More information' }),
+      ).not.toBeInTheDocument()
+    })
+
+    test('throws when tooltip is provided without label', () => {
+      expect(() => {
+        render(
+          <TextArea
+            tooltip="Describe what happened"
+            tooltipTriggerAriaLabel="More information"
+          />,
+        )
+      }).toThrow('TextArea: tooltip requires label to be provided.')
+    })
+
+    test('throws when tooltip is provided without tooltipTriggerAriaLabel', () => {
+      expect(() => {
+        render(<TextArea label="Comment" tooltip="Describe what happened" />)
+      }).toThrow(
+        'TextArea: tooltip requires tooltipTriggerAriaLabel to be provided.',
+      )
+    })
+  })
+
   const getErrorMessage = () => {
     const textarea = screen.getByRole('textbox')
     const errorId = textarea.getAttribute('aria-describedby')

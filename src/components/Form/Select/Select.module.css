@@ -5,12 +5,6 @@
   gap: var(--au-spacing-2xs);
 }
 
-.label {
-  display: flex;
-  gap: var(--au-spacing-3xs);
-  color: var(--au-inputfield-placeholder-label);
-}
-
 .trigger {
   display: flex;
   align-items: center;

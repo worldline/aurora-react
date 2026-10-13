@@ -324,11 +324,77 @@ describe('Autocomplete', () => {
         'Antwerp',
       )
     })
+
+    describe('Tooltip', () => {
+      test('renders tooltip trigger when tooltip is provided', () => {
+        render(
+          <Autocomplete
+            label="City"
+            options={options}
+            tooltip="Start typing to search cities"
+            tooltipTriggerAriaLabel="More information"
+          />,
+        )
+
+        expect(
+          screen.getByRole('button', { name: 'More information' }),
+        ).toBeVisible()
+      })
+
+      test('does not render tooltip trigger when tooltip is not provided', () => {
+        render(<Autocomplete label="City" options={options} />)
+
+        expect(
+          screen.queryByRole('button', { name: 'More information' }),
+        ).not.toBeInTheDocument()
+      })
+
+      test('throws when tooltip is provided without label', () => {
+        expect(() => {
+          render(
+            <Autocomplete
+              options={options}
+              tooltip="Start typing to search cities"
+              tooltipTriggerAriaLabel="More information"
+            />,
+          )
+        }).toThrow('Autocomplete: tooltip requires label to be provided.')
+      })
+
+      test('throws when tooltip is provided without tooltipTriggerAriaLabel', () => {
+        expect(() => {
+          render(
+            <Autocomplete
+              label="City"
+              options={options}
+              tooltip="Start typing to search cities"
+            />,
+          )
+        }).toThrow(
+          'Autocomplete: tooltip requires tooltipTriggerAriaLabel to be provided.',
+        )
+      })
+    })
   })
 
   describe('sheet presentation', () => {
     beforeEach(() => {
       stubViewport({ isMobile: true })
+    })
+
+    test('should show the tooltip trigger next to the closed field label', () => {
+      render(
+        <Autocomplete
+          label="City"
+          options={options}
+          tooltip="Start typing to search cities"
+          tooltipTriggerAriaLabel="More information"
+        />,
+      )
+
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
     })
 
     test('should show the placeholder until an option is selected', () => {

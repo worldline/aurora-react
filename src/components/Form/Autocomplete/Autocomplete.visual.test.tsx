@@ -12,6 +12,7 @@ const {
   Medium,
   Large,
   Required,
+  WithTooltip,
   WithHelperText,
   WithErrorMessage,
   WithSelectedOption,
@@ -57,6 +58,11 @@ describe('Autocomplete', () => {
 
     test('required', async () => {
       await render(<Required />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with tooltip', async () => {
+      await render(<WithTooltip />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
 

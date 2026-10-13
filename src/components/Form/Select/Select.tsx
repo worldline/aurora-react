@@ -13,11 +13,16 @@ import {
 
 import { KeyboardArrowDownIcon, KeyboardArrowUpIcon } from '@/components/icons'
 import { Popover } from '@/components/Popover'
-import { Typography } from '@/components/Typography'
 
+import { FieldLabel } from '../FieldLabel'
 import styles from './Select.module.css'
 import { SelectFieldSupport } from './SelectFieldSupport'
 import { SelectMultiValue } from './SelectMultiValue'
+
+const TOOLTIP_REQUIRES_LABEL_ERROR =
+  'Select: tooltip requires label to be provided.'
+const TOOLTIP_REQUIRES_ARIA_LABEL_ERROR =
+  'Select: tooltip requires tooltipTriggerAriaLabel to be provided.'
 
 /** Aurora-specific props for the Select component. */
 interface AuroraSelectProps {
@@ -25,6 +30,10 @@ interface AuroraSelectProps {
   size?: 'small' | 'medium'
   /** Label displayed above the select. */
   label?: string
+  /** Text content for the tooltip shown next to the label; requires label. */
+  tooltip?: string
+  /** Accessible name for the tooltip trigger button; required when tooltip is set. */
+  tooltipTriggerAriaLabel?: string
   /** Error message displayed below the select. */
   error?: string
   /** Live-region politeness for the error announcement, or `false` to disable. */
@@ -47,6 +56,8 @@ type Props<M extends 'single' | 'multiple' = 'single'> = AuroraSelectProps &
 const Select = <M extends 'single' | 'multiple' = 'single'>({
   size = 'small',
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   error,
   className,
   announceError = 'polite',
@@ -67,6 +78,13 @@ const Select = <M extends 'single' | 'multiple' = 'single'>({
     }
   }, [error, announceError])
 
+  if (tooltip !== undefined && label === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_LABEL_ERROR)
+  }
+  if (tooltip !== undefined && tooltipTriggerAriaLabel === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_ARIA_LABEL_ERROR)
+  }
+
   return (
     <AriaSelect
       {...props}
@@ -80,16 +98,15 @@ const Select = <M extends 'single' | 'multiple' = 'single'>({
     >
       {({ isOpen }) => (
         <>
-          {label ? (
+          {label !== undefined || tooltip !== undefined ? (
             <Label>
-              <Typography
-                element="span"
-                textStyle="labelSm"
+              <FieldLabel
+                label={label}
+                isRequired={isRequired}
+                tooltip={tooltip}
+                tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
                 className={styles.label}
-              >
-                {label}
-                {isRequired ? <span aria-hidden="true">*</span> : null}
-              </Typography>
+              />
             </Label>
           ) : null}
 

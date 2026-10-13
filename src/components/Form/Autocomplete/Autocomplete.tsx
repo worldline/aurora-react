@@ -18,11 +18,20 @@ import type {
 /** Viewport below which the autocomplete switches to the bottom sheet. */
 const MOBILE_MEDIA_QUERY = '(width <= 480px)'
 
+const TOOLTIP_REQUIRES_LABEL_ERROR =
+  'Autocomplete: tooltip requires label to be provided.'
+const TOOLTIP_REQUIRES_ARIA_LABEL_ERROR =
+  'Autocomplete: tooltip requires tooltipTriggerAriaLabel to be provided.'
+
 interface AutocompleteProps {
   /** Options offered in the list. */
   options: Array<AutocompleteOption>
   /** Label displayed above the field. */
   label?: string
+  /** Text content for the tooltip shown next to the label; requires label. */
+  tooltip?: string
+  /** Accessible name for the tooltip trigger button; required when tooltip is set. */
+  tooltipTriggerAriaLabel?: string
   /** Accessible name used when no visible `label` is provided. */
   'aria-label'?: string
   /**
@@ -117,6 +126,8 @@ interface AutocompleteProps {
 const Autocomplete = ({
   options,
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   'aria-label': ariaLabel,
   size = 'small',
   placeholder,
@@ -146,6 +157,13 @@ const Autocomplete = ({
   pendingLabel,
 }: AutocompleteProps) => {
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY)
+
+  if (tooltip !== undefined && label === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_LABEL_ERROR)
+  }
+  if (tooltip !== undefined && tooltipTriggerAriaLabel === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_ARIA_LABEL_ERROR)
+  }
 
   const isSelectionControlled = selectedKey !== undefined
 
@@ -253,6 +271,8 @@ const Autocomplete = ({
         isReadOnly={isReadOnly}
         isRequired={isRequired}
         label={label}
+        tooltip={tooltip}
+        tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
         name={name}
         onInputChange={setInputValue}
         onSelectionChange={handleSelectionChange}
@@ -283,6 +303,8 @@ const Autocomplete = ({
       isReadOnly={isReadOnly}
       isRequired={isRequired}
       label={label}
+      tooltip={tooltip}
+      tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
       minCharsToOpen={minCharsToOpen}
       name={name}
       onInputChange={setInputValue}

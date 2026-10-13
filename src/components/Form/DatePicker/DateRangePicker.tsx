@@ -18,6 +18,11 @@ import { CalendarContent, type CalendarContentProps } from './CalendarContent'
 import { DateFieldBase } from './DateFieldBase'
 import styles from './DatePicker.module.css'
 
+const TOOLTIP_REQUIRES_LABEL_ERROR =
+  'DateRangePicker: tooltip requires label to be provided.'
+const TOOLTIP_REQUIRES_ARIA_LABEL_ERROR =
+  'DateRangePicker: tooltip requires tooltipTriggerAriaLabel to be provided.'
+
 /**
  * Custom layout and style configuration for the DateRangePicker component.
  */
@@ -31,6 +36,14 @@ interface DateRangePickerProps extends CalendarContentProps {
    * The text label displayed above or alongside the date inputs.
    */
   label?: string
+  /**
+   * Text content for the tooltip shown next to the label; requires label.
+   */
+  tooltip?: string
+  /**
+   * Accessible name for the tooltip trigger button; required when tooltip is set.
+   */
+  tooltipTriggerAriaLabel?: string
   /**
    * The validation error message displayed below the input.
    */
@@ -55,6 +68,8 @@ type Props = DateRangePickerProps &
 const DateRangePicker = ({
   size = 'small',
   label,
+  tooltip,
+  tooltipTriggerAriaLabel,
   error,
   announceError = 'polite',
   calendarGridProps,
@@ -68,6 +83,14 @@ const DateRangePicker = ({
 }: Props) => {
   const id = useId()
   const errorId = error ? `${id}-error` : undefined
+
+  if (tooltip !== undefined && label === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_LABEL_ERROR)
+  }
+  if (tooltip !== undefined && tooltipTriggerAriaLabel === undefined) {
+    throw new Error(TOOLTIP_REQUIRES_ARIA_LABEL_ERROR)
+  }
+
   return (
     <AriaDateRangePicker
       {...props}
@@ -79,6 +102,8 @@ const DateRangePicker = ({
       <DateFieldBase
         label={label}
         isRequired={isRequired}
+        tooltip={tooltip}
+        tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
         error={error}
         errorId={errorId}
         announceError={announceError}

@@ -11,6 +11,7 @@ const {
   Medium,
   WithValue,
   Required,
+  WithTooltip,
   WithHelperText,
   WithCharacterCount,
   WithHelperTextAndCharacterCount,
@@ -40,6 +41,11 @@ describe('TextArea', () => {
 
     test('required', async () => {
       await render(<Required />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with tooltip', async () => {
+      await render(<WithTooltip />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
 

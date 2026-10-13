@@ -149,4 +149,46 @@ describe('Select', () => {
 
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
   })
+
+  describe('Tooltip', () => {
+    test('renders tooltip trigger when tooltip is provided', () => {
+      renderSelect({
+        label: 'Country',
+        tooltip: 'Pick your country of residence',
+        tooltipTriggerAriaLabel: 'More information',
+      })
+
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
+    })
+
+    test('does not render tooltip trigger when tooltip is not provided', () => {
+      renderSelect({ label: 'Country' })
+
+      expect(
+        screen.queryByRole('button', { name: 'More information' }),
+      ).not.toBeInTheDocument()
+    })
+
+    test('throws when tooltip is provided without label', () => {
+      expect(() => {
+        renderSelect({
+          tooltip: 'Pick your country of residence',
+          tooltipTriggerAriaLabel: 'More information',
+        })
+      }).toThrow('Select: tooltip requires label to be provided.')
+    })
+
+    test('throws when tooltip is provided without tooltipTriggerAriaLabel', () => {
+      expect(() => {
+        renderSelect({
+          label: 'Country',
+          tooltip: 'Pick your country of residence',
+        })
+      }).toThrow(
+        'Select: tooltip requires tooltipTriggerAriaLabel to be provided.',
+      )
+    })
+  })
 })
