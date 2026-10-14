@@ -1,8 +1,11 @@
 .overlay {
   position: fixed;
   inset: 0;
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  z-index: var(--modal-overlay-z-index);
   display: flex;
   padding: var(--au-spacing-md);
+  background: var(--au-surface-scrim);
 }
 
 .overlay[data-entering] {
