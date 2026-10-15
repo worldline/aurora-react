@@ -124,21 +124,15 @@ export { Providers }
 ### ToastRegion
 
 The \`<ToastRegion />\` component is responsible for rendering the toasts in your application. You can place it in the main layout of your application.
-It can be customized with a \`className\` props, and it will render the toasts in a fixed position at the top-right of the screen by default.
+It can be customized with a \`className\` props, and it will render the toasts in a fixed position at the bottom-right of the screen by default, new toasts pushing older ones upwards.
 Recommanded CSS class to apply to the \`<ToastRegion />\` component are:
-- \`top\` to position the toasts below the header of your application (which is 72px high for desktop and 48px for tablet and mobile in this example). 
+- \`bottom\` to change the distance between the toasts and the bottom of the screen. 
 Use className for this property.
 - \`margin\` to customize horizontal margin of the toasts on mobile, to align the toasts with the content of your application. Use toastClassName for this property.
 
 \`\`\`css
 .toast-region {
-  top: calc(var(--au-spacing-xl) + var(--au-dimension-72));
-}
-
-@media (width <= 1250px) {
-  .toast-region {
-    top: calc(var(--au-spacing-xl) + var(--au-dimension-48));
-  }
+  bottom: var(--au-spacing-xl);
 }
 
 @media (width <= 480px) {

@@ -33,6 +33,10 @@ const ToastRegion = ({
         return (
           <RAToast
             toast={toast}
+            style={{
+              viewTransitionName: toast.key,
+              viewTransitionClass: styles['toast-transition'],
+            }}
             className={cn(
               styles['toast-slide-in'],
               toastClassName,

@@ -11,8 +11,6 @@ import { ToastProvider } from './ToastProvider'
 import { ToastRegion } from './ToastRegion'
 import { useToast } from './useToast'
 
-const testId = 'theme-wrapper'
-
 const ToastButtons = ({
   variant = 'info',
   title = 'Toast notification',
@@ -77,13 +75,22 @@ describe('Toast', () => {
             await user.click(page.getByRole('button', { name: 'Show Toast' }))
           })
 
-          await expect(page.getByTestId(testId)).toMatchScreenshot()
-
           await act(async () => {
-            await user.click(
-              page.getByRole('button', { name: 'Close all Toasts' }),
-            )
+            await document.activeViewTransition?.finished
           })
+
+          try {
+            await expect(document.querySelector('body')).toMatchScreenshot()
+          } finally {
+            await act(async () => {
+              await user.click(
+                page.getByRole('button', { name: 'Close all Toasts' }),
+              )
+            })
+            await act(async () => {
+              await document.activeViewTransition?.finished
+            })
+          }
         })
       },
     )
