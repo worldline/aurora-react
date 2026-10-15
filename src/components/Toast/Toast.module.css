@@ -1,8 +1,9 @@
 .toast-region {
   position: fixed;
   right: 0;
+  bottom: var(--au-spacing-xl);
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: var(--au-spacing-md);
 }
 
@@ -23,9 +24,13 @@
 }
 
 .toast-slide-in {
-  animation: slide-in var(--au-motion-slide-in-duration)
-    var(--au-motion-slide-in-easing) var(--au-motion-slide-in-iteration)
-    var(--au-motion-slide-in-delay) forwards;
+  translate: calc(-1 * var(--au-spacing-xl)) 0;
+}
+
+@media (width <= 480px) {
+  .toast-slide-in {
+    translate: 0 0;
+  }
 }
 
 .toast-slide-in[data-focused] {
@@ -41,14 +46,27 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .toast-slide-in {
-    animation: none;
-    translate: calc(-1 * var(--au-spacing-xl)) 0;
-  }
-
   .toast-fade-out {
     animation: none;
   }
+
+  ::view-transition-group(.toast-transition),
+  ::view-transition-new(.toast-transition),
+  ::view-transition-old(.toast-transition) {
+    animation: none;
+  }
+}
+
+::view-transition-new(.toast-transition):only-child {
+  animation: slide-in var(--au-motion-slide-in-duration)
+    var(--au-motion-slide-in-easing) var(--au-motion-slide-in-iteration)
+    var(--au-motion-slide-in-delay) both;
+}
+
+::view-transition-old(.toast-transition):only-child {
+  animation: fade-out var(--au-motion-fade-out-duration)
+    var(--au-motion-fade-out-easing) var(--au-motion-fade-out-iteration)
+    var(--au-motion-fade-out-delay) forwards;
 }
 
 @keyframes fade-out {
@@ -60,21 +78,25 @@
 @keyframes slide-in {
   from {
     translate: 100% 0;
+    opacity: 0;
   }
 
   to {
-    translate: calc(-1 * var(--au-spacing-xl)) 0;
+    translate: 0 0;
+    opacity: 1;
   }
 }
 
 @media (width <= 480px) {
   @keyframes slide-in {
     from {
-      translate: 100% 0;
+      translate: 0 var(--au-spacing-xl);
+      opacity: 0;
     }
 
     to {
       translate: 0 0;
+      opacity: 1;
     }
   }
 }

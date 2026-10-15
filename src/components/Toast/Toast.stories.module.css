@@ -1,5 +1,5 @@
 .toast-region {
-  top: 0;
+  bottom: 0;
 }
 
 @media (width <= 480px) {
