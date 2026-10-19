@@ -122,6 +122,16 @@ const meta: Meta<typeof FileUpload> = {
         category: 'State',
       },
     },
+    hideDropzoneWhenFull: {
+      control: 'boolean',
+      description:
+        'Hide the drop zone when file rows reach maxFiles, including pending and error rows. It reappears when a slot opens.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Behaviour',
+      },
+    },
   },
 }
 
@@ -496,6 +506,34 @@ export const WithInitialFiles: Story = {
     messages,
     onUpload: resolveImmediately,
     onRemove: resolveRemove,
+  },
+}
+
+export const HideDropzoneWhenFull: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The drop zone is hidden when maxFiles is reached. Remove a file to browse again. Pending and error rows count toward the limit; upload and removal behaviour is unchanged.',
+      },
+    },
+  },
+  args: {
+    label: uploadFileLabel,
+    hideDropzoneWhenFull: true,
+    defaultFiles: [{ id: 'file-1', name: 'licence.pdf', description: '48 KB' }],
+    helperText: defaultHelperText,
+    messages,
+    onUpload: resolveImmediately,
+    onRemove: resolveRemove,
+  },
+}
+
+export const MultipleWithAvailableSlots: Story = {
+  args: {
+    ...HideDropzoneWhenFull.args,
+    label: uploadFilesLabel,
+    maxFiles: 3,
   },
 }
 

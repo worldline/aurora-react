@@ -14,6 +14,7 @@ const {
   Disabled,
   Multiple,
   WithInitialFiles,
+  HideDropzoneWhenFull,
   WithMixedUploadStates,
   WithAcceptedFileTypes,
   WithMaxFilesOverflow,
@@ -53,6 +54,11 @@ describe('FileUpload', () => {
 
     test('with initial files', async () => {
       await render(<WithInitialFiles />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with hidden drop zone', async () => {
+      await render(<HideDropzoneWhenFull />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
 

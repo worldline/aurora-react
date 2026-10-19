@@ -88,6 +88,8 @@ interface FileUploadProps {
   isDisabled?: boolean
   /** Whether selecting or dropping files is disabled while existing files remain removable */
   isUploadDisabled?: boolean
+  /** Hide the drop zone when file rows reach maxFiles, including pending and error rows; defaults to false. Reappears when a slot opens. */
+  hideDropzoneWhenFull?: boolean
   /** CSS class applied to the root element */
   className?: string
   /** CSS class applied to the drop zone element */
@@ -202,6 +204,7 @@ const FileUpload = ({
   error,
   isDisabled = false,
   isUploadDisabled = false,
+  hideDropzoneWhenFull = false,
   className,
   dropzoneClassName,
 }: FileUploadProps) => {
@@ -440,69 +443,73 @@ const FileUpload = ({
           tooltipTriggerAriaLabel={messages.tooltipTriggerAriaLabel}
         />
 
-        <DropZone
-          aria-labelledby={labelledby}
-          aria-describedby={hasFieldError ? errorId : undefined}
-          aria-disabled={isUploadBlocked || undefined}
-          getDropOperation={() => 'copy'}
-          onDrop={(event) => {
-            if (!isUploadBlocked) {
-              void handleDrop(event)
-            }
-          }}
-          isDisabled={isUploadBlocked}
-          data-invalid={(Boolean(error) && !isDisabled) || undefined}
-          className={cn(styles['drop-zone'], dropzoneClassName)}
-        >
-          <div className={styles['drop-zone-content']}>
-            <Typography
-              element="p"
-              textStyle="bodyMd"
-              textColor={isUploadBlocked ? 'contentDisabled' : 'contentPrimary'}
-              className={styles['drop-text']}
-            >
-              {messages.dropZoneInstruction}
-            </Typography>
-            {messages.dropZoneActiveInstruction !== undefined ? (
+        {hideDropzoneWhenFull && fileEntries.length >= maxFiles ? null : (
+          <DropZone
+            aria-labelledby={labelledby}
+            aria-describedby={hasFieldError ? errorId : undefined}
+            aria-disabled={isUploadBlocked || undefined}
+            getDropOperation={() => 'copy'}
+            onDrop={(event) => {
+              if (!isUploadBlocked) {
+                void handleDrop(event)
+              }
+            }}
+            isDisabled={isUploadBlocked}
+            data-invalid={(Boolean(error) && !isDisabled) || undefined}
+            className={cn(styles['drop-zone'], dropzoneClassName)}
+          >
+            <div className={styles['drop-zone-content']}>
               <Typography
                 element="p"
                 textStyle="bodyMd"
-                className={styles['drop-text-active']}
+                textColor={
+                  isUploadBlocked ? 'contentDisabled' : 'contentPrimary'
+                }
+                className={styles['drop-text']}
               >
-                {messages.dropZoneActiveInstruction}
+                {messages.dropZoneInstruction}
               </Typography>
-            ) : null}
-            <FileTrigger
-              onSelect={(files) => {
-                void handleSelect(files)
-              }}
-              acceptedFileTypes={acceptedFileTypes}
-              allowsMultiple={maxFiles > 1}
-            >
-              <Button
-                ref={browseButtonRef}
-                onPress={() => {
-                  browseButtonRef.current?.focus()
+              {messages.dropZoneActiveInstruction !== undefined ? (
+                <Typography
+                  element="p"
+                  textStyle="bodyMd"
+                  className={styles['drop-text-active']}
+                >
+                  {messages.dropZoneActiveInstruction}
+                </Typography>
+              ) : null}
+              <FileTrigger
+                onSelect={(files) => {
+                  void handleSelect(files)
                 }}
-                leadingIcon={<UploadIcon aria-hidden />}
-                variant="secondary"
-                size="small"
-                isDisabled={isUploadBlocked}
+                acceptedFileTypes={acceptedFileTypes}
+                allowsMultiple={maxFiles > 1}
               >
-                {messages.browseFilesButton}
-              </Button>
-            </FileTrigger>
-            {helperText !== undefined ? (
-              <Typography
-                element="p"
-                textStyle="captionMd"
-                className={styles['hint-text']}
-              >
-                {helperText}
-              </Typography>
-            ) : null}
-          </div>
-        </DropZone>
+                <Button
+                  ref={browseButtonRef}
+                  onPress={() => {
+                    browseButtonRef.current?.focus()
+                  }}
+                  leadingIcon={<UploadIcon aria-hidden />}
+                  variant="secondary"
+                  size="small"
+                  isDisabled={isUploadBlocked}
+                >
+                  {messages.browseFilesButton}
+                </Button>
+              </FileTrigger>
+              {helperText !== undefined ? (
+                <Typography
+                  element="p"
+                  textStyle="captionMd"
+                  className={styles['hint-text']}
+                >
+                  {helperText}
+                </Typography>
+              ) : null}
+            </div>
+          </DropZone>
+        )}
         {typeof error === 'string' && !isDisabled ? (
           <ErrorMessage id={errorId} error={error} />
         ) : null}

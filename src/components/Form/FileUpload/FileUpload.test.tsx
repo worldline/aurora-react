@@ -189,6 +189,63 @@ describe('FileUpload', () => {
     })
   })
 
+  describe('Drop zone visibility', () => {
+    test('keeps browsing available with existing files by default', () => {
+      render(
+        <FileUpload
+          messages={messages}
+          defaultFiles={[{ id: 'server-1', name: 'report.pdf' }]}
+        />,
+      )
+
+      expect(screen.getByRole('button', { name: 'Browse files' })).toBeVisible()
+      expect(screen.getByText('report.pdf')).toBeVisible()
+    })
+
+    test('hides only the drop zone when opted in with existing files', () => {
+      render(
+        <FileUpload
+          label="Upload file"
+          tooltip="Accepted formats: PDF"
+          error="Please replace this file"
+          messages={messages}
+          defaultFiles={[{ id: 'server-1', name: 'report.pdf' }]}
+          hideDropzoneWhenFull
+        />,
+      )
+
+      expect(screen.queryByRole('button', { name: 'Browse files' })).toBeNull()
+      expect(screen.queryByText(messages.dropZoneInstruction)).toBeNull()
+      expect(screen.getByText('Upload file')).toBeVisible()
+      expect(screen.getByText('Please replace this file')).toBeVisible()
+      expect(
+        screen.getByRole('button', { name: 'More information' }),
+      ).toBeVisible()
+      expect(
+        screen.getByRole('button', { name: 'Remove report.pdf' }),
+      ).toBeEnabled()
+    })
+
+    test('allows adding files incrementally until full and restores browsing when a slot opens', async () => {
+      render(
+        <FileUpload messages={messages} maxFiles={2} hideDropzoneWhenFull />,
+      )
+
+      await userEvent.upload(getFileInput(), makeFile('report.pdf'))
+      expect(screen.getByRole('button', { name: 'Browse files' })).toBeVisible()
+      await userEvent.upload(getFileInput(), makeFile('licence.pdf'))
+      expect(screen.queryByRole('button', { name: 'Browse files' })).toBeNull()
+      await userEvent.click(
+        screen.getByRole('button', { name: 'Remove licence.pdf' }),
+      )
+      expect(screen.getByRole('button', { name: 'Browse files' })).toBeVisible()
+
+      await userEvent.upload(getFileInput(), makeFile('replacement.pdf'))
+      expect(screen.getByText('replacement.pdf')).toBeVisible()
+      expect(screen.queryByRole('button', { name: 'Browse files' })).toBeNull()
+    })
+  })
+
   describe('File upload flow', () => {
     test('shows uploading state without a remove button while onUpload is pending', async () => {
       let resolveUploadPromise!: () => void
@@ -201,6 +258,7 @@ describe('FileUpload', () => {
 
       render(
         <FileUpload
+          hideDropzoneWhenFull
           messages={messages}
           onUpload={onUpload}
           onRemove={resolveRemove}
@@ -211,6 +269,7 @@ describe('FileUpload', () => {
 
       expect(screen.getByText('report.pdf')).toBeVisible()
       expect(screen.getByText(messages.uploadingLabel)).toBeVisible()
+      expect(screen.queryByRole('button', { name: 'Browse files' })).toBeNull()
       expect(
         screen.queryByRole('button', { name: 'Remove report.pdf' }),
       ).not.toBeInTheDocument()
@@ -397,6 +456,7 @@ describe('FileUpload', () => {
       const onRemove = vi.fn(() => Promise.resolve())
       render(
         <FileUpload
+          hideDropzoneWhenFull
           messages={messages}
           onUpload={onUpload}
           onRemove={onRemove}
@@ -410,6 +470,7 @@ describe('FileUpload', () => {
           screen.getByRole('button', { name: 'Remove report.pdf' }),
         ).toBeVisible()
       })
+      expect(screen.queryByRole('button', { name: 'Browse files' })).toBeNull()
 
       await userEvent.click(
         screen.getByRole('button', { name: 'Remove report.pdf' }),
@@ -417,6 +478,7 @@ describe('FileUpload', () => {
 
       expect(screen.queryByText('report.pdf')).not.toBeInTheDocument()
       expect(onRemove).not.toHaveBeenCalled()
+      expect(screen.getByRole('button', { name: 'Browse files' })).toBeVisible()
     })
   })
 
@@ -670,6 +732,7 @@ describe('FileUpload', () => {
       const onRemove = vi.fn(() => pendingRemove)
       render(
         <FileUpload
+          hideDropzoneWhenFull
           messages={messages}
           onUpload={onUpload}
           onRemove={onRemove}
@@ -693,12 +756,14 @@ describe('FileUpload', () => {
           screen.getByRole('button', { name: 'Remove report.pdf' }),
         ).toBeDisabled()
       })
+      expect(screen.queryByRole('button', { name: 'Browse files' })).toBeNull()
 
       resolveRemovePromise()
 
       await waitFor(() => {
         expect(screen.queryByText('report.pdf')).not.toBeInTheDocument()
       })
+      expect(screen.getByRole('button', { name: 'Browse files' })).toBeVisible()
     })
 
     test('shows the removeFailedError fallback when onRemove rejects with a non-Error', async () => {
