@@ -1,7 +1,7 @@
 {
   "name": "@worldline/aurora-react",
   "private": false,
-  "version": "1.97.0",
+  "version": "1.97.1",
   "type": "module",
   "engines": {
     "node": ">=26"
