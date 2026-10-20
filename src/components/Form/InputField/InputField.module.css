@@ -53,7 +53,8 @@
   color: var(--au-inputfield-filled-label);
 }
 
-.filled .input {
+.filled .input,
+.input:not(:placeholder-shown) {
   color: var(--au-inputfield-filled-text);
 }
 
