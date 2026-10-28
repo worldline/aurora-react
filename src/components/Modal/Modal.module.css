@@ -107,13 +107,17 @@
 
 .header {
   display: flex;
-  align-items: center;
+  align-items: start;
   padding: var(--au-spacing-xl);
   gap: var(--au-spacing-md);
 }
 
 .title {
   flex: 1;
+}
+
+.title > span {
+  display: block;
 }
 
 .content {

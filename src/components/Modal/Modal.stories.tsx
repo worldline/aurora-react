@@ -136,6 +136,15 @@ export const CenterAligned: Story = {
   render: (args) => <ModalWithTrigger {...args} />,
 }
 
+export const LongHeadline: Story = {
+  args: {
+    alignment: 'center',
+    title:
+      'A very long modal headline that wraps across multiple lines to demonstrate how the dialog handles longer titles',
+  },
+  render: (args) => <ModalWithTrigger {...args} />,
+}
+
 export const LeftAligned: Story = {
   args: {
     alignment: 'left',

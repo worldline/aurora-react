@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  align-items: center;
+  align-items: start;
   padding: var(--au-spacing-xl) var(--au-spacing-md);
   gap: var(--au-spacing-md);
   flex-shrink: 0;
@@ -9,4 +9,8 @@
 .title {
   flex: 1;
   min-width: 0;
+}
+
+.title > span {
+  display: block;
 }

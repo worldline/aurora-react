@@ -148,6 +148,15 @@ export const Content: Story = {
   render: (args) => <BottomSheetWithTrigger {...args} />,
 }
 
+export const LongHeadline: Story = {
+  args: {
+    height: 'sm',
+    title:
+      'A very long bottom sheet headline that wraps across multiple lines to demonstrate how the header handles longer titles',
+  },
+  render: (args) => <BottomSheetWithTrigger {...args} />,
+}
+
 export const WithoutActions: Story = {
   args: {
     height: 'sm',
