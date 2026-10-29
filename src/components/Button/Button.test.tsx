@@ -73,6 +73,12 @@ describe('Button Component', () => {
     expect(trailingIcon).not.toBeInTheDocument()
   })
 
+  test('should render destructive button', () => {
+    render(<Button destructive>Delete</Button>)
+
+    expect(screen.getByRole('button', { name: 'Delete' })).toBeInTheDocument()
+  })
+
   test('should render icon-only button with accessible name', () => {
     render(
       <Button aria-label="Add">

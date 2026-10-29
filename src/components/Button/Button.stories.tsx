@@ -28,6 +28,16 @@ const meta: Meta<typeof Button> = {
         category: 'Appearance',
       },
     },
+    destructive: {
+      control: 'boolean',
+      description:
+        'When true, applies destructive color styling to signal an irreversible action. Can be combined with any variant.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Appearance',
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
@@ -131,6 +141,30 @@ export const Link: Story = {
   },
 }
 
+export const DestructivePrimary: Story = {
+  args: {
+    variant: 'primary',
+    destructive: true,
+    children: 'Delete',
+  },
+}
+
+export const DestructiveSecondary: Story = {
+  args: {
+    variant: 'secondary',
+    destructive: true,
+    children: 'Delete',
+  },
+}
+
+export const DestructiveLink: Story = {
+  args: {
+    variant: 'link',
+    destructive: true,
+    children: 'Delete',
+  },
+}
+
 export const Small: Story = {
   args: {
     size: 'small',
@@ -217,6 +251,15 @@ export const AllVariants: Story = {
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="link">Link</Button>
+      <Button variant="primary" destructive>
+        Primary Destructive
+      </Button>
+      <Button variant="secondary" destructive>
+        Secondary Destructive
+      </Button>
+      <Button variant="link" destructive>
+        Link Destructive
+      </Button>
       <Button variant="primary" aria-label="Add">
         <AddIcon aria-hidden />
       </Button>

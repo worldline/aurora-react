@@ -12,9 +12,14 @@ const sizeStyles = {
 const buttonClassName = ({
   variant = 'primary',
   size = 'medium',
+  destructive,
 }: {
   variant: AuroraButtonProps['variant']
   size: AuroraButtonProps['size']
-}): string => cn(styles.button, styles[variant], sizeStyles[size])
+  destructive?: AuroraButtonProps['destructive']
+}): string =>
+  cn(styles.button, styles[variant], sizeStyles[size], {
+    [styles.destructive]: destructive,
+  })
 
 export { buttonClassName }

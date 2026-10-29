@@ -32,6 +32,13 @@ interface AuroraButtonProps {
   size?: 'small' | 'medium' | 'large'
 
   /**
+   * When true, applies destructive (danger) color styling to signal an irreversible action.
+   * Can be combined with any variant.
+   * @default false
+   */
+  destructive?: boolean
+
+  /**
    * Optional leading icon element
    */
   leadingIcon?: ReactElement<{
@@ -66,6 +73,7 @@ type Props = AuroraButtonProps & AriaButtonProps
 const Button = ({
   variant,
   size,
+  destructive,
   children,
   leadingIcon,
   trailingIcon,
@@ -73,7 +81,10 @@ const Button = ({
   ref,
   ...props
 }: Props) => {
-  const className = cn(buttonClassName({ variant, size }), props.className)
+  const className = cn(
+    buttonClassName({ variant, size, destructive }),
+    props.className,
+  )
 
   const leadingIconElement =
     leadingIcon && !isPending

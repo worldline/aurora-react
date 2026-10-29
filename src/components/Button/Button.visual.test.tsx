@@ -26,6 +26,17 @@ describe('Button', () => {
 
             await expect(page.getByTestId(testId)).toMatchScreenshot()
           })
+
+          test('destructive', async () => {
+            await render(
+              <Button size={size} variant={variant} destructive>
+                {variant} {size} Button
+              </Button>,
+              theme,
+            )
+
+            await expect(page.getByTestId(testId)).toMatchScreenshot()
+          })
         })
       },
     )
@@ -88,6 +99,44 @@ describe('Button', () => {
         await render(
           <Button variant={variant} aria-label="Add">
             <AddIcon aria-hidden />
+          </Button>,
+          'dark',
+        )
+
+        await expect(page.getByTestId(testId)).toMatchScreenshot()
+      })
+
+      test('renders icon only destructive button', async () => {
+        await render(
+          <Button variant={variant} destructive aria-label="Add">
+            <AddIcon aria-hidden />
+          </Button>,
+          'dark',
+        )
+
+        await expect(page.getByTestId(testId)).toMatchScreenshot()
+      })
+    },
+  )
+
+  describe.each(['primary', 'secondary'] as const)(
+    'destructive %s with icons',
+    (variant) => {
+      test('leading icon', async () => {
+        await render(
+          <Button variant={variant} destructive leadingIcon={<CheckIcon />}>
+            Delete
+          </Button>,
+          'dark',
+        )
+
+        await expect(page.getByTestId(testId)).toMatchScreenshot()
+      })
+
+      test('trailing icon', async () => {
+        await render(
+          <Button variant={variant} destructive trailingIcon={<CheckIcon />}>
+            Delete
           </Button>,
           'dark',
         )

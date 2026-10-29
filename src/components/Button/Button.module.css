@@ -141,6 +141,73 @@
   color: var(--au-button-link-disabled-content);
 }
 
+.primary.destructive {
+  color: var(--au-button-primary-destructive-default-content);
+  background: var(--au-button-primary-destructive-default-background);
+  border-color: var(--au-button-primary-destructive-default-border);
+}
+
+.primary.destructive[data-hovered] {
+  color: var(--au-button-primary-destructive-hover-content);
+  background: var(--au-button-primary-destructive-hover-background);
+  border-color: var(--au-button-primary-destructive-hover-border);
+}
+
+.primary.destructive[data-pressed] {
+  color: var(--au-button-primary-destructive-pressed-content);
+  background: var(--au-button-primary-destructive-pressed-background);
+  border-color: var(--au-button-primary-destructive-pressed-border);
+}
+
+.primary.destructive[data-disabled],
+.primary.destructive[data-pending] {
+  color: var(--au-button-primary-destructive-disabled-content);
+  background: var(--au-button-primary-destructive-disabled-background);
+  border-color: var(--au-button-primary-destructive-disabled-border);
+}
+
+.secondary.destructive {
+  color: var(--au-button-secondary-destructive-default-content);
+  background: var(--au-button-secondary-destructive-default-background);
+  border-color: var(--au-button-secondary-destructive-default-border);
+}
+
+.secondary.destructive[data-hovered] {
+  color: var(--au-button-secondary-destructive-hover-content);
+  background: var(--au-button-secondary-destructive-hover-background);
+  border-color: var(--au-button-secondary-destructive-hover-border);
+}
+
+.secondary.destructive[data-pressed] {
+  color: var(--au-button-secondary-destructive-pressed-content);
+  background: var(--au-button-secondary-destructive-pressed-background);
+  border-color: var(--au-button-secondary-destructive-pressed-border);
+}
+
+.secondary.destructive[data-disabled],
+.secondary.destructive[data-pending] {
+  color: var(--au-button-secondary-destructive-disabled-content);
+  background: var(--au-button-secondary-destructive-disabled-background);
+  border-color: var(--au-button-secondary-destructive-disabled-border);
+}
+
+.link.destructive {
+  color: var(--au-button-link-destructive-default-content);
+}
+
+.link.destructive[data-hovered] {
+  color: var(--au-button-link-destructive-hover-content);
+}
+
+.link.destructive[data-pressed] {
+  color: var(--au-button-link-destructive-pressed-content);
+}
+
+.link.destructive[data-disabled],
+.link.destructive[data-pending] {
+  color: var(--au-button-link-destructive-disabled-content);
+}
+
 .icon {
   width: var(--au-size-icon-md);
   height: var(--au-size-icon-md);
