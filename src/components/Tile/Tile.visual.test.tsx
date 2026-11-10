@@ -12,11 +12,13 @@ const {
   HorizontalSelected,
   HorizontalFocused,
   HorizontalDisabled,
+  HorizontalNoIcon,
   VerticalDefault,
   VerticalHover,
   VerticalSelected,
   VerticalFocused,
   VerticalDisabled,
+  VerticalNoIcon,
 } = composeStories(stories)
 
 describe('Tile', () => {
@@ -46,6 +48,11 @@ describe('Tile', () => {
         await render(<HorizontalDisabled />, theme)
         await expect(getWrapper()).toMatchScreenshot()
       })
+
+      test('horizontal no icon', async () => {
+        await render(<HorizontalNoIcon />, theme)
+        await expect(getWrapper()).toMatchScreenshot()
+      })
     })
 
     describe('vertical layout', () => {
@@ -71,6 +78,11 @@ describe('Tile', () => {
 
       test('vertical disabled', async () => {
         await render(<VerticalDisabled />, theme)
+        await expect(getWrapper()).toMatchScreenshot()
+      })
+
+      test('vertical no icon', async () => {
+        await render(<VerticalNoIcon />, theme)
         await expect(getWrapper()).toMatchScreenshot()
       })
     })

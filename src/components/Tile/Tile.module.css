@@ -43,6 +43,16 @@
   grid-template-areas: 'icon content';
 }
 
+.tile[data-orientation='horizontal']:not([data-has-icon]) {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: 'content trailing';
+}
+
+.tile[data-orientation='horizontal']:not([data-has-icon], [data-has-trailing]) {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'content';
+}
+
 .tile[aria-disabled] .icon,
 .tile[aria-disabled] .trailing {
   color: var(--au-content-disabled);
@@ -61,6 +71,16 @@
   grid-template-areas:
     'icon'
     'content';
+}
+
+.tile[data-orientation='vertical']:not([data-has-icon]) {
+  grid-template-areas:
+    'content'
+    'trailing';
+}
+
+.tile[data-orientation='vertical']:not([data-has-icon], [data-has-trailing]) {
+  grid-template-areas: 'content';
 }
 
 .tile[data-orientation='vertical'] .icon {

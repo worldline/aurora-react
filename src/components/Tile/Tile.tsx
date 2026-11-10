@@ -114,6 +114,7 @@ const Tile = ({
       data-selected={(selected && !disabled) || undefined}
       data-focus-visible={(focusVisible && !disabled) || undefined}
       data-hovered={(hovered && !selected && !disabled) || undefined}
+      data-has-icon={!!icon || undefined}
       data-has-trailing={!!trailing || undefined}
       onClick={isInteractive ? onAction : undefined}
       onKeyDown={isInteractive ? handleKeyDown : undefined}

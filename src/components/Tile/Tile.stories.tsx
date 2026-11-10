@@ -106,3 +106,17 @@ export const VerticalDisabled: Story = {
     disabled: true,
   },
 }
+
+export const HorizontalNoIcon: Story = {
+  args: {
+    orientation: 'horizontal',
+    icon: undefined,
+  },
+}
+
+export const VerticalNoIcon: Story = {
+  args: {
+    orientation: 'vertical',
+    icon: undefined,
+  },
+}
