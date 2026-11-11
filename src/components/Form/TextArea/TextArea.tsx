@@ -10,7 +10,10 @@ import {
   Label,
 } from 'react-aria-components'
 
-import { FieldLabel } from '@/components/Form/FieldLabel'
+import {
+  FieldLabel,
+  type FieldRequirementProps,
+} from '@/components/Form/FieldLabel'
 import { FieldSupport } from '@/components/Form/FieldSupport'
 
 import styles from './TextArea.module.css'
@@ -51,7 +54,11 @@ interface TextAreaProps {
 }
 
 type Props = TextAreaProps &
-  Omit<AriaTextFieldProps, 'children' | 'validate' | 'validationBehavior'>
+  FieldRequirementProps &
+  Omit<
+    AriaTextFieldProps,
+    'children' | 'validate' | 'validationBehavior' | 'isRequired'
+  >
 
 const TextArea = ({
   size = DEFAULT_SIZE,
@@ -67,6 +74,8 @@ const TextArea = ({
   characterCount = DEFAULT_CHARACTER_COUNT,
   rows = DEFAULT_ROWS,
   isRequired,
+  showRequiredMark,
+  optionalLabel,
   onChange,
   value,
   defaultValue,
@@ -122,6 +131,8 @@ const TextArea = ({
           <FieldLabel
             label={label}
             isRequired={isRequired}
+            showRequiredMark={showRequiredMark}
+            optionalLabel={optionalLabel}
             tooltip={tooltip}
             tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}

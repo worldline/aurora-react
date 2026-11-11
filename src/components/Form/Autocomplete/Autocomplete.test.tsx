@@ -168,6 +168,43 @@ describe('Autocomplete', () => {
       expect(screen.getAllByRole('option')).toHaveLength(2)
     })
 
+    test('should display required indicator when isRequired is true and showRequiredMark is true', () => {
+      render(
+        <Autocomplete
+          label="City"
+          options={options}
+          isRequired
+          showRequiredMark
+        />,
+      )
+      expect(screen.queryByText('*', { exact: true })).toBeInTheDocument()
+    })
+
+    test('should not display required indicator when isRequired is true and showRequiredMark is false', () => {
+      render(
+        <Autocomplete
+          label="City"
+          options={options}
+          isRequired
+          showRequiredMark={false}
+        />,
+      )
+      expect(screen.queryByText('*', { exact: true })).not.toBeInTheDocument()
+    })
+
+    test('should append the optional label to the accessible name', () => {
+      render(
+        <Autocomplete
+          label="City"
+          options={options}
+          optionalLabel="optional"
+        />,
+      )
+      expect(
+        screen.getByRole('combobox', { name: 'City (optional)' }),
+      ).not.toBeRequired()
+    })
+
     test('should show the empty label when nothing matches', async () => {
       const user = userEvent.setup()
       render(
@@ -408,6 +445,49 @@ describe('Autocomplete', () => {
 
       expect(
         screen.getByRole('button', { name: 'City Search a city' }),
+      ).toBeInTheDocument()
+    })
+
+    test('should show the required mark in the sheet search field', async () => {
+      const user = userEvent.setup()
+      render(
+        <Autocomplete
+          label="City"
+          options={options}
+          sheetTitle="Search a city"
+          isRequired
+          showRequiredMark
+        />,
+      )
+
+      await user.click(screen.getByRole('button', { name: /^City/ }))
+
+      const sheet = screen.getByRole('dialog', { name: 'Search a city' })
+      expect(within(sheet).getByText('*', { exact: true })).toHaveAttribute(
+        'aria-hidden',
+        'true',
+      )
+    })
+
+    test('should append the optional label to the field and the sheet search field', async () => {
+      const user = userEvent.setup()
+      render(
+        <Autocomplete
+          label="City"
+          options={options}
+          placeholder="Search a city"
+          sheetTitle="Search a city"
+          optionalLabel="optional"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'City (optional) Search a city' }),
+      )
+
+      const sheet = screen.getByRole('dialog', { name: 'Search a city' })
+      expect(
+        within(sheet).getByRole('textbox', { name: 'City (optional)' }),
       ).toBeInTheDocument()
     })
 

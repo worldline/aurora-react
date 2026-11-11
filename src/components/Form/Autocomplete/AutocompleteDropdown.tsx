@@ -193,6 +193,10 @@ interface AutocompleteDropdownProps {
   isPending?: boolean
   /** Label to go with the pending state */
   pendingLabel?: string
+  /** Whether to show the required asterisk. */
+  showRequiredMark?: boolean
+  /** Text appended in parentheses after the label when the field is not required. */
+  optionalLabel?: string
 }
 
 /**
@@ -206,6 +210,8 @@ const AutocompleteDropdown = ({
   tooltipTriggerAriaLabel,
   ariaLabel,
   size,
+  showRequiredMark,
+  optionalLabel,
   placeholder,
   inputValue,
   onInputChange,
@@ -260,6 +266,8 @@ const AutocompleteDropdown = ({
           <FieldLabel
             label={label}
             isRequired={isRequired}
+            showRequiredMark={showRequiredMark}
+            optionalLabel={optionalLabel}
             tooltip={tooltip}
             tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}

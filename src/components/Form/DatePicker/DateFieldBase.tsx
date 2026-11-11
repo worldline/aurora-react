@@ -22,6 +22,10 @@ interface DateFieldBaseProps {
   dateInputContent: ReactNode
   calendarContent: ReactNode
   errorId?: string
+  /** Shows an asterisk after the label when the field is required. */
+  showRequiredMark?: boolean
+  /** Text appended in parentheses after the label when the field is not required. */
+  optionalLabel?: string
 }
 
 const DateFieldBase = ({
@@ -34,6 +38,8 @@ const DateFieldBase = ({
   dateInputContent,
   calendarContent,
   errorId,
+  showRequiredMark,
+  optionalLabel,
 }: DateFieldBaseProps) => {
   const triggerRef = useRef(null)
   useEffect(() => {
@@ -51,6 +57,8 @@ const DateFieldBase = ({
             isRequired={isRequired}
             tooltip={tooltip}
             tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
+            showRequiredMark={showRequiredMark}
+            optionalLabel={optionalLabel}
             className={styles.label}
           />
         </Label>

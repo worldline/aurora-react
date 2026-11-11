@@ -45,14 +45,32 @@ describe('DateRangePicker Component', () => {
   })
 
   describe('Required state', () => {
-    test('should display required indicator when isRequired is true', () => {
+    test('should not display required indicator when only isRequired is true', () => {
       render(<DateRangePicker label="Date range" isRequired />)
-      expect(screen.getByText('*')).toBeVisible()
+      expect(screen.queryByText('*')).not.toBeInTheDocument()
+    })
+
+    test('should display required indicator when showRequiredMark is true and field is required', () => {
+      render(
+        <DateRangePicker
+          label="Date range"
+          isRequired
+          showRequiredMark={true}
+        />,
+      )
+      expect(screen.queryByText('*')).toBeInTheDocument()
     })
 
     test('should not display required indicator when isRequired is false', () => {
       render(<DateRangePicker label="Date range" />)
       expect(screen.queryByText('*')).not.toBeInTheDocument()
+    })
+
+    test('should append the optional label to the accessible name', () => {
+      render(<DateRangePicker label="Date range" optionalLabel="optional" />)
+      expect(
+        screen.getByRole('group', { name: 'Date range (optional)' }),
+      ).toBeVisible()
     })
   })
 

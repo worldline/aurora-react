@@ -11,6 +11,7 @@ import {
   RangeCalendar,
 } from 'react-aria-components'
 
+import { type FieldRequirementProps } from '@/components/Form/FieldLabel'
 import { ArrowForwardIcon } from '@/components/icons'
 
 import calendarStyles from './Calendar.module.css'
@@ -60,9 +61,10 @@ interface DateRangePickerProps extends CalendarContentProps {
  * with foundational React Aria capabilities.
  */
 type Props = DateRangePickerProps &
+  FieldRequirementProps &
   Omit<
     AriaDateRangePickerProps<DateValue>,
-    'children' | 'validate' | 'validationBehavior'
+    'children' | 'validate' | 'validationBehavior' | 'isRequired'
   >
 
 const DateRangePicker = ({
@@ -79,6 +81,8 @@ const DateRangePicker = ({
   calendarCellProps,
   className,
   isRequired,
+  showRequiredMark,
+  optionalLabel,
   ...props
 }: Props) => {
   const id = useId()
@@ -107,6 +111,8 @@ const DateRangePicker = ({
         error={error}
         errorId={errorId}
         announceError={announceError}
+        showRequiredMark={showRequiredMark}
+        optionalLabel={optionalLabel}
         dateInputContent={
           <>
             <DateInput slot="start" className={styles['date-input']}>

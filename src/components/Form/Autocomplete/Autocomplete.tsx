@@ -4,6 +4,7 @@ import { announce } from '@react-aria/live-announcer'
 import { useEffect, useRef, useState } from 'react'
 import type { Key } from 'react-aria-components'
 
+import { type FieldRequirementProps } from '@/components/Form/FieldLabel'
 import { useMediaQuery } from '@/utils/useMediaQuery'
 
 import { AutocompleteDropdown } from './AutocompleteDropdown'
@@ -23,7 +24,7 @@ const TOOLTIP_REQUIRES_LABEL_ERROR =
 const TOOLTIP_REQUIRES_ARIA_LABEL_ERROR =
   'Autocomplete: tooltip requires tooltipTriggerAriaLabel to be provided.'
 
-interface AutocompleteProps {
+interface AutocompleteBaseProps {
   /** Options offered in the list. */
   options: Array<AutocompleteOption>
   /** Label displayed above the field. */
@@ -73,8 +74,6 @@ interface AutocompleteProps {
    * @default 0 opens as soon as the field is focused
    */
   minCharsToOpen?: number
-  /** Whether a value must be selected before the enclosing form can be submitted. */
-  isRequired?: boolean
   /** Whether the field is disabled. */
   isDisabled?: boolean
   /** Whether the field only displays its value. */
@@ -100,6 +99,8 @@ interface AutocompleteProps {
   /** Label to go with the pending state */
   pendingLabel?: string
 }
+
+type AutocompleteProps = AutocompleteBaseProps & FieldRequirementProps
 
 /**
  * Text field that suggests matching options as the user types.
@@ -154,6 +155,8 @@ const Autocomplete = ({
   name,
   className,
   isPending = false,
+  showRequiredMark,
+  optionalLabel,
   pendingLabel,
 }: AutocompleteProps) => {
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY)
@@ -283,6 +286,8 @@ const Autocomplete = ({
         size={size}
         isPending={isPending}
         pendingLabel={pendingLabel}
+        showRequiredMark={showRequiredMark}
+        optionalLabel={optionalLabel}
       />
     )
   }
@@ -315,6 +320,8 @@ const Autocomplete = ({
       size={size}
       isPending={isPending}
       pendingLabel={pendingLabel}
+      showRequiredMark={showRequiredMark}
+      optionalLabel={optionalLabel}
     />
   )
 }

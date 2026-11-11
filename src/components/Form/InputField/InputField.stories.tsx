@@ -107,10 +107,29 @@ const meta: Meta<typeof InputField> = {
     isRequired: {
       control: 'boolean',
       description:
-        'Whether the input is required. Displays a * indicator next to the label.',
+        'Whether the input is required. Only affects accessibility and validation; use showRequiredMark to display the asterisk.',
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    showRequiredMark: {
+      control: 'boolean',
+      description:
+        'Shows an asterisk after the label. Only applies when isRequired is set.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    optionalLabel: {
+      control: 'text',
+      description:
+        'Text appended in parentheses after the label, e.g. "optional" renders "Label (optional)". Not allowed together with isRequired.',
+      table: {
+        type: { summary: 'string' },
         category: 'Behaviour',
       },
     },
@@ -164,6 +183,14 @@ export const Required: Story = {
   args: {
     label: 'Label',
     isRequired: true,
+    showRequiredMark: true,
+  },
+}
+
+export const WithOptionalLabel: Story = {
+  args: {
+    label: 'Label',
+    optionalLabel: 'optional',
   },
 }
 
@@ -280,6 +307,7 @@ export const CurrencyRequired: Story = {
     type: 'currency',
     label: 'Amount',
     isRequired: true,
+    showRequiredMark: true,
     defaultValue: 1000,
     leading: (
       <Typography element="span" textStyle="bodyMd">

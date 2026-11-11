@@ -62,6 +62,25 @@ const meta: Meta<typeof Autocomplete> = {
       control: 'boolean',
       table: { defaultValue: { summary: 'false' }, category: 'Behaviour' },
     },
+    showRequiredMark: {
+      control: 'boolean',
+      description:
+        'Shows an asterisk after the label. Only applies when isRequired is set.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    optionalLabel: {
+      control: 'text',
+      description:
+        'Text appended in parentheses after the label, e.g. "optional" renders "Label (optional)". Not allowed together with isRequired.',
+      table: {
+        type: { summary: 'string' },
+        category: 'Behaviour',
+      },
+    },
     isDisabled: {
       control: 'boolean',
       table: { defaultValue: { summary: 'false' }, category: 'Behaviour' },
@@ -185,6 +204,15 @@ export const Required: Story = {
     label: 'Address',
     options: addresses,
     isRequired: true,
+    showRequiredMark: true,
+  },
+}
+
+export const WithOptionalLabel: Story = {
+  args: {
+    label: 'Address',
+    options: addresses,
+    optionalLabel: 'optional',
   },
 }
 

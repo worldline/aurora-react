@@ -40,7 +40,7 @@ describe('QuantityField', () => {
     expect(quantityInput).toHaveAttribute('aria-valuenow', '2')
   })
 
-  test('associates an optional label and required state with the spinbutton', () => {
+  test('associates the label and required state with the spinbutton without showing the required mark', () => {
     render(
       <QuantityField
         label="Number of terminals"
@@ -53,7 +53,38 @@ describe('QuantityField', () => {
     expect(
       screen.getByRole('spinbutton', { name: 'Number of terminals' }),
     ).toBeRequired()
+    expect(screen.queryByText('*')).not.toBeInTheDocument()
+  })
+
+  test('shows the required mark when showRequiredMark is set on a required field', () => {
+    render(
+      <QuantityField
+        label="Number of terminals"
+        isRequired
+        showRequiredMark
+        defaultValue={2}
+        {...quantityFieldLabels}
+      />,
+    )
+
     expect(screen.getByText('*')).toHaveAttribute('aria-hidden', 'true')
+  })
+
+  test('appends the optional label to the spinbutton accessible name', () => {
+    render(
+      <QuantityField
+        label="Number of terminals"
+        optionalLabel="optional"
+        defaultValue={2}
+        {...quantityFieldLabels}
+      />,
+    )
+
+    expect(
+      screen.getByRole('spinbutton', {
+        name: 'Number of terminals (optional)',
+      }),
+    ).not.toBeRequired()
   })
 
   test('uses helper text as the spinbutton description', () => {

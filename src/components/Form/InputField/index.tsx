@@ -13,7 +13,10 @@ import {
   type NumberFieldProps,
 } from 'react-aria-components'
 
-import { FieldLabel } from '@/components/Form/FieldLabel'
+import {
+  FieldLabel,
+  type FieldRequirementProps,
+} from '@/components/Form/FieldLabel'
 import { FieldSupport } from '@/components/Form/FieldSupport'
 
 import styles from './InputField.module.css'
@@ -59,15 +62,18 @@ interface CurrencyInputFieldProps extends InputFieldBaseProps {
 }
 
 type DefaultProps = DefaultInputFieldProps &
+  FieldRequirementProps &
   Omit<
     AriaTextFieldProps,
-    'children' | 'validate' | 'validationBehavior' | 'type'
+    'children' | 'validate' | 'validationBehavior' | 'type' | 'isRequired'
   >
 
 type CurrencyProps = CurrencyInputFieldProps &
-  Omit<NumberFieldProps, 'children'>
+  FieldRequirementProps &
+  Omit<NumberFieldProps, 'children' | 'isRequired'>
 
-type InputFieldProps = DefaultInputFieldProps | CurrencyInputFieldProps
+type InputFieldProps = (DefaultInputFieldProps | CurrencyInputFieldProps) &
+  FieldRequirementProps
 
 type Props = DefaultProps | CurrencyProps
 
@@ -85,6 +91,8 @@ const DefaultInputField = ({
   helperText,
   maxLength,
   isRequired,
+  showRequiredMark,
+  optionalLabel,
   onChange,
   value,
   defaultValue,
@@ -134,6 +142,8 @@ const DefaultInputField = ({
             tooltip={tooltip}
             tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}
+            showRequiredMark={showRequiredMark}
+            optionalLabel={optionalLabel}
           />
         </Label>
       ) : null}
@@ -178,6 +188,8 @@ const CurrencyInputField = ({
   onChange,
   value,
   defaultValue,
+  showRequiredMark,
+  optionalLabel,
   type: _type,
   ...props
 }: CurrencyProps) => {
@@ -221,6 +233,8 @@ const CurrencyInputField = ({
             tooltip={tooltip}
             tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
             className={styles.label}
+            showRequiredMark={showRequiredMark}
+            optionalLabel={optionalLabel}
           />
         </Label>
       ) : null}

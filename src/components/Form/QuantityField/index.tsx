@@ -13,13 +13,16 @@ import {
 } from 'react-aria-components'
 
 import { Button } from '@/components/Button'
+import {
+  FieldLabel,
+  type FieldRequirementProps,
+} from '@/components/Form/FieldLabel'
 import { FieldSupport } from '@/components/Form/FieldSupport'
 import { AddIcon, CheckIndeterminateIcon } from '@/components/icons'
-import { Typography } from '@/components/Typography'
 
 import styles from './QuantityField.module.css'
 
-export interface QuantityFieldProps extends Omit<NumberFieldProps, 'children'> {
+interface QuantityFieldBaseProps {
   /** Visible label for the quantity field. */
   label?: string
   /** Helper text displayed below the quantity field. */
@@ -33,6 +36,10 @@ export interface QuantityFieldProps extends Omit<NumberFieldProps, 'children'> {
   /** Accessible label for the increment button. */
   incrementAriaLabel: string
 }
+
+export type QuantityFieldProps = QuantityFieldBaseProps &
+  FieldRequirementProps &
+  Omit<NumberFieldProps, 'children' | 'isRequired'>
 
 const getQuantityCharacterCount = (
   minValue: number | null | undefined,
@@ -82,6 +89,9 @@ const QuantityField = ({
   maxValue,
   formatOptions,
   onChange,
+  isRequired,
+  showRequiredMark,
+  optionalLabel,
   ...props
 }: QuantityFieldProps) => {
   const { locale } = useLocale()
@@ -109,6 +119,7 @@ const QuantityField = ({
       minValue={minValue}
       maxValue={maxValue}
       formatOptions={formatOptions}
+      isRequired={isRequired}
       onChange={(newQuantity) => {
         if (Number.isFinite(newQuantity)) {
           onChange?.(newQuantity)
@@ -121,14 +132,13 @@ const QuantityField = ({
         <>
           {label ? (
             <Label>
-              <Typography
-                element="span"
-                textStyle="labelSm"
+              <FieldLabel
+                label={label}
+                isRequired={isRequired}
+                showRequiredMark={showRequiredMark}
+                optionalLabel={optionalLabel}
                 className={styles.label}
-              >
-                {label}
-                {props.isRequired ? <span aria-hidden="true">*</span> : null}
-              </Typography>
+              />
             </Label>
           ) : null}
           <Group

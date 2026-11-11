@@ -1,1 +1,5 @@
-export { FieldLabel, type FieldLabelProps } from './FieldLabel'
+export {
+  FieldLabel,
+  type FieldLabelProps,
+  type FieldRequirementProps,
+} from './FieldLabel'

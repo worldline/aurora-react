@@ -60,20 +60,35 @@ describe('TextArea Component', () => {
   })
 
   describe('Required state', () => {
-    test('should display required indicator when isRequired is true', () => {
+    test('should not display required indicator when only isRequired is true', () => {
       render(<TextArea label="Comment" isRequired />)
-      expect(screen.getByText('*')).toBeVisible()
+      expect(screen.queryByText('*', { exact: true })).not.toBeInTheDocument()
     })
 
     test('should not display required indicator when isRequired is false', () => {
       render(<TextArea label="Comment" />)
-      expect(screen.queryByText('*')).not.toBeInTheDocument()
+      expect(screen.queryByText('*', { exact: true })).not.toBeInTheDocument()
+    })
+
+    test('should display required indicator when isRequired and showRequiredMark are true', () => {
+      render(<TextArea label="Comment" isRequired showRequiredMark />)
+      expect(screen.getByText('*', { exact: true })).toHaveAttribute(
+        'aria-hidden',
+        'true',
+      )
     })
 
     test('should mark the textarea as required', () => {
       render(<TextArea label="Comment" isRequired />)
-      const textarea = screen.getByRole('textbox')
+      const textarea = screen.getByRole('textbox', { name: 'Comment' })
       expect(textarea).toBeRequired()
+    })
+
+    test('should append the optional label to the accessible name', () => {
+      render(<TextArea label="Comment" optionalLabel="optional" />)
+      expect(
+        screen.getByRole('textbox', { name: 'Comment (optional)' }),
+      ).not.toBeRequired()
     })
   })
 

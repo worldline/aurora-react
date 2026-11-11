@@ -42,6 +42,29 @@ const meta: Meta<typeof QuantityField> = {
       control: 'boolean',
       table: { category: 'States' },
     },
+    isRequired: {
+      control: 'boolean',
+      table: { category: 'Behaviour' },
+    },
+    showRequiredMark: {
+      control: 'boolean',
+      description:
+        'Shows an asterisk after the label. Only applies when isRequired is set.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    optionalLabel: {
+      control: 'text',
+      description:
+        'Text appended in parentheses after the label, e.g. "optional" renders "Label (optional)". Not allowed together with isRequired.',
+      table: {
+        type: { summary: 'string' },
+        category: 'Behaviour',
+      },
+    },
   },
 }
 
@@ -60,6 +83,14 @@ export const Required: Story = {
   args: {
     label: 'Number of terminals',
     isRequired: true,
+    showRequiredMark: true,
+  },
+}
+
+export const WithOptionalLabel: Story = {
+  args: {
+    label: 'Number of terminals',
+    optionalLabel: 'optional',
   },
 }
 

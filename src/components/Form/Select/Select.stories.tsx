@@ -70,6 +70,25 @@ const meta: Meta<typeof Select> = {
         category: 'Behaviour',
       },
     },
+    showRequiredMark: {
+      control: 'boolean',
+      description:
+        'Shows an asterisk after the label. Only applies when isRequired is set.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Behaviour',
+      },
+    },
+    optionalLabel: {
+      control: 'text',
+      description:
+        'Text appended in parentheses after the label, e.g. "optional" renders "Label (optional)". Not allowed together with isRequired.',
+      table: {
+        type: { summary: 'string' },
+        category: 'Behaviour',
+      },
+    },
   },
   args: {
     style: { width: '320px' },
@@ -109,6 +128,15 @@ export const Required: Story = {
   args: {
     label: 'Label',
     isRequired: true,
+    showRequiredMark: true,
+  },
+  render: (args) => <Select {...args}>{defaultItems}</Select>,
+}
+
+export const WithOptionalLabel: Story = {
+  args: {
+    label: 'Label',
+    optionalLabel: 'optional',
   },
   render: (args) => <Select {...args}>{defaultItems}</Select>,
 }

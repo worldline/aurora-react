@@ -11,6 +11,8 @@ import {
   type DateValue,
 } from 'react-aria-components'
 
+import { type FieldRequirementProps } from '@/components/Form/FieldLabel'
+
 import calendarStyles from './Calendar.module.css'
 import { CalendarContent, type CalendarContentProps } from './CalendarContent'
 import { DateFieldBase } from './DateFieldBase'
@@ -53,9 +55,10 @@ interface DatePickerProps extends CalendarContentProps {
   announceError?: 'polite' | 'assertive' | false
 }
 type Props = DatePickerProps &
+  FieldRequirementProps &
   Omit<
     AriaDatePickerProps<DateValue>,
-    'children' | 'validate' | 'validationBehavior'
+    'children' | 'validate' | 'validationBehavior' | 'isRequired'
   >
 
 const DatePicker = ({
@@ -72,6 +75,8 @@ const DatePicker = ({
   calendarCellProps,
   className,
   isRequired,
+  showRequiredMark,
+  optionalLabel,
   ...props
 }: Props) => {
   const id = useId()
@@ -95,6 +100,8 @@ const DatePicker = ({
       <DateFieldBase
         label={label}
         isRequired={isRequired}
+        showRequiredMark={showRequiredMark}
+        optionalLabel={optionalLabel}
         tooltip={tooltip}
         tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
         error={error}

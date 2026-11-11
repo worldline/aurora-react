@@ -68,20 +68,39 @@ describe('InputField Component', () => {
   })
 
   describe('Required state', () => {
-    test('should display required indicator when isRequired is true', () => {
+    test('should not display required indicator when only isRequired is true', () => {
       render(<InputField label="Email" isRequired />)
-      expect(screen.getByText('*')).toBeVisible()
+      expect(screen.queryByText('*', { exact: true })).not.toBeInTheDocument()
+    })
+
+    test('should display required indicator when isRequired is true and showRequiredMark is true', () => {
+      render(<InputField label="Email" isRequired showRequiredMark />)
+      expect(screen.queryByText('*', { exact: true })).toBeInTheDocument()
     })
 
     test('should not display required indicator when isRequired is false', () => {
       render(<InputField label="Email" />)
-      expect(screen.queryByText('*')).not.toBeInTheDocument()
+      expect(screen.queryByText('*', { exact: true })).not.toBeInTheDocument()
     })
 
     test('should mark the input as required', () => {
       render(<InputField label="Email" isRequired />)
-      const input = screen.getByRole('textbox')
+      const input = screen.getByRole('textbox', { name: 'Email' })
       expect(input).toBeRequired()
+    })
+
+    test('should append the optional label to the accessible name', () => {
+      render(<InputField label="Email" optionalLabel="optional" />)
+      expect(
+        screen.getByRole('textbox', { name: 'Email (optional)' }),
+      ).not.toBeRequired()
+    })
+
+    test('should not display the optional label on a required field', () => {
+      // @ts-expect-error optionalLabel is not allowed on required fields
+      render(<InputField label="Email" isRequired optionalLabel="optional" />)
+      expect(screen.getByRole('textbox', { name: 'Email' })).toBeRequired()
+      expect(screen.queryByText(/\(optional\)/)).not.toBeInTheDocument()
     })
   })
 
@@ -543,9 +562,25 @@ describe('InputField Currency type', () => {
     expect(input).toHaveRole('textbox')
   })
 
-  test('should display required indicator when isRequired is true', () => {
+  test('should not display required indicator when only isRequired is true', () => {
     render(<InputField type="currency" label="Amount" isRequired />)
-    expect(screen.getByText('*')).toBeVisible()
+    expect(screen.queryByText('*')).not.toBeInTheDocument()
+  })
+
+  test('should append the optional label to the accessible name', () => {
+    render(
+      <InputField type="currency" label="Amount" optionalLabel="optional" />,
+    )
+    expect(
+      screen.getByRole('textbox', { name: 'Amount (optional)' }),
+    ).toBeVisible()
+  })
+
+  test('should display required indicator when isRequired and showRequiredMark is true', () => {
+    render(
+      <InputField type="currency" label="Amount" isRequired showRequiredMark />,
+    )
+    expect(screen.queryByText('*')).toBeInTheDocument()
   })
 
   test('should mark the input as required', () => {

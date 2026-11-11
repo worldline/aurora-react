@@ -51,6 +51,10 @@ interface SheetSearchFieldProps {
   isRequired?: boolean
   /** Called whenever the text held by the input changes. */
   onInputChange?: (inputValue: string) => void
+  /** Whether to show the required asterisk. */
+  showRequiredMark?: boolean
+  /** Text appended in parentheses after the label when the field is not required. */
+  optionalLabel?: string
 }
 
 /**
@@ -69,6 +73,8 @@ const SheetSearchField = ({
   onClear,
   clearLabel,
   isRequired,
+  showRequiredMark,
+  optionalLabel,
 }: SheetSearchFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -90,14 +96,13 @@ const SheetSearchField = ({
     >
       {label ? (
         <Label>
-          <Typography
-            element="span"
-            textStyle="labelSm"
+          <FieldLabel
+            label={label}
+            isRequired={isRequired}
+            showRequiredMark={showRequiredMark}
+            optionalLabel={optionalLabel}
             className={styles.label}
-          >
-            {label}
-            {isRequired ? <span aria-hidden="true">*</span> : null}
-          </Typography>
+          />
         </Label>
       ) : null}
 
@@ -181,6 +186,10 @@ interface AutocompleteSheetProps {
   isPending?: boolean
   /** Label announced while the sheet is pending. */
   pendingLabel?: string
+  /** Whether to show the required asterisk. */
+  showRequiredMark?: boolean
+  /** Text appended in parentheses after the label when the field is not required. */
+  optionalLabel?: string
 }
 
 /**
@@ -213,6 +222,8 @@ const AutocompleteSheet = ({
   filter,
   className,
   isPending = false,
+  showRequiredMark,
+  optionalLabel,
   pendingLabel,
 }: AutocompleteSheetProps) => {
   const id = useId()
@@ -265,6 +276,8 @@ const AutocompleteSheet = ({
           id={labelId}
           label={label}
           isRequired={isRequired}
+          showRequiredMark={showRequiredMark}
+          optionalLabel={optionalLabel}
           tooltip={tooltip}
           tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
           className={styles.label}
@@ -336,6 +349,8 @@ const AutocompleteSheet = ({
               ariaLabel={ariaLabel}
               clearLabel={clearLabel}
               isRequired={isRequired}
+              showRequiredMark={showRequiredMark}
+              optionalLabel={optionalLabel}
               label={label}
               onClear={() => {
                 handleInputChange('')

@@ -13,6 +13,7 @@ const {
   WithValue,
   WithoutLabel,
   Required,
+  WithOptionalLabel,
   WithTooltip,
   WithLeadingIcon,
   WithTrailingIcon,
@@ -65,6 +66,11 @@ describe('InputField', () => {
 
     test('required', async () => {
       await render(<Required />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with optional label', async () => {
+      await render(<WithOptionalLabel />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
 

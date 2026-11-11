@@ -14,7 +14,7 @@ import {
 import { KeyboardArrowDownIcon, KeyboardArrowUpIcon } from '@/components/icons'
 import { Popover } from '@/components/Popover'
 
-import { FieldLabel } from '../FieldLabel'
+import { FieldLabel, type FieldRequirementProps } from '../FieldLabel'
 import styles from './Select.module.css'
 import { SelectFieldSupport } from './SelectFieldSupport'
 import { SelectMultiValue } from './SelectMultiValue'
@@ -49,7 +49,8 @@ interface AuroraSelectProps {
 }
 
 type Props<M extends 'single' | 'multiple' = 'single'> = AuroraSelectProps &
-  Omit<AriaSelectProps<object, M>, 'children'> & {
+  FieldRequirementProps &
+  Omit<AriaSelectProps<object, M>, 'children' | 'isRequired'> & {
     children: ReactNode
   }
 
@@ -65,6 +66,8 @@ const Select = <M extends 'single' | 'multiple' = 'single'>({
   helperText,
   leading,
   isRequired,
+  showRequiredMark,
+  optionalLabel,
   isReadOnly,
   children,
   ...props
@@ -103,6 +106,8 @@ const Select = <M extends 'single' | 'multiple' = 'single'>({
               <FieldLabel
                 label={label}
                 isRequired={isRequired}
+                showRequiredMark={showRequiredMark}
+                optionalLabel={optionalLabel}
                 tooltip={tooltip}
                 tooltipTriggerAriaLabel={tooltipTriggerAriaLabel}
                 className={styles.label}

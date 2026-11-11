@@ -30,18 +30,32 @@ describe('Select', () => {
     expect(screen.getByRole('button')).toHaveTextContent('Pick one')
   })
 
-  test('should render label with required indicator', () => {
+  test('should not render required indicator when only isRequired is true', () => {
     renderSelect({ label: 'Country', isRequired: true })
 
     expect(screen.getByText('Country')).toBeInTheDocument()
-    expect(screen.getByText('*')).toBeInTheDocument()
+    expect(screen.queryByText('*', { exact: true })).not.toBeInTheDocument()
   })
 
   test('should render label without required indicator', () => {
     renderSelect({ label: 'Country' })
 
     expect(screen.getByText('Country')).toBeInTheDocument()
-    expect(screen.queryByText('*')).not.toBeInTheDocument()
+    expect(screen.queryByText('*', { exact: true })).not.toBeInTheDocument()
+  })
+
+  test('should append the optional label to the label', () => {
+    renderSelect({
+      'aria-label': undefined,
+      label: 'Country',
+      optionalLabel: 'optional',
+    })
+
+    expect(
+      screen.getByRole('button', {
+        name: 'Select an option Country (optional)',
+      }),
+    ).toBeVisible()
   })
 
   test('should open listbox on click', async () => {
@@ -189,6 +203,17 @@ describe('Select', () => {
       }).toThrow(
         'Select: tooltip requires tooltipTriggerAriaLabel to be provided.',
       )
+    })
+
+    test('should render required indicator when isRequired and showRequiredMark are true', () => {
+      renderSelect({
+        label: 'Country',
+        isRequired: true,
+        showRequiredMark: true,
+      })
+
+      expect(screen.getByText('Country')).toBeVisible()
+      expect(screen.queryByText('*', { exact: true })).toBeInTheDocument()
     })
   })
 })

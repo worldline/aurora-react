@@ -11,6 +11,7 @@ const {
   Medium,
   WithValue,
   Required,
+  WithOptionalLabel,
   WithTooltip,
   WithHelperText,
   WithCharacterCount,
@@ -41,6 +42,11 @@ describe('TextArea', () => {
 
     test('required', async () => {
       await render(<Required />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('with optional label', async () => {
+      await render(<WithOptionalLabel />, theme)
       await expect(getWrapper()).toMatchScreenshot()
     })
 
