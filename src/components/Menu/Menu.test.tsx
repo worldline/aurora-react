@@ -53,6 +53,37 @@ describe('Menu', () => {
       expect(screen.getByText('Description 2')).toBeInTheDocument()
     })
 
+    it('should apply destructive styling only to destructive menu items', () => {
+      render(
+        <Menu aria-label="Actions">
+          <Menu.Item title="Edit" />
+          <Menu.Item destructive title="Delete" />
+        </Menu>,
+      )
+
+      expect(
+        screen.getByRole('menuitem', { name: 'Delete' }).className,
+      ).toContain('destructive')
+      expect(
+        screen.getByRole('menuitem', { name: 'Edit' }).className,
+      ).not.toContain('destructive')
+    })
+
+    it('should keep destructive menu item actionable', async () => {
+      const user = userEvent.setup()
+      const onAction = vi.fn()
+
+      render(
+        <Menu aria-label="Actions">
+          <Menu.Item destructive title="Delete" onAction={onAction} />
+        </Menu>,
+      )
+
+      await user.click(screen.getByRole('menuitem', { name: 'Delete' }))
+
+      expect(onAction).toHaveBeenCalledTimes(1)
+    })
+
     it('should render menu header', () => {
       render(
         <Menu

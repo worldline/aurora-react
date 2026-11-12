@@ -20,6 +20,7 @@ const {
   SelectionMenu,
   SelectionMenuWithSections,
   DisabledItems,
+  DestructiveItems,
   LongText,
   InPopover,
   DynamicMenu,
@@ -76,6 +77,18 @@ describe('Menu', () => {
 
     test('disabled items', async () => {
       await render(<DisabledItems />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('destructive items', async () => {
+      await render(<DestructiveItems />, theme)
+      await expect(getWrapper()).toMatchScreenshot()
+    })
+
+    test('destructive item with hover', async () => {
+      const user = userEvent.setup()
+      await render(<DestructiveItems />, theme)
+      await user.hover(getWrapper().getByRole('menuitem', { name: /Delete/ }))
       await expect(getWrapper()).toMatchScreenshot()
     })
 

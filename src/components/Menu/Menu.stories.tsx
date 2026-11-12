@@ -423,6 +423,28 @@ export const DisabledItems: Story = {
   },
 }
 
+export const DestructiveItems: Story = {
+  args: {
+    children: (
+      <>
+        <Menu.Item leadingIcon={<SettingsIcon />} title="Settings" />
+        <Menu.Item
+          destructive
+          leadingIcon={<BlockIcon />}
+          description="This action cannot be undone"
+          title="Delete"
+        />
+        <Menu.Item
+          destructive
+          isDisabled
+          leadingIcon={<BlockIcon />}
+          title="Remove access"
+        />
+      </>
+    ),
+  },
+}
+
 export const DisabledKeys: Story = {
   args: {
     disabledKeys: ['option2', 'option3'],

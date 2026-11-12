@@ -16,6 +16,14 @@
   background: var(--au-surface-neutral-low-hover);
 }
 
+.menu-item.destructive {
+  color: var(--au-content-danger);
+}
+
+.menu-item.destructive[data-hovered] {
+  background: var(--au-surface-danger-subtile);
+}
+
 .menu-item[data-disabled] {
   color: var(--au-content-disabled);
   cursor: default;

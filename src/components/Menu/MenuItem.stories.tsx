@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, userEvent, within } from 'storybook/test'
 
 import { BlockIcon, MailIcon, SettingsIcon } from '../icons'
 import { Menu } from './Menu'
@@ -23,6 +24,14 @@ const meta: Meta<typeof Menu.Item> = {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
         category: 'Behaviour',
+      },
+    },
+    destructive: {
+      control: 'boolean',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+        category: 'Appearance',
       },
     },
     onAction: {
@@ -118,6 +127,51 @@ export const Disabled: Story = {
     leadingIcon: <MailIcon />,
     description: 'Read your messages',
     title: 'Messages',
+    isDisabled: true,
+  },
+}
+
+export const Destructive: Story = {
+  args: {
+    leadingIcon: <BlockIcon />,
+    title: 'Delete',
+    destructive: true,
+  },
+}
+
+export const DestructiveWithDescription: Story = {
+  args: {
+    leadingIcon: <BlockIcon />,
+    description: 'This action cannot be undone',
+    title: 'Delete',
+    destructive: true,
+  },
+}
+
+export const DestructiveHovered: Story = {
+  args: {
+    leadingIcon: <BlockIcon />,
+    description: 'This action cannot be undone',
+    title: 'Delete',
+    destructive: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const deleteMenuItem = await canvas.findByRole('menuitem', {
+      name: /Delete/,
+    })
+
+    await userEvent.hover(deleteMenuItem)
+
+    await expect(deleteMenuItem).toHaveAttribute('data-hovered', 'true')
+  },
+}
+
+export const DestructiveDisabled: Story = {
+  args: {
+    leadingIcon: <BlockIcon />,
+    title: 'Delete',
+    destructive: true,
     isDisabled: true,
   },
 }
