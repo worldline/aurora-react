@@ -20,7 +20,7 @@
  *   - pdf-file (file-types, custom)
  *   - american-express / mastercard (payment-methods, brand assets)
  */
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 
@@ -28,8 +28,28 @@ type DownloadResult =
   | { spec: string; success: true }
   | { spec: string; success: false; error: string }
 
-const BASE_URL =
-  'https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/symbols/web'
+interface ProvenanceManifest {
+  source?: {
+    revision?: string
+  }
+}
+
+const provenanceManifest = JSON.parse(
+  await readFile(
+    join(import.meta.dirname, 'material-symbols-provenance.json'),
+    'utf8',
+  ),
+) as ProvenanceManifest
+
+const sourceRevision = provenanceManifest.source?.revision
+
+if (!sourceRevision || !/^[\da-f]{40}$/i.test(sourceRevision)) {
+  throw new Error(
+    'Invalid Google Material Symbols revision in provenance manifest',
+  )
+}
+
+const BASE_URL = `https://raw.githubusercontent.com/google/material-design-icons/${sourceRevision}/symbols/web`
 const FETCH_TIMEOUT_MS = 10_000
 const ICONS_BASICS_DIR = join(
   import.meta.dirname,

@@ -2,6 +2,7 @@
   "name": "@worldline/aurora-react",
   "private": false,
   "version": "1.106.0",
+  "license": "Apache-2.0",
   "type": "module",
   "engines": {
     "node": ">=26"
@@ -16,7 +17,8 @@
   "files": [
     "dist",
     "src/styles/*.css",
-    "src/assets/fonts"
+    "src/assets/fonts",
+    "LICENSES"
   ],
   "exports": {
     "./components": {
@@ -56,8 +58,9 @@
     "test:serve-report": "npx vite preview --outDir .vitest-reports --open",
     "coverage": "npm run test -- --coverage --project=unit --project=storybook",
     "typecheck": "tsc -b",
-    "icons:generate": "npx @svgr/cli --config-file svgr.config.js --no-prettier -- src/assets/icons",
-    "icons:download": "node scripts/download-icons.ts"
+    "icons:generate": "npm run icons:verify && npx @svgr/cli --config-file svgr.config.js --no-prettier -- src/assets/icons",
+    "icons:download": "node scripts/download-icons.ts",
+    "icons:verify": "node scripts/verify-material-symbols.ts"
   },
   "dependencies": {
     "@react-aria/live-announcer": "3.5.1",
@@ -83,11 +86,11 @@
     "@semantic-release/gitlab": "13.3.3",
     "@semantic-release/npm": "13.1.5",
     "@semantic-release/release-notes-generator": "14.1.1",
-    "@storybook/addon-a11y": "10.4.6",
-    "@storybook/addon-docs": "10.4.6",
-    "@storybook/addon-mcp": "0.7.0",
-    "@storybook/addon-vitest": "10.4.6",
-    "@storybook/react-vite": "10.4.6",
+    "@storybook/addon-a11y": "10.6.4",
+    "@storybook/addon-docs": "10.6.4",
+    "@storybook/addon-mcp": "10.6.4",
+    "@storybook/addon-vitest": "10.6.4",
+    "@storybook/react-vite": "10.6.4",
     "@stylistic/eslint-plugin": "5.10.0",
     "@svgr/cli": "8.1.0",
     "@testing-library/jest-dom": "7.0.0",
@@ -98,9 +101,9 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.3",
-    "@vitest/browser-playwright": "4.1.11",
-    "@vitest/coverage-v8": "4.1.11",
-    "@vitest/ui": "4.1.11",
+    "@vitest/browser-playwright": "4.1.12",
+    "@vitest/coverage-v8": "4.1.12",
+    "@vitest/ui": "4.1.12",
     "cross-env": "10.1.0",
     "eslint": "10.7.0",
     "eslint-config-prettier": "10.1.8",
@@ -109,7 +112,7 @@
     "eslint-plugin-react-dom": "5.17.3",
     "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-react-refresh": "0.5.3",
-    "eslint-plugin-storybook": "10.4.6",
+    "eslint-plugin-storybook": "10.6.4",
     "glob": "13.0.6",
     "globals": "17.7.0",
     "jsdom": "29.1.1",
@@ -118,7 +121,7 @@
     "prettier": "3.9.6",
     "sass-embedded": "1.100.0",
     "semantic-release": "25.0.8",
-    "storybook": "10.4.6",
+    "storybook": "10.6.4",
     "stylelint": "17.14.1",
     "stylelint-config-clean-order": "10.0.0",
     "stylelint-config-standard": "40.0.0",
@@ -128,8 +131,8 @@
     "typescript": "6.0.3",
     "typescript-eslint": "8.65.0",
     "unplugin-dts": "1.0.3",
-    "vite": "8.1.5",
+    "vite": "8.3.5",
     "vite-plugin-lib-inject-css": "2.2.2",
-    "vitest": "4.1.11"
+    "vitest": "4.1.12"
   }
 }

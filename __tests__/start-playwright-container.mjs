@@ -7,8 +7,8 @@ import { GenericContainer } from 'testcontainers';
 import { openSync, writeSync, closeSync, constants as fsConstants } from 'fs';
 import { resolve } from 'path';
 
-const image     = process.env.PLAYWRIGHT_IMAGE       || 'mcr.microsoft.com/playwright:v1.59.0-noble';
-const version   = process.env.PLAYWRIGHT_VERSION     || '1.59.0';
+const image     = process.env.PLAYWRIGHT_IMAGE       || 'mcr.microsoft.com/playwright:v1.61.1-noble';
+const version   = process.env.PLAYWRIGHT_VERSION     || '1.61.1';
 const port      = parseInt(process.env.PLAYWRIGHT_SERVER_PORT || '3000', 10);
 const envFile   = process.env.PLAYWRIGHT_TC_ENV_FILE || '/tmp/playwright-tc.env';
 const startupTimeoutMs = parseInt(process.env.PLAYWRIGHT_STARTUP_TIMEOUT_MS || '300000', 10);

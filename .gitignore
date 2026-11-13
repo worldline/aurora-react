@@ -51,3 +51,4 @@ terraform/.build/
 
 # Claude
 .claude/settings.local.json
+.superpowers/

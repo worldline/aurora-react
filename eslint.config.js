@@ -20,6 +20,7 @@ export default defineConfig([
     '.vitest-attachments',
     '.vitest-reports',
     '__tests__/start-playwright-container.mjs',
+    '.gitlab/npmjs/test-prepare-package.mjs',
     'coverage',
   ]),
   {
@@ -106,6 +107,16 @@ export default defineConfig([
     files: ['**/*.test.{ts,tsx}'],
     rules: {
       '@eslint-react/jsx-no-children-prop': 'off',
+    },
+  },
+  {
+    files: ['scripts/{npmjs,public}/**/*.mjs', '.gitlab/**/*.mjs'],
+    extends: [tseslint.disableTypeChecked],
+    languageOptions: {
+      globals: globals.node,
+    },
+    rules: {
+      '@eslint-react/no-leaked-conditional-rendering': 'off',
     },
   },
   {

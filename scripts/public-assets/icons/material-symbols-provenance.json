@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "google/material-design-icons",
+    "revision": "10ecc14790612ca8fd164e3f4ffe9c16fc50d5b7",
+    "revisionUrl": "https://github.com/google/material-design-icons/commit/10ecc14790612ca8fd164e3f4ffe9c16fc50d5b7",
+    "committedAt": "2026-10-23T02:18:43Z",
+    "pathTemplate": "symbols/web/{symbol}/materialsymbolsrounded/{symbol}_wght300_24px.svg",
+    "license": "Apache-2.0",
+    "licenseUrl": "https://github.com/google/material-design-icons/blob/10ecc14790612ca8fd164e3f4ffe9c16fc50d5b7/LICENSE"
+  },
+  "variant": {
+    "collection": "Material Symbols",
+    "style": "Rounded",
+    "weight": 300,
+    "grade": 0,
+    "opticalSize": 24,
+    "fill": 0
+  },
+  "files": {
+    "check-indeterminate-small": "5fc027ce411008797d796c10d66cf2cf564abc90930f437600c2c6a213085f65",
+    "menu": "5e6ff58cdd2ce6cf7decaddca0aa7d32324e6521e8d803141fa8f2022f906f38",
+    "progress-activity": "4102a57aca73b2285bdec8bf81d8651bd26b57baca93d2974f2573c0aea4794c"
+  }
+}
