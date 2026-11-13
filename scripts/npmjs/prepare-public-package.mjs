@@ -6,11 +6,58 @@ const SOURCE_PACKAGE_NAME = '@worldline/aurora-react'
 const PUBLIC_PACKAGE_NAME = '@worldline-official/aurora-react'
 const SOURCE_TOKENS_NAME = '@worldline/aurora-design-tokens'
 const PUBLIC_TOKENS_NAME = '@worldline-official/aurora-design-tokens'
+const PUBLIC_PACKAGE_TEXT_EXTENSIONS = new Set([
+  '.cjs',
+  '.css',
+  '.html',
+  '.js',
+  '.jsx',
+  '.json',
+  '.md',
+  '.mjs',
+  '.map',
+  '.sass',
+  '.scss',
+  '.ts',
+  '.tsx',
+])
 const EXACT_VERSION_PATTERN =
   /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/
 const NPMJS_REGISTRY = 'https://registry.npmjs.org/'
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const publicReadme = path.resolve(scriptDir, '../../npmjs/README.md')
+
+const rewritePublicPackageTokenReferences = (directory) => {
+  if (!fs.existsSync(directory)) {
+    return
+  }
+
+  for (const entry of fs.readdirSync(directory, {
+    withFileTypes: true,
+  })) {
+    const entryPath = path.join(directory, entry.name)
+    if (entry.isDirectory()) {
+      rewritePublicPackageTokenReferences(entryPath)
+      continue
+    }
+    if (
+      !entry.isFile() ||
+      !PUBLIC_PACKAGE_TEXT_EXTENSIONS.has(path.extname(entry.name))
+    ) {
+      continue
+    }
+
+    const source = fs.readFileSync(entryPath, 'utf8')
+    if (!source.includes(SOURCE_TOKENS_NAME)) {
+      continue
+    }
+    fs.writeFileSync(
+      entryPath,
+      source.replaceAll(SOURCE_TOKENS_NAME, PUBLIC_TOKENS_NAME),
+      'utf8',
+    )
+  }
+}
 
 const [packageDirectory, githubRepository, ...options] = process.argv.slice(2)
 const retainScripts = options.includes('--retain-scripts')
@@ -100,6 +147,8 @@ packageJson.repository = {
   url: `https://github.com/${githubRepository}.git`,
 }
 packageJson.publishConfig = { registry: NPMJS_REGISTRY, access: 'public' }
+rewritePublicPackageTokenReferences(path.join(packageDir, 'src'))
+rewritePublicPackageTokenReferences(path.join(packageDir, 'dist'))
 if (!retainScripts) {
   delete packageJson.scripts
   if (
