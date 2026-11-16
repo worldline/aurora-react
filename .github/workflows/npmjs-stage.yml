@@ -6,6 +6,7 @@ on:
     branches:
       - main
     paths:
+      - '.github/workflows/npmjs-stage.yml'
       - '.gitignore'
       - '.npmignore'
       - 'LICENSE'
@@ -28,6 +29,11 @@ on:
         description: Package version to validate from the default branch
         required: true
         type: string
+      publish:
+        description: Publish the validated version to npm
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -41,6 +47,7 @@ jobs:
       contents: read
     outputs:
       package_version: ${{ steps.version.outputs.package_version }}
+      tokens_version: ${{ steps.version.outputs.tokens_version }}
       version_changed: ${{ steps.version.outputs.version_changed }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
@@ -62,7 +69,13 @@ jobs:
         run: |
           set -euo pipefail
           current_version="$(node -p 'require("./package.json").version')"
+          source_tokens_version="$(node -p 'require("./package.json").dependencies["@worldline/aurora-design-tokens"] ?? "")"
+          if [[ -z "$source_tokens_version" ]]; then
+            echo "Source Design Tokens dependency is missing; refusing to package or publish." >&2
+            exit 1
+          fi
           printf 'package_version=%s\n' "$current_version" >> "$GITHUB_OUTPUT"
+          printf 'tokens_version=%s\n' "$source_tokens_version" >> "$GITHUB_OUTPUT"
 
           if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
             if [[ -z "$EXPECTED_VERSION" || "$EXPECTED_VERSION" != "$current_version" ]]; then
@@ -125,13 +138,14 @@ jobs:
         shell: bash
         env:
           EXPECTED_VERSION: ${{ steps.version.outputs.package_version }}
+          EXPECTED_TOKENS_VERSION: ${{ steps.version.outputs.tokens_version }}
         run: |
           set -euo pipefail
           cd "$RUNNER_TEMP/npmjs-public-package"
           npm pack --ignore-scripts --json > pack.json
           tarball="$(node scripts/npmjs/pack-output.mjs < pack.json)"
           test -s "$tarball"
-          node scripts/npmjs/verify-public-tarball.mjs "$tarball" pack.json "${{ github.repository }}" "$EXPECTED_VERSION"
+          node scripts/npmjs/verify-public-tarball.mjs "$tarball" pack.json "${{ github.repository }}" "$EXPECTED_VERSION" "$EXPECTED_TOKENS_VERSION"
           mkdir -p "$GITHUB_WORKSPACE/npmjs-artifact"
           cp "$tarball" "$GITHUB_WORKSPACE/npmjs-artifact/"
           cp pack.json "$GITHUB_WORKSPACE/npmjs-artifact/pack.json"
@@ -146,8 +160,11 @@ jobs:
   publish:
     needs: build
     if: >-
-      github.event_name == 'push' && needs.build.outputs.version_changed ==
-      'true'
+      (github.event_name == 'push' && needs.build.outputs.version_changed ==
+      'true') ||
+      (github.event_name == 'workflow_dispatch' && inputs.publish == true &&
+      github.ref == format('refs/heads/{0}',
+      github.event.repository.default_branch))
     runs-on: ubuntu-latest
     environment: npmjs-production
     permissions:
@@ -169,13 +186,14 @@ jobs:
         shell: bash
         env:
           EXPECTED_VERSION: ${{ needs.build.outputs.package_version }}
+          EXPECTED_TOKENS_VERSION: ${{ needs.build.outputs.tokens_version }}
         run: |
           set -euo pipefail
           artifact_dir="$GITHUB_WORKSPACE/npmjs-artifact"
           tarball_name="$(node scripts/npmjs/pack-output.mjs < "$artifact_dir/pack.json")"
           tarball="$artifact_dir/$tarball_name"
           test -s "$tarball"
-          node scripts/npmjs/verify-public-tarball.mjs "$tarball" "$artifact_dir/pack.json" "$GITHUB_REPOSITORY" "$EXPECTED_VERSION"
+          node scripts/npmjs/verify-public-tarball.mjs "$tarball" "$artifact_dir/pack.json" "$GITHUB_REPOSITORY" "$EXPECTED_VERSION" "$EXPECTED_TOKENS_VERSION"
           printf 'NPMJS_TARBALL=%s\n' "$tarball" >> "$GITHUB_ENV"
       - name: Publish public tarball with npm Trusted Publishing
         run: >-
