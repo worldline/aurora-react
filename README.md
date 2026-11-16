@@ -157,28 +157,9 @@ npm run icons:generate
 The icon components will also be regenerated automatically when you run
 `npm run storybook` or `npm run build`.
 
-#### Custom and brand icons
+#### Public icon scope
 
-The following icons are **not** part of Google Material Symbols and must be
-added manually by placing the SVG file in the appropriate directory:
-
-| Icon                   | Directory          | Reason             |
-| ---------------------- | ------------------ | ------------------ |
-| `check-indeterminate`  | `basics/`          | Custom minimal SVG |
-| `worldline-logo-large` | `basics/`          | Brand asset        |
-| `worldline-logo-small` | `basics/`          | Brand asset        |
-| `pdf-file`             | `file-types/`      | Custom SVG         |
-| `american-express`     | `payment-methods/` | Brand asset        |
-| `mastercard`           | `payment-methods/` | Brand asset        |
-
-When adding a custom icon manually, use these SVG settings to stay consistent
-with the rest of the icon set:
-
-- Toggle **Fill** depending on the icon variant you need
-- Set **Weight** to **300**
-- Set **Grade** to **0**
-- Set **Optical size** to **24px**
-- Set **Style** to **Material Symbols (new)** and **Rounded**
+The public source and package include the pinned, outlined Google Material Symbols in the provenance manifest and the Inter/Raleway fonts. They exclude the internal-only MCC set, filled variants, unverified source vectors, payment-method artwork, file-type artwork, and Worldline logos. The public projection uses pinned Google replacements for selected icons and a CSS tooltip arrow; FileUpload uses a retained document-style icon.
 
 ### AI Integration
 

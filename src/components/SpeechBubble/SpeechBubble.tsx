@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactElement, ReactNode } from 'react'
 import { Focusable } from 'react-aria-components'
 
 import { Button } from '../Button'
-import { DraftIcon, EditIcon, LockIcon } from '../icons'
+import { ContractEditIcon, EditIcon, LockIcon } from '../icons'
 import { Tooltip, TooltipTrigger } from '../Tooltip'
 import { Typography } from '../Typography'
 import styles from './SpeechBubble.module.css'
@@ -178,7 +178,7 @@ const SpeechBubble = (props: SpeechBubbleProps): ReactElement => {
           data-variant="attachment"
         >
           <div className={styles.attachment}>
-            <DraftIcon aria-hidden className={styles['file-icon']} />
+            <ContractEditIcon aria-hidden className={styles['file-icon']} />
             <Typography element="p" textStyle="labelSm">
               {props.fileName}
             </Typography>

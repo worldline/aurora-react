@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { PersonFillIcon, SettingsIcon } from '../icons'
+import { PersonIcon, SettingsIcon } from '../icons'
 import { Chip } from './index'
 
 const meta = {
@@ -111,7 +111,7 @@ export const LeadingAndTrailingIcons: Story = {
     size: 'large',
     type: 'success',
     label: 'Leading & Trailing Icons',
-    leadingIcon: <PersonFillIcon aria-hidden />,
+    leadingIcon: <PersonIcon aria-hidden />,
     trailingIcon: <SettingsIcon aria-hidden />,
   },
 }
@@ -121,7 +121,7 @@ export const LeadingIcon: Story = {
     size: 'large',
     type: 'warning',
     label: 'Leading Icon',
-    leadingIcon: <PersonFillIcon aria-hidden />,
+    leadingIcon: <PersonIcon aria-hidden />,
   },
 }
 

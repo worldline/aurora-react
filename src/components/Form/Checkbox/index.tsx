@@ -9,7 +9,7 @@ import {
 } from 'react-aria-components'
 
 import { ErrorMessage } from '@/components/Form/ErrorMessage'
-import { CheckIcon, CheckIndeterminateIcon } from '@/components/icons'
+import { CheckIcon, CheckIndeterminateSmallIcon } from '@/components/icons'
 import { Typography } from '@/components/Typography'
 
 import styles from './Checkbox.module.css'
@@ -62,7 +62,7 @@ const CheckboxStateIcon = ({
   isSelected: boolean
 }) => {
   if (isIndeterminate) {
-    return <CheckIndeterminateIcon aria-hidden />
+    return <CheckIndeterminateSmallIcon aria-hidden />
   }
   if (isSelected) {
     return <CheckIcon aria-hidden />

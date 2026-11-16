@@ -17,9 +17,12 @@
   align-items: center;
 }
 
-.arrow-svg {
+.arrow-shape {
   display: block;
-  fill: var(--au-content-primary);
+  width: 12px;
+  height: 6px;
+  background-color: var(--au-content-primary);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 .tooltip[data-placement='top'] .arrow {
@@ -40,7 +43,7 @@
   top: calc(-1 * var(--au-spacing-2xs));
 }
 
-.tooltip[data-placement='bottom'] .arrow-svg {
+.tooltip[data-placement='bottom'] .arrow-shape {
   transform: rotate(180deg);
 }
 
@@ -48,7 +51,7 @@
   right: calc(-1 * var(--au-spacing-xs));
 }
 
-.tooltip[data-placement='left'] .arrow-svg {
+.tooltip[data-placement='left'] .arrow-shape {
   transform: rotate(-90deg);
   translate: calc(-1 * var(--au-spacing-3xs)) var(--au-spacing-none);
 }
@@ -57,7 +60,7 @@
   left: calc(-1 * var(--au-spacing-xs));
 }
 
-.tooltip[data-placement='right'] .arrow-svg {
+.tooltip[data-placement='right'] .arrow-shape {
   transform: rotate(90deg);
   translate: var(--au-spacing-3xs) var(--au-spacing-none);
 }

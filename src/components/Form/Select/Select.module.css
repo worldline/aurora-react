@@ -63,6 +63,14 @@
   color: var(--au-inputfield-placeholder-text);
 }
 
+.chevron-up {
+  transform: rotate(-90deg);
+}
+
+.chevron-down {
+  transform: rotate(90deg);
+}
+
 .container[data-selected] .label {
   color: var(--au-inputfield-filled-label);
 }
