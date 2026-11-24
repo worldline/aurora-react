@@ -1,19 +1,52 @@
-import { parseDate } from '@internationalized/date'
+import { getLocalTimeZone, parseDate, today } from '@internationalized/date'
 import { announce } from '@react-aria/live-announcer'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { DateRangePicker } from '.'
+import { DateRangePicker, type DateRangePreset } from '.'
 
 vi.mock('@react-aria/live-announcer', () => ({
   announce: vi.fn(),
 }))
 
+/** jsdom ships no `matchMedia`, so the viewport has to be faked outright. */
+const stubViewport = ({ isMobile }: { isMobile: boolean }): void => {
+  vi.stubGlobal(
+    'matchMedia',
+    (query: string): MediaQueryList =>
+      ({
+        matches: isMobile,
+        media: query,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }) as unknown as MediaQueryList,
+  )
+}
+
 const LABEL = 'Date range'
 const MOCK_START_DATE = parseDate('2026-03-16')
 const MOCK_END_DATE = parseDate('2026-05-10')
 const MOCK_DATA_INVALID = 'data-invalid'
+
+const MOCK_PRESETS: ReadonlyArray<DateRangePreset> = [
+  { id: 'last-week', label: 'Last week', duration: { weeks: 1 } },
+  { id: 'last-2-weeks', label: 'Last 2 weeks', duration: { weeks: 2 } },
+  { id: 'last-month', label: 'Last month', duration: { months: 1 } },
+  { id: 'last-3-months', label: 'Last 3 months', duration: { months: 3 } },
+  { id: 'last-year', label: 'Last year', duration: { years: 1 } },
+]
+
+const MOCK_ACTIONS = {
+  primaryAction: { label: 'Apply', onAction: vi.fn() },
+  secondaryAction: { label: 'Reset to default', onAction: vi.fn() },
+}
+
+const MOCK_DEFAULT_PRESET: DateRangePreset = {
+  id: 'last-month',
+  label: 'Last month',
+  duration: { months: 1 },
+}
 
 describe('DateRangePicker Component', () => {
   beforeEach(() => {
@@ -22,6 +55,7 @@ describe('DateRangePicker Component', () => {
 
   afterEach(() => {
     vi.restoreAllMocks()
+    vi.unstubAllGlobals()
   })
 
   test('should render with label', () => {
@@ -329,6 +363,496 @@ describe('DateRangePicker Component', () => {
       }).toThrow(
         'DateRangePicker: tooltip requires tooltipTriggerAriaLabel to be provided.',
       )
+    })
+
+    test('throws when actions are provided without defaultPreset', () => {
+      expect(() => {
+        render(
+          <DateRangePicker
+            aria-label={LABEL}
+            triggerAriaLabel="Select date range"
+            actions={MOCK_ACTIONS}
+          />,
+        )
+      }).toThrow(
+        'DateRangePicker: actions requires defaultPreset to be provided.',
+      )
+    })
+  })
+
+  describe('Composite mode (desktop)', () => {
+    beforeEach(() => {
+      stubViewport({ isMobile: false })
+    })
+
+    test('should render trigger button with preset text', () => {
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+        />,
+      )
+      expect(screen.getByText('Last month')).toBeVisible()
+    })
+
+    test('should render up/down arrow icon on trigger', () => {
+      const { container } = render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+        />,
+      )
+      const triggerIcon = container.querySelector('[class*="trigger-icon"]')
+      expect(triggerIcon).toBeInTheDocument()
+    })
+
+    test('should open popover with presets when trigger is clicked', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      expect(
+        screen.getByRole('listbox', { name: 'Date range presets' }),
+      ).toBeVisible()
+    })
+
+    test('should display all preset options', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          triggerText="Select range"
+          triggerAriaLabel="Select date range"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      for (const preset of MOCK_PRESETS) {
+        expect(screen.getByRole('option', { name: preset.label })).toBeVisible()
+      }
+    })
+
+    test('should mark selected preset with aria-selected', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      expect(
+        screen.getByRole('option', { name: 'Last month', selected: true }),
+      ).toBeVisible()
+      expect(
+        screen.getByRole('option', { name: 'Last week', selected: false }),
+      ).toBeVisible()
+    })
+
+    test('should call onPresetSelect when a preset is clicked', async () => {
+      const user = userEvent.setup()
+      const handlePresetSelect = vi.fn()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          onPresetSelect={handlePresetSelect}
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+      await user.click(screen.getByRole('option', { name: 'Last week' }))
+
+      expect(handlePresetSelect).toHaveBeenCalledWith('last-week')
+    })
+
+    test('should render action buttons when actions are provided', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          actions={MOCK_ACTIONS}
+          defaultPreset={MOCK_DEFAULT_PRESET}
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      expect(screen.getByRole('button', { name: 'Apply' })).toBeVisible()
+      expect(
+        screen.getByRole('button', { name: 'Reset to default' }),
+      ).toBeVisible()
+    })
+
+    test('should call primaryAction.onAction when Apply is clicked', async () => {
+      const user = userEvent.setup()
+      const primaryOnAction = vi.fn()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          actions={{
+            primaryAction: { label: 'Apply', onAction: primaryOnAction },
+            secondaryAction: {
+              label: 'Reset to default',
+              onAction: vi.fn(),
+            },
+          }}
+          defaultPreset={MOCK_DEFAULT_PRESET}
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+      await user.click(screen.getByRole('button', { name: 'Apply' }))
+
+      expect(primaryOnAction).toHaveBeenCalledOnce()
+    })
+
+    test('should call secondaryAction.onAction when Reset is clicked', async () => {
+      const user = userEvent.setup()
+      const secondaryOnAction = vi.fn()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          actions={{
+            primaryAction: { label: 'Apply', onAction: vi.fn() },
+            secondaryAction: {
+              label: 'Reset to default',
+              onAction: secondaryOnAction,
+            },
+          }}
+          defaultPreset={MOCK_DEFAULT_PRESET}
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+      await user.click(screen.getByRole('button', { name: 'Reset to default' }))
+
+      expect(secondaryOnAction).toHaveBeenCalledOnce()
+    })
+
+    test('should toggle trigger aria-expanded state', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+        />,
+      )
+
+      const triggerButton = screen.getByRole('button', {
+        name: 'Select date range',
+      })
+      expect(triggerButton).toHaveAttribute('aria-expanded', 'false')
+
+      await user.click(triggerButton)
+      expect(triggerButton).toHaveAttribute('aria-expanded', 'true')
+    })
+
+    test('should show formatted date range on trigger when no triggerText is provided', () => {
+      stubViewport({ isMobile: false })
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          triggerAriaLabel="Select date range"
+          defaultValue={{
+            start: parseDate('2026-08-01'),
+            end: parseDate('2026-08-30'),
+          }}
+        />,
+      )
+
+      expect(screen.getByText('From 01/08/2026 to 30/08/2026')).toBeVisible()
+    })
+
+    test('should only commit value when Apply is clicked, not on calendar selection', async () => {
+      const user = userEvent.setup()
+      const handleChange = vi.fn()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          triggerAriaLabel="Select date range"
+          defaultValue={{
+            start: parseDate('2026-08-01'),
+            end: parseDate('2026-08-30'),
+          }}
+          onChange={handleChange}
+          actions={{
+            primaryAction: { label: 'Apply', onAction: () => undefined },
+            secondaryAction: {
+              label: 'Reset to default',
+              onAction: () => undefined,
+            },
+          }}
+          defaultPreset={MOCK_DEFAULT_PRESET}
+        />,
+      )
+
+      expect(screen.getByText('From 01/08/2026 to 30/08/2026')).toBeVisible()
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      expect(handleChange).not.toHaveBeenCalled()
+
+      await user.click(screen.getByRole('button', { name: 'Apply' }))
+
+      expect(handleChange).toHaveBeenCalledOnce()
+    })
+
+    test('should reset to default preset range when Reset is clicked', async () => {
+      const user = userEvent.setup()
+      const handleChange = vi.fn()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          triggerAriaLabel="Select date range"
+          defaultValue={{
+            start: parseDate('2026-08-01'),
+            end: parseDate('2026-08-30'),
+          }}
+          onChange={handleChange}
+          actions={{
+            primaryAction: { label: 'Apply', onAction: () => undefined },
+            secondaryAction: {
+              label: 'Reset to default',
+              onAction: () => undefined,
+            },
+          }}
+          defaultPreset={MOCK_DEFAULT_PRESET}
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      await user.click(screen.getByRole('button', { name: 'Reset to default' }))
+
+      const end = today(getLocalTimeZone())
+      const start = end.subtract({ months: 1 })
+      const expectedStart = `${String(start.day).padStart(2, '0')}/${String(start.month).padStart(2, '0')}/${String(start.year)}`
+      const expectedEnd = `${String(end.day).padStart(2, '0')}/${String(end.month).padStart(2, '0')}/${String(end.year)}`
+
+      expect(handleChange).toHaveBeenCalledOnce()
+      expect(
+        screen.getByText(`From ${expectedStart} to ${expectedEnd}`),
+      ).toBeVisible()
+    })
+  })
+
+  describe('Composite mode (mobile)', () => {
+    beforeEach(() => {
+      stubViewport({ isMobile: true })
+    })
+
+    test('should render trigger button on mobile viewport', () => {
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          sheetTitle="Select date range"
+          closeLabel="Close"
+        />,
+      )
+      expect(
+        screen.getByRole('button', { name: 'Select date range' }),
+      ).toBeVisible()
+    })
+
+    test('should open bottom sheet with filter chips when trigger is clicked', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          sheetTitle="Select date range"
+          closeLabel="Close"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      expect(screen.getByText('Select date range')).toBeVisible()
+      expect(
+        screen.getByRole('grid', { name: 'Date range presets' }),
+      ).toBeVisible()
+    })
+
+    test('should display all preset labels as filter items in bottom sheet', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          triggerText="Select range"
+          triggerAriaLabel="Select date range"
+          sheetTitle="Select date range"
+          closeLabel="Close"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      for (const preset of MOCK_PRESETS) {
+        expect(screen.getByText(preset.label)).toBeVisible()
+      }
+    })
+
+    test('should render action buttons in bottom sheet', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          sheetTitle="Select date range"
+          closeLabel="Close"
+          actions={MOCK_ACTIONS}
+          defaultPreset={MOCK_DEFAULT_PRESET}
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      expect(screen.getByRole('button', { name: 'Apply' })).toBeVisible()
+      expect(
+        screen.getByRole('button', { name: 'Reset to default' }),
+      ).toBeVisible()
+    })
+
+    test('should render calendar inside bottom sheet', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          sheetTitle="Select date range"
+          closeLabel="Close"
+          calendarGridProps={{ weekdayStyle: 'short' }}
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      const grids = screen.getAllByRole('grid')
+      expect(grids.length).toBeGreaterThanOrEqual(2)
+    })
+
+    test('should render close button in bottom sheet header', async () => {
+      const user = userEvent.setup()
+      render(
+        <DateRangePicker
+          aria-label={LABEL}
+          presets={MOCK_PRESETS}
+          selectedPresetId="last-month"
+          triggerText="Last month"
+          triggerAriaLabel="Select date range"
+          sheetTitle="Select date range"
+          closeLabel="Close"
+        />,
+      )
+
+      await user.click(
+        screen.getByRole('button', { name: 'Select date range' }),
+      )
+
+      expect(screen.getByRole('button', { name: 'Close' })).toBeVisible()
+    })
+  })
+
+  describe('Standard mode backward compatibility', () => {
+    test('should render standard mode without presets', () => {
+      render(<DateRangePicker label={LABEL} />)
+      expect(screen.getByRole('group', { name: LABEL })).toBeVisible()
+    })
+
+    test('should still render two date inputs in standard mode', () => {
+      const { container } = render(<DateRangePicker label={LABEL} />)
+      const dateInputs = container.querySelectorAll('[class*="date-input"]')
+      expect(dateInputs).toHaveLength(2)
+    })
+
+    test('should still render separator in standard mode', () => {
+      const { container } = render(<DateRangePicker label={LABEL} />)
+      const separator = container.querySelector('[class*="separator"]')
+      expect(separator).toBeVisible()
     })
   })
 })

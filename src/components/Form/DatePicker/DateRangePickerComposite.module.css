@@ -1,0 +1,181 @@
+.trigger {
+  display: flex;
+  align-items: center;
+  padding: var(--au-spacing-xs) var(--au-spacing-sm);
+  gap: var(--au-spacing-xs);
+  color: var(--au-content-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.trigger[data-hovered],
+.trigger[data-pressed],
+.trigger[aria-expanded='true'] {
+  color: var(--au-button-link-hover-content);
+}
+
+.trigger-readonly,
+.trigger-readonly[data-hovered],
+.trigger-readonly[data-pressed] {
+  color: var(--au-content-primary);
+  cursor: default;
+}
+
+.trigger[data-disabled] {
+  color: var(--au-content-disabled);
+  cursor: not-allowed;
+}
+
+.trigger[data-focus-visible] {
+  border-radius: var(--au-radius-sm);
+  box-shadow: var(--au-focus-ring);
+}
+
+.trigger > .trigger-text {
+  color: inherit;
+}
+
+.trigger-icon {
+  flex-shrink: 0;
+  color: var(--au-content-secondary);
+}
+
+.trigger-icon-up {
+  transform: rotate(-90deg);
+}
+
+.trigger-icon-down {
+  transform: rotate(90deg);
+}
+
+.trigger[data-hovered] > .trigger-icon,
+.trigger[data-pressed] > .trigger-icon,
+.trigger[aria-expanded='true'] > .trigger-icon {
+  color: inherit;
+}
+
+.trigger-readonly[data-hovered] > .trigger-icon,
+.trigger-readonly[data-pressed] > .trigger-icon {
+  color: var(--au-content-secondary);
+}
+
+.trigger[data-disabled] > .trigger-icon {
+  color: var(--au-content-disabled);
+}
+
+.composite-popover {
+  min-width: auto;
+  margin: var(--au-dimension-4) 0;
+  padding: var(--au-spacing-sm);
+  background-color: var(--au-surface-neutral-low);
+  border: var(--au-border-width-thin) solid var(--au-border-neutral-low);
+  border-radius: var(--au-radius-sm);
+  box-shadow: var(--au-elevation-interactive-overlay);
+  overflow: auto;
+  outline: none;
+}
+
+.composite-dialog {
+  display: flex;
+  gap: var(--au-spacing-sm);
+  outline: none;
+}
+
+.calendar-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 324px;
+  gap: var(--au-spacing-sm);
+  flex-shrink: 0;
+}
+
+.date-range-field {
+  width: 100%;
+}
+
+.date-input {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  font: var(--au-body-md);
+  color: var(--au-inputfield-filled-text);
+}
+
+.segment {
+  color: var(--au-inputfield-placeholder-text);
+}
+
+.segment[data-focused] {
+  color: var(--au-content-on-brand);
+  background-color: var(--au-surface-brand-solid);
+  outline: none;
+}
+
+.segment[data-placeholder] {
+  color: var(--au-inputfield-placeholder-text);
+  text-transform: uppercase;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--au-spacing-3xs);
+  color: var(--au-content-secondary);
+  flex-shrink: 0;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: var(--au-inputfield-text-field-sm-padding-vertical)
+    var(--au-inputfield-text-field-sm-padding-horizontal);
+  gap: var(--au-inputfield-text-field-sm-gap);
+  background-color: var(--au-inputfield-placeholder-background);
+  border-radius: var(--au-inputfield-text-field-sm-radius);
+  pointer-events: none;
+  border-style: solid;
+  border-width: var(--au-inputfield-text-field-sm-border-width);
+  border-color: var(--au-inputfield-placeholder-border);
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  gap: var(--au-spacing-sm);
+}
+
+.action-button {
+  flex: 1;
+}
+
+.mobile-presets {
+  overflow-x: auto;
+  padding: 0 var(--au-spacing-xs);
+  scrollbar-width: none;
+}
+
+.mobile-presets [role='grid'] {
+  flex-wrap: nowrap;
+}
+
+.mobile-presets [role='row'] {
+  flex-shrink: 0;
+}
+
+.mobile-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--au-spacing-2xs);
+  gap: var(--au-spacing-xl);
+}
+
+.mobile-calendar {
+  display: flex;
+  flex-direction: column;
+  padding: var(--au-spacing-sm);
+  gap: var(--au-spacing-sm);
+}

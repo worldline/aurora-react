@@ -17,6 +17,7 @@
 .calendar {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: var(--au-spacing-sm);
 }
 
@@ -70,6 +71,10 @@
   justify-self: center;
 }
 
+.grid-body td {
+  padding: 0;
+}
+
 .grid-body .cell {
   box-sizing: content-box;
 }
@@ -90,11 +95,14 @@
 }
 
 .cell[data-selected] {
+  width: auto;
+  justify-self: stretch;
   background-color: var(--au-surface-brand-subtile);
   border-radius: 0;
 }
 
 .single-calendar .cell[data-selected] {
+  width: var(--au-dimension-32);
   background-color: var(--au-surface-brand-solid);
   border-radius: var(--au-radius-sm);
 }
@@ -126,11 +134,15 @@
 }
 
 .cell[data-selection-start] {
+  width: auto;
+  justify-self: stretch;
   background-color: var(--au-surface-brand-solid);
   border-radius: var(--au-radius-sm) 0 0 var(--au-radius-sm);
 }
 
 .cell[data-selection-end] {
+  width: auto;
+  justify-self: stretch;
   background-color: var(--au-surface-brand-solid);
   border-radius: 0 var(--au-radius-sm) var(--au-radius-sm) 0;
 }

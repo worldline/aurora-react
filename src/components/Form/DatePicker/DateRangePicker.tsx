@@ -4,89 +4,51 @@ import cn from 'classnames'
 import { useId } from 'react'
 import {
   DateRangePicker as AriaDateRangePicker,
-  type DateRangePickerProps as AriaDateRangePickerProps,
-  DateInput,
-  DateSegment,
-  type DateValue,
   RangeCalendar,
 } from 'react-aria-components'
 
-import { type FieldRequirementProps } from '@/components/Form/FieldLabel'
-import { ArrowForwardIcon } from '@/components/icons'
-
 import calendarStyles from './Calendar.module.css'
-import { CalendarContent, type CalendarContentProps } from './CalendarContent'
+import { CalendarContent } from './CalendarContent'
 import { DateFieldBase } from './DateFieldBase'
 import styles from './DatePicker.module.css'
+import { DateRangeInput } from './DateRangeInput'
+import { DateRangePickerComposite } from './DateRangePickerComposite'
+import type { DateRangePickerInternalProps } from './types'
 
 const TOOLTIP_REQUIRES_LABEL_ERROR =
   'DateRangePicker: tooltip requires label to be provided.'
 const TOOLTIP_REQUIRES_ARIA_LABEL_ERROR =
   'DateRangePicker: tooltip requires tooltipTriggerAriaLabel to be provided.'
+const ACTIONS_REQUIRES_DEFAULT_PRESET_ERROR =
+  'DateRangePicker: actions requires defaultPreset to be provided.'
 
-/**
- * Custom layout and style configuration for the DateRangePicker component.
- */
-interface DateRangePickerProps extends CalendarContentProps {
-  /**
-   * Defines the height and padding scale of the input inputs.
-   * @default 'small'
-   */
-  size?: 'small' | 'medium'
-  /**
-   * The text label displayed above or alongside the date inputs.
-   */
-  label?: string
-  /**
-   * Text content for the tooltip shown next to the label; requires label.
-   */
-  tooltip?: string
-  /**
-   * Accessible name for the tooltip trigger button; required when tooltip is set.
-   */
-  tooltipTriggerAriaLabel?: string
-  /**
-   * The validation error message displayed below the input.
-   */
-  error?: string
-  /**
-   * Configures screen reader announcements for accessibility when an error occurs.
-   * @default 'polite'
-   */
-  announceError?: 'polite' | 'assertive' | false
-}
-
-/**
- * Combined properties for the component, merging local configurations
- * with foundational React Aria capabilities.
- */
-type Props = DateRangePickerProps &
-  FieldRequirementProps &
-  Omit<
-    AriaDateRangePickerProps<DateValue>,
-    'children' | 'validate' | 'validationBehavior' | 'isRequired'
-  >
-
-const DateRangePicker = ({
-  size = 'small',
-  label,
-  tooltip,
-  tooltipTriggerAriaLabel,
-  error,
-  announceError = 'polite',
-  calendarGridProps,
-  calendarGridBodyProps,
-  calendarGridHeaderProps,
-  calendarHeaderCellProps,
-  calendarCellProps,
-  className,
-  isRequired,
-  showRequiredMark,
-  optionalLabel,
-  ...props
-}: Props) => {
+const DateRangePicker = (props: DateRangePickerInternalProps) => {
   const id = useId()
-  const errorId = error ? `${id}-error` : undefined
+
+  const {
+    size = 'small',
+    label,
+    tooltip,
+    tooltipTriggerAriaLabel,
+    error,
+    announceError = 'polite',
+    calendarGridProps,
+    calendarGridBodyProps,
+    calendarGridHeaderProps,
+    calendarHeaderCellProps,
+    calendarCellProps,
+    className,
+    isRequired,
+    showRequiredMark,
+    optionalLabel,
+    presets,
+    actions,
+    triggerAriaLabel,
+    value,
+    defaultValue,
+    onChange,
+    ...restProps
+  } = props
 
   if (tooltip !== undefined && label === undefined) {
     throw new Error(TOOLTIP_REQUIRES_LABEL_ERROR)
@@ -94,10 +56,22 @@ const DateRangePicker = ({
   if (tooltip !== undefined && tooltipTriggerAriaLabel === undefined) {
     throw new Error(TOOLTIP_REQUIRES_ARIA_LABEL_ERROR)
   }
+  if (actions !== undefined && props.defaultPreset === undefined) {
+    throw new Error(ACTIONS_REQUIRES_DEFAULT_PRESET_ERROR)
+  }
+
+  if (presets || actions || triggerAriaLabel) {
+    return <DateRangePickerComposite {...props} />
+  }
+
+  const errorId = error ? `${id}-error` : undefined
 
   return (
     <AriaDateRangePicker
-      {...props}
+      {...restProps}
+      value={value}
+      defaultValue={defaultValue}
+      onChange={onChange}
       className={cn(styles.container, styles[size], className)}
       isInvalid={Boolean(error)}
       isRequired={isRequired}
@@ -113,23 +87,7 @@ const DateRangePicker = ({
         announceError={announceError}
         showRequiredMark={showRequiredMark}
         optionalLabel={optionalLabel}
-        dateInputContent={
-          <>
-            <DateInput slot="start" className={styles['date-input']}>
-              {(segment) => (
-                <DateSegment segment={segment} className={styles.segment} />
-              )}
-            </DateInput>
-            <span className={styles.separator}>
-              <ArrowForwardIcon aria-hidden size={20} />
-            </span>
-            <DateInput slot="end" className={styles['date-input']}>
-              {(segment) => (
-                <DateSegment segment={segment} className={styles.segment} />
-              )}
-            </DateInput>
-          </>
-        }
+        dateInputContent={<DateRangeInput />}
         calendarContent={
           <RangeCalendar className={calendarStyles.calendar}>
             <CalendarContent
@@ -146,4 +104,4 @@ const DateRangePicker = ({
   )
 }
 
-export { DateRangePicker, type DateRangePickerProps }
+export { DateRangePicker }

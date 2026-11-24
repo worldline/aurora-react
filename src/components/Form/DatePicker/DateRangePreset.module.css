@@ -1,0 +1,42 @@
+.preset-list {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  gap: var(--au-spacing-2xs);
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.preset-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--au-dimension-40);
+  padding: var(--au-spacing-xs);
+  gap: var(--au-spacing-xs);
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: var(--au-radius-sm);
+  cursor: pointer;
+  outline: none;
+}
+
+.preset-item:hover,
+.preset-item-selected {
+  background-color: var(--au-surface-neutral-low-hover);
+}
+
+.preset-item:focus-visible {
+  box-shadow: var(--au-focus-ring);
+}
+
+.preset-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.preset-check {
+  flex-shrink: 0;
+  color: var(--au-content-brand);
+}

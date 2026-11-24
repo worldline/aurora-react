@@ -26,6 +26,8 @@ interface DateFieldBaseProps {
   showRequiredMark?: boolean
   /** Text appended in parentheses after the label when the field is not required. */
   optionalLabel?: string
+  /** Whether to show the calendar icon button inside the input group. */
+  showCalendarIcon?: boolean
 }
 
 const DateFieldBase = ({
@@ -40,6 +42,7 @@ const DateFieldBase = ({
   errorId,
   showRequiredMark,
   optionalLabel,
+  showCalendarIcon = true,
 }: DateFieldBaseProps) => {
   const triggerRef = useRef(null)
   useEffect(() => {
@@ -66,9 +69,11 @@ const DateFieldBase = ({
 
       <Group className={styles['input-wrapper']} ref={triggerRef}>
         {dateInputContent}
-        <Button className={styles['calendar-button']}>
-          <CalendarTodayIcon aria-hidden size={24} />
-        </Button>
+        {showCalendarIcon ? (
+          <Button className={styles['calendar-button']}>
+            <CalendarTodayIcon aria-hidden size={24} />
+          </Button>
+        ) : null}
       </Group>
 
       {error ? <ErrorMessage id={errorId} error={error} /> : null}
