@@ -19,8 +19,8 @@
   },
   "scope": {
     "directory": "src/assets/icons/basics",
-    "fileCount": 75,
-    "note": "Only the listed outlined Google SVGs are covered by this provenance hash check. Custom, brand, filled, and unresolved assets are not validated by this manifest."
+    "fileCount": 67,
+    "note": "The public projection contains only pinned outlined Google SVGs. MCC, filled, brand, and unresolved source SVGs remain private or are replaced by these pinned assets."
   },
   "files": {
     "account-balance": "919bfe35fdf53719ba0c95e6dd530ee4d1a7689d1b717bb80d42cf4a02a1bb98",
@@ -58,17 +58,6 @@
     "upload": "65cbb4f85e1d2166d44f265734dc4b8a0d4cda62dd29474286a72270786b7ffc",
     "verified-user": "3b642a4a411d31463fff1f8565eea18d3b70b0db4802788aefe61afb92ee33a0",
     "visibility": "b5ee74eabdcc4c8733f76beb6267cd443d6eb484dfcde5c9c9f1341dbf7dc762",
-    "chef-hat": "5caec0a7b737b0756aa61a844076423e6c559072c940b8e43b17a6cb0fbccd66",
-    "directions-car": "bbfaa70f7a8c2665a8bbf9c3b1927f69914d8b53caa4895b7ae549536c87f1ba",
-    "draft": "1d20c608d4cae099004a69bb6d0ecfe7085cb376b6b2d14d6bd6d645d334cc61",
-    "keyboard-arrow-down": "335d66ade9892b06811ba728c43d407fe97dde3f8d0e2926f3fa991165846833",
-    "keyboard-arrow-up": "e0c274be5ec41a865b7bd5cd93f626773999af7608e4b4e05bbadac0b3117b90",
-    "local-bar": "fdc726f137f107f6dc9f9a8e65ca789d5a83f19e51cde205be4d6f9f8535afcb",
-    "lunch-dining": "ae8e7c135edbf06af7050762ff1bb9dc6665f3b07959ddb871c6d2f4d8f8c6ee",
-    "medical-services": "f3b9ede31f4ad6d54388393d2f975b9434945a20524e5e60c2b19ca12c05570a",
-    "restaurant": "a8fccda73cce4c44e22b418a234c2c96b386d720174b8216d0763239bfc1d62a",
-    "sports-soccer": "6d13659d231f18f0e79fa80d4a6cd900940d49e103409fd52ae01c6d6d32719a",
-    "travel": "8c100b8c10797ff5c9e7d2727ea5d7721029766638f10237b964bb02e862823b",
     "arrow-downward": "9431b1cea2bd7018f0528317d6470002c4089cf8f90927feb7858916d8e8b63f",
     "arrow-forward": "f615c198f47eb54ded550f7c3ddf8b1c35fe6a614942db8ead26e5b4d54a2a5e",
     "arrow-upward": "a986a3a57be9b9d48c71df363658c13467064cdaa4a055b44153983f83e698a3",
@@ -97,6 +86,9 @@
     "search": "4146c3fcafae369e464a69c5809d99c6f008e4d2372934ad07f4e6fd16a8feaa",
     "settings": "a46f00b79258c8ac7a42fa9f7d8c3a808ba1f4f9bd86f45739d0b357430c3bb1",
     "stacks": "56e425bb0485dbe059d853b00c3a20db00700fb0a039dd01b912c232748740b0",
-    "warning": "5befef50c35baef7606528319130e7bddb5fcf0f3a858c27f7c6d11dfba09f48"
+    "warning": "5befef50c35baef7606528319130e7bddb5fcf0f3a858c27f7c6d11dfba09f48",
+    "check-indeterminate-small": "5fc027ce411008797d796c10d66cf2cf564abc90930f437600c2c6a213085f65",
+    "menu": "5e6ff58cdd2ce6cf7decaddca0aa7d32324e6521e8d803141fa8f2022f906f38",
+    "progress-activity": "4102a57aca73b2285bdec8bf81d8651bd26b57baca93d2974f2573c0aea4794c"
   }
 }

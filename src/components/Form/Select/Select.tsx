@@ -11,7 +11,7 @@ import {
   ListBox,
 } from 'react-aria-components'
 
-import { KeyboardArrowDownIcon, KeyboardArrowUpIcon } from '@/components/icons'
+import { ChevronForwardIcon } from '@/components/icons'
 import { Popover } from '@/components/Popover'
 
 import { FieldLabel, type FieldRequirementProps } from '../FieldLabel'
@@ -119,15 +119,15 @@ const Select = <M extends 'single' | 'multiple' = 'single'>({
             {leading ? <span className={styles.leading}>{leading}</span> : null}
             <SelectMultiValue placeholder={placeholder} />
             {isOpen ? (
-              <KeyboardArrowUpIcon
+              <ChevronForwardIcon
                 aria-hidden
-                className={styles.chevron}
+                className={cn(styles.chevron, styles['chevron-up'])}
                 size={24}
               />
             ) : (
-              <KeyboardArrowDownIcon
+              <ChevronForwardIcon
                 aria-hidden
-                className={styles.chevron}
+                className={cn(styles.chevron, styles['chevron-down'])}
                 size={24}
               />
             )}

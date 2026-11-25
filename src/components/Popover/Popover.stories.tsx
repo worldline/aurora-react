@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
-import { BlockIcon, PersonFillIcon, SettingsIcon } from '@/components/icons'
+import { BlockIcon, PersonIcon, SettingsIcon } from '@/components/icons'
 import { Menu } from '@/components/Menu'
 import { Pressable } from '@/components/Pressable'
 import { Typography } from '@/components/Typography'
@@ -138,7 +138,7 @@ export const WithMenuAndPressable: Story = {
           className={styles['custom-trigger']}
           aria-label="Open menu"
         >
-          <PersonFillIcon aria-hidden />
+          <PersonIcon aria-hidden />
         </div>
       </Pressable>
       <Popover {...args}>

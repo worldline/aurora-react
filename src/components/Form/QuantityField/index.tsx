@@ -18,7 +18,7 @@ import {
   type FieldRequirementProps,
 } from '@/components/Form/FieldLabel'
 import { FieldSupport } from '@/components/Form/FieldSupport'
-import { AddIcon, CheckIndeterminateIcon } from '@/components/icons'
+import { AddIcon, CheckIndeterminateSmallIcon } from '@/components/icons'
 
 import styles from './QuantityField.module.css'
 
@@ -157,7 +157,7 @@ const QuantityField = ({
               aria-label={decrementAriaLabel}
               className={styles.button}
             >
-              <CheckIndeterminateIcon aria-hidden />
+              <CheckIndeterminateSmallIcon aria-hidden />
             </Button>
             <Input
               role="spinbutton"

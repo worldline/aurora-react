@@ -7,7 +7,6 @@ import {
   OverlayArrow,
 } from 'react-aria-components'
 
-import { TooltipArrowIcon } from '@/components/icons'
 import { Typography } from '@/components/Typography'
 
 import styles from './Tooltip.module.css'
@@ -47,12 +46,7 @@ const Tooltip = ({
         [styles['arrow-end']]: alignment.includes('end'),
       })}
     >
-      <TooltipArrowIcon
-        width={12}
-        height={6}
-        aria-hidden
-        className={styles['arrow-svg']}
-      />
+      <span aria-hidden className={styles['arrow-shape']} />
     </OverlayArrow>
     <div className={styles.content}>
       {title ? (

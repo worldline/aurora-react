@@ -9,7 +9,7 @@ import {
   useId,
 } from 'react'
 
-import { LoadingCircleIcon } from '@/components/icons'
+import { ProgressActivityIcon } from '@/components/icons'
 import { Typography } from '@/components/Typography'
 
 import styles from './Spinner.module.css'
@@ -135,7 +135,7 @@ const Spinner = ({
       <div className={styles['icon-container']} style={iconContainerStyle}>
         <div className={styles['spinner-animation']}>
           {icon ?? (
-            <LoadingCircleIcon
+            <ProgressActivityIcon
               aria-hidden
               className={styles.icon}
               size="100%"

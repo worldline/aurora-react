@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-12",
+  "cssSources": {
+    "Inter": "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap",
+    "Raleway": "https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+  },
+  "licenses": {
+    "Inter": {
+      "spdx": "OFL-1.1",
+      "file": "Inter-OFL-1.1.txt"
+    },
+    "Raleway": {
+      "spdx": "OFL-1.1",
+      "file": "Raleway-OFL-1.1.txt"
+    }
+  },
+  "files": [
+    {
+      "path": "inter-cyrillic-ext-italic-100-900.woff2",
+      "family": "Inter",
+      "style": "italic",
+      "subset": "cyrillic-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7Ca725JhhKnNqk6L0UUMJng.woff2",
+      "sha256": "39689184132e9fba8fb1066f429125d14445352a566f47f4edcae7c3c90e486d"
+    },
+    {
+      "path": "inter-cyrillic-italic-100-900.woff2",
+      "family": "Inter",
+      "style": "italic",
+      "subset": "cyrillic",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7Ca725JhhKnNqk6L9UUMJng.woff2",
+      "sha256": "47d42151dff6d13f1c2b9a1f278290f625593c1f01c89612ee4ae7f063167f7a"
+    },
+    {
+      "path": "inter-greek-ext-italic-100-900.woff2",
+      "family": "Inter",
+      "style": "italic",
+      "subset": "greek-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7Ca725JhhKnNqk6L1UUMJng.woff2",
+      "sha256": "787fc783f35c913334445a7c4502bb272f94a8328426578776eac5e4ebd03ba1"
+    },
+    {
+      "path": "inter-greek-italic-100-900.woff2",
+      "family": "Inter",
+      "style": "italic",
+      "subset": "greek",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7Ca725JhhKnNqk6L6UUMJng.woff2",
+      "sha256": "29e273a42cac8240f37fbdd94c684f8a255e61c8076942d9b8f18a0e2c014991"
+    },
+    {
+      "path": "inter-vietnamese-italic-100-900.woff2",
+      "family": "Inter",
+      "style": "italic",
+      "subset": "vietnamese",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7Ca725JhhKnNqk6L2UUMJng.woff2",
+      "sha256": "1991ed5832eb07f7523f22a843ca9a8aa83c51c8e87062ce77794855d2f5dee8"
+    },
+    {
+      "path": "inter-latin-ext-italic-100-900.woff2",
+      "family": "Inter",
+      "style": "italic",
+      "subset": "latin-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7Ca725JhhKnNqk6L3UUMJng.woff2",
+      "sha256": "71254244ccb1ec21e14db3480fef6f6826d1136dc4aca1c7d3ca7ce31294fcce"
+    },
+    {
+      "path": "inter-latin-italic-100-900.woff2",
+      "family": "Inter",
+      "style": "italic",
+      "subset": "latin",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7Ca725JhhKnNqk6L5UUM.woff2",
+      "sha256": "7291b5970da2237441273c03b424a504b70b18f09791473fab99687dcc314720"
+    },
+    {
+      "path": "inter-cyrillic-ext-normal-100-900.woff2",
+      "family": "Inter",
+      "style": "normal",
+      "subset": "cyrillic-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2",
+      "sha256": "ca157063339ac4ad418f214f3abfed119b0798ab4d377386ce5c9e5a7a435ebd"
+    },
+    {
+      "path": "inter-cyrillic-normal-100-900.woff2",
+      "family": "Inter",
+      "style": "normal",
+      "subset": "cyrillic",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2",
+      "sha256": "71d5ee93cc1e9f1d520a3a8b66456de18c7879d8df09d57fcd2eaff75fef0075"
+    },
+    {
+      "path": "inter-greek-ext-normal-100-900.woff2",
+      "family": "Inter",
+      "style": "normal",
+      "subset": "greek-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2",
+      "sha256": "6e9e020a25f9b56d418f2c085b1d3c09725a4da23fe693a5b463064606732190"
+    },
+    {
+      "path": "inter-greek-normal-100-900.woff2",
+      "family": "Inter",
+      "style": "normal",
+      "subset": "greek",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2",
+      "sha256": "1be3448e292fbf05ffe176fe1e43f135013d50b1e7d324ad1a558f623d3bb6f6"
+    },
+    {
+      "path": "inter-vietnamese-normal-100-900.woff2",
+      "family": "Inter",
+      "style": "normal",
+      "subset": "vietnamese",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2",
+      "sha256": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2"
+    },
+    {
+      "path": "inter-latin-ext-normal-100-900.woff2",
+      "family": "Inter",
+      "style": "normal",
+      "subset": "latin-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2",
+      "sha256": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956"
+    },
+    {
+      "path": "inter-latin-normal-100-900.woff2",
+      "family": "Inter",
+      "style": "normal",
+      "subset": "latin",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2",
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+    },
+    {
+      "path": "raleway-cyrillic-ext-italic-100-900.woff2",
+      "family": "Raleway",
+      "style": "italic",
+      "subset": "cyrillic-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2",
+      "sha256": "89a1ae829083a7a7263c4bb4119395477139e3866409f6a7c7e7e309f228d5b1"
+    },
+    {
+      "path": "raleway-cyrillic-italic-100-900.woff2",
+      "family": "Raleway",
+      "style": "italic",
+      "subset": "cyrillic",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4SYFqPfE.woff2",
+      "sha256": "bad8fd12e2ce80c70302ec5901f1b6129fce0ebbaba757aa25bd72e51b0d1555"
+    },
+    {
+      "path": "raleway-vietnamese-italic-100-900.woff2",
+      "family": "Raleway",
+      "style": "italic",
+      "subset": "vietnamese",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4QoFqPfE.woff2",
+      "sha256": "80de52aeb6cc399a3e6b111946607c9216891231bca467d08d6cfed18b1642dd"
+    },
+    {
+      "path": "raleway-latin-ext-italic-100-900.woff2",
+      "family": "Raleway",
+      "style": "italic",
+      "subset": "latin-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2",
+      "sha256": "263c505d5216c4431265e258c83785ba7c96d9d31ba2759f2e761c45de08e42d"
+    },
+    {
+      "path": "raleway-latin-italic-100-900.woff2",
+      "family": "Raleway",
+      "style": "italic",
+      "subset": "latin",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptsg8zYS_SKggPNyCg4TYFq.woff2",
+      "sha256": "8c08eb8b1fdd16dcdd6270e42a8b24fcf7ddc7e63d4363a55c174d110f90005f"
+    },
+    {
+      "path": "raleway-cyrillic-ext-normal-100-900.woff2",
+      "family": "Raleway",
+      "style": "normal",
+      "subset": "cyrillic-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCAIT5lu.woff2",
+      "sha256": "36920a27f3f245302f04e96a331d42b81dceda91b5229dfd757873bf12db4b05"
+    },
+    {
+      "path": "raleway-cyrillic-normal-100-900.woff2",
+      "family": "Raleway",
+      "style": "normal",
+      "subset": "cyrillic",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCkIT5lu.woff2",
+      "sha256": "ac99ad1c437b60ef445a7c13c958d4d574ef98050de2ccf182ba6ccdb3bfbdfd"
+    },
+    {
+      "path": "raleway-vietnamese-normal-100-900.woff2",
+      "family": "Raleway",
+      "style": "normal",
+      "subset": "vietnamese",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCIIT5lu.woff2",
+      "sha256": "49d1df38711652b72cbb3ed91dfda0a981b88f75be4abb02eb6640f74f2a5bee"
+    },
+    {
+      "path": "raleway-latin-ext-normal-100-900.woff2",
+      "family": "Raleway",
+      "style": "normal",
+      "subset": "latin-ext",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyCMIT5lu.woff2",
+      "sha256": "2d603982caea60f15b741581c9e7bd88d1a7680fc52978137f9bc67c2dec61e0"
+    },
+    {
+      "path": "raleway-latin-normal-100-900.woff2",
+      "family": "Raleway",
+      "style": "normal",
+      "subset": "latin",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://fonts.gstatic.com/s/raleway/v37/1Ptug8zYS_SKggPNyC0ITw.woff2",
+      "sha256": "b1bef1f03a77a36fc257c5525e32a1dd621bb6f935b743a419da7ed0b18dc8f5"
+    }
+  ]
+}

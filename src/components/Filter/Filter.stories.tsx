@@ -5,7 +5,7 @@ import type { Selection } from 'react-aria-components'
 import {
   BlockIcon,
   CreditCardIcon,
-  PersonFillIcon,
+  PersonIcon,
   SettingsIcon,
   StorefrontIcon,
 } from '../icons'
@@ -74,7 +74,7 @@ export const WithLeadingIcons: Story = {
       <FilterItem id="settings" leadingIcon={<SettingsIcon aria-hidden />}>
         Settings
       </FilterItem>
-      <FilterItem id="profile" leadingIcon={<PersonFillIcon aria-hidden />}>
+      <FilterItem id="profile" leadingIcon={<PersonIcon aria-hidden />}>
         Profile
       </FilterItem>
     </FilterGroup>
@@ -126,7 +126,7 @@ const RemovableWithIconsExample = () => {
     {
       id: 'users',
       label: 'Users',
-      icon: <PersonFillIcon aria-hidden />,
+      icon: <PersonIcon aria-hidden />,
     },
   ])
 

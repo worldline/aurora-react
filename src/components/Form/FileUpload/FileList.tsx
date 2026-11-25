@@ -1,29 +1,11 @@
-import type { JSX, SVGProps } from 'react'
+import type { JSX } from 'react'
 
 import { Button } from '@/components/Button'
 import {
-  CsvFileIcon,
+  ContractEditIcon,
   DeleteIcon,
-  DocFileIcon,
-  DocxFileIcon,
-  EpsFileIcon,
   ErrorIcon,
-  GifFileIcon,
-  JpegFileIcon,
-  JpgFileIcon,
-  PdfFileRedIcon,
-  PngFileIcon,
-  PptFileIcon,
-  PptxFileIcon,
   ProgressActivityIcon,
-  SvgFileIcon,
-  TiffFileIcon,
-  TxtFileIcon,
-  UploadedFileIcon,
-  WebpFileIcon,
-  XlsFileIcon,
-  XlsxFileIcon,
-  ZipFileIcon,
 } from '@/components/icons'
 import { Link } from '@/components/Link'
 import { Typography } from '@/components/Typography'
@@ -32,46 +14,9 @@ import styles from './FileList.module.css'
 
 type FileStatus = 'uploading' | 'uploaded' | 'removing' | 'error'
 
-type IconProps = SVGProps<SVGSVGElement> & {
-  size?: number | string
-}
-
-type FileIconComponent = (props: IconProps) => JSX.Element
-
-const FILE_TYPE_ICONS: Record<string, FileIconComponent> = {
-  csv: CsvFileIcon,
-  doc: DocFileIcon,
-  docx: DocxFileIcon,
-  eps: EpsFileIcon,
-  gif: GifFileIcon,
-  jpeg: JpegFileIcon,
-  jpg: JpgFileIcon,
-  pdf: PdfFileRedIcon,
-  png: PngFileIcon,
-  ppt: PptFileIcon,
-  pptx: PptxFileIcon,
-  svg: SvgFileIcon,
-  tiff: TiffFileIcon,
-  txt: TxtFileIcon,
-  webp: WebpFileIcon,
-  xls: XlsFileIcon,
-  xlsx: XlsxFileIcon,
-  zip: ZipFileIcon,
-}
-
-const getFileExtension = (fileName: string): string => {
-  const lastDotIndex = fileName.lastIndexOf('.')
-  if (lastDotIndex === -1) {
-    return ''
-  }
-  return fileName.slice(lastDotIndex + 1).toLowerCase()
-}
-
-const renderFileIcon = (fileName: string): JSX.Element => {
-  const extension = getFileExtension(fileName)
-  const Icon = FILE_TYPE_ICONS[extension] ?? UploadedFileIcon
-  return <Icon size={32} aria-hidden />
-}
+const renderFileIcon = (): JSX.Element => (
+  <ContractEditIcon size={32} aria-hidden />
+)
 
 interface FileEntry {
   /** Stable client-side identifier used as the React key */
@@ -154,7 +99,7 @@ const FileRow = ({
         {isError ? (
           <ErrorIcon size={32} aria-hidden className={styles['error-icon']} />
         ) : null}
-        {!isUploading && !isError ? renderFileIcon(name) : null}
+        {!isUploading && !isError ? renderFileIcon() : null}
       </div>
 
       <div className={styles['file-info']}>
