@@ -1,7 +1,6 @@
 .trigger {
   display: flex;
   align-items: center;
-  padding: var(--au-spacing-xs) var(--au-spacing-sm);
   gap: var(--au-spacing-xs);
   color: var(--au-content-primary);
   background: none;
@@ -39,7 +38,7 @@
 
 .trigger-icon {
   flex-shrink: 0;
-  color: var(--au-content-secondary);
+  color: var(--au-content-primary);
 }
 
 .trigger-icon-up {
